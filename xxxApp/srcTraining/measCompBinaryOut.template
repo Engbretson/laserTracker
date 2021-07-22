@@ -1,0 +1,31 @@
+record(bo, "$(P)$(R)")
+
+{ 
+
+field(PINI, "YES")
+
+field(DTYP, "asynUInt32Digital")
+
+field(OUT, 
+"@asynMask($(PORT),$(ADDR),$(MASK))DIGITAL_OUTPUT")
+
+field(ZNAM, "Low")
+
+field(ONAM, "High")
+}
+# This is a readback of the output, with SCAN=I/O Intrrecord(bi, "$(P)$(R)_RBV")
+{ 
+
+field(DTYP, "asynUInt32Digital")
+
+field(INP, 
+"@asynMask($(PORT),$(ADDR),$(MASK))DIGITAL_OUTPUT")
+
+field(ZNAM, "Low")
+
+field(ONAM, "High")
+
+field(SCAN, "I/O Intr") 
+
+
+} 
