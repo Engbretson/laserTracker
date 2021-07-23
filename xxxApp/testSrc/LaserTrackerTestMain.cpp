@@ -337,60 +337,61 @@ void OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling
 
 void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException)
 {
-   // throw gcnew System::NotImplementedException();
+    // throw gcnew System::NotImplementedException(); 
+	
+   LMF::Tracker::MeasurementResults::Measurement^ LastMeasurement = nullptr;
+
     cout << "callback Got a Measurement Value . . . \n";
 
     cout << "count :" << paramMeasurements->Count << "\n";
-    
-    cout << msclr::interop::marshal_as<std::string>(paramMeasurements->GetType()->FullName) << "\n";
 
-    
-// Does not work as 6d, but simulator says that it should be this
+    if (paramMeasurements)
+    {
+        if (paramMeasurements->Count > 0)
+        {
+            LastMeasurement = paramMeasurements[0];
+            cout << "Measurment Humidity: " << LastMeasurement->Humidity->Value << " Pressure: " << LastMeasurement->Pressure->Value << " Temperature: " << LastMeasurement->Temperature->Value << "\n";
 
-    if (StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(paramMeasurements))
+
+    if (StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(LastMeasurement))
     {
         cout << "I am a stationary3d measurement \n ";
 
-    }
-    else cout << " not a 1 ";
+        cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << "\n";
+        cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << "\n";
+        cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
 
-    if (StationaryMeasurement6D^ stationaryMeas6D = dynamic_cast<StationaryMeasurement6D^>(paramMeasurements))
+
+    }
+    else if (StationaryMeasurement6D^ stationaryMeas6D = dynamic_cast<StationaryMeasurement6D^>(LastMeasurement))
     {
         cout << "I am a stationary6d measurement \n ";
+        cout << " X = " << stationaryMeas6D->Position->Coordinate1->Value << "\n";
+        cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value << "\n";
+        cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << "\n";
 
-    }cout << " not a 2 ";
 
-    if (SingleShotMeasurement3D^ singleshot3dD = dynamic_cast<SingleShotMeasurement3D^>(paramMeasurements))
+    }else if (SingleShotMeasurement3D^ singleshot3dD = dynamic_cast<SingleShotMeasurement3D^>(LastMeasurement))
     {
         cout << "I am a singleshot 3d measurement \n ";
 
-    }cout << " not a 3 ";
+        cout << " X = " << singleshot3dD->Position->Coordinate1->Value << "\n";
+        cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << "\n";
+        cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << "\n";
 
-    if (SingleShotMeasurement6D^ singleshot6dD = dynamic_cast<SingleShotMeasurement6D^>(paramMeasurements))
+
+
+    }else if (SingleShotMeasurement6D^ singleshot6dD = dynamic_cast<SingleShotMeasurement6D^>(LastMeasurement))
     {
         cout << "I am a singleshot 6d measurement \n ";
+        cout << " X = " << singleshot6dD->Position->Coordinate1->Value << "\n";
+        cout << " Y = " << singleshot6dD->Position->Coordinate2->Value << "\n";
+        cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << "\n";
 
-    }cout << " not a 4 ";
 
-
-
-
-//    cout << stationaryMeas6D->Temperature->Value;   
-
-    //does not work as 3d
-    // 
-//    StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(paramMeasurements);
-//    cout << stationaryMeas3D->Temperature->Value;
-
-//    SingleShotMeasurement6D^ singleShotMeas6D = dynamic_cast<SingleShotMeasurement6D^>(fromMeasurement)
-//    SingleShotMeasurement6D ^ singleShotMeas6D = dynamic_cast<SingleShotMeasurement6D^>(fromMeasurement)
-
- //   cout << "Measurment Humidity: " << stationaryMeas6D->Humidity->Value << " Pressure: " << stationaryMeas6D->Pressure->Value << " Temperature: " << stationaryMeas6D->Temperature->Value << "\n";
-
- //   cout << " X = " << stationaryMeas6D->Position->Coordinate1->Value << "\n";
- //   cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value << "\n";
- //   cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << "\n";
-
+    }
+ }
+}
     
 }
 

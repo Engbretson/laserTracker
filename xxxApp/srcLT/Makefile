@@ -14,6 +14,7 @@ ltAT403_SRCS += ltAT403.cpp
 
 ltAT403_DBD += ltAT403Support.dbd
 DBD += ltAT403Support.dbd
+DBD += ltAT403.dbd
 
 ltAT403_LIBS += alive
 ltAT403_LIBS += asyn

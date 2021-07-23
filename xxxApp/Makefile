@@ -2,6 +2,8 @@ TOP = ..
 include $(TOP)/configure/CONFIG
 DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard testsrc))
 DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard srcLT))
+DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard Simsrc))
+DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard demoSrc))
 DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard src))
 
 DIRS := $(DIRS) $(filter-out $(DIRS), $(wildcard *db*))
