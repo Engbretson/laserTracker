@@ -1,3 +1,3 @@
 include "base.dbd"
 include "asyn.dbd"
-include "ltAT403Support.dbd"
+registrar("LTAt403Register")

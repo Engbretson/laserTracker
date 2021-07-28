@@ -208,8 +208,12 @@ ifdef VAC
 endif
 
 ifdef LASER_TRACKER
-  $(DBD_NAME)_DBD += ltAT403Support.dbd
+  $(DBD_NAME)_DBD += ltAT403.dbd
+#  $(DBD_NAME)_DBD += measCompDemoSupport.dbd
+
   $(PROD_NAME)_LIBS := ltAT403 $($(PROD_NAME)_LIBS)
+#  testAsynPortDriverSupport 
+#  measCompDemoAppV1 
 endif
 
 #ifdef FLY

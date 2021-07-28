@@ -1,190 +1,148 @@
 
-#include <iocsh.h> 
+
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <errno.h>
+#include <math.h>
+
+#include <epicsTypes.h>
+#include <epicsTime.h>
+#include <epicsThread.h>
+#include <epicsString.h>
+#include <epicsTimer.h>
+#include <epicsMutex.h>
+#include <epicsEvent.h>
+#include <iocsh.h>
+
+#include "ltAt403.h"
 #include <epicsExport.h>
-#include <asynPortDriver.h> 
 
 
-// Laser Tracker Includes
-#include <iostream>
-#include <msclr\marshal.h>
-#include <msclr\marshal_cppstd.h>
-
-using namespace System;
-using namespace msclr::interop;
-using namespace std;
-
-#using <LMF.Tracker.Connection.dll>
-
-using namespace LMF::Tracker;
-using namespace LMF::Tracker::Measurements;
-using namespace LMF::Tracker::MeasurementStatus;
-using namespace LMF::Tracker::MeasurementResults;
-using namespace LMF::Tracker::ErrorHandling;
-using namespace LMF::Tracker::Targets;
-using namespace LMF::Tracker::Triggers;
-using namespace LMF::Tracker::Enums;
-using namespace LMF::Tracker::BasicTypes;
-
-// end of Laser Tracker Includes
-
-// may not need any of these actually, could hard encode it at point of actual use
-
-
-#define commentString "comment"
-#define expectedFirmwareString "expectedfirmware"
-#define installedFirmwareString "installedfirmware"
-#define ipAddressString "ipAddress"
-#define iscompatibleFirmwareString "iscompatibleFirmware"
-#define nameString "name"
-#define productNameString "productName"
-#define serialNumberString "serialNumber"
+static const char *driverName="LTAt403";
 
 
 
-static const char *driverName = "LTAT403"; 
-
-ref class GlobalObjects {
-public:
-
-static LMF::Tracker::Tracker^ LMFTracker;   
-static Connection^ con = gcnew Connection();
-
-};
-
-/** Class definition for the  class*/
-
- class LTAT403 : public asynPortDriver {
-public: 
-LTAT403(const char *trackerName); 
-
-/* These are the methods that we override from asynPortDriver */
-
-virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
-
-//virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
-//virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
-//virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
-
-
-//virtual asynStatus writeUInt32Digital(asynUser *pasynUser, epicsUInt32 value, epicsUInt32 mask);
-//virtual void report(FILE *fp, int details);
-
-static void initializeHardware();
-protected: 
-
-
-private: 
-
-
-
-
-int comment;
-#define FIRST_lsAT403_PARAM comment
-int expectedFirmware;
-int installedFirmware;
-int ipAddress;
-int iscompatibleFirmware;
-int name;
-int productName;
-int serialNumber;
-#define LAST_lsAT403_PARAM serialNumber
-
-
-
-}; 
-
-#define NUM_PARAMS (&LAST_lsAT403_PARAM - &FIRST_lsAT403_PARAM + 1) 
-
-
-/** Constructor for the  class*/
-
-LTAT403::LTAT403(const char *trackerName)
-: asynPortDriver(trackerName, 0, 0,
-asynInt32Mask | asynDrvUserMask, // Interfaces that we implement
-0, // Interfaces that do callbacks
-ASYN_MULTIDEVICE | ASYN_CANBLOCK, 1,
-/* ASYN_CANBLOCK=1, ASYN_MULTIDEVICE=1, autoConnect=1 */
-0, 0) /* Default priority and stack size */
-
+/** Constructor for the LTAt403 class.
+  * Calls constructor for the asynPortDriver base class.
+  * \param[in] portName The name of the asyn port driver to be created.
+  * \param[in] maxPoints The maximum  number of points in the volt and time arrays */
+LTAt403::LTAt403(const char *portName)
+   : asynPortDriver(portName,
+                    1, /* maxAddr */
+                    asynInt32Mask | asynFloat64Mask | asynFloat64ArrayMask | asynEnumMask | asynDrvUserMask | asynOctetMask, /* Interface mask */
+                    asynInt32Mask | asynFloat64Mask | asynFloat64ArrayMask | asynEnumMask | asynOctetMask,  /* Interrupt mask */
+                    0, /* asynFlags.  This driver does not block and it is not multi-device, so flag is 0 */
+                    1, /* Autoconnect */
+                    0, /* Default priority */
+                    0) /* Default stack size*/
 {
+//    asynStatus status;
+//    int i;
+    const char *functionName = "LTAt403";
 
-createParam(commentString, asynParamOctet, &comment);
-createParam(expectedFirmwareString, asynParamOctet, &expectedFirmware);
-createParam(installedFirmwareString, asynParamOctet, &installedFirmware);
-createParam(ipAddressString, asynParamOctet, &ipAddress);
-createParam(iscompatibleFirmwareString, asynParamInt32, &iscompatibleFirmware);
-createParam(nameString, asynParamOctet, &name);
-createParam(productNameString, asynParamOctet, &productName);
-createParam(serialNumberString, asynParamOctet, &serialNumber);
-
-printf("Does this code actually get hit (in Constructor)?\n");
-
-	setIntegerParam(iscompatibleFirmware, 42); 
-    callParamCallbacks();	
-
-
-epicsInt32 temp;
-
-	getIntegerParam(iscompatibleFirmware, &temp); 
-		
-	printf("Did this code actually get hit? (in Constructor) %d\n", temp);
-
-}
-
-
-void LTAT403::initializeHardware()
-{
- printf("Before Initialization and before prints . . . \n");
+    initializeHardware(portName);	
  
-  GlobalObjects::LMFTracker->Initialize();
-  
-   
- // lets do some test commands
- printf("After Initialization and before prints . . . \n");
+	createParam(L_iscompatibleFirmwareString,          asynParamInt32,         &L_iscompatibleFirmware);	
+	
+    createParam(L_commentString, asynParamOctet, &L_comment);
+    createParam(L_expectedFirmwareString, asynParamOctet, &L_expectedFirmware);
+    createParam(L_installedFirmwareString, asynParamOctet, &L_installedFirmware);
+    createParam(L_ipAddressString, asynParamOctet, &L_ipAddress);
+    createParam(L_nameString, asynParamOctet, &L_name);
+    createParam(L_productNameString, asynParamOctet, &L_productName);
+    createParam(L_serialNumberString, asynParamOctet, &L_serialNumber);
+	
+	createParam(L_horizontalAngleString, asynParamFloat64, &L_horizontalAngle);
+	createParam(L_verticalAngleString, asynParamFloat64, &L_verticalAngle);
+
+	 // lets do some test commands 
+ 
+    printf("After Initialization and before prints . . . \n");
  
  
-     String^ Comment = GlobalObjects::LMFTracker->Comment;
+    String^ Comment = GlobalObjects::LMFTracker->Comment;
     cout << "Comment: " << msclr::interop::marshal_as<std::string>(Comment) << "\n";   
-//	setStringParam(comment,msclr::interop::marshal_as<std::string>(Comment);
+    setStringParam(L_comment,msclr::interop::marshal_as<std::string>(Comment));
      
-    String^ Firmware = GlobalObjects::LMFTracker->ExpectedFirmware;
-    cout << "Firmware: " << msclr::interop::marshal_as<std::string>(Firmware) << "\n";
-//	setStringParam(firmware,msclr::interop::marshal_as<std::string>(Firmware);
+    String^ ExpectedFirmware = GlobalObjects::LMFTracker->ExpectedFirmware;
+    cout << "Firmware: " << msclr::interop::marshal_as<std::string>(ExpectedFirmware) << "\n";
+    setStringParam(L_expectedFirmware,msclr::interop::marshal_as<std::string>(ExpectedFirmware));
 
     String^ InstalledFirmware = GlobalObjects::LMFTracker->InstalledFirmware;
     cout << "InstalledFirmware: " << msclr::interop::marshal_as<std::string>(InstalledFirmware) << "\n";
-//	setStringParam(installedFirmware,msclr::interop::marshal_as<std::string>(InstalledFirmware);
+	setStringParam(L_installedFirmware,msclr::interop::marshal_as<std::string>(InstalledFirmware));
 	
     String^ IP = GlobalObjects::LMFTracker->IPAddress;
     cout << "IP: " << msclr::interop::marshal_as<std::string>(IP) << "\n";
-//	setStringParam(ipAddress,msclr::interop::marshal_as<std::string>(IP);
+	setStringParam(L_ipAddress,msclr::interop::marshal_as<std::string>(IP));
 
     Boolean CompatFirmware = GlobalObjects::LMFTracker->IsCompatibleWithInstalledFirmware;
     cout << "Is Compatible With Installed Firmware: " << CompatFirmware << "\n";
-//	setIntegerParam(LTAT403::iscompatibleFirmware, CompatFirmware); 
+	setIntegerParam(L_iscompatibleFirmware, CompatFirmware); 
+	
 
     String^ Name = GlobalObjects::LMFTracker->Name;
     cout << "Name: " << msclr::interop::marshal_as<std::string>(Name) << "\n";
-//	setStringParam(name,msclr::interop::marshal_as<std::string>(Name);
+	setStringParam(L_name,msclr::interop::marshal_as<std::string>(Name));
     
     String^ ProductName = GlobalObjects::LMFTracker->ProductName;
     cout << "ProductName: " << msclr::interop::marshal_as<std::string>(ProductName) << "\n";
-//	setStringParam(productName,msclr::interop::marshal_as<std::string>(ProductName);
+	setStringParam(L_productName,msclr::interop::marshal_as<std::string>(ProductName));
 
-    String^ Serial = GlobalObjects::LMFTracker->SerialNumber;
-    cout << "Serial: " << msclr::interop::marshal_as<std::string>(Serial) << "\n";
-//	setStringParam(serial,msclr::interop::marshal_as<std::string>(Serial);
-
+    String^ SerialNumber = GlobalObjects::LMFTracker->SerialNumber;
+    cout << "Serial: " << msclr::interop::marshal_as<std::string>(SerialNumber) << "\n";
+	setStringParam(L_serialNumber,msclr::interop::marshal_as<std::string>(SerialNumber));
+	
     GlobalObjects::LMFTracker->GetDirectionAsync();    
     Direction^ dir1 = GlobalObjects::LMFTracker->GetDirection(); 
     cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " V Angle: " << dir1->VerticalAngle->Value << "\n";
+	setDoubleParam(L_horizontalAngle, dir1->HorizontalAngle->Value); 
+	setDoubleParam(L_verticalAngle, dir1->VerticalAngle->Value);
+	
+// I *think* that the units tend to be a default angle in Degrees ? or have not run across the switch units commands . . .  yet.
+	cout <<"HLabel " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->Label);
+    cout << " HUnitString " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->UnitString);
+//    cout << "HUnitType " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->UnitType) << "\n"; // some off enum type
+    cout << " HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
+	
+    cout << "VLabel " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->Label);
+    cout << " VUnitString " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->UnitString);
+//    cout << "VUnitType " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->UnitType) << "\n"; // some odd enum type 
+    cout << " VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
+
+
+LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker->Measurement->MeasureStationary();
+
+ cout << "Measurment Humidity: " << data->Humidity->Value << " Pressure: " << data->Pressure->Value << " Temperature: " << data->Temperature->Value << "\n";
+ 
+ StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(data);
+ cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value ;
+ cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value ;
+ cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
+
 
 // end of test commands 
 
-//	  callParamCallbacks();
+    callParamCallbacks();	
+
+
 }
 
-asynStatus LTAT403::readInt32(asynUser *pasynUser, epicsInt32 *value)
+void LTAt403::initializeHardware(const char *portName)
+{
+ printf("Before Initialization and before prints . . . \n");
+ 
+ 	GlobalObjects::con = gcnew Connection();
+    GlobalObjects::LMFTracker = GlobalObjects::con->Connect(marshal_as<String^>(portName));
+
+    printf("Before Initialization and before prints (in IH). . . \n");
+ 
+    GlobalObjects::LMFTracker->Initialize();
+
+};
+
+asynStatus LTAt403::readInt32(asynUser *pasynUser, epicsInt32 *value)
 {
   int addr;
   int function = pasynUser->reason;
@@ -198,10 +156,13 @@ asynStatus LTAT403::readInt32(asynUser *pasynUser, epicsInt32 *value)
   
   printf("in readInt32 . . . function %d \n",function);
 
-  if (function == iscompatibleFirmware) {
-	getIntegerParam(iscompatibleFirmware, &temp); 
+  if (function == L_iscompatibleFirmware) {
+	getIntegerParam(L_iscompatibleFirmware, &temp); 
 	printf("ReadInt32 values is  %d\n", temp);
-	status = asynPortDriver::readInt32(pasynUser, &temp);
+temp = temp +1;
+	asynPortDriver::readInt32(pasynUser, &temp);
+		asynPortDriver::writeInt32(pasynUser, temp);
+	callParamCallbacks(addr);
    }
 
   // Other functions we call the base class method
@@ -213,92 +174,41 @@ asynStatus LTAT403::readInt32(asynUser *pasynUser, epicsInt32 *value)
   return (status==0) ? asynSuccess : asynError;
 }
 
-/** Configuration command, called directly or from iocsh */
-
-extern "C" int LTAT403Config(const char *trackerName)
-{ 
-    asynStatus status = asynError;
-	
-LTAT403 *pLTAT403 = new LTAT403(trackerName);
-
-//pLTAT403 = NULL; 
-
-GlobalObjects::con = gcnew Connection();
-GlobalObjects::LMFTracker = GlobalObjects::con->Connect(marshal_as<String^>(trackerName));
-
- printf("Before Initialization and before prints (in Config). . . \n");
- 
-  GlobalObjects::LMFTracker->Initialize();
-//  LTAT403::initializeHardware();
-  
-  
-   
- // lets do some test commands
- printf("After Initialization and before prints (in Config). . . \n");
- 
- 
-     String^ Comment = GlobalObjects::LMFTracker->Comment;
-    cout << "Comment: " << msclr::interop::marshal_as<std::string>(Comment) << "\n";   
-//	setStringParam(comment,msclr::interop::marshal_as<std::string>(Comment);
-     
-    String^ Firmware = GlobalObjects::LMFTracker->ExpectedFirmware;
-    cout << "Firmware: " << msclr::interop::marshal_as<std::string>(Firmware) << "\n";
-//	setStringParam(firmware,msclr::interop::marshal_as<std::string>(Firmware);
-
-    String^ InstalledFirmware = GlobalObjects::LMFTracker->InstalledFirmware;
-    cout << "InstalledFirmware: " << msclr::interop::marshal_as<std::string>(InstalledFirmware) << "\n";
-//	setStringParam(installedFirmware,msclr::interop::marshal_as<std::string>(InstalledFirmware);
-	
-    String^ IP = GlobalObjects::LMFTracker->IPAddress;
-    cout << "IP: " << msclr::interop::marshal_as<std::string>(IP) << "\n";
-//	setStringParam(ipAddress,msclr::interop::marshal_as<std::string>(IP);
-
-    Boolean CompatFirmware = GlobalObjects::LMFTracker->IsCompatibleWithInstalledFirmware;
-    cout << "Is Compatible With Installed Firmware: " << CompatFirmware << "\n";
-//	setIntegerParam(iscompatibleFirmware, CompatFirmware); 
-
-    String^ Name = GlobalObjects::LMFTracker->Name;
-    cout << "Name: " << msclr::interop::marshal_as<std::string>(Name) << "\n";
-//	setStringParam(name,msclr::interop::marshal_as<std::string>(Name);
-    
-    String^ ProductName = GlobalObjects::LMFTracker->ProductName;
-    cout << "ProductName: " << msclr::interop::marshal_as<std::string>(ProductName) << "\n";
-//	setStringParam(productName,msclr::interop::marshal_as<std::string>(ProductName);
-
-    String^ Serial = GlobalObjects::LMFTracker->SerialNumber;
-    cout << "Serial: " << msclr::interop::marshal_as<std::string>(Serial) << "\n";
-//	setStringParam(serial,msclr::interop::marshal_as<std::string>(Serial);
-
-    GlobalObjects::LMFTracker->GetDirectionAsync();    
-    Direction^ dir1 = GlobalObjects::LMFTracker->GetDirection(); 
-    cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " V Angle: " << dir1->VerticalAngle->Value << "\n";
-
-// end of test commands 
-
-
-
-/* This is just to avoid compiler warnings */
-
-
-return(asynSuccess);
-
-} 
-
-
-static const iocshArg configArg0 = { "Tracker name", iocshArgString};
-static const iocshArg * const configArgs[] = {&configArg0};
-static const iocshFuncDef configFuncDef = {"LTAT403Config", 1, configArgs};
-static void configCallFunc(const iocshArgBuf *args)
-{
-LTAT403Config(args[0].sval);
-}
-
-void drvLTAT403Register(void)
-{
-iocshRegister(&configFuncDef,configCallFunc);
-}
+/* Configuration routine.  Called directly, or from the iocsh function below */
 
 extern "C" {
-epicsExportRegistrar(drvLTAT403Register);
-} 
+
+/** EPICS iocsh callable function to call constructor for the LTAt403 class.
+  * \param[in] portName The name of the asyn port driver to be created.
+  * \param[in] maxPoints The maximum  number of points in the volt and time arrays */
+int LTAt403Configure(const char *portName)
+{
+//	LTAT403 *pLTAT403 = new LTAT403(trackerName);
+
+//    pLTAT403 = NULL; 
+	
+    new LTAt403(portName);
+    return(asynSuccess);
+}
+
+
+/* EPICS iocsh shell commands */
+
+static const iocshArg initArg0 = { "portName",iocshArgString};
+
+static const iocshArg * const initArgs[] = {&initArg0};
+static const iocshFuncDef initFuncDef = {"LTAt403Configure",1,initArgs};
+static void initCallFunc(const iocshArgBuf *args)
+{
+    LTAt403Configure(args[0].sval);
+}
+
+void LTAt403Register(void)
+{
+    iocshRegister(&initFuncDef,initCallFunc);
+}
+
+epicsExportRegistrar(LTAt403Register);
+
+}
 
