@@ -9,7 +9,7 @@ iocxxxWin64_registerRecordDeviceDriver(pdbbase)
 # Turn on asynTraceFlow and asynTraceError for global trace, i.e. no connected asynUser.
 #asynSetTraceMask("", 0, 17)
 
-testAsynPortDriverConfigure("At403Simulator")
+LTAt403Configure("At403Simulator")
 
 dbLoadRecords("$(TOP)/db/laserTracker.db","P=$(PREFIX),R=scope1:,PORT=At403Simulator,ADDR=0,TIMEOUT=1,NPOINTS=1000")
 dbLoadRecords("$(ASYN)/db/asynRecord.db","P=$(PREFIX),R=asyn1,PORT=At403Simulator,ADDR=0,OMAX=80,IMAX=80")
