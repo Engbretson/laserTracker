@@ -26,7 +26,7 @@ static const char *driverName="LTAt403";
 /** Constructor for the LTAt403 class.
   * Calls constructor for the asynPortDriver base class.
   * \param[in] portName The name of the asyn port driver to be created.
-  * \param[in] maxPoints The maximum  number of points in the volt and time arrays */
+  */
 LTAt403::LTAt403(const char *portName)
    : asynPortDriver(portName,
                     1, /* maxAddr */
@@ -81,7 +81,6 @@ LTAt403::LTAt403(const char *portName)
     cout << "Is Compatible With Installed Firmware: " << CompatFirmware << "\n";
 	setIntegerParam(L_iscompatibleFirmware, CompatFirmware); 
 	
-
     String^ Name = GlobalObjects::LMFTracker->Name;
     cout << "Name: " << msclr::interop::marshal_as<std::string>(Name) << "\n";
 	setStringParam(L_name,msclr::interop::marshal_as<std::string>(Name));
@@ -131,12 +130,9 @@ LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker-
 
 void LTAt403::initializeHardware(const char *portName)
 {
- printf("Before Initialization and before prints . . . \n");
  
  	GlobalObjects::con = gcnew Connection();
     GlobalObjects::LMFTracker = GlobalObjects::con->Connect(marshal_as<String^>(portName));
-
-    printf("Before Initialization and before prints (in IH). . . \n");
  
     GlobalObjects::LMFTracker->Initialize();
 
@@ -147,28 +143,27 @@ asynStatus LTAt403::readInt32(asynUser *pasynUser, epicsInt32 *value)
   int addr;
   int function = pasynUser->reason;
   int status=0;
-  unsigned short shortVal;
-  int range;
   epicsInt32 temp;
-  //static const char *functionName = "readInt32";
+  
+  static const char *functionName = "readInt32";
 
   this->getAddress(pasynUser, &addr);
   
-  printf("in readInt32 . . . function %d \n",function);
+//  printf("in readInt32 . . . function %d \n",function);
 
-  if (function == L_iscompatibleFirmware) {
-	getIntegerParam(L_iscompatibleFirmware, &temp); 
-	printf("ReadInt32 values is  %d\n", temp);
-temp = temp +1;
-	asynPortDriver::readInt32(pasynUser, &temp);
-		asynPortDriver::writeInt32(pasynUser, temp);
-	callParamCallbacks(addr);
-   }
+//  if (function == L_iscompatibleFirmware) {
+//	getIntegerParam(L_iscompatibleFirmware, &temp); 
+//	printf("ReadInt32 values is  %d\n", temp);
+//    temp = temp +1;
+//	asynPortDriver::readInt32(pasynUser, &temp);
+//		asynPortDriver::writeInt32(pasynUser, temp);
+//	callParamCallbacks(addr);
+//   }
 
   // Other functions we call the base class method
-  else {
+//  else {
      status = asynPortDriver::readInt32(pasynUser, value);
-  }
+ // }
 
   callParamCallbacks(addr);
   return (status==0) ? asynSuccess : asynError;
@@ -180,14 +175,11 @@ extern "C" {
 
 /** EPICS iocsh callable function to call constructor for the LTAt403 class.
   * \param[in] portName The name of the asyn port driver to be created.
-  * \param[in] maxPoints The maximum  number of points in the volt and time arrays */
+  */
 int LTAt403Configure(const char *portName)
-{
-//	LTAT403 *pLTAT403 = new LTAT403(trackerName);
-
-//    pLTAT403 = NULL; 
-	
+{	
     new LTAt403(portName);
+	
     return(asynSuccess);
 }
 
