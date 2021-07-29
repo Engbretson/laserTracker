@@ -51,7 +51,8 @@ int main()
   
     LMFTracker = con->Connect("At403Simulator");
 
-// Callbacks and I do not see any advantage to using any of the async ones at the instant, most are not supportd on this hardware
+
+// Callbacks and I do not see any advantage to using any of the async ones at the instant, most are not supportd on this simulated hardware
 
     LMFTracker->Disconnected += gcnew LMF::Tracker::Tracker::DisconnectedHandler(&OnDisconnected);
     LMFTracker->ErrorArrived += gcnew LMF::Tracker::Tracker::ErrorArrivedHandler(&OnErrorArrived);
@@ -63,8 +64,27 @@ int main()
     LMFTracker->PositionToFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToFinished);
     LMFTracker->PositionToTargetFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToTargetFinished);
     LMFTracker->WarningArrived += gcnew LMF::Tracker::Tracker::WarningArrivedHandler(&OnWarningArrived);
+
     LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
-  
+    
+    cout << "Is the hardware ready ?\n";
+
+    LMF::Tracker::Enums::EMeasurementStatus statusValue = LMFTracker->Measurement->Status->Value;
+
+    if (statusValue == EMeasurementStatus::ReadyToMeasure) { cout << "Ready To Measure . . . \n"; }
+    if (statusValue == EMeasurementStatus::MeasurementInProgress) { cout << "Measurement in Progress . . . \n"; }
+    if (statusValue == EMeasurementStatus::NotReady) { cout << "Not Ready . . . \n"; }
+    if (statusValue == EMeasurementStatus::Invalid) { cout << "Measurement Status Invalid . . . \n"; }
+
+    if (statusValue == EMeasurementStatus::NotReady)
+    {
+        LMF::Tracker::MeasurementStatus::MeasurementPreconditionCollection^ Preconditions = LMFTracker->Measurement->Status->Preconditions;
+        for (int i = 0; i < Preconditions->Count; ++i) {
+            LMF::Tracker::MeasurementStatus::MeasurementPrecondition^ firstPrecondition = Preconditions[i];
+            cout << msclr::interop::marshal_as<std::string>(firstPrecondition->Title) << " " << msclr::interop::marshal_as<std::string>(firstPrecondition->Description) << " " << msclr::interop::marshal_as<std::string>(firstPrecondition->Solution) << "\n";
+        }
+    }
+
 
     LMFTracker->Initialize();
 //    LMFTracker->InitializeAsync();
@@ -102,6 +122,18 @@ int main()
     LMFTracker->GetDirectionAsync();    
     Direction^ dir1 = LMFTracker->GetDirection(); 
     cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " V Angle: " << dir1->VerticalAngle->Value << "\n";
+    cout <<"HLabel " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->Label) << "\n";
+    cout << "HUnitString " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->UnitString) << "\n";
+ 
+//    cout << "HUnitType " << dir1->HorizontalAngle->UnitType << "\n";
+    cout << "HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
+    cout << "VLabel " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->Label) << "\n";
+    cout << "VUnitString " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->UnitString) << "\n";
+//    cout << "VUnitType " << dir1->VerticalAngle->UnitType << "\n";
+    cout << "VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
+//    dir1->HorizontalAngle->UnitType;
+
+     
 
 // If and when something throws and error, this is how to decode it 
 //    Int32 ErrorNumber = 0;
@@ -118,6 +150,7 @@ int main()
     }
     catch (LMF::Tracker::ErrorHandling::LmfException^ e)
     {
+        cout << msclr::interop::marshal_as<std::string>(e->Description);
         cout << "Hit an exception trying to perform a GoHomePositionAsync call \n";
     }
 
@@ -129,6 +162,7 @@ int main()
     }
     catch (LMF::Tracker::ErrorHandling::LmfException^ e)
     {
+        cout << msclr::interop::marshal_as<std::string>(e->Description);
         cout << "Hit an exception trying to perform a GoHomePosition call \n";
     }
 
@@ -156,6 +190,7 @@ int main()
    }
   catch (LMF::Tracker::ErrorHandling::LmfException^ e)
   {
+      cout << msclr::interop::marshal_as<std::string>(e->Description);
       cout << "Hit an exception trying to perform a PositionToAsyn call \n";
   }
 
@@ -168,6 +203,7 @@ int main()
   }
   catch (LMF::Tracker::ErrorHandling::LmfException^ e)
   {
+      cout << msclr::interop::marshal_as<std::string>(e->Description);
       cout << "Hit an exception trying to perform a PositionTo call \n";
   }
 
@@ -185,6 +221,7 @@ int main()
    }
    catch  (LMF::Tracker::ErrorHandling::LmfException^ e)
    {
+       cout << msclr::interop::marshal_as<std::string>(e->Description);
        cout << "Hit an exception trying to perform a Move call \n";
    }
 
@@ -196,16 +233,19 @@ int main()
 //    LMFTracker->Disconnect();
 //    LMFTracker->Dispose();
 
+
+
+
+
 /*
+// Needs actual targets to do anything . . . 
+    LockOnToken^ lockontoken;
 
 
-
-
- //    LockOnToken^ lockontoken;
-//    LMFTracker->PositionToTarget(lockontoken, isrelative, pos1, pos2, pos3);// not supported
-//    LMFTracker->PositionToTargetAsync(lockontoken, isrelative, pos1, pos2, pos3);// not supported
-//   LMFTracker->ShutDown();
-//    LMFTracker->StopMove();// not supported
+    LMFTracker->PositionToTarget(lockontoken, isrelative, pos1, pos2, pos3); // not supported
+    LMFTracker->PositionToTargetAsync(lockontoken, isrelative, pos1, pos2, pos3);// not supported
+    LMFTracker->ShutDown();
+    LMFTracker->StopMove();// not supported
 
 
 
@@ -222,7 +262,16 @@ int main()
  //  thing->MeasureStationary();
 
 */
+
    cout << "Perform a Measure Stationary . . .  \n";
+
+   statusValue = LMFTracker->Measurement->Status->Value;
+
+   if (statusValue == EMeasurementStatus::ReadyToMeasure) { cout << "Ready To Measure . . . \n"; }
+   if (statusValue == EMeasurementStatus::MeasurementInProgress) { cout << "Measurement in Progress . . . \n"; }
+   if (statusValue == EMeasurementStatus::NotReady) { cout << "Not Ready . . . \n"; }
+   if (statusValue == EMeasurementStatus::Invalid) { cout << "Measurement Status Invalid . . . \n"; }
+
 
 LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->MeasureStationary();
 
@@ -233,13 +282,19 @@ LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->M
  cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << "\n";
  cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
 
- 
+ Sleep(2000);
+
  cout << "Doing a StartMeasurement . . . status: " << LMFTracker->Measurement->MeasurementInProgress->Value << "\n";
  LMFTracker->Measurement->StartMeasurement();
 
  Sleep(10000);
  LMFTracker->Measurement->StopMeasurement();
  cout << "Doing a StopMeasurement . . . \n";
+
+
+
+
+
  
 // MeteoStation
 // OverviewCamera
@@ -252,14 +307,10 @@ LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->M
 // TrackerAlignment
 // Triggers
 
-
-
-
-
-
+ cout << "Shutdown . . . \n";
     LMFTracker->ShutDown();
 
-
+    cout << "Disconnect . . . \n";
     LMFTracker->Disconnect();
 
 }
@@ -269,45 +320,54 @@ LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->M
 void OnDisconnected(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
  //   throw gcnew System::NotImplementedException();
+    cout << msclr::interop::marshal_as<std::string>(ex->Description);
     cout << "callback Disconnected finished . . . \n";
 }
 
 void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error)
 {
  //   throw gcnew System::NotImplementedException();
+    cout << msclr::interop::marshal_as<std::string>(error->Description);
     cout << "callback Got some sort of error message . . . \n";
 }
 
 void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Direction^ bm, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
  //   throw gcnew System::NotImplementedException();
-    cout << "callback Got some sort of Get Direction finished message . . . ";
+    cout << msclr::interop::marshal_as<std::string>(ex->Description);
+    cout << "callback Got some sort of Get Direction finished message . . . \n";
     
     cout << "Direction H Angle: " << bm->HorizontalAngle->Value << " V Angle: " << bm->VerticalAngle->Value << "\n";
+
 
 }
 
 void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::MeasurementResults::Measurement^ paramMeasurement, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
-    throw gcnew System::NotImplementedException();
+ //   throw gcnew System::NotImplementedException();
+    cout << msclr::interop::marshal_as<std::string>(ex->Description);
+    cout << "callback OnGetPosition Finished . . . \n";
 
 }
 
 void OnGoHomePositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
  //   throw gcnew System::NotImplementedException();
+    cout << msclr::interop::marshal_as<std::string>(ex->Description);
     cout << "callback Asyn GoHomePosition finished . . . \n";
 }
 
 void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo)
 {
  //   throw gcnew System::NotImplementedException();
+    cout << msclr::interop::marshal_as<std::string>(paramInfo->Description);
     cout << "callback Got some sort of Information message . . . \n";
 }
 
 void OnInitializeFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
  //   throw gcnew System::NotImplementedException();
+    cout << msclr::interop::marshal_as<std::string>(ex->Description);
     cout << "callback Initialization finished . . . \n";
     
 }
@@ -315,6 +375,7 @@ void OnInitializeFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHand
 void OnPositionToFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Targets::Target^ foundTarget, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
   //  throw gcnew System::NotImplementedException();
+    cout << msclr::interop::marshal_as<std::string>(ex->Description);
 
     cout << "callback PositionTo finished . . . \n";
 
@@ -337,59 +398,63 @@ void OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling
 
 void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException)
 {
-    // throw gcnew System::NotImplementedException(); 
-	
-   LMF::Tracker::MeasurementResults::Measurement^ LastMeasurement = nullptr;
+     LMF::Tracker::MeasurementResults::Measurement^ LastMeasurement = nullptr;
 
+    // throw gcnew System::NotImplementedException();
     cout << "callback Got a Measurement Value . . . \n";
 
-    cout << "count :" << paramMeasurements->Count << "\n";
-
+    cout << "counts :" << paramMeasurements->Count << "\n";
+  
     if (paramMeasurements)
     {
-        if (paramMeasurements->Count > 0)
-        {
-            LastMeasurement = paramMeasurements[0];
-            cout << "Measurment Humidity: " << LastMeasurement->Humidity->Value << " Pressure: " << LastMeasurement->Pressure->Value << " Temperature: " << LastMeasurement->Temperature->Value << "\n";
+//        if (paramMeasurements->Count > 0)
+            for (int i = 0; i < paramMeasurements->Count; ++i) {
+                {
+                    LastMeasurement = paramMeasurements[i];
+
+                    cout << "Measurment Humidity: " << LastMeasurement->Humidity->Value << " Pressure: " << LastMeasurement->Pressure->Value << " Temperature: " << LastMeasurement->Temperature->Value << "\n";
 
 
-    if (StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(LastMeasurement))
-    {
-        cout << "I am a stationary3d measurement \n ";
+                    if (StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(LastMeasurement))
+                    {
+                        cout << "I am a stationary3d measurement \n ";
 
-        cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << "\n";
-        cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << "\n";
-        cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
-
-
-    }
-    else if (StationaryMeasurement6D^ stationaryMeas6D = dynamic_cast<StationaryMeasurement6D^>(LastMeasurement))
-    {
-        cout << "I am a stationary6d measurement \n ";
-        cout << " X = " << stationaryMeas6D->Position->Coordinate1->Value << "\n";
-        cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value << "\n";
-        cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << "\n";
+                        cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << "\n";
+                        cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << "\n";
+                        cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
 
 
-    }else if (SingleShotMeasurement3D^ singleshot3dD = dynamic_cast<SingleShotMeasurement3D^>(LastMeasurement))
-    {
-        cout << "I am a singleshot 3d measurement \n ";
-
-        cout << " X = " << singleshot3dD->Position->Coordinate1->Value << "\n";
-        cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << "\n";
-        cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << "\n";
-
-
-
-    }else if (SingleShotMeasurement6D^ singleshot6dD = dynamic_cast<SingleShotMeasurement6D^>(LastMeasurement))
-    {
-        cout << "I am a singleshot 6d measurement \n ";
-        cout << " X = " << singleshot6dD->Position->Coordinate1->Value << "\n";
-        cout << " Y = " << singleshot6dD->Position->Coordinate2->Value << "\n";
-        cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << "\n";
+                    }
+                    else if (StationaryMeasurement6D^ stationaryMeas6D = dynamic_cast<StationaryMeasurement6D^>(LastMeasurement))
+                    {
+                        cout << "I am a stationary6d measurement \n ";
+                        cout << " X = " << stationaryMeas6D->Position->Coordinate1->Value << "\n";
+                        cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value << "\n";
+                        cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << "\n";
 
 
-    }
+                    }
+                    else if (SingleShotMeasurement3D^ singleshot3dD = dynamic_cast<SingleShotMeasurement3D^>(LastMeasurement))
+                    {
+                        cout << "I am a singleshot 3d measurement \n ";
+
+                        cout << " X = " << singleshot3dD->Position->Coordinate1->Value << "\n";
+                        cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << "\n";
+                        cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << "\n";
+
+
+
+                    }
+                    else if (SingleShotMeasurement6D^ singleshot6dD = dynamic_cast<SingleShotMeasurement6D^>(LastMeasurement))
+                    {
+                        cout << "I am a singleshot 6d measurement \n ";
+                        cout << " X = " << singleshot6dD->Position->Coordinate1->Value << "\n";
+                        cout << " Y = " << singleshot6dD->Position->Coordinate2->Value << "\n";
+                        cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << "\n";
+
+
+                    } 
+                }
  }
 }
     
@@ -399,6 +464,9 @@ void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, 
 {
 //    throw gcnew System::NotImplementedException();
     cout << "Measurement Status Value changed: "  << "\n";
-        
 
+    if (paramNewValue == EMeasurementStatus::ReadyToMeasure) { cout << "Ready To Measure . . . \n"; }
+    if (paramNewValue == EMeasurementStatus::MeasurementInProgress) { cout << "Measurement in Progress . . . \n"; }
+    if (paramNewValue == EMeasurementStatus::NotReady) { cout << "Not Ready . . . \n"; }
+    if (paramNewValue == EMeasurementStatus::Invalid) { cout << "Measurement Status Invalid . . . \n"; }
 }
