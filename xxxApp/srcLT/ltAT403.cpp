@@ -55,6 +55,12 @@ LTAt403::LTAt403(const char *portName)
 	
 	createParam(L_horizontalAngleString, asynParamFloat64, &L_horizontalAngle);
 	createParam(L_verticalAngleString, asynParamFloat64, &L_verticalAngle);
+	createParam(L_humidityString, asynParamFloat64, &L_humidity);
+	createParam(L_pressureString, asynParamFloat64, &L_pressure);
+	createParam(L_temperatureString, asynParamFloat64, &L_temperature);
+	createParam(L_xString, asynParamFloat64, &L_x);
+	createParam(L_yString, asynParamFloat64, &L_y);
+	createParam(L_zString, asynParamFloat64, &L_z);
 
 	 // lets do some test commands 
  
@@ -115,10 +121,18 @@ LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker-
 
  cout << "Measurment Humidity: " << data->Humidity->Value << " Pressure: " << data->Pressure->Value << " Temperature: " << data->Temperature->Value << "\n";
  
+ 	setDoubleParam(L_humidity, data->Humidity->Value);
+	setDoubleParam(L_pressure, data-Pressure->Value);
+	setDoubleParam(L_temperature, data-Temperature->Value);
+ 
  StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(data);
  cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value ;
  cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value ;
  cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
+ 
+ 	setDoubleParam(L_x, stationaryMeas3D->Position->Coordinate1->Value);
+	setDoubleParam(L_y, stationaryMeas3D->Position->Coordinate2->Value);
+	setDoubleParam(L_z, stationaryMeas3D->Position->Coordinate3->Value);
 
 
 // end of test commands 

@@ -27,8 +27,10 @@ using namespace LMF::Tracker::BasicTypes;
 
 // may not need any of these actually, could hard encode it at point of actual use
 
+//ints
 #define L_iscompatibleFirmwareString "iscompatibleFirmware"
 
+//strings
 #define L_commentString "comment"
 #define L_expectedFirmwareString "expectedFirmware"
 #define L_installedFirmwareString "installedFirmware"
@@ -37,8 +39,15 @@ using namespace LMF::Tracker::BasicTypes;
 #define L_productNameString "productName"
 #define L_serialNumberString "serialNumber"
 
+//doubles
 #define L_verticalAngleString "verticalAngle"
 #define L_horizontalAngleString "horizontalAngle"
+#define L_humidityString "humidity"
+#define L_pressureString "pressure"
+#define L_temperaturString "temperature"
+#define L_xString "x"
+#define L_yString "y"
+#define L_zString "z"
 
 
 
@@ -87,6 +96,13 @@ private:
 	
 	int L_horizontalAngle;
 	int L_verticalAngle;
+	int L_humidity;
+	int L_pressure;
+	int L_temperature;
+	int L_x;
+	int L_y;
+	int L_z;
+							
 
 };
 #define FIRST_lsAT403_PARAM comment
