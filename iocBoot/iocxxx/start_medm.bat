@@ -6,4 +6,4 @@ set EPICS_CA_ADDR_LIST=192.168.0.53
 
 caget 433LT:scope1:serialNumber_RBV
 
-call "C:\Program Files\EPICS Windows Tools\medm.exe" -x -macro "P=433LT:, R=scope1:" LaserTracker.adl
+call "C:\Program Files\EPICS Windows Tools\medm.exe" -x -macro "P=433LT:, R=scope1:" LaserTracker.adl LT_measurement.adl 
