@@ -44,7 +44,7 @@ using namespace LMF::Tracker::BasicTypes;
 #define L_horizontalAngleString "horizontalAngle"
 #define L_humidityString "humidity"
 #define L_pressureString "pressure"
-#define L_temperaturString "temperature"
+#define L_temperatureString "temperature"
 #define L_xString "x"
 #define L_yString "y"
 #define L_zString "z"

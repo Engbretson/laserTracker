@@ -122,8 +122,8 @@ LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker-
  cout << "Measurment Humidity: " << data->Humidity->Value << " Pressure: " << data->Pressure->Value << " Temperature: " << data->Temperature->Value << "\n";
  
  	setDoubleParam(L_humidity, data->Humidity->Value);
-	setDoubleParam(L_pressure, data-Pressure->Value);
-	setDoubleParam(L_temperature, data-Temperature->Value);
+	setDoubleParam(L_pressure, data->Pressure->Value);
+	setDoubleParam(L_temperature, data->Temperature->Value);
  
  StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(data);
  cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value ;
