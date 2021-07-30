@@ -68,36 +68,36 @@ LTAt403::LTAt403(const char *portName)
  
  
     String^ Comment = GlobalObjects::LMFTracker->Comment;
-    cout << "Comment: " << msclr::interop::marshal_as<std::string>(Comment) << "\n";   
-    setStringParam(L_comment,msclr::interop::marshal_as<std::string>(Comment));
+    cout << "Comment: " << (decode)(Comment) << "\n";   
+    setStringParam(L_comment,(decode)(Comment));
      
     String^ ExpectedFirmware = GlobalObjects::LMFTracker->ExpectedFirmware;
-    cout << "Firmware: " << msclr::interop::marshal_as<std::string>(ExpectedFirmware) << "\n";
-    setStringParam(L_expectedFirmware,msclr::interop::marshal_as<std::string>(ExpectedFirmware));
+    cout << "Firmware: " << (decode)(ExpectedFirmware) << "\n";
+    setStringParam(L_expectedFirmware,(decode)(ExpectedFirmware));
 
     String^ InstalledFirmware = GlobalObjects::LMFTracker->InstalledFirmware;
-    cout << "InstalledFirmware: " << msclr::interop::marshal_as<std::string>(InstalledFirmware) << "\n";
-	setStringParam(L_installedFirmware,msclr::interop::marshal_as<std::string>(InstalledFirmware));
+    cout << "InstalledFirmware: " << (decode)(InstalledFirmware) << "\n";
+	setStringParam(L_installedFirmware,(decode)(InstalledFirmware));
 	
     String^ IP = GlobalObjects::LMFTracker->IPAddress;
-    cout << "IP: " << msclr::interop::marshal_as<std::string>(IP) << "\n";
-	setStringParam(L_ipAddress,msclr::interop::marshal_as<std::string>(IP));
+    cout << "IP: " << (decode)(IP) << "\n";
+	setStringParam(L_ipAddress,(decode)(IP));
 
     Boolean CompatFirmware = GlobalObjects::LMFTracker->IsCompatibleWithInstalledFirmware;
     cout << "Is Compatible With Installed Firmware: " << CompatFirmware << "\n";
 	setIntegerParam(L_iscompatibleFirmware, CompatFirmware); 
 	
     String^ Name = GlobalObjects::LMFTracker->Name;
-    cout << "Name: " << msclr::interop::marshal_as<std::string>(Name) << "\n";
-	setStringParam(L_name,msclr::interop::marshal_as<std::string>(Name));
+    cout << "Name: " << (decode)(Name) << "\n";
+	setStringParam(L_name,(decode)(Name));
     
     String^ ProductName = GlobalObjects::LMFTracker->ProductName;
-    cout << "ProductName: " << msclr::interop::marshal_as<std::string>(ProductName) << "\n";
-	setStringParam(L_productName,msclr::interop::marshal_as<std::string>(ProductName));
+    cout << "ProductName: " << (decode)(ProductName) << "\n";
+	setStringParam(L_productName,(decode)(ProductName));
 
     String^ SerialNumber = GlobalObjects::LMFTracker->SerialNumber;
-    cout << "Serial: " << msclr::interop::marshal_as<std::string>(SerialNumber) << "\n";
-	setStringParam(L_serialNumber,msclr::interop::marshal_as<std::string>(SerialNumber));
+    cout << "Serial: " << (decode)(SerialNumber) << "\n";
+	setStringParam(L_serialNumber,(decode)(SerialNumber));
 	
     GlobalObjects::LMFTracker->GetDirectionAsync();    
     Direction^ dir1 = GlobalObjects::LMFTracker->GetDirection(); 
@@ -106,14 +106,14 @@ LTAt403::LTAt403(const char *portName)
 	setDoubleParam(L_verticalAngle, dir1->VerticalAngle->Value);
 	
 // I *think* that the units tend to be a default angle in Degrees ? or have not run across the switch units commands . . .  yet.
-	cout <<"HLabel " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->Label);
-	cout << " HUnitString " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->UnitString);
-//    cout << "HUnitType " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->UnitType) << "\n"; // some off enum type
+	cout <<"HLabel " << (decode)(dir1->HorizontalAngle->Label);
+	cout << " HUnitString " << (decode)(dir1->HorizontalAngle->UnitString);
+//    cout << "HUnitType " << (decode)(dir1->HorizontalAngle->UnitType) << "\n"; // some off enum type
     cout << " HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
 	
-    cout << "VLabel " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->Label);
-    cout << " VUnitString " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->UnitString);
-//    cout << "VUnitType " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->UnitType) << "\n"; // some odd enum type 
+    cout << "VLabel " << (decode)(dir1->VerticalAngle->Label);
+    cout << " VUnitString " << (decode)(dir1->VerticalAngle->UnitString);
+//    cout << "VUnitType " << (decode)(dir1->VerticalAngle->UnitType) << "\n"; // some odd enum type 
     cout << " VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
 
 

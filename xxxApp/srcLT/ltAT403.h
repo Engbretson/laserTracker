@@ -6,6 +6,10 @@
 #include <msclr\marshal.h>
 #include <msclr\marshal_cppstd.h>
 
+// a slight space saver, since I have to do this *everywhere*
+#define decode msclr::interop::marshal_as<std::string>
+
+
 using namespace System;
 using namespace msclr::interop;
 using namespace std;

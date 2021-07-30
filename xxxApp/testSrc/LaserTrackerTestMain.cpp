@@ -10,6 +10,9 @@
 #include <msclr\marshal.h>
 #include <msclr\marshal_cppstd.h>
 
+// a slight space saver, since I have to do this *everywhere*
+#define decode msclr::interop::marshal_as<std::string>
+
 using namespace System;
 using namespace msclr::interop;
 using namespace std;
@@ -51,10 +54,10 @@ int CheckForErrors(LMF::Tracker::Tracker^ LMFTracker)
 	LmfError^ err = LMFTracker->GetErrorDescription(ErrorNumber);
 	if (err->Number > 0) {
 		cout << "Is anything throwing an error code? \n";
-		cout << msclr::interop::marshal_as<std::string>(err->Description) << " " <<
+		cout << (decode)(err->Description) << " " <<
 			err->Number << " " <<
-			msclr::interop::marshal_as<std::string>(err->Solution) << " " <<
-			msclr::interop::marshal_as<std::string>(err->Title) << "\n";
+			(decode)(err->Solution) << " " <<
+			(decode)(err->Title) << "\n";
 	}
 	return err->Number;
 
@@ -74,7 +77,7 @@ int  CheckForMeasurementErrors(LMF::Tracker::Tracker^ LMFTracker)
 		LMF::Tracker::MeasurementStatus::MeasurementPreconditionCollection^ Preconditions = LMFTracker->Measurement->Status->Preconditions;
 		for (int i = 0; i < Preconditions->Count; ++i) {
 			LMF::Tracker::MeasurementStatus::MeasurementPrecondition^ firstPrecondition = Preconditions[0];
-			cout << msclr::interop::marshal_as<std::string>(firstPrecondition->Title) << " " << msclr::interop::marshal_as<std::string>(firstPrecondition->Description) << " " << msclr::interop::marshal_as<std::string>(firstPrecondition->Solution) << "\n";
+			cout << (decode)(firstPrecondition->Title) << " " << (decode)(firstPrecondition->Description) << " " << (decode)(firstPrecondition->Solution) << "\n";
 		}
 	}
 	return (int)statusValue;
@@ -114,10 +117,10 @@ int main()
 		TrackerInfo^ tracker = foundTrackers[i];
 
 
-		cout << " Tracker Name: " << msclr::interop::marshal_as<std::string>(tracker->Name);
-		cout << " Serial Number: " << msclr::interop::marshal_as<std::string>(tracker->SerialNumber);
-		cout << " IP Address: " << msclr::interop::marshal_as<std::string>(tracker->IPAddress);
-		cout << " Type: " << msclr::interop::marshal_as<std::string>(tracker->Type) << "\n";
+		cout << " Tracker Name: " << (decode)(tracker->Name);
+		cout << " Serial Number: " << (decode)(tracker->SerialNumber);
+		cout << " IP Address: " << (decode)(tracker->IPAddress);
+		cout << " Type: " << (decode)(tracker->Type) << "\n";
 	}
 
 
@@ -173,46 +176,46 @@ int main()
 	// the simple values 
 
 	String^ Comment = LMFTracker->Comment;
-	cout << "Comment: " << msclr::interop::marshal_as<std::string>(Comment) << "\n";
+	cout << "Comment: " << (decode)(Comment) << "\n";
 
 	String^ Firmware = LMFTracker->ExpectedFirmware;
-	cout << "Firmware: " << msclr::interop::marshal_as<std::string>(Firmware) << "\n";
+	cout << "Firmware: " << (decode)(Firmware) << "\n";
 
 	String^ InstalledFirmware = LMFTracker->InstalledFirmware;
-	cout << "InstalledFirmware: " << msclr::interop::marshal_as<std::string>(InstalledFirmware) << "\n";
+	cout << "InstalledFirmware: " << (decode)(InstalledFirmware) << "\n";
 
 	String^ IP = LMFTracker->IPAddress;
-	cout << "IP: " << msclr::interop::marshal_as<std::string>(IP) << "\n";
+	cout << "IP: " << (decode)(IP) << "\n";
 
 	Boolean CompatFirmware = LMFTracker->IsCompatibleWithInstalledFirmware;
 	cout << "Is Compatible With Installed Firmware: " << CompatFirmware << "\n";
 
 	String^ Name = LMFTracker->Name;
-	cout << "Name: " << msclr::interop::marshal_as<std::string>(Name) << "\n";
+	cout << "Name: " << (decode)(Name) << "\n";
 
 	String^ ProductName = LMFTracker->ProductName;
-	cout << "ProductName: " << msclr::interop::marshal_as<std::string>(ProductName) << "\n";
+	cout << "ProductName: " << (decode)(ProductName) << "\n";
 
 	String^ Serial = LMFTracker->SerialNumber;
-	cout << "Serial: " << msclr::interop::marshal_as<std::string>(Serial) << "\n";
+	cout << "Serial: " << (decode)(Serial) << "\n";
 
 
 	// generates some binary debug file that has limited use to us
 	// 
 	//  String^ GenerateLFile = LMFTracker->GenerateLFile();
-	//  cout << "GenerateLFile: " << msclr::interop::marshal_as<std::string>(GenerateLFile) << "\n";    /*
+	//  cout << "GenerateLFile: " << (decode)(GenerateLFile) << "\n";    /*
 
 	LMFTracker->GetDirectionAsync();
 	Direction^ dir1 = LMFTracker->GetDirection();
 	cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " V Angle: " << dir1->VerticalAngle->Value << "\n";
 
-	cout << " HLabel " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->Label);
-	cout << " HUnitString " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->UnitString);
+	cout << " HLabel " << (decode)(dir1->HorizontalAngle->Label);
+	cout << " HUnitString " << (decode)(dir1->HorizontalAngle->UnitString);
 	//    cout << "HUnitType "    << dir1->HorizontalAngle->UnitType;
 	cout << " HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
 
-	cout << " VLabel " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->Label);
-	cout << " VUnitString " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->UnitString);
+	cout << " VLabel " << (decode)(dir1->VerticalAngle->Label);
+	cout << " VUnitString " << (decode)(dir1->VerticalAngle->UnitString);
 	//    cout << "VUnitType "    << dir1->VerticalAngle->UnitType;
 	cout << " VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
 
@@ -221,9 +224,9 @@ int main()
 
 	LMF::Tracker::Targets::Target^ foundtargets = LMFTracker->TargetSearch->Start();
 
-	cout << " Found " << msclr::interop::marshal_as<std::string>(foundtargets->Comment);
-	cout << " " << msclr::interop::marshal_as<std::string>(foundtargets->Name);
-	cout << " " << msclr::interop::marshal_as<std::string>(foundtargets->ProductName) << "\n";
+	cout << " Found " << (decode)(foundtargets->Comment);
+	cout << " " << (decode)(foundtargets->Name);
+	cout << " " << (decode)(foundtargets->ProductName) << "\n";
 
 	Sleep(1000);
 
@@ -242,7 +245,7 @@ int main()
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";;
+		cout << (decode)(e->Description) << "\n";;
 		cout << "Hit an exception trying to perform a Get Prism Position call \n";
 	}
 
@@ -253,7 +256,7 @@ int main()
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";;
+		cout << (decode)(e->Description) << "\n";;
 		cout << "Hit an exception trying to perform a GoHomePositionAsync call \n";
 	}
 
@@ -265,7 +268,7 @@ int main()
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";;
+		cout << (decode)(e->Description) << "\n";;
 		cout << "Hit an exception trying to perform a GoHomePosition call \n";
 	}
 
@@ -293,7 +296,7 @@ int main()
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";
+		cout << (decode)(e->Description) << "\n";
 		cout << "Hit an exception trying to perform a PositionToAsyn call \n";
 	}
 
@@ -306,7 +309,7 @@ int main()
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";;
+		cout << (decode)(e->Description) << "\n";;
 		cout << "Hit an exception trying to perform a PositionTo call \n";
 	}
 
@@ -324,7 +327,7 @@ int main()
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";;
+		cout << (decode)(e->Description) << "\n";;
 		cout << "Hit an exception trying to perform a Move call \n";
 	}
 
@@ -421,21 +424,21 @@ int main()
 void OnDisconnected(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
+	cout << (decode)(ex->Description) << "\n";;
 	cout << "callback Disconnected finished . . . \n";
 }
 
 void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << msclr::interop::marshal_as<std::string>(error->Description) << "\n";;
+	cout << (decode)(error->Description) << "\n";;
 	cout << "callback Got some sort of error message . . . \n";
 }
 
 void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Direction^ bm, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
+	cout << (decode)(ex->Description) << "\n";;
 	cout << "callback Got some sort of Get Direction finished message . . . \n";
 
 	cout << "Direction H Angle: " << bm->HorizontalAngle->Value << " V Angle: " << bm->VerticalAngle->Value << "\n";
@@ -446,7 +449,7 @@ void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Directi
 void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::MeasurementResults::Measurement^ paramMeasurement, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
+	cout << (decode)(ex->Description) << "\n";;
 	cout << "callback OnGetPosition Finished . . . \n";
 
 }
@@ -454,21 +457,21 @@ void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Mea
 void OnGoHomePositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
+	cout << (decode)(ex->Description) << "\n";;
 	cout << "callback Asyn GoHomePosition finished . . . \n";
 }
 
 void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << msclr::interop::marshal_as<std::string>(paramInfo->Description) << "\n";;
+	cout << (decode)(paramInfo->Description) << "\n";;
 	cout << "callback Got some sort of Information message . . . \n";
 }
 
 void OnInitializeFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
+	cout << (decode)(ex->Description) << "\n";;
 	cout << "callback Initialization finished . . . \n";
 
 }
@@ -476,7 +479,7 @@ void OnInitializeFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHand
 void OnPositionToFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Targets::Target^ foundTarget, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//  throw gcnew System::NotImplementedException();
-	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
+	cout << (decode)(ex->Description) << "\n";;
 
 	cout << "callback PositionTo finished . . . \n";
 
