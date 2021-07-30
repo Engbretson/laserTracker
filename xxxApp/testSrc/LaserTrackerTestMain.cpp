@@ -41,277 +41,378 @@ void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Directi
 void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error);
 void OnDisconnected(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex);
 
+int CheckForErrors(LMF::Tracker::Tracker^ LMFTracker);
+int CheckForMeasurementErrors(LMF::Tracker::Tracker^ LMFTracker);
 
+int CheckForErrors(LMF::Tracker::Tracker^ LMFTracker)
+{
+	// If and when something throws and error, this is how to decode it 
+	Int32 ErrorNumber = 0;
+	LmfError^ err = LMFTracker->GetErrorDescription(ErrorNumber);
+	if (err->Number > 0) {
+		cout << "Is anything throwing an error code? \n";
+		cout << msclr::interop::marshal_as<std::string>(err->Description) << " " <<
+			err->Number << " " <<
+			msclr::interop::marshal_as<std::string>(err->Solution) << " " <<
+			msclr::interop::marshal_as<std::string>(err->Title) << "\n";
+	}
+	return err->Number;
+
+}
+
+int  CheckForMeasurementErrors(LMF::Tracker::Tracker^ LMFTracker)
+{
+	LMF::Tracker::Enums::EMeasurementStatus statusValue = LMFTracker->Measurement->Status->Value;
+
+	if (statusValue == EMeasurementStatus::ReadyToMeasure) { cout << " Ready To Measure . . . \n"; }
+	if (statusValue == EMeasurementStatus::MeasurementInProgress) { cout << " Measurement in Progress . . . \n"; }
+	if (statusValue == EMeasurementStatus::NotReady) { cout << " Not Ready to Measure . . . \n"; }
+	if (statusValue == EMeasurementStatus::Invalid) { cout << " Measurement Status Invalid . . . \n"; }
+
+	if (statusValue == EMeasurementStatus::NotReady)
+	{
+		LMF::Tracker::MeasurementStatus::MeasurementPreconditionCollection^ Preconditions = LMFTracker->Measurement->Status->Preconditions;
+		for (int i = 0; i < Preconditions->Count; ++i) {
+			LMF::Tracker::MeasurementStatus::MeasurementPrecondition^ firstPrecondition = Preconditions[0];
+			cout << msclr::interop::marshal_as<std::string>(firstPrecondition->Title) << " " << msclr::interop::marshal_as<std::string>(firstPrecondition->Description) << " " << msclr::interop::marshal_as<std::string>(firstPrecondition->Solution) << "\n";
+		}
+	}
+	return (int)statusValue;
+
+}
 
 int main()
 {
-    LMF::Tracker::Tracker^ LMFTracker;
-   
-    Connection^ con = gcnew Connection();
-  
-    LMFTracker = con->Connect("At403Simulator");
-
-
-// Callbacks and I do not see any advantage to using any of the async ones at the instant, most are not supportd on this simulated hardware
-
-    LMFTracker->Disconnected += gcnew LMF::Tracker::Tracker::DisconnectedHandler(&OnDisconnected);
-    LMFTracker->ErrorArrived += gcnew LMF::Tracker::Tracker::ErrorArrivedHandler(&OnErrorArrived);
-    LMFTracker->GetDirectionFinished += gcnew LMF::Tracker::Tracker::GetDirectionFinishedHandler(&OnGetDirectionFinished);
-    LMFTracker->GetPrismPositionFinished += gcnew LMF::Tracker::Tracker::GetPrismPositionFinishedHandler(&OnGetPrismPositionFinished);
-    LMFTracker->GoHomePositionFinished += gcnew LMF::Tracker::Tracker::GoHomePositionFinishedHandler(&OnGoHomePositionFinished);
-    LMFTracker->InformationArrived += gcnew LMF::Tracker::Tracker::InformationArrivedHandler(&OnInformationArrived);
-    LMFTracker->InitializeFinished += gcnew LMF::Tracker::Tracker::InitializeFinishedHandler(&OnInitializeFinished);
-    LMFTracker->PositionToFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToFinished);
-    LMFTracker->PositionToTargetFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToTargetFinished);
-    LMFTracker->WarningArrived += gcnew LMF::Tracker::Tracker::WarningArrivedHandler(&OnWarningArrived);
-
-    LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
-    
-    cout << "Is the hardware ready ?\n";
-
-    LMF::Tracker::Enums::EMeasurementStatus statusValue = LMFTracker->Measurement->Status->Value;
-
-    if (statusValue == EMeasurementStatus::ReadyToMeasure) { cout << "Ready To Measure . . . \n"; }
-    if (statusValue == EMeasurementStatus::MeasurementInProgress) { cout << "Measurement in Progress . . . \n"; }
-    if (statusValue == EMeasurementStatus::NotReady) { cout << "Not Ready . . . \n"; }
-    if (statusValue == EMeasurementStatus::Invalid) { cout << "Measurement Status Invalid . . . \n"; }
-
-    if (statusValue == EMeasurementStatus::NotReady)
-    {
-        LMF::Tracker::MeasurementStatus::MeasurementPreconditionCollection^ Preconditions = LMFTracker->Measurement->Status->Preconditions;
-        for (int i = 0; i < Preconditions->Count; ++i) {
-            LMF::Tracker::MeasurementStatus::MeasurementPrecondition^ firstPrecondition = Preconditions[i];
-            cout << msclr::interop::marshal_as<std::string>(firstPrecondition->Title) << " " << msclr::interop::marshal_as<std::string>(firstPrecondition->Description) << " " << msclr::interop::marshal_as<std::string>(firstPrecondition->Solution) << "\n";
-        }
-    }
-
-
-    LMFTracker->Initialize();
-//    LMFTracker->InitializeAsync();
-// in namespace LMF::tracker
-// the simple values 
-
-    String^ Comment = LMFTracker->Comment;
-    cout << "Comment: " << msclr::interop::marshal_as<std::string>(Comment) << "\n";   
-     
-    String^ Firmware = LMFTracker->ExpectedFirmware;
-    cout << "Firmware: " << msclr::interop::marshal_as<std::string>(Firmware) << "\n";
-
-    String^ InstalledFirmware = LMFTracker->InstalledFirmware;
-    cout << "InstalledFirmware: " << msclr::interop::marshal_as<std::string>(InstalledFirmware) << "\n";
-
-    String^ IP = LMFTracker->IPAddress;
-    cout << "IP: " << msclr::interop::marshal_as<std::string>(IP) << "\n";
-
-    Boolean CompatFirmware = LMFTracker->IsCompatibleWithInstalledFirmware;
-    cout << "Is Compatible With Installed Firmware: " << CompatFirmware << "\n";
-
-    String^ Name = LMFTracker->Name;
-    cout << "Name: " << msclr::interop::marshal_as<std::string>(Name) << "\n";
-    
-    String^ ProductName = LMFTracker->ProductName;
-    cout << "ProductName: " << msclr::interop::marshal_as<std::string>(ProductName) << "\n";
-
-    String^ Serial = LMFTracker->SerialNumber;
-    cout << "Serial: " << msclr::interop::marshal_as<std::string>(Serial) << "\n";
-
-// generates some binary debug file that has limited use
-//  String^ GenerateLFile = LMFTracker->GenerateLFile();
-//  cout << "GenerateLFile: " << msclr::interop::marshal_as<std::string>(GenerateLFile) << "\n";    /*
-
-    LMFTracker->GetDirectionAsync();    
-    Direction^ dir1 = LMFTracker->GetDirection(); 
-    cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " V Angle: " << dir1->VerticalAngle->Value << "\n";
-    cout <<"HLabel " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->Label) << "\n";
-    cout << "HUnitString " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->UnitString) << "\n";
- 
-//    cout << "HUnitType " << dir1->HorizontalAngle->UnitType << "\n";
-    cout << "HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
-    cout << "VLabel " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->Label) << "\n";
-    cout << "VUnitString " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->UnitString) << "\n";
-//    cout << "VUnitType " << dir1->VerticalAngle->UnitType << "\n";
-    cout << "VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
-//    dir1->HorizontalAngle->UnitType;
-
-     
-
-// If and when something throws and error, this is how to decode it 
-//    Int32 ErrorNumber = 0;
-//    LmfError^ err = LMFTracker->GetErrorDescription(ErrorNumber);
-
-//    LMFTracker->GetPrismPositionAsync(); 
-//  Measurement^ measure = LMFTracker->GetPrismPosition(); //says not supported by this tracker
-//  cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << "\n";
-
-//    cout << "Starting  GoHomePosition Async. . . \n";
-    try
-    {
- //       LMFTracker->GoHomePositionAsync();
-    }
-    catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-    {
-        cout << msclr::interop::marshal_as<std::string>(e->Description);
-        cout << "Hit an exception trying to perform a GoHomePositionAsync call \n";
-    }
+	LMF::Tracker::Tracker^ LMFTracker;
 
- 
-//    cout << "Starting GoHomePosition . . . \n";
-    try
-    {
-//        LMFTracker->GoHomePosition();
-    }
-    catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-    {
-        cout << msclr::interop::marshal_as<std::string>(e->Description);
-        cout << "Hit an exception trying to perform a GoHomePosition call \n";
-    }
+	Connection^ con = gcnew Connection();
 
- 
 
-   DateTime wakeuptime;
- //  wakeuptime = wakeuptime->Now;
- //  wakeuptime = wakeuptime->AddMinutes(1.0);
- 
- // The running simulator claims this exits, the actual Type Library / dll code says that it does not *sigh*
- // probably related to checking if something is still in place periodically?
- //LMFTracker->GotoStandBy(wakeuptime); 
 
- 
-   // so setting to some absolute position
+	//	LMFTracker = con->Connect("AT401Simulator");
+	//	LMFTracker = con->Connect("AT402Simulator");
+	//	LMFTracker = con->Connect("AT403Simulator");
+	//	LMFTracker = con->Connect("AT600Simulator"); //wrong name maybe?
+	//	LMFTracker = con->Connect("AT901LRSimulator");
+	//	LMFTracker = con->Connect("AT960MRSimulator"); 
+	//	LMFTracker = con->Connect("AT960LRSimulator"); 
+	//	LMFTracker = con->Connect("AT930Simulator");
 
-   Boolean searchtarget = false;
-   Boolean isrelative = false;
-   Double pos1 = 0.0, pos2 = 0.0, pos3 = 0.0;
 
-//   cout << "Setting Positionto pos1: " << pos1 << " pos2: " << pos2 << " pos3: " << pos3 << "\n";
-   try
-   {
-//       LMFTracker->PositionToAsync(searchtarget, isrelative, pos1, pos2, pos3);
-   }
-  catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-  {
-      cout << msclr::interop::marshal_as<std::string>(e->Description);
-      cout << "Hit an exception trying to perform a PositionToAsyn call \n";
-  }
 
+	cout << "Searching for trackers . . . \n";
+	// The TrackerFinder holds a list of found Trackers
 
-     pos1 = 0.0, pos2 = 0.0, pos3 = 0.0;   
-//  cout << "Setting Positionto pos1: " << pos1 << " pos2: " << pos2 << " pos3: " << pos3 << "\n";
-  try
-  {
-//      LMFTracker->PositionTo(searchtarget, isrelative, pos1, pos2, pos3);
-  }
-  catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-  {
-      cout << msclr::interop::marshal_as<std::string>(e->Description);
-      cout << "Hit an exception trying to perform a PositionTo call \n";
-  }
+	TrackerFinder^ trackerFinder = gcnew TrackerFinder();
+	TrackerInfoCollection^ foundTrackers = trackerFinder->Trackers;
 
+	for (int i = 0; i < foundTrackers->Count; i++)
+	{
 
-// actually then moving to that psoition
+		//Maybe display a list of all Trackers and let the user choose.
 
-   Int32 percentspeedH = 5;
-   Int32 percentspeedV = 5;
-//  
-//  cout << "Trying to Start Move . . . \n";
+		TrackerInfo^ tracker = foundTrackers[i];
 
-   try
-   {
-//       LMFTracker->Move(percentspeedH, percentspeedV);
-   }
-   catch  (LMF::Tracker::ErrorHandling::LmfException^ e)
-   {
-       cout << msclr::interop::marshal_as<std::string>(e->Description);
-       cout << "Hit an exception trying to perform a Move call \n";
-   }
 
+		cout << " Tracker Name: " << msclr::interop::marshal_as<std::string>(tracker->Name);
+		cout << " Serial Number: " << msclr::interop::marshal_as<std::string>(tracker->SerialNumber);
+		cout << " IP Address: " << msclr::interop::marshal_as<std::string>(tracker->IPAddress);
+		cout << " Type: " << msclr::interop::marshal_as<std::string>(tracker->Type) << "\n";
+	}
 
- //   LMFTracker->OpenTrackerScope();// not supported
 
+	// Possible simulators, according to some of the docs
 
-// functions
-//    LMFTracker->Disconnect();
-//    LMFTracker->Dispose();
+		//	LMFTracker = con->Connect("AT401Simulator");
+		//	LMFTracker = con->Connect("AT402Simulator");
+		//	LMFTracker = con->Connect("AT403Simulator");
+		//	LMFTracker = con->Connect("AT600Simulator"); //wrong name maybe?
+		//	LMFTracker = con->Connect("AT901LRSimulator");
+		//	LMFTracker = con->Connect("AT960MRSimulator"); 
+		//	LMFTracker = con->Connect("AT960LRSimulator"); 
+		//	LMFTracker = con->Connect("AT930Simulator");
 
+	cout << "Connecting to At403Simulator \n";
 
+	LMFTracker = con->Connect("At403Simulator");
 
+	// Callbacks and I do not see any advantage to using any of the async ones at the instant, many are not supportd on this simulated hardware
 
+	LMFTracker->Disconnected += gcnew LMF::Tracker::Tracker::DisconnectedHandler(&OnDisconnected);
+	LMFTracker->ErrorArrived += gcnew LMF::Tracker::Tracker::ErrorArrivedHandler(&OnErrorArrived);
+	LMFTracker->GetDirectionFinished += gcnew LMF::Tracker::Tracker::GetDirectionFinishedHandler(&OnGetDirectionFinished);
+	LMFTracker->GetPrismPositionFinished += gcnew LMF::Tracker::Tracker::GetPrismPositionFinishedHandler(&OnGetPrismPositionFinished);
+	LMFTracker->GoHomePositionFinished += gcnew LMF::Tracker::Tracker::GoHomePositionFinishedHandler(&OnGoHomePositionFinished);
+	LMFTracker->InformationArrived += gcnew LMF::Tracker::Tracker::InformationArrivedHandler(&OnInformationArrived);
+	LMFTracker->InitializeFinished += gcnew LMF::Tracker::Tracker::InitializeFinishedHandler(&OnInitializeFinished);
+	LMFTracker->PositionToFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToFinished);
+	LMFTracker->PositionToTargetFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToTargetFinished);
+	LMFTracker->WarningArrived += gcnew LMF::Tracker::Tracker::WarningArrivedHandler(&OnWarningArrived);
 
-/*
-// Needs actual targets to do anything . . . 
-    LockOnToken^ lockontoken;
+	LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
 
+	cout << "Is the hardware ready ?\n";
 
-    LMFTracker->PositionToTarget(lockontoken, isrelative, pos1, pos2, pos3); // not supported
-    LMFTracker->PositionToTargetAsync(lockontoken, isrelative, pos1, pos2, pos3);// not supported
-    LMFTracker->ShutDown();
-    LMFTracker->StopMove();// not supported
+	CheckForErrors(LMFTracker);
+	CheckForMeasurementErrors(LMFTracker);
 
 
 
+	cout << "Initialize . . . using 'realistic' timings in the simulator  . . . . which is *slow* . . .  \n";
 
-// Compensations
-// Face
-// InclinationSensor
-// Laser
-// Measurement
-//   LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
-//   LMFTracker->Measurement->StartMeasurement();
- 
- //  LMF::Tracker::Measurements::MeasurementSettings^ thing;
- //  thing->MeasureStationary();
+	LMFTracker->Initialize();
+	LMFTracker->InitializeAsync();
 
-*/
+	cout << "After Initialization . . . \n";
 
-   cout << "Perform a Measure Stationary . . .  \n";
+	CheckForErrors(LMFTracker);
+	CheckForMeasurementErrors(LMFTracker);
 
-   statusValue = LMFTracker->Measurement->Status->Value;
+	// 
+	// in namespace LMF::tracker
+	// the simple values 
 
-   if (statusValue == EMeasurementStatus::ReadyToMeasure) { cout << "Ready To Measure . . . \n"; }
-   if (statusValue == EMeasurementStatus::MeasurementInProgress) { cout << "Measurement in Progress . . . \n"; }
-   if (statusValue == EMeasurementStatus::NotReady) { cout << "Not Ready . . . \n"; }
-   if (statusValue == EMeasurementStatus::Invalid) { cout << "Measurement Status Invalid . . . \n"; }
+	String^ Comment = LMFTracker->Comment;
+	cout << "Comment: " << msclr::interop::marshal_as<std::string>(Comment) << "\n";
 
+	String^ Firmware = LMFTracker->ExpectedFirmware;
+	cout << "Firmware: " << msclr::interop::marshal_as<std::string>(Firmware) << "\n";
 
-LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->MeasureStationary();
+	String^ InstalledFirmware = LMFTracker->InstalledFirmware;
+	cout << "InstalledFirmware: " << msclr::interop::marshal_as<std::string>(InstalledFirmware) << "\n";
 
- cout << "Measurment Humidity: " << data->Humidity->Value << " Pressure: " << data->Pressure->Value << " Temperature: " << data->Temperature->Value << "\n";
- 
- StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(data);
- cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << "\n";
- cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << "\n";
- cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
+	String^ IP = LMFTracker->IPAddress;
+	cout << "IP: " << msclr::interop::marshal_as<std::string>(IP) << "\n";
 
- Sleep(2000);
+	Boolean CompatFirmware = LMFTracker->IsCompatibleWithInstalledFirmware;
+	cout << "Is Compatible With Installed Firmware: " << CompatFirmware << "\n";
 
- cout << "Doing a StartMeasurement . . . status: " << LMFTracker->Measurement->MeasurementInProgress->Value << "\n";
- LMFTracker->Measurement->StartMeasurement();
+	String^ Name = LMFTracker->Name;
+	cout << "Name: " << msclr::interop::marshal_as<std::string>(Name) << "\n";
 
- Sleep(10000);
- LMFTracker->Measurement->StopMeasurement();
- cout << "Doing a StopMeasurement . . . \n";
+	String^ ProductName = LMFTracker->ProductName;
+	cout << "ProductName: " << msclr::interop::marshal_as<std::string>(ProductName) << "\n";
 
+	String^ Serial = LMFTracker->SerialNumber;
+	cout << "Serial: " << msclr::interop::marshal_as<std::string>(Serial) << "\n";
 
 
+	// generates some binary debug file that has limited use to us
+	// 
+	//  String^ GenerateLFile = LMFTracker->GenerateLFile();
+	//  cout << "GenerateLFile: " << msclr::interop::marshal_as<std::string>(GenerateLFile) << "\n";    /*
 
+	LMFTracker->GetDirectionAsync();
+	Direction^ dir1 = LMFTracker->GetDirection();
+	cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " V Angle: " << dir1->VerticalAngle->Value << "\n";
 
- 
-// MeteoStation
-// OverviewCamera
-// PowerLock
-// PowerSource
-// QuickRelease
-// Settings
-// Targets
-// TargetSearch
-// TrackerAlignment
-// Triggers
+	cout << " HLabel " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->Label);
+	cout << " HUnitString " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->UnitString);
+	//    cout << "HUnitType "    << dir1->HorizontalAngle->UnitType;
+	cout << " HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
 
- cout << "Shutdown . . . \n";
-    LMFTracker->ShutDown();
+	cout << " VLabel " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->Label);
+	cout << " VUnitString " << msclr::interop::marshal_as<std::string>(dir1->VerticalAngle->UnitString);
+	//    cout << "VUnitType "    << dir1->VerticalAngle->UnitType;
+	cout << " VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
 
-    cout << "Disconnect . . . \n";
-    LMFTracker->Disconnect();
+
+	cout << "Performing a Target search . . . which may prevents you from doing sync commands again on some simulators \n";
+
+	LMF::Tracker::Targets::Target^ foundtargets = LMFTracker->TargetSearch->Start();
+
+	cout << " Found " << msclr::interop::marshal_as<std::string>(foundtargets->Comment);
+	cout << " " << msclr::interop::marshal_as<std::string>(foundtargets->Name);
+	cout << " " << msclr::interop::marshal_as<std::string>(foundtargets->ProductName) << "\n";
+
+	Sleep(1000);
+
+
+	cout << "Attempting a GetPrismPositionAsync call \n";
+	LMFTracker->GetPrismPositionAsync();
+	
+	Sleep(1000);
+
+
+	cout << "Attempting a GetPrismPosition call \n";
+	try
+	{
+		Measurement^ measure = LMFTracker->GetPrismPosition(); //says not supported by this tracker
+		cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << "\n";
+	}
+	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform a Get Prism Position call \n";
+	}
+
+	//    cout << "Starting  GoHomePosition Async. . . \n";
+	try
+	{
+		//       LMFTracker->GoHomePositionAsync();
+	}
+	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform a GoHomePositionAsync call \n";
+	}
+
+
+	//    cout << "Starting GoHomePosition . . . \n";
+	try
+	{
+		//        LMFTracker->GoHomePosition();
+	}
+	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform a GoHomePosition call \n";
+	}
+
+
+
+	DateTime wakeuptime;
+	//  wakeuptime = wakeuptime->Now;
+	//  wakeuptime = wakeuptime->AddMinutes(1.0);
+
+	// The running simulator claims this exits, the actual Type Library / dll code says that it does not *sigh*
+	// probably related to checking if something is still in place periodically?
+	//LMFTracker->GotoStandBy(wakeuptime); 
+
+
+	  // so setting to some absolute position
+
+	Boolean searchtarget = false;
+	Boolean isrelative = false;
+	Double pos1 = 0.0, pos2 = 0.0, pos3 = 0.0;
+
+	//   cout << "Setting Positionto pos1: " << pos1 << " pos2: " << pos2 << " pos3: " << pos3 << "\n";
+	try
+	{
+		//       LMFTracker->PositionToAsync(searchtarget, isrelative, pos1, pos2, pos3);
+	}
+	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";
+		cout << "Hit an exception trying to perform a PositionToAsyn call \n";
+	}
+
+
+	pos1 = 0.0, pos2 = 0.0, pos3 = 0.0;
+	//  cout << "Setting Positionto pos1: " << pos1 << " pos2: " << pos2 << " pos3: " << pos3 << "\n";
+	try
+	{
+		//      LMFTracker->PositionTo(searchtarget, isrelative, pos1, pos2, pos3);
+	}
+	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform a PositionTo call \n";
+	}
+
+
+	// actually then moving to that psoition
+
+	Int32 percentspeedH = 5;
+	Int32 percentspeedV = 5;
+	//  
+	//  cout << "Trying to Start Move . . . \n";
+
+	try
+	{
+		//       LMFTracker->Move(percentspeedH, percentspeedV);
+	}
+	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << msclr::interop::marshal_as<std::string>(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform a Move call \n";
+	}
+
+
+	//   LMFTracker->OpenTrackerScope();// not supported
+
+
+   // functions
+   //    LMFTracker->Disconnect();
+   //    LMFTracker->Dispose();
+
+
+
+
+
+   /*
+   // Needs actual targets to do anything . . .
+	   LockOnToken^ lockontoken;
+
+
+	   LMFTracker->PositionToTarget(lockontoken, isrelative, pos1, pos2, pos3); // not supported
+	   LMFTracker->PositionToTargetAsync(lockontoken, isrelative, pos1, pos2, pos3);// not supported
+	   LMFTracker->ShutDown();
+	   LMFTracker->StopMove();// not supported
+
+
+
+
+   // Compensations
+   // Face
+   // InclinationSensor
+   // Laser
+   // Measurement
+   //   LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
+   //   LMFTracker->Measurement->StartMeasurement();
+
+	//  LMF::Tracker::Measurements::MeasurementSettings^ thing;
+	//  thing->MeasureStationary();
+
+   */
+
+	cout << "Perform a Measure Stationary . . .  \n";
+
+	CheckForErrors(LMFTracker);
+	CheckForMeasurementErrors(LMFTracker);
+
+	LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->MeasureStationary();
+
+	cout << "Measurment Humidity: " << data->Humidity->Value << " Pressure: " << data->Pressure->Value << " Temperature: " << data->Temperature->Value << "\n";
+
+	StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(data);
+	cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value;
+	cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value;
+	cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
+
+	Sleep(2000);
+
+	CheckForErrors(LMFTracker);
+	CheckForMeasurementErrors(LMFTracker);
+
+	cout << "Doing a StartMeasurement . . . status: " << LMFTracker->Measurement->MeasurementInProgress->Value << "\n";
+	LMFTracker->Measurement->StartMeasurement();
+
+	Sleep(20000);
+	LMFTracker->Measurement->StopMeasurement();
+	cout << "Doing a StopMeasurement . . . \n";
+
+
+
+
+
+
+	// MeteoStation
+	// OverviewCamera
+	// PowerLock
+	// PowerSource
+	// QuickRelease
+	// Settings
+	// Targets
+	// TargetSearch
+	// TrackerAlignment
+	// Triggers
+
+	cout << "Shutdown . . . \n";
+	LMFTracker->ShutDown();
+
+	cout << "Disconnect . . . \n";
+	LMFTracker->Disconnect();
 
 }
 
@@ -319,154 +420,153 @@ LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->M
 
 void OnDisconnected(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
- //   throw gcnew System::NotImplementedException();
-    cout << msclr::interop::marshal_as<std::string>(ex->Description);
-    cout << "callback Disconnected finished . . . \n";
+	//   throw gcnew System::NotImplementedException();
+	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
+	cout << "callback Disconnected finished . . . \n";
 }
 
 void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error)
 {
- //   throw gcnew System::NotImplementedException();
-    cout << msclr::interop::marshal_as<std::string>(error->Description);
-    cout << "callback Got some sort of error message . . . \n";
+	//   throw gcnew System::NotImplementedException();
+	cout << msclr::interop::marshal_as<std::string>(error->Description) << "\n";;
+	cout << "callback Got some sort of error message . . . \n";
 }
 
 void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Direction^ bm, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
- //   throw gcnew System::NotImplementedException();
-    cout << msclr::interop::marshal_as<std::string>(ex->Description);
-    cout << "callback Got some sort of Get Direction finished message . . . \n";
-    
-    cout << "Direction H Angle: " << bm->HorizontalAngle->Value << " V Angle: " << bm->VerticalAngle->Value << "\n";
+	//   throw gcnew System::NotImplementedException();
+	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
+	cout << "callback Got some sort of Get Direction finished message . . . \n";
+
+	cout << "Direction H Angle: " << bm->HorizontalAngle->Value << " V Angle: " << bm->VerticalAngle->Value << "\n";
 
 
 }
 
 void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::MeasurementResults::Measurement^ paramMeasurement, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
- //   throw gcnew System::NotImplementedException();
-    cout << msclr::interop::marshal_as<std::string>(ex->Description);
-    cout << "callback OnGetPosition Finished . . . \n";
+	//   throw gcnew System::NotImplementedException();
+	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
+	cout << "callback OnGetPosition Finished . . . \n";
 
 }
 
 void OnGoHomePositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
- //   throw gcnew System::NotImplementedException();
-    cout << msclr::interop::marshal_as<std::string>(ex->Description);
-    cout << "callback Asyn GoHomePosition finished . . . \n";
+	//   throw gcnew System::NotImplementedException();
+	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
+	cout << "callback Asyn GoHomePosition finished . . . \n";
 }
 
 void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo)
 {
- //   throw gcnew System::NotImplementedException();
-    cout << msclr::interop::marshal_as<std::string>(paramInfo->Description);
-    cout << "callback Got some sort of Information message . . . \n";
+	//   throw gcnew System::NotImplementedException();
+	cout << msclr::interop::marshal_as<std::string>(paramInfo->Description) << "\n";;
+	cout << "callback Got some sort of Information message . . . \n";
 }
 
 void OnInitializeFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
- //   throw gcnew System::NotImplementedException();
-    cout << msclr::interop::marshal_as<std::string>(ex->Description);
-    cout << "callback Initialization finished . . . \n";
-    
+	//   throw gcnew System::NotImplementedException();
+	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
+	cout << "callback Initialization finished . . . \n";
+
 }
 
 void OnPositionToFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Targets::Target^ foundTarget, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
-  //  throw gcnew System::NotImplementedException();
-    cout << msclr::interop::marshal_as<std::string>(ex->Description);
+	//  throw gcnew System::NotImplementedException();
+	cout << msclr::interop::marshal_as<std::string>(ex->Description) << "\n";;
 
-    cout << "callback PositionTo finished . . . \n";
+	cout << "callback PositionTo finished . . . \n";
 
-    
+
 }
 
 void OnPositionToTargetFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Targets::Target^ foundTarget, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
- //   throw gcnew System::NotImplementedException();
-    cout << "callback PositionToTarget finished . . . \n";
-    
+	//   throw gcnew System::NotImplementedException();
+	cout << "callback PositionToTarget finished . . . \n";
+
 }
 
 void OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfWarning^ warning)
 {
- //   throw gcnew System::NotImplementedException();
-    cout << "callback Got some sort of Warning message . . . \n";
+	//   throw gcnew System::NotImplementedException();
+	cout << "callback Got some sort of Warning message . . . \n";
 }
 
 
 void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException)
 {
-     LMF::Tracker::MeasurementResults::Measurement^ LastMeasurement = nullptr;
+	LMF::Tracker::MeasurementResults::Measurement^ LastMeasurement = nullptr;
 
-    // throw gcnew System::NotImplementedException();
-    cout << "callback Got a Measurement Value . . . \n";
+	// throw gcnew System::NotImplementedException();
+	cout << "callback Got a Measurement Value . . . \n";
 
-    cout << "counts :" << paramMeasurements->Count << "\n";
-  
-    if (paramMeasurements)
-    {
-//        if (paramMeasurements->Count > 0)
-            for (int i = 0; i < paramMeasurements->Count; ++i) {
-                {
-                    LastMeasurement = paramMeasurements[i];
+	cout << "counts :" << paramMeasurements->Count << "\n";
 
-                    cout << "Measurment Humidity: " << LastMeasurement->Humidity->Value << " Pressure: " << LastMeasurement->Pressure->Value << " Temperature: " << LastMeasurement->Temperature->Value << "\n";
+	if (paramMeasurements)
+	{
+		//        if (paramMeasurements->Count > 0)
+		for (int i = 0; i < paramMeasurements->Count; ++i) {
+			{
+				LastMeasurement = paramMeasurements[i];
 
-
-                    if (StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(LastMeasurement))
-                    {
-                        cout << "I am a stationary3d measurement \n ";
-
-                        cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << "\n";
-                        cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << "\n";
-                        cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
+				cout << "Measurment Humidity: " << LastMeasurement->Humidity->Value << " Pressure: " << LastMeasurement->Pressure->Value << " Temperature: " << LastMeasurement->Temperature->Value << "\n";
 
 
-                    }
-                    else if (StationaryMeasurement6D^ stationaryMeas6D = dynamic_cast<StationaryMeasurement6D^>(LastMeasurement))
-                    {
-                        cout << "I am a stationary6d measurement \n ";
-                        cout << " X = " << stationaryMeas6D->Position->Coordinate1->Value << "\n";
-                        cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value << "\n";
-                        cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << "\n";
+				if (StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(LastMeasurement))
+				{
+					cout << "I am a stationary3d measurement \n";
+
+					cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value;
+					cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value;
+					cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
 
 
-                    }
-                    else if (SingleShotMeasurement3D^ singleshot3dD = dynamic_cast<SingleShotMeasurement3D^>(LastMeasurement))
-                    {
-                        cout << "I am a singleshot 3d measurement \n ";
-
-                        cout << " X = " << singleshot3dD->Position->Coordinate1->Value << "\n";
-                        cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << "\n";
-                        cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << "\n";
-
+				}
+				else if (StationaryMeasurement6D^ stationaryMeas6D = dynamic_cast<StationaryMeasurement6D^>(LastMeasurement))
+				{
+					cout << "I am a stationary6d measurement \n";
+					cout << " X = " << stationaryMeas6D->Position->Coordinate1->Value;
+					cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value;
+					cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << "\n";
 
 
-                    }
-                    else if (SingleShotMeasurement6D^ singleshot6dD = dynamic_cast<SingleShotMeasurement6D^>(LastMeasurement))
-                    {
-                        cout << "I am a singleshot 6d measurement \n ";
-                        cout << " X = " << singleshot6dD->Position->Coordinate1->Value << "\n";
-                        cout << " Y = " << singleshot6dD->Position->Coordinate2->Value << "\n";
-                        cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << "\n";
+				}
+				else if (SingleShotMeasurement3D^ singleshot3dD = dynamic_cast<SingleShotMeasurement3D^>(LastMeasurement))
+				{
+					cout << "I am a singleshot 3d measurement \n";
+
+					cout << " X = " << singleshot3dD->Position->Coordinate1->Value;
+					cout << " Y = " << singleshot3dD->Position->Coordinate2->Value;
+					cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << "\n";
 
 
-                    } 
-                }
- }
-}
-    
+
+				}
+				else if (SingleShotMeasurement6D^ singleshot6dD = dynamic_cast<SingleShotMeasurement6D^>(LastMeasurement))
+				{
+					cout << "I am a singleshot 6d measurement \n";
+					cout << " X = " << singleshot6dD->Position->Coordinate1->Value;
+					cout << " Y = " << singleshot6dD->Position->Coordinate2->Value;
+					cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << "\n";
+
+
+				}
+			}
+		}
+	}
 }
 
 void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, LMF::Tracker::Enums::EMeasurementStatus paramNewValue)
 {
-//    throw gcnew System::NotImplementedException();
-    cout << "Measurement Status Value changed: "  << "\n";
+	//    throw gcnew System::NotImplementedException();
+	cout << "Measurement Status Value changed: " << "\n";
 
-    if (paramNewValue == EMeasurementStatus::ReadyToMeasure) { cout << "Ready To Measure . . . \n"; }
-    if (paramNewValue == EMeasurementStatus::MeasurementInProgress) { cout << "Measurement in Progress . . . \n"; }
-    if (paramNewValue == EMeasurementStatus::NotReady) { cout << "Not Ready . . . \n"; }
-    if (paramNewValue == EMeasurementStatus::Invalid) { cout << "Measurement Status Invalid . . . \n"; }
+	if (paramNewValue == EMeasurementStatus::ReadyToMeasure) { cout << " Ready To Measure . . . \n"; }
+	if (paramNewValue == EMeasurementStatus::MeasurementInProgress) { cout << " Measurement in Progress . . . \n"; }
+	if (paramNewValue == EMeasurementStatus::NotReady) { cout << " Not Ready . . . \n"; }
+	if (paramNewValue == EMeasurementStatus::Invalid) { cout << " Measurement Status Invalid . . . \n"; }
 }

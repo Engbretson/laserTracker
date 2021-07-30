@@ -101,7 +101,7 @@ LTAt403::LTAt403(const char *portName)
 	
 // I *think* that the units tend to be a default angle in Degrees ? or have not run across the switch units commands . . .  yet.
 	cout <<"HLabel " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->Label);
-    cout << " HUnitString " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->UnitString);
+	cout << " HUnitString " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->UnitString);
 //    cout << "HUnitType " << msclr::interop::marshal_as<std::string>(dir1->HorizontalAngle->UnitType) << "\n"; // some off enum type
     cout << " HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
 	
