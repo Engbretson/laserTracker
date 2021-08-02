@@ -10,8 +10,7 @@
 #include <msclr\marshal.h>
 #include <msclr\marshal_cppstd.h>
 
-// a slight space saver, since I have to do this *everywhere*
-#define decode msclr::interop::marshal_as<std::string>
+
 
 using namespace System;
 using namespace msclr::interop;
@@ -28,6 +27,20 @@ using namespace LMF::Tracker::Targets;
 using namespace LMF::Tracker::Triggers;
 using namespace LMF::Tracker::Enums;
 using namespace LMF::Tracker::BasicTypes;
+
+// a slight space saver, since I have to do this *everywhere*, But I can't marshal null strings, so have to do something else like below
+// to handle the couple of special cases when this actually happens
+//#define decode msclr::interop::marshal_as<std::string>
+
+std::string decode(System::String^ something)
+{
+	if (System::String::IsNullOrEmpty(something))
+		return "N/A";
+	else
+		return (msclr::interop::marshal_as<std::string>(something));
+}
+
+
 
 // forward definitions
 
@@ -50,16 +63,26 @@ int CheckForMeasurementErrors(LMF::Tracker::Tracker^ LMFTracker);
 int CheckForErrors(LMF::Tracker::Tracker^ LMFTracker)
 {
 	// If and when something throws and error, this is how to decode it 
-	Int32 ErrorNumber = 0;
-	LmfError^ err = LMFTracker->GetErrorDescription(ErrorNumber);
-	if (err->Number > 0) {
-		cout << "Is anything throwing an error code? \n";
-		cout << (decode)(err->Description) << " " <<
-			err->Number << " " <<
-			(decode)(err->Solution) << " " <<
-			(decode)(err->Title) << "\n";
+	Int32 ErrorNumber = -1;
+
+	try {
+		LmfError^ err = LMFTracker->GetErrorDescription(ErrorNumber);
+		if ((err->Number > 0)  && (err->Number != 200069)){
+			cout << "Is anything throwing an error code? \n";
+			cout << (decode)(err->Description) << " " <<
+				err->Number << " " <<
+				(decode)(err->Solution) << " " <<
+				(decode)(err->Title) << "\n";
+			return err->Number;
+		}
 	}
-	return err->Number;
+	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << (decode)(e->Description) << "\n";;
+		cout << "Hit an exception trying to decode Check For Errors  \n";
+	}
+
+	return ErrorNumber;
 
 }
 
@@ -89,19 +112,6 @@ int main()
 	LMF::Tracker::Tracker^ LMFTracker;
 
 	Connection^ con = gcnew Connection();
-
-
-
-	//	LMFTracker = con->Connect("AT401Simulator");
-	//	LMFTracker = con->Connect("AT402Simulator");
-	//	LMFTracker = con->Connect("AT403Simulator");
-	//	LMFTracker = con->Connect("AT600Simulator"); //wrong name maybe?
-	//	LMFTracker = con->Connect("AT901LRSimulator");
-	//	LMFTracker = con->Connect("AT960MRSimulator"); 
-	//	LMFTracker = con->Connect("AT960LRSimulator"); 
-	//	LMFTracker = con->Connect("AT930Simulator");
-
-
 
 	cout << "Searching for trackers . . . \n";
 	// The TrackerFinder holds a list of found Trackers
@@ -207,9 +217,12 @@ int main()
 
 	LMFTracker->GetDirectionAsync();
 	Direction^ dir1 = LMFTracker->GetDirection();
-	cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " V Angle: " << dir1->VerticalAngle->Value << "\n";
+	cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " " << (decode)(dir1->HorizontalAngle->UnitString)
+		<< " V Angle: " << dir1->VerticalAngle->Value << " " << (decode)(dir1->VerticalAngle->UnitString) << "\n";
 
-	cout << " HLabel " << (decode)(dir1->HorizontalAngle->Label);
+// Is there any use of base units?
+
+/*	cout << " HLabel " << (decode)(dir1->HorizontalAngle->Label);
 	cout << " HUnitString " << (decode)(dir1->HorizontalAngle->UnitString);
 	//    cout << "HUnitType "    << dir1->HorizontalAngle->UnitType;
 	cout << " HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
@@ -219,29 +232,146 @@ int main()
 	//    cout << "VUnitType "    << dir1->VerticalAngle->UnitType;
 	cout << " VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
 
-
+*/
 	cout << "Performing a Target search . . . which may prevents you from doing sync commands again on some simulators \n";
 
-	LMF::Tracker::Targets::Target^ foundtargets = LMFTracker->TargetSearch->Start();
+	try
+	{
+		LMF::Tracker::Targets::Target^ foundtargets = LMFTracker->TargetSearch->Start();
 
-	cout << " Found " << (decode)(foundtargets->Comment);
-	cout << " " << (decode)(foundtargets->Name);
-	cout << " " << (decode)(foundtargets->ProductName) << "\n";
+		cout << " Found " << (decode)(foundtargets->Comment);
+		cout << " " << (decode)(foundtargets->Name);
+		cout << " " << (decode)(foundtargets->ProductName) << "\n";
+	}
+	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << (decode)(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform a Target Search call \n";
+	}
 
 	Sleep(1000);
+
+	cout << "Getting Info from Settings . . .  \n";
+
+	LMF::Units::ECoordinateType coordtype = LMFTracker->Settings->CoordinateType;
+	const char* coordtypeNames[] = {"Spherical", "Cartesian", "Cylindrical"};
+	cout << " CoordinateType : " << coordtypeNames[(int)coordtype] << "\n";
+
+	LMF::Units::ERotationType rottype = LMFTracker->Settings->RotationType;
+	const char* rottypeNames[] = { "RotationAngles", "RollPitchYaw", "Quarternion" };
+	cout << " RotationType : " << rottypeNames[(int)coordtype] << "\n";
+
+	LMF::Units::EAngleUnit angunit = LMFTracker->Settings->Units->AngleUnit;
+	const char* angunitNames[] = { "Radian", "Millirad", "Degree", "Gon", "CC"};
+	cout << " AngleUnits : " << angunitNames[(int)angunit] << "\n";
+
+	LMF::Units::EHumidityUnit humunit = LMFTracker->Settings->Units->HumidityUnit;
+	const char* humunitNames[] = { "RelativeHumidity"};
+	cout << " HumidityUnits : " << humunitNames[(int)humunit] << "\n";
+
+	LMF::Units::ELengthUnit lenunit = LMFTracker->Settings->Units->LengthUnit;
+	const char* lenunitNames[] = { "Meter", "Millimeter", "Micrometer","Foot","Yard", "Inch"};
+	cout << " LengthUnits : " << lenunitNames[(int)humunit] << "\n";
+
+	LMF::Units::EPercentUnit perunit = LMFTracker->Settings->Units->PercentUnit;
+	const char* perunitNames[] = { "Percent", "None" };
+	cout << " PercentUnits : " << perunitNames[(int)perunit] << "\n";
+
+	LMF::Units::EPressureUnit presunit = LMFTracker->Settings->Units->PressureUnit;
+	const char* presunitNames[] = { "mBar", "HPascal","KPascal","MmHg", "Psi", "InH2O","InHg"};
+	cout << " PressureUnits : " << presunitNames[(int)presunit] << "\n";
+
+	LMF::Units::ETemperatureUnit tempunit = LMFTracker->Settings->Units->TemperatureUnit;
+	const char* tempunitNames[] = { "Celsius", "Fahrenheit"};
+	cout << " TemperatureUnits : " << tempunitNames[(int)tempunit] << "\n";
+
+	LMF::Units::ETimeUnit timeunit = LMFTracker->Settings->Units->TimeUnit;
+	const char* timeunitNames[] = { "Millisecond", "Second", "Minute", "Hour"};
+	cout << " TimeUnits : " << timeunitNames[(int)timeunit] << "\n";
+
+
+	cout << " Get Orientation \n";
+	LMF::Tracker::Alignment^ orient = LMFTracker->Settings->GetOrientation();
+	cout << "  CoordinateType : " << coordtypeNames[(int)orient->CoordinateType] << "\n";
+	cout << "  RotationType : " << rottypeNames[(int)orient->RotationType] << "\n";
+	cout << "  Rotation0 : Label: " << (decode)(orient->Rotation0->Label)
+		<< "  UnitString: " << (decode)(orient->Rotation0->UnitString) // Note: the marshalling conversion code throws an exception if the starting string is NULL, which it is here
+        << "  Value: " << orient->Rotation0->Value << "\n";
+	cout << "  Rotation1 : Label: " << (decode)(orient->Rotation1->Label)
+		<< "  UnitString: " << (decode)(orient->Rotation1->UnitString)
+		<< "  Value: " << orient->Rotation1->Value << "\n";
+	cout << "  Rotation2 : Label: " << (decode)(orient->Rotation2->Label)
+		<< "  UnitString: " << (decode)(orient->Rotation2->UnitString)
+		<< "  Value: " << orient->Rotation2->Value << "\n";
+	cout << "  Rotation3 : Label: " << (decode)(orient->Rotation3->Label)
+		<< "  UnitString: " << (decode)(orient->Rotation3->UnitString)
+		<< "  Value: " << orient->Rotation3->Value << "\n";
+	cout << "  Translation1 : Label: " << (decode)(orient->Translation1->Label)
+		<< "  UnitString: " << (decode)(orient->Translation1->UnitString)
+		<< "  Value: " << orient->Translation1->Value << "\n";
+	cout << "  Translation2 : Label: " << (decode)(orient->Translation2->Label)
+		<< "  UnitString: " << (decode)(orient->Translation2->UnitString)
+		<< "  Value: " << orient->Translation2->Value << "\n";
+	cout << "  Translation3 : Label: " << (decode)(orient->Translation3->Label)
+		<< "  UnitString: " << (decode)(orient->Translation3->UnitString)
+		<< "  Value: " << orient->Translation3->Value << "\n";
+
+	cout << " Get Transformation \n";
+	LMF::Tracker::AlignmentWithScale^ transf = LMFTracker->Settings->GetTransformation();
+
+	cout << "  CoordinateType : " << coordtypeNames[(int)transf->CoordinateType] << "\n";
+	cout << "  RotationType : " << rottypeNames[(int)transf->RotationType] << "\n";
+	cout << "  Rotation0 : Label: " << (decode)(transf->Rotation0->Label)
+ 		 << "  UnitString: " << (decode)(transf->Rotation0->UnitString) 
+		 << "  Value: " << transf->Rotation0->Value << "\n";
+	cout << "  Rotation1 : Label: " << (decode)(transf->Rotation1->Label)
+		<< "  UnitString: " << (decode)(transf->Rotation1->UnitString)
+		<< "  Value: " << transf->Rotation1->Value << "\n";
+	cout << "  Rotation2 : Label: " << (decode)(transf->Rotation2->Label)
+		<< "  UnitString: " << (decode)(transf->Rotation2->UnitString)
+		<< "  Value: " << transf->Rotation2->Value << "\n";
+	cout << "  Rotation3 : Label: " << (decode)(transf->Rotation3->Label)
+		<< "  UnitString: " << (decode)(transf->Rotation3->UnitString)
+		<< "  Value: " << transf->Rotation3->Value << "\n";
+	cout << "  Scale : Label: " << (decode)(transf->Scale->Label)
+		<< "  UnitString: " << (decode)(transf->Scale->UnitString)
+		<< "  Value: " << transf->Scale->Value << "\n";
+	cout << "  Translation1 : Label: " << (decode)(transf->Translation1->Label)
+		<< "  UnitString: " << (decode)(transf->Translation1->UnitString)
+		<< "  Value: " << transf->Translation1->Value << "\n";
+	cout << "  Translation2 : Label: " << (decode)(transf->Translation2->Label)
+		<< "  UnitString: " << (decode)(transf->Translation2->UnitString)
+		<< "  Value: " << transf->Translation2->Value << "\n";
+	cout << "  Translation3 : Label: " << (decode)(transf->Translation3->Label)
+		<< "  UnitString: " << (decode)(transf->Translation3->UnitString)
+		<< "  Value: " << transf->Translation3->Value << "\n";
+
+
+	cout << "Targets . . . \n";
+
+	cout << " Target Count: " << LMFTracker->Targets->Count << "\n";
 
 
 	cout << "Attempting a GetPrismPositionAsync call \n";
-	LMFTracker->GetPrismPositionAsync();
-	
+	try
+	{
+		LMFTracker->GetPrismPositionAsync();
+	}
+	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << (decode)(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform a Get Prism Position Async call \n";
+	}
+
 	Sleep(1000);
 
 
-	cout << "Attempting a GetPrismPosition call \n";
+//	cout << "Attempting a GetPrismPosition call \n";
+
 	try
 	{
-		Measurement^ measure = LMFTracker->GetPrismPosition(); //says not supported by this tracker
-		cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << "\n";
+//		Measurement^ measure = LMFTracker->GetPrismPosition(); //says not supported by this tracker
+//		cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << "\n";
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -249,10 +379,13 @@ int main()
 		cout << "Hit an exception trying to perform a Get Prism Position call \n";
 	}
 
-	//    cout << "Starting  GoHomePosition Async. . . \n";
+	Sleep(1000);
+
+//	    cout << "Starting  GoHomePosition Async. . . \n";
+
 	try
 	{
-		//       LMFTracker->GoHomePositionAsync();
+//		       LMFTracker->GoHomePositionAsync();
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -264,7 +397,7 @@ int main()
 	//    cout << "Starting GoHomePosition . . . \n";
 	try
 	{
-		//        LMFTracker->GoHomePosition();
+//		        LMFTracker->GoHomePosition();
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -376,12 +509,15 @@ int main()
 
 	LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->MeasureStationary();
 
-	cout << "Measurment Humidity: " << data->Humidity->Value << " Pressure: " << data->Pressure->Value << " Temperature: " << data->Temperature->Value << "\n";
+	cout << "Measurment Humidity: " << data->Humidity->Value << " " << (decode) (data->Humidity->UnitString)
+		<< " Pressure: " << data->Pressure->Value << " " << (decode)(data->Pressure->UnitString)
+		<< " Temperature: " << data->Temperature->Value << " " << (decode)(data->Temperature->UnitString) << "\n";
 
+	
 	StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(data);
-	cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value;
-	cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value;
-	cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
+	cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate1->UnitString);
+	cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
+	cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate3->UnitString) << "\n";
 
 	Sleep(2000);
 
@@ -523,18 +659,20 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 				{
 					cout << "I am a stationary3d measurement \n";
 
-					cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value;
-					cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value;
-					cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
+					cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate1->UnitString);
+					cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
+					cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate3->UnitString) << "\n";
+
 
 
 				}
 				else if (StationaryMeasurement6D^ stationaryMeas6D = dynamic_cast<StationaryMeasurement6D^>(LastMeasurement))
 				{
 					cout << "I am a stationary6d measurement \n";
-					cout << " X = " << stationaryMeas6D->Position->Coordinate1->Value;
-					cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value;
-					cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << "\n";
+
+					cout << " X = " << stationaryMeas6D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate1->UnitString);
+					cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate2->UnitString);
+					cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate3->UnitString) << "\n";
 
 
 				}
@@ -542,20 +680,19 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 				{
 					cout << "I am a singleshot 3d measurement \n";
 
-					cout << " X = " << singleshot3dD->Position->Coordinate1->Value;
-					cout << " Y = " << singleshot3dD->Position->Coordinate2->Value;
-					cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << "\n";
-
+					cout << " X = " << singleshot3dD->Position->Coordinate1->Value << " " << (decode)(singleshot3dD->Position->Coordinate1->UnitString);
+					cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << " " << (decode)(singleshot3dD->Position->Coordinate2->UnitString);
+					cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << " " << (decode)(singleshot3dD->Position->Coordinate3->UnitString) << "\n";
 
 
 				}
 				else if (SingleShotMeasurement6D^ singleshot6dD = dynamic_cast<SingleShotMeasurement6D^>(LastMeasurement))
 				{
 					cout << "I am a singleshot 6d measurement \n";
-					cout << " X = " << singleshot6dD->Position->Coordinate1->Value;
-					cout << " Y = " << singleshot6dD->Position->Coordinate2->Value;
-					cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << "\n";
 
+					cout << " X = " << singleshot6dD->Position->Coordinate1->Value << " " << (decode)(singleshot6dD->Position->Coordinate1->UnitString);
+					cout << " Y = " << singleshot6dD->Position->Coordinate2->Value << " " << (decode)(singleshot6dD->Position->Coordinate2->UnitString);
+					cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << " " << (decode)(singleshot6dD->Position->Coordinate3->UnitString) << "\n";
 
 				}
 			}
