@@ -67,7 +67,7 @@ int CheckForErrors(LMF::Tracker::Tracker^ LMFTracker)
 
 	try {
 		LmfError^ err = LMFTracker->GetErrorDescription(ErrorNumber);
-		if ((err->Number > 0)  && (err->Number != 200069)){
+		if ((err->Number > 0) && (err->Number != 200069)) {
 			cout << "Is anything throwing an error code? \n";
 			cout << (decode)(err->Description) << " " <<
 				err->Number << " " <<
@@ -113,11 +113,12 @@ int main()
 
 	Connection^ con = gcnew Connection();
 
-	cout << "Searching for trackers . . . \n";
+	cout << "Searching for trackers . . . ";
 	// The TrackerFinder holds a list of found Trackers
 
 	TrackerFinder^ trackerFinder = gcnew TrackerFinder();
 	TrackerInfoCollection^ foundTrackers = trackerFinder->Trackers;
+	cout << "Found : " << foundTrackers->Count << "\n";
 
 	for (int i = 0; i < foundTrackers->Count; i++)
 	{
@@ -176,7 +177,7 @@ int main()
 	LMFTracker->Initialize();
 	LMFTracker->InitializeAsync();
 
-	cout << "After Initialization . . . \n";
+	cout << "After Initialization . . . \n\n";
 
 	CheckForErrors(LMFTracker);
 	CheckForMeasurementErrors(LMFTracker);
@@ -207,7 +208,7 @@ int main()
 	cout << "ProductName: " << (decode)(ProductName) << "\n";
 
 	String^ Serial = LMFTracker->SerialNumber;
-	cout << "Serial: " << (decode)(Serial) << "\n";
+	cout << "Serial: " << (decode)(Serial) << "\n\n";
 
 
 	// generates some binary debug file that has limited use to us
@@ -220,19 +221,19 @@ int main()
 	cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " " << (decode)(dir1->HorizontalAngle->UnitString)
 		<< " V Angle: " << dir1->VerticalAngle->Value << " " << (decode)(dir1->VerticalAngle->UnitString) << "\n";
 
-// Is there any use of base units?
+	// Is there any use of base units?
 
-/*	cout << " HLabel " << (decode)(dir1->HorizontalAngle->Label);
-	cout << " HUnitString " << (decode)(dir1->HorizontalAngle->UnitString);
-	//    cout << "HUnitType "    << dir1->HorizontalAngle->UnitType;
-	cout << " HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
+	/*	cout << " HLabel " << (decode)(dir1->HorizontalAngle->Label);
+		cout << " HUnitString " << (decode)(dir1->HorizontalAngle->UnitString);
+		//    cout << "HUnitType "    << dir1->HorizontalAngle->UnitType;
+		cout << " HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
 
-	cout << " VLabel " << (decode)(dir1->VerticalAngle->Label);
-	cout << " VUnitString " << (decode)(dir1->VerticalAngle->UnitString);
-	//    cout << "VUnitType "    << dir1->VerticalAngle->UnitType;
-	cout << " VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
+		cout << " VLabel " << (decode)(dir1->VerticalAngle->Label);
+		cout << " VUnitString " << (decode)(dir1->VerticalAngle->UnitString);
+		//    cout << "VUnitType "    << dir1->VerticalAngle->UnitType;
+		cout << " VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
 
-*/
+	*/
 	cout << "Performing a Target search . . . which may prevents you from doing sync commands again on some simulators \n";
 
 	try
@@ -254,7 +255,7 @@ int main()
 	cout << "Getting Info from Settings . . .  \n";
 
 	LMF::Units::ECoordinateType coordtype = LMFTracker->Settings->CoordinateType;
-	const char* coordtypeNames[] = {"Spherical", "Cartesian", "Cylindrical"};
+	const char* coordtypeNames[] = { "Spherical", "Cartesian", "Cylindrical" };
 	cout << " CoordinateType : " << coordtypeNames[(int)coordtype] << "\n";
 
 	LMF::Units::ERotationType rottype = LMFTracker->Settings->RotationType;
@@ -262,15 +263,15 @@ int main()
 	cout << " RotationType : " << rottypeNames[(int)coordtype] << "\n";
 
 	LMF::Units::EAngleUnit angunit = LMFTracker->Settings->Units->AngleUnit;
-	const char* angunitNames[] = { "Radian", "Millirad", "Degree", "Gon", "CC"};
+	const char* angunitNames[] = { "Radian", "Millirad", "Degree", "Gon", "CC" };
 	cout << " AngleUnits : " << angunitNames[(int)angunit] << "\n";
 
 	LMF::Units::EHumidityUnit humunit = LMFTracker->Settings->Units->HumidityUnit;
-	const char* humunitNames[] = { "RelativeHumidity"};
+	const char* humunitNames[] = { "RelativeHumidity" };
 	cout << " HumidityUnits : " << humunitNames[(int)humunit] << "\n";
 
 	LMF::Units::ELengthUnit lenunit = LMFTracker->Settings->Units->LengthUnit;
-	const char* lenunitNames[] = { "Meter", "Millimeter", "Micrometer","Foot","Yard", "Inch"};
+	const char* lenunitNames[] = { "Meter", "Millimeter", "Micrometer","Foot","Yard", "Inch" };
 	cout << " LengthUnits : " << lenunitNames[(int)humunit] << "\n";
 
 	LMF::Units::EPercentUnit perunit = LMFTracker->Settings->Units->PercentUnit;
@@ -278,16 +279,16 @@ int main()
 	cout << " PercentUnits : " << perunitNames[(int)perunit] << "\n";
 
 	LMF::Units::EPressureUnit presunit = LMFTracker->Settings->Units->PressureUnit;
-	const char* presunitNames[] = { "mBar", "HPascal","KPascal","MmHg", "Psi", "InH2O","InHg"};
+	const char* presunitNames[] = { "mBar", "HPascal","KPascal","MmHg", "Psi", "InH2O","InHg" };
 	cout << " PressureUnits : " << presunitNames[(int)presunit] << "\n";
 
 	LMF::Units::ETemperatureUnit tempunit = LMFTracker->Settings->Units->TemperatureUnit;
-	const char* tempunitNames[] = { "Celsius", "Fahrenheit"};
+	const char* tempunitNames[] = { "Celsius", "Fahrenheit" };
 	cout << " TemperatureUnits : " << tempunitNames[(int)tempunit] << "\n";
 
 	LMF::Units::ETimeUnit timeunit = LMFTracker->Settings->Units->TimeUnit;
-	const char* timeunitNames[] = { "Millisecond", "Second", "Minute", "Hour"};
-	cout << " TimeUnits : " << timeunitNames[(int)timeunit] << "\n";
+	const char* timeunitNames[] = { "Millisecond", "Second", "Minute", "Hour" };
+	cout << " TimeUnits : " << timeunitNames[(int)timeunit] << "\n\n";
 
 
 	cout << " Get Orientation \n";
@@ -296,7 +297,7 @@ int main()
 	cout << "  RotationType : " << rottypeNames[(int)orient->RotationType] << "\n";
 	cout << "  Rotation0 : Label: " << (decode)(orient->Rotation0->Label)
 		<< "  UnitString: " << (decode)(orient->Rotation0->UnitString) // Note: the marshalling conversion code throws an exception if the starting string is NULL, which it is here
-        << "  Value: " << orient->Rotation0->Value << "\n";
+		<< "  Value: " << orient->Rotation0->Value << "\n";
 	cout << "  Rotation1 : Label: " << (decode)(orient->Rotation1->Label)
 		<< "  UnitString: " << (decode)(orient->Rotation1->UnitString)
 		<< "  Value: " << orient->Rotation1->Value << "\n";
@@ -314,7 +315,7 @@ int main()
 		<< "  Value: " << orient->Translation2->Value << "\n";
 	cout << "  Translation3 : Label: " << (decode)(orient->Translation3->Label)
 		<< "  UnitString: " << (decode)(orient->Translation3->UnitString)
-		<< "  Value: " << orient->Translation3->Value << "\n";
+		<< "  Value: " << orient->Translation3->Value << "\n\n";
 
 	cout << " Get Transformation \n";
 	LMF::Tracker::AlignmentWithScale^ transf = LMFTracker->Settings->GetTransformation();
@@ -322,8 +323,8 @@ int main()
 	cout << "  CoordinateType : " << coordtypeNames[(int)transf->CoordinateType] << "\n";
 	cout << "  RotationType : " << rottypeNames[(int)transf->RotationType] << "\n";
 	cout << "  Rotation0 : Label: " << (decode)(transf->Rotation0->Label)
- 		 << "  UnitString: " << (decode)(transf->Rotation0->UnitString) 
-		 << "  Value: " << transf->Rotation0->Value << "\n";
+		<< "  UnitString: " << (decode)(transf->Rotation0->UnitString)
+		<< "  Value: " << transf->Rotation0->Value << "\n";
 	cout << "  Rotation1 : Label: " << (decode)(transf->Rotation1->Label)
 		<< "  UnitString: " << (decode)(transf->Rotation1->UnitString)
 		<< "  Value: " << transf->Rotation1->Value << "\n";
@@ -344,12 +345,88 @@ int main()
 		<< "  Value: " << transf->Translation2->Value << "\n";
 	cout << "  Translation3 : Label: " << (decode)(transf->Translation3->Label)
 		<< "  UnitString: " << (decode)(transf->Translation3->UnitString)
-		<< "  Value: " << transf->Translation3->Value << "\n";
+		<< "  Value: " << transf->Translation3->Value << "\n\n";
 
 
 	cout << "Targets . . . \n";
 
 	cout << " Target Count: " << LMFTracker->Targets->Count << "\n";
+
+
+	LMF::Tracker::Targets::TargetCollection^ foundTargets = LMFTracker->Targets;
+
+
+	for (int i = 0; i < LMFTracker->Targets->Count; i++)
+	{
+
+		//Maybe display a list of all Targets and let the user choose.
+
+//		Target^ thisTarget = foundTargets[i];
+
+
+		if (LMF::Tracker::Targets::Reflectors::Reflector^ thisReflector = dynamic_cast<LMF::Tracker::Targets::Reflectors::Reflector^>(foundTargets[i]))
+		{
+
+			cout << " Reflector Comment: " << (decode)(thisReflector->Comment);
+			cout << " Target Name: " << (decode)(thisReflector->Name);
+			cout << " Product Name: " << (decode)(thisReflector->ProductName);
+			cout << " IsSelectable: " << thisReflector->IsSelectable << "\n";
+			cout << "     " << (decode)(thisReflector->ADMOffset->Label);
+			cout << " UnitString: " << (decode)(thisReflector->ADMOffset->UnitString);
+			cout << " UnitType: " << (int)(thisReflector->ADMOffset->UnitType);
+			cout << " Value: " << thisReflector->ADMOffset->Value << "\n";
+			cout << "     " << (decode)(thisReflector->SurfaceOffset->Label);
+			cout << " UnitString: " << (decode)(thisReflector->SurfaceOffset->UnitString);
+			cout << " UnitType: " << (int)(thisReflector->SurfaceOffset->UnitType);
+			cout << " Value: " << thisReflector->SurfaceOffset->Value << "\n";
+
+
+
+
+		}
+
+		else if (LMF::Tracker::Targets::Probes::PassiveProbes::BProbes::BProbe^ thisProbe = dynamic_cast<LMF::Tracker::Targets::Probes::PassiveProbes::BProbes::BProbe^>(foundTargets[i]))
+		{
+
+
+
+			cout << " Probe Comment: " << (decode)(thisProbe->Comment);
+			cout << " Target Name: " << (decode)(thisProbe->Name);
+			cout << " Product Name: " << (decode)(thisProbe->ProductName);
+			cout << " Serial Number: " << (decode)(thisProbe->SerialNumber);
+			cout << " IsSelectable: " << thisProbe->IsSelectable << "\n";
+// I should be able to 'see' FaceCompensation and TipCompensation params if the type and/or cast is correct.
+			cout << "     FaceCompensation: " << (decode)(thisProbe->FaceCompensation->Comment);
+			cout << " Label: " <<(decode)(thisProbe->FaceCompensation->IsCompensated->Label);
+			cout <<  (int)thisProbe->FaceCompensation->IsCompensated->Value;
+			cout << " Name: " << (decode)(thisProbe->FaceCompensation->Name);
+			cout << " Product Name: " << (decode)(thisProbe->FaceCompensation->ProductName) << "\n";
+
+			cout << "     TipCompensation BallRadius: " << thisProbe->TipCompensation->BallRadius;
+			cout << " Comment: " << (decode)(thisProbe->TipCompensation->Comment);
+			cout << "Label: " <<  (decode)(thisProbe->TipCompensation->IsCompensated->Label);
+			cout << (int)thisProbe->TipCompensation->IsCompensated->Value;
+			cout << " Length: " << thisProbe->TipCompensation->Length;
+			cout << " Name: " << (decode)(thisProbe->TipCompensation->Name);
+			cout << " ProductName: " <<(decode)(thisProbe->TipCompensation->ProductName);
+			cout << " x: " << thisProbe->TipCompensation->X;
+			cout << " y: " << thisProbe->TipCompensation->Y;
+			cout << " z: " << thisProbe->TipCompensation->Z << "\n";
+
+
+		}
+		else if (Target^ thisTarget = foundTargets[i])
+		{
+			cout << " Target Comment: " << (decode)(thisTarget->Comment);
+			cout << " Target Name: " << (decode)(thisTarget->Name);
+			cout << " Product Name: " << (decode)(thisTarget->ProductName);
+			cout << " IsSelectable: " << thisTarget->IsSelectable << "\n";
+
+
+		}
+
+
+	}
 
 
 	cout << "Attempting a GetPrismPositionAsync call \n";
@@ -366,12 +443,12 @@ int main()
 	Sleep(1000);
 
 
-//	cout << "Attempting a GetPrismPosition call \n";
+	//	cout << "Attempting a GetPrismPosition call \n";
 
 	try
 	{
-//		Measurement^ measure = LMFTracker->GetPrismPosition(); //says not supported by this tracker
-//		cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << "\n";
+		//		Measurement^ measure = LMFTracker->GetPrismPosition(); //says not supported by this tracker
+		//		cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << "\n";
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -381,11 +458,11 @@ int main()
 
 	Sleep(1000);
 
-//	    cout << "Starting  GoHomePosition Async. . . \n";
+	//	    cout << "Starting  GoHomePosition Async. . . \n";
 
 	try
 	{
-//		       LMFTracker->GoHomePositionAsync();
+		//		       LMFTracker->GoHomePositionAsync();
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -397,7 +474,7 @@ int main()
 	//    cout << "Starting GoHomePosition . . . \n";
 	try
 	{
-//		        LMFTracker->GoHomePosition();
+		//		        LMFTracker->GoHomePosition();
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -509,11 +586,11 @@ int main()
 
 	LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->MeasureStationary();
 
-	cout << "Measurment Humidity: " << data->Humidity->Value << " " << (decode) (data->Humidity->UnitString)
+	cout << "Measurment Humidity: " << data->Humidity->Value << " " << (decode)(data->Humidity->UnitString)
 		<< " Pressure: " << data->Pressure->Value << " " << (decode)(data->Pressure->UnitString)
 		<< " Temperature: " << data->Temperature->Value << " " << (decode)(data->Temperature->UnitString) << "\n";
 
-	
+
 	StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(data);
 	cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate1->UnitString);
 	cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
