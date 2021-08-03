@@ -251,7 +251,7 @@ text {
 	object {
 		x=300
 		y=145
-		width=120
+		width=80
 		height=18
 	}
 	monitor {
@@ -259,6 +259,7 @@ text {
 		clr=54
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -279,7 +280,7 @@ text {
 	object {
 		x=300
 		y=170
-		width=120
+		width=80
 		height=18
 	}
 	monitor {
@@ -287,6 +288,7 @@ text {
 		clr=54
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -307,7 +309,7 @@ text {
 	object {
 		x=300
 		y=195
-		width=120
+		width=80
 		height=18
 	}
 	monitor {
@@ -315,6 +317,7 @@ text {
 		clr=54
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -413,6 +416,51 @@ text {
 	}
 	monitor {
 		chan="$(P)$(R)temperatureUnits_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=400
+		y=145
+		width=80
+		height=18
+	}
+	monitor {
+		chan="$(P)$(R)xUnits_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=400
+		y=170
+		width=80
+		height=18
+	}
+	monitor {
+		chan="$(P)$(R)yUnits_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=400
+		y=195
+		width=80
+		height=18
+	}
+	monitor {
+		chan="$(P)$(R)zUnits_RBV"
 		clr=54
 		bclr=4
 	}
