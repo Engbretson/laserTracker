@@ -164,7 +164,7 @@ text {
 	object {
 		x=300
 		y=70
-		width=120
+		width=80
 		height=18
 	}
 	monitor {
@@ -172,6 +172,7 @@ text {
 		clr=54
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -192,7 +193,7 @@ text {
 	object {
 		x=300
 		y=95
-		width=120
+		width=80
 		height=18
 	}
 	monitor {
@@ -200,6 +201,7 @@ text {
 		clr=54
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -220,7 +222,7 @@ text {
 	object {
 		x=300
 		y=120
-		width=120
+		width=80
 		height=18
 	}
 	monitor {
@@ -228,6 +230,7 @@ text {
 		clr=54
 		bclr=4
 	}
+	align="horiz. right"
 	limits {
 	}
 }
@@ -365,6 +368,51 @@ text {
 	}
 	monitor {
 		chan="$(P)$(R)comment_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=400
+		y=70
+		width=80
+		height=18
+	}
+	monitor {
+		chan="$(P)$(R)humidityUnits_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=400
+		y=95
+		width=80
+		height=18
+	}
+	monitor {
+		chan="$(P)$(R)pressureUnits_RBV"
+		clr=54
+		bclr=4
+	}
+	limits {
+	}
+}
+"text update" {
+	object {
+		x=400
+		y=120
+		width=80
+		height=18
+	}
+	monitor {
+		chan="$(P)$(R)temperatureUnits_RBV"
 		clr=54
 		bclr=4
 	}

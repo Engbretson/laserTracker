@@ -6,8 +6,9 @@
 #include <msclr\marshal.h>
 #include <msclr\marshal_cppstd.h>
 
-// a slight space saver, since I have to do this *everywhere*
-#define decode msclr::interop::marshal_as<std::string>
+// a slight space saver, since I have to do this *everywhere*, But I can't marshal null strings, so have to do something else like below
+// to handle the couple of special cases when this actually happens
+//#define decode msclr::interop::marshal_as<std::string>
 
 
 using namespace System;
@@ -42,6 +43,14 @@ using namespace LMF::Tracker::BasicTypes;
 #define L_nameString "name"
 #define L_productNameString "productName"
 #define L_serialNumberString "serialNumber"
+
+#define L_angleUnitsString "angleunits"
+#define L_humidityUnitsString "humidityunits"
+#define L_pressureUnitsString "pressureunits"
+#define L_temperatureUnitsString "temperatureunits"
+#define L_xUnitsString "xunits"
+#define L_yUnitsString "yunits"
+#define L_zUnitsString "zunits"
 
 //doubles
 #define L_verticalAngleString "verticalAngle"
@@ -97,6 +106,14 @@ private:
     int L_name; 
     int L_productName; 
     int L_serialNumber; 
+	int L_angleUnits; 
+	int L_humidityUnits; 
+	int L_pressureUnits; 
+	int L_temperatureUnits; 
+	int L_xUnits;
+	int L_yUnits;
+	int L_zUnits;
+
 	
 	int L_horizontalAngle;
 	int L_verticalAngle;

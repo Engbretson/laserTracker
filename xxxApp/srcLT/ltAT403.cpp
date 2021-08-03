@@ -21,7 +21,13 @@
 
 static const char *driverName="LTAt403";
 
-
+std::string decode(System::String^ something)
+{
+	if (System::String::IsNullOrEmpty(something))
+		return "N/A";
+	else
+		return (msclr::interop::marshal_as<std::string>(something));
+}
 
 /** Constructor for the LTAt403 class.
   * Calls constructor for the asynPortDriver base class.
@@ -52,6 +58,13 @@ LTAt403::LTAt403(const char *portName)
     createParam(L_nameString, asynParamOctet, &L_name);
     createParam(L_productNameString, asynParamOctet, &L_productName);
     createParam(L_serialNumberString, asynParamOctet, &L_serialNumber);
+	createParam(L_angleUnitsString, asynParamOctet, &L_angleUnits);
+	createParam(L_humidityUnitsString, asynParamOctet, &L_humidityUnits);
+	createParam(L_pressureUnitsString, asynParamOctet, &L_pressureUnits);
+	createParam(L_temperatureUnitsString, asynParamOctet, &L_temperatureUnits);			
+	createParam(L_xUnitsString, asynParamOctet, &L_xUnits);	
+	createParam(L_yUnitsString, asynParamOctet, &L_yUnits);	
+	createParam(L_zUnitsString, asynParamOctet, &L_zUnits);		
 	
 	createParam(L_horizontalAngleString, asynParamFloat64, &L_horizontalAngle);
 	createParam(L_verticalAngleString, asynParamFloat64, &L_verticalAngle);
@@ -99,40 +112,79 @@ LTAt403::LTAt403(const char *portName)
     cout << "Serial: " << (decode)(SerialNumber) << "\n";
 	setStringParam(L_serialNumber,(decode)(SerialNumber));
 	
+	cout << "Getting Info from Settings . . .  \n";
+
+	LMF::Units::ECoordinateType coordtype = GlobalObjects::LMFTracker->Settings->CoordinateType;
+	const char* coordtypeNames[] = {"Spherical", "Cartesian", "Cylindrical"};
+	cout << " CoordinateType : " << coordtypeNames[(int)coordtype] << "\n";
+
+	LMF::Units::ERotationType rottype = GlobalObjects::LMFTracker->Settings->RotationType;
+	const char* rottypeNames[] = { "RotationAngles", "RollPitchYaw", "Quarternion" };
+	cout << " RotationType : " << rottypeNames[(int)coordtype] << "\n";
+
+	LMF::Units::EAngleUnit angunit = GlobalObjects::LMFTracker->Settings->Units->AngleUnit;
+	const char* angunitNames[] = { "Radian", "Millirad", "Degree", "Gon", "CC"};
+	cout << " AngleUnits : " << angunitNames[(int)angunit] << "\n";
+
+	LMF::Units::EHumidityUnit humunit = GlobalObjects::LMFTracker->Settings->Units->HumidityUnit;
+	const char* humunitNames[] = { "RelativeHumidity"};
+	cout << " HumidityUnits : " << humunitNames[(int)humunit] << "\n";
+
+	LMF::Units::ELengthUnit lenunit = GlobalObjects::LMFTracker->Settings->Units->LengthUnit;
+	const char* lenunitNames[] = { "Meter", "Millimeter", "Micrometer","Foot","Yard", "Inch"};
+	cout << " LengthUnits : " << lenunitNames[(int)humunit] << "\n";
+
+	LMF::Units::EPercentUnit perunit = GlobalObjects::LMFTracker->Settings->Units->PercentUnit;
+	const char* perunitNames[] = { "Percent", "None" };
+	cout << " PercentUnits : " << perunitNames[(int)perunit] << "\n";
+
+	LMF::Units::EPressureUnit presunit = GlobalObjects::LMFTracker->Settings->Units->PressureUnit;
+	const char* presunitNames[] = { "mBar", "HPascal","KPascal","MmHg", "Psi", "InH2O","InHg"};
+	cout << " PressureUnits : " << presunitNames[(int)presunit] << "\n";
+
+	LMF::Units::ETemperatureUnit tempunit = GlobalObjects::LMFTracker->Settings->Units->TemperatureUnit;
+	const char* tempunitNames[] = { "Celsius", "Fahrenheit"};
+	cout << " TemperatureUnits : " << tempunitNames[(int)tempunit] << "\n";
+
+	LMF::Units::ETimeUnit timeunit = GlobalObjects::LMFTracker->Settings->Units->TimeUnit;
+	const char* timeunitNames[] = { "Millisecond", "Second", "Minute", "Hour"};
+	cout << " TimeUnits : " << timeunitNames[(int)timeunit] << "\n";
+
+	
     GlobalObjects::LMFTracker->GetDirectionAsync();    
     Direction^ dir1 = GlobalObjects::LMFTracker->GetDirection(); 
-    cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " V Angle: " << dir1->VerticalAngle->Value << "\n";
-	setDoubleParam(L_horizontalAngle, dir1->HorizontalAngle->Value); 
+	cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " " << (decode)(dir1->HorizontalAngle->UnitString)
+		 << " V Angle: " << dir1->VerticalAngle->Value << " " << (decode)(dir1->VerticalAngle->UnitString) << "\n";
+ 	setDoubleParam(L_horizontalAngle, dir1->HorizontalAngle->Value); 
 	setDoubleParam(L_verticalAngle, dir1->VerticalAngle->Value);
+	setStringParam(L_angleUnits,(decode)(dir1->VerticalAngle->UnitString));
 	
-// I *think* that the units tend to be a default angle in Degrees ? or have not run across the switch units commands . . .  yet.
-	cout <<"HLabel " << (decode)(dir1->HorizontalAngle->Label);
-	cout << " HUnitString " << (decode)(dir1->HorizontalAngle->UnitString);
-//    cout << "HUnitType " << (decode)(dir1->HorizontalAngle->UnitType) << "\n"; // some off enum type
-    cout << " HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
-	
-    cout << "VLabel " << (decode)(dir1->VerticalAngle->Label);
-    cout << " VUnitString " << (decode)(dir1->VerticalAngle->UnitString);
-//    cout << "VUnitType " << (decode)(dir1->VerticalAngle->UnitType) << "\n"; // some odd enum type 
-    cout << " VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
-
 
 LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker->Measurement->MeasureStationary();
 
- cout << "Measurment Humidity: " << data->Humidity->Value << " Pressure: " << data->Pressure->Value << " Temperature: " << data->Temperature->Value << "\n";
+	cout << "Measurment Humidity: " << data->Humidity->Value << " " << (decode) (data->Humidity->UnitString)
+		<< " Pressure: " << data->Pressure->Value << " " << (decode)(data->Pressure->UnitString)
+		<< " Temperature: " << data->Temperature->Value << " " << (decode)(data->Temperature->UnitString) << "\n";
  
  	setDoubleParam(L_humidity, data->Humidity->Value);
 	setDoubleParam(L_pressure, data->Pressure->Value);
 	setDoubleParam(L_temperature, data->Temperature->Value);
+	setStringParam(L_humidityUnits,(decode) (data->Humidity->UnitString));
+	setStringParam(L_pressureUnits,(decode)(data->Pressure->UnitString));
+	setStringParam(L_temperatureUnits,(decode)(data->Temperature->UnitString) );
+
  
  StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(data);
- cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value ;
- cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value ;
- cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << "\n";
+	cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate1->UnitString);
+	cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
+	cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate3->UnitString) << "\n";
  
  	setDoubleParam(L_x, stationaryMeas3D->Position->Coordinate1->Value);
 	setDoubleParam(L_y, stationaryMeas3D->Position->Coordinate2->Value);
 	setDoubleParam(L_z, stationaryMeas3D->Position->Coordinate3->Value);
+	setStringParam(L_xUnits,(decode)(stationaryMeas3D->Position->Coordinate1->UnitString) );
+	setStringParam(L_yUnits,(decode)(stationaryMeas3D->Position->Coordinate2->UnitString) );
+	setStringParam(L_zUnits,(decode)(stationaryMeas3D->Position->Coordinate3->UnitString) );
 
 
 // end of test commands 
