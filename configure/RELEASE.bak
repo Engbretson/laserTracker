@@ -19,8 +19,6 @@ SUPPORT=C:/epics
 
 # Specify the standard synApps configuration.
 -include $(SUPPORT)/configure/RELEASE
-
-# 
 undefine VAC
 undefine XXXAD
 undefine XXX
@@ -32,8 +30,6 @@ undefine DXP
 undefine AREA_DETECTOR
 undefine ADCORE
 undefine ADSUPPORT
-undefine SOFTGLUE
-undefine SOFTGLUEZYNQ
 
 LASER_TRACKER=$(SUPPORT)/LaserTracker-R1-0
 

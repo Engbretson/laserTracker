@@ -1,9 +1,9 @@
-< envPaths.windows-x64
+< envPaths
 
 epicsEnvSet("IOC","ioc433LT")
 epicsEnvSet("PREFIX","433LT:")
 
-dbLoadDatabase("../../dbd/windows-x64/iocxxxWin64.dbd")
+dbLoadDatabase("../../dbd/iocxxxWin64.dbd")
 iocxxxWin64_registerRecordDeviceDriver(pdbbase)
 
 LTAt403Configure("At403Simulator")
