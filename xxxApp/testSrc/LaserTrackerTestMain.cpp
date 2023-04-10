@@ -22,6 +22,7 @@ using namespace LMF::Tracker;
 using namespace LMF::Tracker::Measurements;
 using namespace LMF::Tracker::MeasurementStatus;
 using namespace LMF::Tracker::MeasurementResults;
+
 using namespace LMF::Tracker::ErrorHandling;
 using namespace LMF::Tracker::Targets;
 using namespace LMF::Tracker::Triggers;
@@ -150,10 +151,13 @@ int main()
 		//	LMFTracker = con->Connect("AT960LRSimulator"); 
 		//	LMFTracker = con->Connect("AT930Simulator");
 
-	cout << "connecting to " << (decode)(tracker->IPAddress) << " \n";
+//	cout << "connecting to " << (decode)(tracker->IPAddress) << " \n";
 
 //	LMFTracker = con->Connect("At403Simulator");
-	LMFTracker = con->Connect( (tracker->IPAddress));
+//	LMFTracker = con->Connect( (tracker->IPAddress));
+
+	cout << "connecting to 164.54.116.53 \n";
+	LMFTracker = con->Connect("164.54.116.53");	
 
 	// Callbacks and I do not see any advantage to using any of the async ones at the instant, many are not supportd on this simulated hardware
 
@@ -628,16 +632,22 @@ int main()
 	cout << "Doing a StartMeasurement . . . status: " << LMFTracker->Measurement->MeasurementInProgress->Value << "\n";
 	LMFTracker->Measurement->StartMeasurement();
 
-	Sleep(20000);
+	Sleep(2000);
 	LMFTracker->Measurement->StopMeasurement();
 	cout << "Doing a StopMeasurement . . . \n";
 
-
-
-
-
-
 	// MeteoStation
+
+    cout << "Getting Info from MeteoStation . . .  \n";
+	
+	cout << " Humidity = " << LMFTracker->MeteoStation->HardwareHumidity->Value << "\n"; 
+	cout << " Pressure = " <<LMFTracker->MeteoStation->HardwarePressure->Value << "\n";
+	cout << " Temperature = " <<LMFTracker->MeteoStation->HardwareTemperature->Value << "\n";
+
+	
+
+
+
 	// OverviewCamera
 	// PowerLock
 	// PowerSource

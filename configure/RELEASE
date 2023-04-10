@@ -8,14 +8,14 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 # define INSTALL_LOCATION_APP here
 #INSTALL_LOCATION_APP=<fullpathname>
 
-SUPPORT=d:/epics
+SUPPORT=c:/epics
 
 #ALIVE=$(SUPPORT)/alive-R1-4-0
 #ASYN=$(SUPPORT)/asyn-R4-44-2
 
 
 # EPICS_BASE usually appears last so other apps can override stuff:
-#EPICS_BASE=d:/epics/base-R7-0-7
+#EPICS_BASE=c:/epics/base-R7-0-7
 
 # Specify the standard synApps configuration.
 -include $(SUPPORT)/configure/RELEASE
