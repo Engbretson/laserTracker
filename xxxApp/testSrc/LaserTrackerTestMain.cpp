@@ -119,13 +119,17 @@ int main()
 	TrackerFinder^ trackerFinder = gcnew TrackerFinder();
 	TrackerInfoCollection^ foundTrackers = trackerFinder->Trackers;
 	cout << "Found : " << foundTrackers->Count << "\n";
+	
+// public, since I now need to be able to find it again . . . 
+	
+	TrackerInfo^ tracker ;
 
 	for (int i = 0; i < foundTrackers->Count; i++)
 	{
 
 		//Maybe display a list of all Trackers and let the user choose.
 
-		TrackerInfo^ tracker = foundTrackers[i];
+		tracker = foundTrackers[i];
 
 
 		cout << " Tracker Name: " << (decode)(tracker->Name);
@@ -146,12 +150,14 @@ int main()
 		//	LMFTracker = con->Connect("AT960LRSimulator"); 
 		//	LMFTracker = con->Connect("AT930Simulator");
 
-	cout << "Connecting to At403Simulator \n";
+	cout << "connecting to " << (decode)(tracker->IPAddress) << " \n";
 
-	LMFTracker = con->Connect("At403Simulator");
+//	LMFTracker = con->Connect("At403Simulator");
+	LMFTracker = con->Connect( (tracker->IPAddress));
 
 	// Callbacks and I do not see any advantage to using any of the async ones at the instant, many are not supportd on this simulated hardware
 
+	
 	LMFTracker->Disconnected += gcnew LMF::Tracker::Tracker::DisconnectedHandler(&OnDisconnected);
 	LMFTracker->ErrorArrived += gcnew LMF::Tracker::Tracker::ErrorArrivedHandler(&OnErrorArrived);
 	LMFTracker->GetDirectionFinished += gcnew LMF::Tracker::Tracker::GetDirectionFinishedHandler(&OnGetDirectionFinished);
@@ -171,10 +177,17 @@ int main()
 	CheckForMeasurementErrors(LMFTracker);
 
 
-
-	cout << "Initialize . . . using 'realistic' timings in the simulator  . . . . which is *slow* . . .  \n";
-
+//	cout << "Initialize . . . using 'realistic' timings in the simulator  . . . . which is *slow* . . .  \n";
+	cout << "Initialize . . . \n";
+    try {
 	LMFTracker->Initialize();
+	}
+		catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << (decode)(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform a Get Prism Position Async call \n";
+	}
+	
 	LMFTracker->InitializeAsync();
 
 	cout << "After Initialization . . . \n\n";
@@ -583,10 +596,13 @@ int main()
 
 	CheckForErrors(LMFTracker);
 	CheckForMeasurementErrors(LMFTracker);
-
-	LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->MeasureStationary();
-
-	cout << "Measurment Humidity: " << data->Humidity->Value << " " << (decode)(data->Humidity->UnitString)
+	
+    LMF::Tracker::MeasurementResults::Measurement^ data;
+	
+	try {
+	data = LMFTracker->Measurement->MeasureStationary();
+	
+		cout << "Measurment Humidity: " << data->Humidity->Value << " " << (decode)(data->Humidity->UnitString)
 		<< " Pressure: " << data->Pressure->Value << " " << (decode)(data->Pressure->UnitString)
 		<< " Temperature: " << data->Temperature->Value << " " << (decode)(data->Temperature->UnitString) << "\n";
 
@@ -596,6 +612,14 @@ int main()
 	cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
 	cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate3->UnitString) << "\n";
 
+
+	}
+		catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << (decode)(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform a Measure Stationary call \n";
+	}
+	
 	Sleep(2000);
 
 	CheckForErrors(LMFTracker);
@@ -636,6 +660,7 @@ int main()
 
 void OnDisconnected(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
+	cout << "In OnDisconnected \n";
 	//   throw gcnew System::NotImplementedException();
 	cout << (decode)(ex->Description) << "\n";;
 	cout << "callback Disconnected finished . . . \n";
@@ -643,6 +668,7 @@ void OnDisconnected(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::
 
 void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error)
 {
+		cout << "In OnErrorArrived \n";
 	//   throw gcnew System::NotImplementedException();
 	cout << (decode)(error->Description) << "\n";;
 	cout << "callback Got some sort of error message . . . \n";
@@ -650,6 +676,7 @@ void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::
 
 void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Direction^ bm, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
+		cout << "In OnGetDirectionFinished \n";
 	//   throw gcnew System::NotImplementedException();
 	cout << (decode)(ex->Description) << "\n";;
 	cout << "callback Got some sort of Get Direction finished message . . . \n";
@@ -661,6 +688,7 @@ void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Directi
 
 void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::MeasurementResults::Measurement^ paramMeasurement, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
+		cout << "In OnGetPrismPositionFinished \n";
 	//   throw gcnew System::NotImplementedException();
 	cout << (decode)(ex->Description) << "\n";;
 	cout << "callback OnGetPosition Finished . . . \n";
@@ -669,6 +697,7 @@ void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Mea
 
 void OnGoHomePositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
+		cout << "In OnGoHomePositionFinished \n";
 	//   throw gcnew System::NotImplementedException();
 	cout << (decode)(ex->Description) << "\n";;
 	cout << "callback Asyn GoHomePosition finished . . . \n";
@@ -676,6 +705,7 @@ void OnGoHomePositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Error
 
 void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo)
 {
+		cout << "In OnInformationArrived \n";
 	//   throw gcnew System::NotImplementedException();
 	cout << (decode)(paramInfo->Description) << "\n";;
 	cout << "callback Got some sort of Information message . . . \n";
@@ -683,6 +713,7 @@ void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHand
 
 void OnInitializeFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
+		cout << "In OnInitializationFinished \n";
 	//   throw gcnew System::NotImplementedException();
 	cout << (decode)(ex->Description) << "\n";;
 	cout << "callback Initialization finished . . . \n";
@@ -691,6 +722,7 @@ void OnInitializeFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHand
 
 void OnPositionToFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Targets::Target^ foundTarget, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
+		cout << "In OnPositionToFinished \n";
 	//  throw gcnew System::NotImplementedException();
 	cout << (decode)(ex->Description) << "\n";;
 
@@ -701,6 +733,7 @@ void OnPositionToFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Targets::
 
 void OnPositionToTargetFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Targets::Target^ foundTarget, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
+		cout << "In OnPositionToTargetFinished \n";
 	//   throw gcnew System::NotImplementedException();
 	cout << "callback PositionToTarget finished . . . \n";
 
@@ -708,6 +741,7 @@ void OnPositionToTargetFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Tar
 
 void OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfWarning^ warning)
 {
+	cout << "In OnWarningArrived \n";
 	//   throw gcnew System::NotImplementedException();
 	cout << "callback Got some sort of Warning message . . . \n";
 }
@@ -715,6 +749,7 @@ void OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling
 
 void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException)
 {
+		cout << "In OnMeasurementArrived \n";
 	LMF::Tracker::MeasurementResults::Measurement^ LastMeasurement = nullptr;
 
 	// throw gcnew System::NotImplementedException();
@@ -779,6 +814,8 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 
 void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, LMF::Tracker::Enums::EMeasurementStatus paramNewValue)
 {
+	
+		cout << "In OnChanged \n";
 	//    throw gcnew System::NotImplementedException();
 	cout << "Measurement Status Value changed: " << "\n";
 

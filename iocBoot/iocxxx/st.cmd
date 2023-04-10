@@ -1,5 +1,10 @@
 < envPaths.windows-x64
 
+epicsEnvSet("ENGINEER","Engbretson")
+epicsEnvSet("GROUP","8-id-e")
+epicsEnvSet("LOCATION","8-id-e")
+epicsEnvSet("CAMERA_ID","AT403 394712 164.54.116.53")
+
 epicsEnvSet("IOC","ioc433LT")
 epicsEnvSet("PREFIX","433LT:")
 
