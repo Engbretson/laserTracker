@@ -225,8 +225,10 @@ void LTAt403::initializeHardware(const char *portName)
  
  	GlobalObjects::con = gcnew Connection();
     GlobalObjects::LMFTracker = GlobalObjects::con->Connect(marshal_as<String^>(portName));
-    closeWindowByTitle("AT403 Simulator 1.8.0.2250");
-	closeWindowByTitle("AT930 Simulator 1.8.0.2250");
+//    closeWindowByTitle("AT403 Simulator 1.8.0.2250");
+//	closeWindowByTitle("AT930 Simulator 1.8.0.2250");
+// Not sure what a normal laser tracker might show , maybe key on the SDK value?
+	closeWindowByPartialTitle(" Simulator ");
     GlobalObjects::LMFTracker->Initialize();
 
 };

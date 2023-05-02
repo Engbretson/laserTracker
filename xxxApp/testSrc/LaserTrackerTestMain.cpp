@@ -85,7 +85,7 @@ int CheckForMeasurementErrors(LMF::Tracker::Tracker^ LMFTracker);
 
 int CheckForErrors(LMF::Tracker::Tracker^ LMFTracker)
 {
-	// If and when something throws and error, this is how to decode it 
+	// If and when something throws an error, this is how to decode it 
 	Int32 ErrorNumber = -1;
 
 	try {
@@ -173,7 +173,12 @@ int main()
 
 	LMFTracker = con->Connect("At403Simulator");
 	
-	closeWindowByTitle("AT403 Simulator 1.8.0.2250");
+
+//    closeWindowByTitle("AT403 Simulator 1.8.0.2250");
+//	closeWindowByTitle("AT930 Simulator 1.8.0.2250");
+// Not sure what a normal laser tracker might show , maybe key on the SDK value?
+	closeWindowByPartialTitle(" Simulator ");
+
 
 	// Callbacks and I do not see any advantage to using any of the async ones at the instant, many are not supportd on this simulated hardware
 
