@@ -226,6 +226,7 @@ void LTAt403::initializeHardware(const char *portName)
  	GlobalObjects::con = gcnew Connection();
     GlobalObjects::LMFTracker = GlobalObjects::con->Connect(marshal_as<String^>(portName));
     closeWindowByTitle("AT403 Simulator 1.8.0.2250");
+	closeWindowByTitle("AT930 Simulator 1.8.0.2250");
     GlobalObjects::LMFTracker->Initialize();
 
 };
