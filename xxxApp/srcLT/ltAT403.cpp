@@ -18,6 +18,18 @@
 #include "ltAt403.h"
 #include <epicsExport.h>
 
+#include <windows.h>
+#pragma comment(lib, "User32.lib")
+
+
+void closeWindowByTitle(const char* title) {
+    HWND window = FindWindow(NULL, title);
+    if (window != NULL) {
+ //       PostMessage(window, WM_CLOSE, 0, 0);
+	
+		ShowWindow(window, SW_HIDE);
+    }
+}
 
 static const char *driverName="LTAt403";
 
@@ -199,7 +211,7 @@ void LTAt403::initializeHardware(const char *portName)
  
  	GlobalObjects::con = gcnew Connection();
     GlobalObjects::LMFTracker = GlobalObjects::con->Connect(marshal_as<String^>(portName));
- 
+    closeWindowByTitle("AT403 Simulator 1.8.0.2250");
     GlobalObjects::LMFTracker->Initialize();
 
 };
