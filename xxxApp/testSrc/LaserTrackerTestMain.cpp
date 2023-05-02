@@ -38,6 +38,19 @@ void closeWindowByTitle(const char* title) {
     }
 }
 
+void closeWindowByPartialTitle(const char* partialTitle) {
+    HWND window = FindWindow(NULL, NULL);
+    while (window != NULL) {
+        char title[1024];
+        GetWindowText(window, title, sizeof(title));
+        if (strstr(title, partialTitle) != NULL) {
+//            PostMessage(window, WM_CLOSE, 0, 0);
+		    ShowWindow(window, SW_HIDE);
+        }
+        window = FindWindowEx(NULL, window, NULL, NULL);
+    }
+}
+
 // a slight space saver, since I have to do this *everywhere*, But I can't marshal null strings, so have to do something else like below
 // to handle the couple of special cases when this actually happens
 //#define decode msclr::interop::marshal_as<std::string>
