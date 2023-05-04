@@ -32,10 +32,12 @@ void closeWindowByTitle(const char* title) {
 }
 
 void closeWindowByPartialTitle(const char* partialTitle) {
+//	printf("in windows finding code . . . \n");
     HWND window = FindWindow(NULL, NULL);
     while (window != NULL) {
         char title[1024];
         GetWindowText(window, title, sizeof(title));
+//		printf("%s \n",title);
         if (strstr(title, partialTitle) != NULL) {
 //            PostMessage(window, WM_CLOSE, 0, 0);
 		    ShowWindow(window, SW_HIDE);
@@ -103,7 +105,8 @@ LTAt403::LTAt403(const char *portName)
 
 	 // lets do some test commands 
  
-    printf("After Initialization and before prints . . . \n");
+    printf("\n***********************************\n");
+	printf("\nConnected to Laser Tracker, checking default parameters . . . \n");
  
  
     String^ Comment = GlobalObjects::LMFTracker->Comment;
@@ -214,6 +217,9 @@ LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker-
 
 
 // end of test commands 
+    
+	printf("\n***********************************\n\n");
+	
 
     callParamCallbacks();	
 
@@ -225,11 +231,13 @@ void LTAt403::initializeHardware(const char *portName)
  
  	GlobalObjects::con = gcnew Connection();
     GlobalObjects::LMFTracker = GlobalObjects::con->Connect(marshal_as<String^>(portName));
-//    closeWindowByTitle("AT403 Simulator 1.8.0.2250");
-//	closeWindowByTitle("AT930 Simulator 1.8.0.2250");
+//    closeWindowByTitle("AT403 Simulator 1.8.0.2250"); // up to 1.9.1.11 now
+//	closeWindowByTitle("AT930 Simulator 1.8.0.2250"); // up to 1.9.1.11 now
 // Not sure what a normal laser tracker might show , maybe key on the SDK value?
-	closeWindowByPartialTitle(" Simulator ");
+
+	closeWindowByPartialTitle("Simulator"); //not working, but the above ones did.
     GlobalObjects::LMFTracker->Initialize();
+	closeWindowByPartialTitle("Simulator"); //but works here, so is the windows not always finsihed generating when this happens?
 
 };
 
