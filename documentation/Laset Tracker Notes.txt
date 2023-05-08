@@ -1,0 +1,228 @@
+Ok, code compiles, adl and caqtdm screen work, procserv works.
+
+BUT procserv doesn't work across a logoff. Just doesn't have to have a screen up and  open
+
+to do that, you have to run it as a service, 
+
+
+display value are done as a 1 shot at startup, no periodic process code.
+
+the loaded version is later than our sdk version, and there is also a new version and firmware as of this year.
+
+2.5 hour update time on lines power, not battery,
+
+request in for the most recnt SDK - if it is required.
+
+got it . . .
+
+
+Microsoft Windows [Version 10.0.19045.2788]
+(c) Microsoft Corporation. All rights reserved.
+
+Z:\>cd C:\epics\LaserTracker-R1-0\iocBoot\iocxxx
+
+Z:\>c:
+
+C:\epics\LaserTracker-R1-0\iocBoot\iocxxx>start_epics
+
+C:\epics\LaserTracker-R1-0\iocBoot\iocxxx>call dllpath.bat
+The system cannot find the path specified.
+C:\epics\LaserTracker-R1-0\iocBoot\iocxxx>start_epics
+
+C:\epics\LaserTracker-R1-0\iocBoot\iocxxx>call dllpath.bat
+< envPaths.windows-x64
+epicsEnvSet("IOC","iocxxx")
+epicsEnvSet("TOP","c:/epics/LaserTracker-R1-0")
+epicsEnvSet("SUPPORT","c:/epics")
+epicsEnvSet("EPICS_BASE","c:/epics/base-R7-0-7")
+epicsEnvSet("ALIVE","c:/epics/alive-R1-4-0")
+epicsEnvSet("ASYN","c:/epics/asyn-R4-44-2")
+epicsEnvSet("AUTOSAVE","c:/epics/autosave-R5-10-2")
+epicsEnvSet("BUSY","c:/epics/busy-R1-7-3")
+epicsEnvSet("CALC","c:/epics/calc-R3-7-4")
+epicsEnvSet("CAMAC","c:/epics/camac-R2-7-4")
+epicsEnvSet("CAPUTRECORDER","c:/epics/caputRecorder-R1-7-3")
+epicsEnvSet("DAC128V","c:/epics/dac128V-R2-10-1")
+epicsEnvSet("DELAYGEN","c:/epics/delaygen-R1-2-3")
+epicsEnvSet("DEVIOCSTATS","c:/epics/iocStats-3-1-16")
+epicsEnvSet("GALIL","c:/epics/Galil-3-0-V3-6")
+epicsEnvSet("IP","c:/epics/ip-R2-21-1")
+epicsEnvSet("IP330","c:/epics/ip330-R2-10")
+epicsEnvSet("IPAC","c:/epics/ipac-2-16")
+epicsEnvSet("IPUNIDIG","c:/epics/ipUnidig-R2-12")
+epicsEnvSet("LABJACK","c:/epics/LabJack-R3-0")
+epicsEnvSet("LOVE","c:/epics/love-R3-2-8")
+epicsEnvSet("LUA","c:/epics/lua-R3-0-2")
+epicsEnvSet("MEASCOMP","c:/epics/measComp-R4-1")
+epicsEnvSet("MODBUS","c:/epics/modbus-R3-2")
+epicsEnvSet("MOTOR","c:/epics/motor-R7-2-2")
+epicsEnvSet("OPTICS","c:/epics/optics-R2-13-5")
+epicsEnvSet("SNCSEQ","c:/epics/seq-R2-2-9")
+epicsEnvSet("SOFTGLUE","c:/epics/softGlue-R2-8-3")
+epicsEnvSet("SOFTGLUEZYNQ","c:/epics/softGlueZynq-R2-0-4")
+epicsEnvSet("SSCAN","c:/epics/sscan-R2-11-5")
+epicsEnvSet("STD","c:/epics/std-R3-6-3")
+epicsEnvSet("STREAM","c:/epics/stream-2-8-19")
+epicsEnvSet("VME","c:/epics/vme-R2-9-4")
+epicsEnvSet("YOKOGAWA_DAS","c:/epics/Yokogawa_DAS-R2-0-1")
+epicsEnvSet("SCALER","c:/epics/scaler-R4-0")
+epicsEnvSet("LASER_TRACKER","c:/epics/LaserTracker-R1-0")
+epicsEnvSet("PROCSERV_INFO","CTL=tcp:127.0.0.1:20000")
+epicsEnvSet("ENGINEER","Engbretson")
+epicsEnvSet("GROUP","8-ID-E")
+epicsEnvSet("LOCATION","8-ID-E")
+epicsEnvSet("IOC","ioc433LT")
+epicsEnvSet("PREFIX","433LT:")
+dbLoadDatabase("../../dbd/windows-x64/iocxxxWin64.dbd")
+iocxxxWin64_registerRecordDeviceDriver(pdbbase)
+#LTAt403Configure("At403Simulator")
+LTAt403Configure("164.54.116.53")
+:: ID = 0a0b0a0c-0510-0d07-0508-0b0f080d010d, Len = 144
+:: ID = 0a0b0a0c-0510-0d07-0508-0b0f080d010d, Len = 100
+:: ID = 0a0b0a0c-0510-0d07-0508-0b0f080d010d, Len = 100
+
+Unhandled Exception: LMF.Tracker.ErrorHandling.LmfException: Error# 108710
+No target detected
+No target detected
+ ---> LMF.Tracker.ErrorHandling.LmfException: Error# 108710
+No target detected
+No target detected
+ ---> LMF.Tracker.ErrorHandling.AdapterException: Exception of type 'LMF.Tracker.ErrorHandling.AdapterException' was thrown.
+   at LMF.Tracker.Adapters.TPI.TPIInternals.TpiClient.CheckForError(Object error)
+   at LMF.Tracker.Adapters.TPI.TPIInternals.TpiClient.AfterSync(ES_Command command, Int32 timeout)
+   at LMF.Tracker.Adapters.TPI.TPIInternals.TpiClient.Initialize()
+   at LMF.Tracker.Adapters.TPI.RioAdapter.Initialize()
+   --- End of inner exception stack trace ---
+   at LMF.Tracker.Adapters.TPI.RioAdapter.Initialize()
+   at LMF.Tracker.Tracker.Initialize()
+   --- End of inner exception stack trace ---
+   at LMF.Tracker.BasicTypes.TrackerExceptionHandler.HandleException(Exception ex)
+   at LMF.Tracker.Tracker.Initialize()
+   at LTAt403.initializeHardware(SByte* portName)
+   at LTAt403.{ctor}(LTAt403* , SByte* portName)
+   at ?A0xf81f12d8.initCallFunc(iocshArgBuf* args)
+C:\epics\LaserTracker-R1-0\iocBoot\iocxxx>
+
+
+================
+
+D:\epics\LaserTracker-R1-0\bin\windows-x64>lasertrackertest
+Searching for trackers . . . 
+:: ID = 04040101-0b01-0202-0804-060b0c0d1006, Len = 144
+:: ID = 04040101-0b01-0202-0804-060b0c0d1006, Len = 100
+:: ID = 04040101-0b01-0202-0804-060b0c0d1006, Len = 100
+Found : 1
+ Tracker Name: 394712 Serial Number: 394712 IP Address: 164.54.116.53 Type: AT403
+Connecting to At403Simulator
+Is the hardware ready ?
+ Not Ready to Measure . . .
+Sensor not initialized The sensor has not yet been initialized or must be initialized again. Please initialize the sensor to be able to measure.
+Initialize . . . using 'realistic' timings in the simulator  . . . . which is *slow* . . .
+After Initialization . . .
+
+ Ready To Measure . . .
+Comment: N/A
+Firmware: 2.4
+InstalledFirmware: 2.4.1.151
+IP: At403Simulator
+Is Compatible With Installed Firmware: 1
+Name: AT403 123403
+ProductName: AT403
+Serial: 123403
+
+Direction H Angle: 57.2958 deg V Angle: 89.9544 deg
+Performing a Target search . . . which may prevents you from doing sync commands again on some simulators
+ Found My comment #1234 (12.7 mm) B-Probe
+Getting Info from Settings . . .
+ CoordinateType : Cartesian
+ RotationType : RollPitchYaw
+ AngleUnits : Degree
+ HumidityUnits : RelativeHumidity
+ LengthUnits : Meter
+ PercentUnits : Percent
+ PressureUnits : mBar
+ TemperatureUnits : Celsius
+ TimeUnits : Millisecond
+
+ Get Orientation
+  CoordinateType : Cartesian
+  RotationType : RotationAngles
+  Rotation0 : Label: Q0  UnitString: N/A  Value: 0
+  Rotation1 : Label: XAngle  UnitString: deg  Value: 0
+  Rotation2 : Label: YAngle  UnitString: deg  Value: 0
+  Rotation3 : Label: ZAngle  UnitString: deg  Value: 0
+  Translation1 : Label: X  UnitString: mm  Value: 0
+  Translation2 : Label: Y  UnitString: mm  Value: 0
+  Translation3 : Label: Z  UnitString: mm  Value: 0
+
+ Get Transformation
+  CoordinateType : Cartesian
+  RotationType : RotationAngles
+  Rotation0 : Label: Q0  UnitString: N/A  Value: 0
+  Rotation1 : Label: XAngle  UnitString: deg  Value: 0
+  Rotation2 : Label: YAngle  UnitString: deg  Value: 0
+  Rotation3 : Label: ZAngle  UnitString: deg  Value: 0
+  Scale : Label: Scale  UnitString: N/A  Value: 1
+  Translation1 : Label: X  UnitString: mm  Value: 0
+  Translation2 : Label: Y  UnitString: mm  Value: 0
+  Translation3 : Label: Z  UnitString: mm  Value: 0
+
+Targets . . .
+ Target Count: 10
+ Reflector Comment: N/A Target Name: TBR 0.5in Product Name: Tooling Ball Reflector 0.5 Inch IsSelectable: 1
+     ADM Offset UnitString: mm UnitType: 3 Value: 5.3
+     Surface Offset UnitString: mm UnitType: 3 Value: 6.35
+ Reflector Comment: N/A Target Name: RFI Product Name: Fixed Installation Reflector 0.5 Inch IsSelectable: 1
+     ADM Offset UnitString: mm UnitType: 3 Value: 5.3
+     Surface Offset UnitString: mm UnitType: 3 Value: 0
+ Reflector Comment: N/A Target Name: RRR 0.5in Product Name: Red Ring Reflector 0.5 Inch IsSelectable: 1
+     ADM Offset UnitString: mm UnitType: 3 Value: 0
+     Surface Offset UnitString: mm UnitType: 3 Value: 6.35
+ Reflector Comment: N/A Target Name: BRR 1.5in Product Name: Break Resistant Reflector 1.5 Inch IsSelectable: 1
+     ADM Offset UnitString: mm UnitType: 3 Value: 0
+     Surface Offset UnitString: mm UnitType: 3 Value: 19.05
+ Reflector Comment: N/A Target Name: RRR 1.5in Product Name: Red Ring Reflector 1.5 Inch IsSelectable: 1
+     ADM Offset UnitString: mm UnitType: 3 Value: 0
+     Surface Offset UnitString: mm UnitType: 3 Value: 19.05
+ Reflector Comment: N/A Target Name: Mirror Product Name: Autocollimation Mirror IsSelectable: 1
+     ADM Offset UnitString: mm UnitType: 3 Value: 0
+     Surface Offset UnitString: mm UnitType: 3 Value: 0
+ Reflector Comment: N/A Target Name: RRR 0.875in Product Name:  Red Ring Reflector 0.875 Inch IsSelectable: 1
+     ADM Offset UnitString: mm UnitType: 3 Value: 0
+     Surface Offset UnitString: mm UnitType: 3 Value: 11.1125
+ Reflector Comment: N/A Target Name: Custom Reflector Product Name: Custom Reflector IsSelectable: 1
+     ADM Offset UnitString: mm UnitType: 3 Value: 5
+     Surface Offset UnitString: mm UnitType: 3 Value: 25
+ Reflector Comment: N/A Target Name: Custom Reflector Product Name: Custom Reflector IsSelectable: 1
+     ADM Offset UnitString: mm UnitType: 3 Value: 0
+     Surface Offset UnitString: mm UnitType: 3 Value: 0
+ Probe Comment: My comment Target Name: #1234 (12.7 mm) Product Name: B-Probe Serial Number: 1234 IsSelectable: 1
+     FaceCompensation: N/A Label: Is Compensated1 Name: Probe Compensation Product Name: N/A
+     TipCompensation BallRadius: 0.00635 Comment: N/ALabel: Is Compensated1 Length: 0.151293 Name: Tip Compensation ProductName: N/A x: 0 y: -0.15 z: -0.01974
+Attempting a GetPrismPositionAsync call
+This function is not supported on the currently connected Tracker
+callback OnGetPosition Finished . . .
+Perform a Measure Stationary . . .
+ Ready To Measure . . .
+Measurment Humidity: 60 % Pressure: 1013 mBar Temperature: 20 ░C
+ X = 2524.41 mm Y = 1620.89 mm Z = 2.35541 mm
+ Ready To Measure . . .
+Doing a StartMeasurement . . . status: 0
+callback Got a Measurement Value . . .
+counts :1
+Measurment Humidity: 60 Pressure: 1013 Temperature: 20
+I am a stationary3d measurement
+ X = 2524.42 mm Y = 1620.89 mm Z = 2.37578 mm
+Doing a StopMeasurement . . .
+Shutdown . . .
+Disconnect . . .
+
+D:\epics\LaserTracker-R1-0\bin\windows-x64>
+
+
+The sucker turns off on a dime if nothing is connected, and can only have one device connected to it any any given time. Manual 
+suggests that this is to 'save' the laser lifetime, but makes this horrible to deal with.
+
+I want a specification document on *exactly* what they want from this hardware . . . and how fast, and setup so that standalone, it does exactly that.
+
+

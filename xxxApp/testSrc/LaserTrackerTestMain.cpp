@@ -31,7 +31,7 @@ using namespace LMF::Tracker::Enums;
 using namespace LMF::Tracker::BasicTypes;
 
 void closeWindowByTitle(const char* title) {
-    HWND window = FindWindow(NULL, title);
+    HWND window = FindWindowA(NULL, title);
     if (window != NULL) {
  //       PostMessage(window, WM_CLOSE, 0, 0);
 		ShowWindow(window, SW_HIDE);
@@ -39,10 +39,10 @@ void closeWindowByTitle(const char* title) {
 }
 
 void closeWindowByPartialTitle(const char* partialTitle) {
-    HWND window = FindWindow(NULL, NULL);
+    HWND window = FindWindowA(NULL, NULL);
     while (window != NULL) {
         char title[1024];
-        GetWindowText(window, title, sizeof(title));
+        GetWindowTextA(window, title, sizeof(title));
         if (strstr(title, partialTitle) != NULL) {
 //            PostMessage(window, WM_CLOSE, 0, 0);
 		    ShowWindow(window, SW_HIDE);
@@ -53,7 +53,6 @@ void closeWindowByPartialTitle(const char* partialTitle) {
 
 // a slight space saver, since I have to do this *everywhere*, But I can't marshal null strings, so have to do something else like below
 // to handle the couple of special cases when this actually happens
-
 //#define decode msclr::interop::marshal_as<std::string>
 
 std::string decode(System::String^ something)
@@ -66,7 +65,7 @@ std::string decode(System::String^ something)
 
 
 
-// forward definitions
+// forward definitions, mostly callbacks
 
 void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, LMF::Tracker::Enums::EMeasurementStatus paramNewValue);
 void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
@@ -151,7 +150,6 @@ int main()
 
 		TrackerInfo^ tracker = foundTrackers[i];
 
-
 		cout << " Tracker Name: " << (decode)(tracker->Name);
 		cout << " Serial Number: " << (decode)(tracker->SerialNumber);
 		cout << " IP Address: " << (decode)(tracker->IPAddress);
@@ -170,11 +168,9 @@ int main()
 		//	LMFTracker = con->Connect("AT960LRSimulator"); 
 		//	LMFTracker = con->Connect("AT930Simulator");
 
-//	cout << "Connecting to At403Simulator \n";
-	cout << "Connecting to At930Simulator \n";
+	cout << "Connecting to At403Simulator \n";
 
-//	LMFTracker = con->Connect("At403Simulator");
-	LMFTracker = con->Connect("AT930Simulator");
+	LMFTracker = con->Connect("At403Simulator");
 	
 
 //    closeWindowByTitle("AT403 Simulator 1.8.0.2250");
@@ -246,8 +242,8 @@ int main()
 
 	// generates some binary debug file that has limited use to us
 	// 
-	  String^ GenerateLFile = LMFTracker->GenerateLFile();
-	  cout << "GenerateLFile: " << (decode)(GenerateLFile) << "\n";    
+	//  String^ GenerateLFile = LMFTracker->GenerateLFile();
+	//  cout << "GenerateLFile: " << (decode)(GenerateLFile) << "\n";    /*
 
 	LMFTracker->GetDirectionAsync();
 	Direction^ dir1 = LMFTracker->GetDirection();
@@ -256,8 +252,7 @@ int main()
 
 	// Is there any use of base units?
 
-
-	cout << " HLabel " << (decode)(dir1->HorizontalAngle->Label);
+	/*	cout << " HLabel " << (decode)(dir1->HorizontalAngle->Label);
 		cout << " HUnitString " << (decode)(dir1->HorizontalAngle->UnitString);
 		//    cout << "HUnitType "    << dir1->HorizontalAngle->UnitType;
 		cout << " HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
@@ -267,7 +262,7 @@ int main()
 		//    cout << "VUnitType "    << dir1->VerticalAngle->UnitType;
 		cout << " VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
 
-
+	*/
 	cout << "Performing a Target search . . . which may prevents you from doing sync commands again on some simulators \n";
 
 	try
@@ -477,12 +472,12 @@ int main()
 	Sleep(1000);
 
 
-		cout << "Attempting a GetPrismPosition call \n";
+	//	cout << "Attempting a GetPrismPosition call \n";
 
 	try
 	{
-				Measurement^ measure = LMFTracker->GetPrismPosition(); //says not supported by this tracker
-				cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << "\n";
+		//		Measurement^ measure = LMFTracker->GetPrismPosition(); //says not supported by this tracker
+		//		cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << "\n";
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -492,11 +487,11 @@ int main()
 
 	Sleep(1000);
 
-		    cout << "Starting  GoHomePosition Async. . . \n";
+	//	    cout << "Starting  GoHomePosition Async. . . \n";
 
 	try
 	{
-				       LMFTracker->GoHomePositionAsync();
+		//		       LMFTracker->GoHomePositionAsync();
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -505,10 +500,10 @@ int main()
 	}
 
 
-	    cout << "Starting GoHomePosition . . . \n";
+	//    cout << "Starting GoHomePosition . . . \n";
 	try
 	{
-				        LMFTracker->GoHomePosition();
+		//		        LMFTracker->GoHomePosition();
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -517,16 +512,14 @@ int main()
 	}
 
 
+
 	DateTime wakeuptime;
-	
-	  wakeuptime = wakeuptime.Now;
-	  wakeuptime = wakeuptime.AddMinutes(1.0);
+	//  wakeuptime = wakeuptime->Now;
+	//  wakeuptime = wakeuptime->AddMinutes(1.0);
 
 	// The running simulator claims this exits, the actual Type Library / dll code says that it does not *sigh*
 	// probably related to checking if something is still in place periodically?
-
-//latest SDK  says the same thing.
-//	LMFTracker->GotoStandBy(wakeuptime); 
+	//LMFTracker->GotoStandBy(wakeuptime); 
 
 
 	  // so setting to some absolute position
@@ -535,10 +528,10 @@ int main()
 	Boolean isrelative = false;
 	Double pos1 = 0.0, pos2 = 0.0, pos3 = 0.0;
 
-	   cout << "Setting Positionto pos1: " << pos1 << " pos2: " << pos2 << " pos3: " << pos3 << "\n";
+	//   cout << "Setting Positionto pos1: " << pos1 << " pos2: " << pos2 << " pos3: " << pos3 << "\n";
 	try
 	{
-		       LMFTracker->PositionToAsync(searchtarget, isrelative, pos1, pos2, pos3);
+		//       LMFTracker->PositionToAsync(searchtarget, isrelative, pos1, pos2, pos3);
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -548,11 +541,10 @@ int main()
 
 
 	pos1 = 0.0, pos2 = 0.0, pos3 = 0.0;
-	  cout << "Setting Positionto pos1: " << pos1 << " pos2: " << pos2 << " pos3: " << pos3 << "\n";
-
+	//  cout << "Setting Positionto pos1: " << pos1 << " pos2: " << pos2 << " pos3: " << pos3 << "\n";
 	try
 	{
-		      LMFTracker->PositionTo(searchtarget, isrelative, pos1, pos2, pos3);
+		//      LMFTracker->PositionTo(searchtarget, isrelative, pos1, pos2, pos3);
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -566,11 +558,11 @@ int main()
 	Int32 percentspeedH = 5;
 	Int32 percentspeedV = 5;
 	//  
-	  cout << "Trying to Start Move . . . \n";
+	//  cout << "Trying to Start Move . . . \n";
 
 	try
 	{
-		       LMFTracker->Move(percentspeedH, percentspeedV);
+		//       LMFTracker->Move(percentspeedH, percentspeedV);
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
@@ -579,7 +571,7 @@ int main()
 	}
 
 
-	   LMFTracker->OpenTrackerScope();// not supported
+	//   LMFTracker->OpenTrackerScope();// not supported
 
 
    // functions
@@ -621,7 +613,6 @@ int main()
 	CheckForErrors(LMFTracker);
 	CheckForMeasurementErrors(LMFTracker);
 
-try {
 	LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->MeasureStationary();
 
 	cout << "Measurment Humidity: " << data->Humidity->Value << " " << (decode)(data->Humidity->UnitString)
@@ -633,13 +624,6 @@ try {
 	cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate1->UnitString);
 	cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
 	cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate3->UnitString) << "\n";
-}	
-catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-	{
-		cout << (decode)(e->Description) << "\n";;
-		cout << "Hit an exception trying to perform a MeasureStationary call \n";
-	}
-
 
 	Sleep(2000);
 
