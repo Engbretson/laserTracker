@@ -1,6 +1,7 @@
 //
 // LaserTracker.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
+
 #include <windows.h>
 #pragma comment(lib, "User32.lib")
 
@@ -21,6 +22,7 @@ using namespace std;
 #using <LMF.Tracker.Connection.dll>
 
 using namespace LMF::Tracker;
+using namespace LMF::Tracker::Compensations;
 using namespace LMF::Tracker::Measurements;
 using namespace LMF::Tracker::MeasurementStatus;
 using namespace LMF::Tracker::MeasurementResults;
@@ -30,6 +32,8 @@ using namespace LMF::Tracker::Triggers;
 using namespace LMF::Tracker::Enums;
 using namespace LMF::Tracker::BasicTypes;
 
+void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
+void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 void closeWindowByTitle(const char* title) {
     HWND window = FindWindowA(NULL, title);
     if (window != NULL) {
@@ -62,7 +66,6 @@ std::string decode(System::String^ something)
 	else
 		return (msclr::interop::marshal_as<std::string>(something));
 }
-
 
 
 // forward definitions, mostly callbacks
@@ -130,7 +133,153 @@ int  CheckForMeasurementErrors(LMF::Tracker::Tracker^ LMFTracker)
 
 }
 
+// an Attempt to just create all the classes and the callbacks, minimal code
+
 int main()
+{
+	LMF::Tracker::Tracker^ LMFTracker;
+	Connection^ con = gcnew Connection();
+	LMFTracker = con->Connect("At930Simulator");
+
+// Callbacks 10, none of these current exist
+	/*
+	LMFTracker->Disconnected += gcnew LMF::Tracker::Tracker::DisconnectedHandler(&OnDisconnected);
+	LMFTracker->ErrorArrived += gcnew LMF::Tracker::Tracker::ErrorArrivedHandler(&OnErrorArrived);
+	LMFTracker->GetDirectionFinished += gcnew LMF::Tracker::Tracker::GetDirectionFinishedHandler(&OnGetDirectionFinished);
+	LMFTracker->GetPrismPositionFinished += gcnew LMF::Tracker::Tracker::GetPrismPositionFinishedHandler(&OnGetPrismPositionFinished);
+	LMFTracker->GoHomePositionFinished += gcnew LMF::Tracker::Tracker::GoHomePositionFinishedHandler(&OnGoHomePositionFinished);
+	LMFTracker->InformationArrived += gcnew LMF::Tracker::Tracker::InformationArrivedHandler(&OnInformationArrived);
+	LMFTracker->InitializeFinished += gcnew LMF::Tracker::Tracker::InitializeFinishedHandler(&OnInitializeFinished);
+	LMFTracker->PositionToFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToFinished);
+	LMFTracker->PositionToTargetFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToTargetFinished);
+	LMFTracker->WarningArrived += gcnew LMF::Tracker::Tracker::WarningArrivedHandler(&OnWarningArrived);
+*/
+// 16 classes
+
+//compensations - no idea of what this is, doesn't seem to be related to hardware that we have
+// 1 count, ?? compensations, a selection method, 2 callbacks, which don't actually show up, so something has to be created
+
+	cout << " Compensations Count " << LMFTracker->Compensations->Count << "\n";
+
+//face , equally strange, you can flip something as face1 true or face 1 false
+
+	cout << LMFTracker->Face->IsFace1 << "\n";
+/*
+	LMFTracker->Face->Changed += gcnew LMF::Tracker::Face::ChangedHandler(&OnChanged);
+	LMFTracker->Face->ChangeFinished += gcnew LMF::Tracker::Face::ChangeFinishedHandler(&OnChangeFinished);
+*/
+
+//inclinationSensor, what appears here changes based upon the hardware you have.
+
+//	Not sure how one detects at runtime if this exist or don't exist, maybe just exception trap everything on creation?
+/*
+	LMFTracker->InclinationSensor->BubbleReadout->BubbleReadoutArrived += gcnew LMF::Tracker::Inclination::InclinationBubbleReadout::BubbleReadoutArrivedHandler(&OnBubbleReadoutArrived);
+	LMFTracker->InclinationSensor->GetInclinationToGravityFinished += gcnew LMF::Tracker::Inclination::InclinationSensor::GetInclinationToGravityFinishedHandler(&OnGetInclinationToGravityFinished);
+	LMFTracker->InclinationSensor->InclinedToGravity->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->InclinationSensor->Monitoring->InclinationChanged += gcnew LMF::Tracker::Inclination::InclinationMonitoring::InclinationChangedHandler(&OnInclinationChanged);
+	LMFTracker->InclinationSensor->Monitoring->Active->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->InclinationSensor->Monitoring->Interval->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->InclinationSensor->Monitoring->Threshold->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->InclinationSensor->Monitoring->ThresholdExceeded->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->InclinationSensor->Monitoring->WorkingRangeExceeded->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+*/
+
+//laser
+	/*
+	LMFTracker->Laser->IsLaserWarmedUp->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->Laser->IsOn->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+
+*/
+
+//measurement
+/*
+	LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
+	LMFTracker->Measurement->MeasurementInProgress->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->Measurement->Status->Changed += gcnew LMF::Tracker::MeasurementStatus::MeasurementStatusValue::ChangedEventHandler(&OnChanged);
+
+*/
+	cout <<"Profiles count " << LMFTracker->Measurement->Profiles->Count << "\n";
+
+	LMFTracker->Measurement->Status->Changed += gcnew LMF::Tracker::MeasurementStatus::MeasurementStatusValue::ChangedEventHandler(&OnChanged);
+
+// have to do the exact same thing as with tagets maybe?
+
+	// nope, but I also don't know what or why this would be used.
+	// may need real hardware
+	
+	/*
+	The debugger says that these items are listed under Non-Public members so whatever it is, it is not something
+	that I should directly be able to use, so skip it.
+	*/
+/*
+	LMFTracker->Measurement->Status->Changed += gcnew LMF::Tracker::MeasurementStatus::MeasurementStatusValue::ChangedEventHandler(&OnChanged);
+*/
+	//	LMFTracker->Measurement->Status->Preconditions->Changed should exist, but does not show up. Again non-public members.
+
+//MeteoStation
+/*
+	LMFTracker->MeteoStation->EnvironmentalValuesChanged += gcnew LMF::Tracker::Meteo::MeteoStation::EnvironmentalValuesChangedEventHandler(&OnEnvironmentalValuesChanged);
+
+	LMFTracker->MeteoStation->HardwareHumidity->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);	
+	LMFTracker->MeteoStation->HardwareHumidity->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+
+	LMFTracker->MeteoStation->HardwarePressure->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->MeteoStation->HardwarePressure->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);	
+	
+	LMFTracker->MeteoStation->HardwareTemperature->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->MeteoStation->HardwareTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+
+	LMFTracker->MeteoStation->IsAirSensorConnected->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+
+	LMFTracker->MeteoStation->ManualHumidity->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->MeteoStation->ManualHumidity->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+
+	LMFTracker->MeteoStation->ManualPressure->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->MeteoStation->ManualPressure->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+
+	LMFTracker->MeteoStation->ManualTemperature->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->MeteoStation->ManualTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+
+	LMFTracker->MeteoStation->ObjectTemperature->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->MeteoStation->ObjectTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+
+	LMFTracker->MeteoStation->Source->Changed += gcnew LMF::Tracker::Meteo::MeteoSource::ChangedEventHandler(&OnChanged);
+*/
+
+// OverviewCamera
+	/*
+	LMFTracker->OverviewCamera->ImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::ImageArrivedHandler(&OnImageArrived);
+	LMFTracker->OverviewCamera->WPFBitmapImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::WPFBitmapImageArrivedHandler(&OnWPFBitmapImageArrived);
+	LMFTracker->OverviewCamera->Brightness->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->OverviewCamera->Contrast->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->OverviewCamera->Dialog->Closed += gcnew LMF::Tracker::OVC::Dialog::ClosedHandler(&OnClosed);
+*/
+
+// PowerLock
+	/*
+	LMFTracker->PowerLock->UsePowerLock->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
+*/
+
+// PowerSource
+/*
+	LMFTracker->PowerSource->ControllerPowerStatus->Level->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Changed += gcnew LMF::Tracker::BasicTypes::EnumTypes::ReadOnlyPowerSourceValue::ChangedEventHandler(&OnChanged);
+	LMFTracker->PowerSource->SensorPowerStatus->Level->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+*/
+
+// QuickRelease
+// Settings
+// Targets
+// TargetSearch
+// TrackerAlignment
+// Triggers
+// WrtlBoxes
+
+return 1;
+}
+
+
+int main2()
 {
 	LMF::Tracker::Tracker^ LMFTracker;
 
@@ -658,7 +807,7 @@ int main()
 
 	cout << "Disconnect . . . \n";
 	LMFTracker->Disconnect();
-
+	return 0;
 }
 
 
@@ -815,4 +964,19 @@ void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, 
 	if (paramNewValue == EMeasurementStatus::MeasurementInProgress) { cout << " Measurement in Progress . . . \n"; }
 	if (paramNewValue == EMeasurementStatus::NotReady) { cout << " Not Ready . . . \n"; }
 	if (paramNewValue == EMeasurementStatus::Invalid) { cout << " Measurement Status Invalid . . . \n"; }
+}
+
+//decoding these gets . . .  messy, since dozens of things all normally feed into these, so would have to parse through alot of senders to see what actual field and/or PV 
+//we are talking about and might need to be updated. If you want to be more verbose, could make these unique
+
+void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
+{
+	cout << "Bool Value changed: " << "\n";
+	throw gcnew System::NotImplementedException();
+}
+
+void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
+{
+	cout << "Double Value changed: " << "\n";
+	throw gcnew System::NotImplementedException();
 }

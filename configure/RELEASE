@@ -8,7 +8,7 @@ TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 # define INSTALL_LOCATION_APP here
 #INSTALL_LOCATION_APP=<fullpathname>
 
-SUPPORT=c:/epics
+SUPPORT=d:/epics
 
 #ALIVE=$(SUPPORT)/alive-R1-4-0
 #ASYN=$(SUPPORT)/asyn-R4-44-2
