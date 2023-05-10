@@ -9,16 +9,20 @@ epicsEnvSet("CAMERA_ID","AT930 750529 192.168.0.1")
 epicsEnvSet("IOC","ioc433LT")
 epicsEnvSet("PREFIX","433LT:")
 
+#epicsEnvSet("PORT","At403Simulator")
+#epicsEnvSet("PORT","At930Simulator")
+epicsEnvSet("PORT","192.168.0.1")
+
 dbLoadDatabase("../../dbd/windows-x64/iocxxxWin64.dbd")
 iocxxxWin64_registerRecordDeviceDriver(pdbbase)
 
 #LTAt403Configure("At403Simulator")
-LTAt403Configure("192.168.0.1")
+LTAt403Configure($(PORT))
 
-dbLoadRecords("$(TOP)/db/laserTracker.db","P=$(PREFIX),R=scope1:,PORT=At403Simulator,ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(TOP)/db/laserTracker.db","P=$(PREFIX),R=scope1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 
-#asynSetTraceMask("At403Simulator",0,0xff)
-asynSetTraceIOMask("At403Simulator",0,0x2)
+#asynSetTraceMask($(PORT),0,0xff)
+asynSetTraceIOMask($(PORT),0,0x2)
 
 
 ### Load database record for alive heartbeating support.

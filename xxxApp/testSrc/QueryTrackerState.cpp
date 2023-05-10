@@ -14,7 +14,6 @@
 #include <msclr\marshal_cppstd.h>
 
 
-
 using namespace System;
 using namespace msclr::interop;
 using namespace std;
@@ -32,8 +31,6 @@ using namespace LMF::Tracker::Triggers;
 using namespace LMF::Tracker::Enums;
 using namespace LMF::Tracker::BasicTypes;
 
-void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
-void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 
 void closeWindowByTitle(const char* title) {
     HWND window = FindWindowA(NULL, title);
@@ -83,6 +80,9 @@ void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Mea
 void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Direction^ bm, LMF::Tracker::ErrorHandling::LmfException^ ex);
 void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error);
 void OnDisconnected(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex);
+
+void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
+void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 
 int CheckForErrors(LMF::Tracker::Tracker^ LMFTracker);
 int CheckForMeasurementErrors(LMF::Tracker::Tracker^ LMFTracker);
@@ -134,170 +134,56 @@ int  CheckForMeasurementErrors(LMF::Tracker::Tracker^ LMFTracker)
 
 }
 
-// an Attempt to just create all the classes and the callbacks, minimal code
-
-int main2()
-{
-	LMF::Tracker::Tracker^ LMFTracker;
-	Connection^ con = gcnew Connection();
-	LMFTracker = con->Connect("At930Simulator");
-
-// Callbacks 10, none of these current exist
-	/*
-	LMFTracker->Disconnected += gcnew LMF::Tracker::Tracker::DisconnectedHandler(&OnDisconnected);
-	LMFTracker->ErrorArrived += gcnew LMF::Tracker::Tracker::ErrorArrivedHandler(&OnErrorArrived);
-	LMFTracker->GetDirectionFinished += gcnew LMF::Tracker::Tracker::GetDirectionFinishedHandler(&OnGetDirectionFinished);
-	LMFTracker->GetPrismPositionFinished += gcnew LMF::Tracker::Tracker::GetPrismPositionFinishedHandler(&OnGetPrismPositionFinished);
-	LMFTracker->GoHomePositionFinished += gcnew LMF::Tracker::Tracker::GoHomePositionFinishedHandler(&OnGoHomePositionFinished);
-	LMFTracker->InformationArrived += gcnew LMF::Tracker::Tracker::InformationArrivedHandler(&OnInformationArrived);
-	LMFTracker->InitializeFinished += gcnew LMF::Tracker::Tracker::InitializeFinishedHandler(&OnInitializeFinished);
-	LMFTracker->PositionToFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToFinished);
-	LMFTracker->PositionToTargetFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToTargetFinished);
-	LMFTracker->WarningArrived += gcnew LMF::Tracker::Tracker::WarningArrivedHandler(&OnWarningArrived);
-*/
-// 16 classes
-
-//compensations - no idea of what this is, doesn't seem to be related to hardware that we have
-// 1 count, ?? compensations, a selection method, 2 callbacks, which don't actually show up, so something has to be created
-
-	cout << " Compensations Count " << LMFTracker->Compensations->Count << "\n";
-
-//face , equally strange, you can flip something as face1 true or face 1 false
-
-	cout << LMFTracker->Face->IsFace1 << "\n";
-/*
-	LMFTracker->Face->Changed += gcnew LMF::Tracker::Face::ChangedHandler(&OnChanged);
-	LMFTracker->Face->ChangeFinished += gcnew LMF::Tracker::Face::ChangeFinishedHandler(&OnChangeFinished);
-*/
-
-//inclinationSensor, what appears here changes based upon the hardware you have.
-
-//	Not sure how one detects at runtime if this exist or don't exist, maybe just exception trap everything on creation?
-/*
-	LMFTracker->InclinationSensor->BubbleReadout->BubbleReadoutArrived += gcnew LMF::Tracker::Inclination::InclinationBubbleReadout::BubbleReadoutArrivedHandler(&OnBubbleReadoutArrived);
-	LMFTracker->InclinationSensor->GetInclinationToGravityFinished += gcnew LMF::Tracker::Inclination::InclinationSensor::GetInclinationToGravityFinishedHandler(&OnGetInclinationToGravityFinished);
-	LMFTracker->InclinationSensor->InclinedToGravity->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->InclinationSensor->Monitoring->InclinationChanged += gcnew LMF::Tracker::Inclination::InclinationMonitoring::InclinationChangedHandler(&OnInclinationChanged);
-	LMFTracker->InclinationSensor->Monitoring->Active->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->InclinationSensor->Monitoring->Interval->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->InclinationSensor->Monitoring->Threshold->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->InclinationSensor->Monitoring->ThresholdExceeded->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->InclinationSensor->Monitoring->WorkingRangeExceeded->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-*/
-
-//laser
-	/*
-	LMFTracker->Laser->IsLaserWarmedUp->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->Laser->IsOn->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-
-*/
-
-//measurement
-/*
-	LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
-	LMFTracker->Measurement->MeasurementInProgress->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->Measurement->Status->Changed += gcnew LMF::Tracker::MeasurementStatus::MeasurementStatusValue::ChangedEventHandler(&OnChanged);
-
-*/
-	cout <<"Profiles count " << LMFTracker->Measurement->Profiles->Count << "\n";
-
-	LMFTracker->Measurement->Status->Changed += gcnew LMF::Tracker::MeasurementStatus::MeasurementStatusValue::ChangedEventHandler(&OnChanged);
-
-// have to do the exact same thing as with tagets maybe?
-
-	// nope, but I also don't know what or why this would be used.
-	// may need real hardware
-	
-	/*
-	The debugger says that these items are listed under Non-Public members so whatever it is, it is not something
-	that I should directly be able to use, so skip it.
-	*/
-/*
-	LMFTracker->Measurement->Status->Changed += gcnew LMF::Tracker::MeasurementStatus::MeasurementStatusValue::ChangedEventHandler(&OnChanged);
-*/
-	//	LMFTracker->Measurement->Status->Preconditions->Changed should exist, but does not show up. Again non-public members.
-
-//MeteoStation
-/*
-	LMFTracker->MeteoStation->EnvironmentalValuesChanged += gcnew LMF::Tracker::Meteo::MeteoStation::EnvironmentalValuesChangedEventHandler(&OnEnvironmentalValuesChanged);
-
-	LMFTracker->MeteoStation->HardwareHumidity->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);	
-	LMFTracker->MeteoStation->HardwareHumidity->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-
-	LMFTracker->MeteoStation->HardwarePressure->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->MeteoStation->HardwarePressure->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);	
-	
-	LMFTracker->MeteoStation->HardwareTemperature->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->MeteoStation->HardwareTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-
-	LMFTracker->MeteoStation->IsAirSensorConnected->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-
-	LMFTracker->MeteoStation->ManualHumidity->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->MeteoStation->ManualHumidity->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-
-	LMFTracker->MeteoStation->ManualPressure->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->MeteoStation->ManualPressure->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-
-	LMFTracker->MeteoStation->ManualTemperature->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->MeteoStation->ManualTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-
-	LMFTracker->MeteoStation->ObjectTemperature->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->MeteoStation->ObjectTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-
-	LMFTracker->MeteoStation->Source->Changed += gcnew LMF::Tracker::Meteo::MeteoSource::ChangedEventHandler(&OnChanged);
-*/
-
-// OverviewCamera
-	/*
-	LMFTracker->OverviewCamera->ImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::ImageArrivedHandler(&OnImageArrived);
-	LMFTracker->OverviewCamera->WPFBitmapImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::WPFBitmapImageArrivedHandler(&OnWPFBitmapImageArrived);
-	LMFTracker->OverviewCamera->Brightness->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->OverviewCamera->Contrast->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->OverviewCamera->Dialog->Closed += gcnew LMF::Tracker::OVC::Dialog::ClosedHandler(&OnClosed);
-*/
-
-// PowerLock
-	/*
-	LMFTracker->PowerLock->UsePowerLock->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-*/
-
-// PowerSource
-/*
-	LMFTracker->PowerSource->ControllerPowerStatus->Level->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Changed += gcnew LMF::Tracker::BasicTypes::EnumTypes::ReadOnlyPowerSourceValue::ChangedEventHandler(&OnChanged);
-	LMFTracker->PowerSource->SensorPowerStatus->Level->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-*/
-
-// QuickRelease
-// Settings
-// Targets
-// TargetSearch
-// TrackerAlignment
-// Triggers
-// WrtlBoxes
-
-return 1;
-}
-
 
 int main()
 {
-	LMF::Tracker::Tracker^ LMFTracker;
+		
+/*
+The steps that this new test program will follow 
+1) Create the laser Tracker Object
+2) Do a check to see if Any lasrer trackers  are found via search
+3) Connect to a Simulated tracker or a real tracker
+4) Initialze the Hardware
+5) Return simple top level values 
+6) do 
 
+A) List Compensations
+B) List Face
+C) List InclinationSensor
+D) List Laser
+E) ?? Measurement Status
+F) MeteoStaion
+G) ?? OverViewCamera could be useful finding targets
+H) List Powerlock
+I) List PowerSource
+J) List QuickRelease
+K) List Tagets
+L) ?? list Triggers
+M) ?? List WrtlBoxes
+
+7) Clean shutdown
+
+*/	
+
+// 1
+
+	LMF::Tracker::Tracker^ LMFTracker;
 	Connection^ con = gcnew Connection();
+	
+// 2	
 
 	cout << "Searching for trackers . . . ";
-	// The TrackerFinder holds a list of found Trackers
+	
+	// The TrackerFinder holds a list of found Trackers, but doesn't seem to find any when the hardware is on a private address
+	// hard encoding a static address  . . . doesn't seem to work, but dhcp on the last device *did* work, I think
 
 	TrackerFinder^ trackerFinder = gcnew TrackerFinder();
 	TrackerInfoCollection^ foundTrackers = trackerFinder->Trackers;
+	
 	cout << "Found : " << foundTrackers->Count << "\n";
 
 	for (int i = 0; i < foundTrackers->Count; i++)
 	{
-
-		//Maybe display a list of all Trackers and let the user choose.
-
 		TrackerInfo^ tracker = foundTrackers[i];
 
 		cout << " Tracker Name: " << (decode)(tracker->Name);
@@ -306,13 +192,15 @@ int main()
 		cout << " Type: " << (decode)(tracker->Type) << "\n";
 	}
 
+// 3
 
 	// Possible simulators, according to some of the docs
 
 		//	LMFTracker = con->Connect("AT401Simulator");
 		//	LMFTracker = con->Connect("AT402Simulator");
 		//	LMFTracker = con->Connect("AT403Simulator");
-		//	LMFTracker = con->Connect("AT600Simulator"); //wrong name maybe?
+		//	LMFTracker = con->Connect("AT500Simulator"); 
+		//	LMFTracker = con->Connect("ATS600Simulator"); 
 		//	LMFTracker = con->Connect("AT901LRSimulator");
 		//	LMFTracker = con->Connect("AT960MRSimulator"); 
 		//	LMFTracker = con->Connect("AT960LRSimulator"); 
@@ -324,65 +212,90 @@ int main()
 
 //	LMFTracker = con->Connect("At403Simulator");
 //	LMFTracker = con->Connect("At930Simulator");
+    try {
 	LMFTracker = con->Connect("192.168.0.1");
-	
+	}
+			catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << (decode)(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform a Connect call \n";
+		exit(-1);
+	}
 
-//    closeWindowByTitle("AT403 Simulator 1.8.0.2250");
+////
+//// I do not want the Simulator Control screen up at all, even when talking to Simulated hardware
+//// This does not apply at all to real hardware 
+////
+
+//  closeWindowByTitle("AT403 Simulator 1.8.0.2250");
 //	closeWindowByTitle("AT930 Simulator 1.8.0.2250");
 // Not sure what a normal laser tracker might show , maybe key on the SDK value?
+
 	closeWindowByPartialTitle(" Simulator ");
 
+// Top Level Callbacks
 
-	// Callbacks and I do not see any advantage to using any of the async ones at the instant, many are not supportd on this simulated hardware
-
-	LMFTracker->Disconnected += gcnew LMF::Tracker::Tracker::DisconnectedHandler(&OnDisconnected);
+	LMFTracker->InformationArrived += gcnew LMF::Tracker::Tracker::InformationArrivedHandler(&OnInformationArrived);	
+	LMFTracker->WarningArrived += gcnew LMF::Tracker::Tracker::WarningArrivedHandler(&OnWarningArrived);
 	LMFTracker->ErrorArrived += gcnew LMF::Tracker::Tracker::ErrorArrivedHandler(&OnErrorArrived);
-	LMFTracker->GetDirectionFinished += gcnew LMF::Tracker::Tracker::GetDirectionFinishedHandler(&OnGetDirectionFinished);
-	LMFTracker->GetPrismPositionFinished += gcnew LMF::Tracker::Tracker::GetPrismPositionFinishedHandler(&OnGetPrismPositionFinished);
-	LMFTracker->GoHomePositionFinished += gcnew LMF::Tracker::Tracker::GoHomePositionFinishedHandler(&OnGoHomePositionFinished);
-	LMFTracker->InformationArrived += gcnew LMF::Tracker::Tracker::InformationArrivedHandler(&OnInformationArrived);
 	LMFTracker->InitializeFinished += gcnew LMF::Tracker::Tracker::InitializeFinishedHandler(&OnInitializeFinished);
+	LMFTracker->GetPrismPositionFinished += gcnew LMF::Tracker::Tracker::GetPrismPositionFinishedHandler(&OnGetPrismPositionFinished);
+	LMFTracker->GetDirectionFinished += gcnew LMF::Tracker::Tracker::GetDirectionFinishedHandler(&OnGetDirectionFinished);
+	LMFTracker->GoHomePositionFinished += gcnew LMF::Tracker::Tracker::GoHomePositionFinishedHandler(&OnGoHomePositionFinished);
 	LMFTracker->PositionToFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToFinished);
 	LMFTracker->PositionToTargetFinished += gcnew LMF::Tracker::Tracker::PositionToFinishedHandler(&OnPositionToTargetFinished);
-	LMFTracker->WarningArrived += gcnew LMF::Tracker::Tracker::WarningArrivedHandler(&OnWarningArrived);
+	LMFTracker->Disconnected += gcnew LMF::Tracker::Tracker::DisconnectedHandler(&OnDisconnected);
 
-	LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
-
+// 4
 	cout << "Is the hardware ready ?\n";
 
 	CheckForErrors(LMFTracker);
 	CheckForMeasurementErrors(LMFTracker);
 
+	cout << "Initialize . . . \n";
 
-
-	cout << "Initialize . . . using 'realistic' timings in the simulator  . . . . which is *slow* . . .  \n";
-
+try {
 	LMFTracker->Initialize();
-	LMFTracker->InitializeAsync();
+}	
+catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << (decode)(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform an Initialize  call \n";
+	}
 
-	cout << "After Initialization . . . \n\n";
+
+	
+	cout << "Initialize Async . . . \n";
+	try {
+	LMFTracker->InitializeAsync();
+	}
+		catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << (decode)(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform an Initilize Async call \n";
+	}
+
+	cout << "After Initialization . . . Check for Errors? \n\n";
 
 	CheckForErrors(LMFTracker);
 	CheckForMeasurementErrors(LMFTracker);
 
-	// 
-	// in namespace LMF::tracker
-	// the simple values 
+// 5
 
 	String^ Comment = LMFTracker->Comment;
 	cout << "Comment: " << (decode)(Comment) << "\n";
 
 	String^ Firmware = LMFTracker->ExpectedFirmware;
-	cout << "Firmware: " << (decode)(Firmware) << "\n";
+	cout << "ExpectedFirmware: " << (decode)(Firmware) << "\n";
 
 	String^ InstalledFirmware = LMFTracker->InstalledFirmware;
 	cout << "InstalledFirmware: " << (decode)(InstalledFirmware) << "\n";
 
 	String^ IP = LMFTracker->IPAddress;
-	cout << "IP: " << (decode)(IP) << "\n";
+	cout << "IPAddress: " << (decode)(IP) << "\n";
 
 	Boolean CompatFirmware = LMFTracker->IsCompatibleWithInstalledFirmware;
-	cout << "Is Compatible With Installed Firmware: " << CompatFirmware << "\n";
+	cout << "IsCompatibleWithInstalledFirmware: " << CompatFirmware << "\n";
 
 	String^ Name = LMFTracker->Name;
 	cout << "Name: " << (decode)(Name) << "\n";
@@ -391,51 +304,61 @@ int main()
 	cout << "ProductName: " << (decode)(ProductName) << "\n";
 
 	String^ Serial = LMFTracker->SerialNumber;
-	cout << "Serial: " << (decode)(Serial) << "\n\n";
+	cout << "SerialNumber: " << (decode)(Serial) << "\n\n";
 
+// Top Level additional Info
 
-	// generates some binary debug file that has limited use to us
-	// 
-	//  String^ GenerateLFile = LMFTracker->GenerateLFile();
-	//  cout << "GenerateLFile: " << (decode)(GenerateLFile) << "\n";    /*
+// Get Direction
+// Get Direction Async
+// Get Error Description (probably typically used betwen/after every command)
+// Get Prism Position
 
-	LMFTracker->GetDirectionAsync();
-	Direction^ dir1 = LMFTracker->GetDirection();
-	cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " " << (decode)(dir1->HorizontalAngle->UnitString)
-		<< " V Angle: " << dir1->VerticalAngle->Value << " " << (decode)(dir1->VerticalAngle->UnitString) << "\n";
-
-	// Is there any use of base units?
-
-	/*	cout << " HLabel " << (decode)(dir1->HorizontalAngle->Label);
-		cout << " HUnitString " << (decode)(dir1->HorizontalAngle->UnitString);
-		//    cout << "HUnitType "    << dir1->HorizontalAngle->UnitType;
-		cout << " HValueInBaseUnits " << dir1->HorizontalAngle->ValueInBaseUnits << "\n";
-
-		cout << " VLabel " << (decode)(dir1->VerticalAngle->Label);
-		cout << " VUnitString " << (decode)(dir1->VerticalAngle->UnitString);
-		//    cout << "VUnitType "    << dir1->VerticalAngle->UnitType;
-		cout << " VValueInBaseUnits " << dir1->VerticalAngle->ValueInBaseUnits << "\n";
-
-	*/
-	cout << "Performing a Target search . . . which may prevents you from doing sync commands again on some simulators \n";
+	cout << "Attempting a GetPrismPosition call \n";
 
 	try
 	{
-		LMF::Tracker::Targets::Target^ foundtargets = LMFTracker->TargetSearch->Start();
-
-		cout << " Found " << (decode)(foundtargets->Comment);
-		cout << " " << (decode)(foundtargets->Name);
-		cout << " " << (decode)(foundtargets->ProductName) << "\n";
+				Measurement^ measure = LMFTracker->GetPrismPosition(); //says not supported by this tracker
+				cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << "\n";
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
 		cout << (decode)(e->Description) << "\n";;
-		cout << "Hit an exception trying to perform a Target Search call \n";
+		cout << "Hit an exception trying to perform a Get Prism Position  call \n";
+	}
+
+
+// Get Prism Position Async
+
+	cout << "Attempting a GetPrismPositionAsync call \n";
+
+	try
+	{
+		LMFTracker->GetPrismPositionAsync();
+	}
+	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		cout << (decode)(e->Description) << "\n";;
+		cout << "Hit an exception trying to perform a Get Prism Position Async call \n";
 	}
 
 	Sleep(1000);
 
-	cout << "Getting Info from Settings . . .  \n";
+
+
+
+//A) List Compensations
+//B) List Face
+//C) List InclinationSensor
+//D) List Laser
+//E) ?? Measurement Status
+//F) MeteoStaion
+//G) ?? OverViewCamera could be useful finding targets
+//H) List Powerlock
+//I) List PowerSource
+//J) List QuickRelease
+//K) Settings
+
+	cout << "Info from Settings . . .  \n";
 
 	LMF::Units::ECoordinateType coordtype = LMFTracker->Settings->CoordinateType;
 	const char* coordtypeNames[] = { "Spherical", "Cartesian", "Cylindrical" };
@@ -476,6 +399,7 @@ int main()
 
 	cout << " Get Orientation \n";
 	LMF::Tracker::Alignment^ orient = LMFTracker->Settings->GetOrientation();
+
 	cout << "  CoordinateType : " << coordtypeNames[(int)orient->CoordinateType] << "\n";
 	cout << "  RotationType : " << rottypeNames[(int)orient->RotationType] << "\n";
 	cout << "  Rotation0 : Label: " << (decode)(orient->Rotation0->Label)
@@ -531,7 +455,9 @@ int main()
 		<< "  Value: " << transf->Translation3->Value << "\n\n";
 
 
-	cout << "Targets . . . \n";
+//K) List Tagets
+ 
+ 	   	cout << "Targets . . . \n";
 
 	cout << " Target Count: " << LMFTracker->Targets->Count << "\n";
 
@@ -563,35 +489,30 @@ int main()
 			cout << " UnitType: " << (int)(thisReflector->SurfaceOffset->UnitType);
 			cout << " Value: " << thisReflector->SurfaceOffset->Value << "\n";
 
-
-
-
 		}
 
 		else if (LMF::Tracker::Targets::Probes::PassiveProbes::BProbes::BProbe^ thisProbe = dynamic_cast<LMF::Tracker::Targets::Probes::PassiveProbes::BProbes::BProbe^>(foundTargets[i]))
 		{
-
-
 
 			cout << " Probe Comment: " << (decode)(thisProbe->Comment);
 			cout << " Target Name: " << (decode)(thisProbe->Name);
 			cout << " Product Name: " << (decode)(thisProbe->ProductName);
 			cout << " Serial Number: " << (decode)(thisProbe->SerialNumber);
 			cout << " IsSelectable: " << thisProbe->IsSelectable << "\n";
-// I should be able to 'see' FaceCompensation and TipCompensation params if the type and/or cast is correct.
+			// I should be able to 'see' FaceCompensation and TipCompensation params if the type and/or cast is correct.
 			cout << "     FaceCompensation: " << (decode)(thisProbe->FaceCompensation->Comment);
-			cout << " Label: " <<(decode)(thisProbe->FaceCompensation->IsCompensated->Label);
-			cout <<  (int)thisProbe->FaceCompensation->IsCompensated->Value;
+			cout << " Label: " << (decode)(thisProbe->FaceCompensation->IsCompensated->Label);
+			cout << (int)thisProbe->FaceCompensation->IsCompensated->Value;
 			cout << " Name: " << (decode)(thisProbe->FaceCompensation->Name);
 			cout << " Product Name: " << (decode)(thisProbe->FaceCompensation->ProductName) << "\n";
 
 			cout << "     TipCompensation BallRadius: " << thisProbe->TipCompensation->BallRadius;
 			cout << " Comment: " << (decode)(thisProbe->TipCompensation->Comment);
-			cout << "Label: " <<  (decode)(thisProbe->TipCompensation->IsCompensated->Label);
+			cout << "Label: " << (decode)(thisProbe->TipCompensation->IsCompensated->Label);
 			cout << (int)thisProbe->TipCompensation->IsCompensated->Value;
 			cout << " Length: " << thisProbe->TipCompensation->Length;
 			cout << " Name: " << (decode)(thisProbe->TipCompensation->Name);
-			cout << " ProductName: " <<(decode)(thisProbe->TipCompensation->ProductName);
+			cout << " ProductName: " << (decode)(thisProbe->TipCompensation->ProductName);
 			cout << " x: " << thisProbe->TipCompensation->X;
 			cout << " y: " << thisProbe->TipCompensation->Y;
 			cout << " z: " << thisProbe->TipCompensation->Z << "\n";
@@ -612,200 +533,11 @@ int main()
 	}
 
 
-	cout << "Attempting a GetPrismPositionAsync call \n";
-	try
-	{
-		LMFTracker->GetPrismPositionAsync();
-	}
-	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-	{
-		cout << (decode)(e->Description) << "\n";;
-		cout << "Hit an exception trying to perform a Get Prism Position Async call \n";
-	}
 
-	Sleep(1000);
+//L) ?? list Triggers
+//M) ?? List WrtlBoxes
 
 
-	//	cout << "Attempting a GetPrismPosition call \n";
-
-	try
-	{
-		//		Measurement^ measure = LMFTracker->GetPrismPosition(); //says not supported by this tracker
-		//		cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << "\n";
-	}
-	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-	{
-		cout << (decode)(e->Description) << "\n";;
-		cout << "Hit an exception trying to perform a Get Prism Position call \n";
-	}
-
-	Sleep(1000);
-
-	//	    cout << "Starting  GoHomePosition Async. . . \n";
-
-	try
-	{
-		//		       LMFTracker->GoHomePositionAsync();
-	}
-	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-	{
-		cout << (decode)(e->Description) << "\n";;
-		cout << "Hit an exception trying to perform a GoHomePositionAsync call \n";
-	}
-
-
-	//    cout << "Starting GoHomePosition . . . \n";
-	try
-	{
-		//		        LMFTracker->GoHomePosition();
-	}
-	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-	{
-		cout << (decode)(e->Description) << "\n";;
-		cout << "Hit an exception trying to perform a GoHomePosition call \n";
-	}
-
-
-
-	DateTime wakeuptime;
-	//  wakeuptime = wakeuptime->Now;
-	//  wakeuptime = wakeuptime->AddMinutes(1.0);
-
-	// The running simulator claims this exits, the actual Type Library / dll code says that it does not *sigh*
-	// probably related to checking if something is still in place periodically?
-	//LMFTracker->GotoStandBy(wakeuptime); 
-
-
-	  // so setting to some absolute position
-
-	Boolean searchtarget = false;
-	Boolean isrelative = false;
-	Double pos1 = 0.0, pos2 = 0.0, pos3 = 0.0;
-
-	//   cout << "Setting Positionto pos1: " << pos1 << " pos2: " << pos2 << " pos3: " << pos3 << "\n";
-	try
-	{
-		//       LMFTracker->PositionToAsync(searchtarget, isrelative, pos1, pos2, pos3);
-	}
-	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-	{
-		cout << (decode)(e->Description) << "\n";
-		cout << "Hit an exception trying to perform a PositionToAsyn call \n";
-	}
-
-
-	pos1 = 0.0, pos2 = 0.0, pos3 = 0.0;
-	//  cout << "Setting Positionto pos1: " << pos1 << " pos2: " << pos2 << " pos3: " << pos3 << "\n";
-	try
-	{
-		//      LMFTracker->PositionTo(searchtarget, isrelative, pos1, pos2, pos3);
-	}
-	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-	{
-		cout << (decode)(e->Description) << "\n";;
-		cout << "Hit an exception trying to perform a PositionTo call \n";
-	}
-
-
-	// actually then moving to that psoition
-
-	Int32 percentspeedH = 5;
-	Int32 percentspeedV = 5;
-	//  
-	//  cout << "Trying to Start Move . . . \n";
-
-	try
-	{
-		//       LMFTracker->Move(percentspeedH, percentspeedV);
-	}
-	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
-	{
-		cout << (decode)(e->Description) << "\n";;
-		cout << "Hit an exception trying to perform a Move call \n";
-	}
-
-
-	//   LMFTracker->OpenTrackerScope();// not supported
-
-
-   // functions
-   //    LMFTracker->Disconnect();
-   //    LMFTracker->Dispose();
-
-
-
-
-
-   /*
-   // Needs actual targets to do anything . . .
-	   LockOnToken^ lockontoken;
-
-
-	   LMFTracker->PositionToTarget(lockontoken, isrelative, pos1, pos2, pos3); // not supported
-	   LMFTracker->PositionToTargetAsync(lockontoken, isrelative, pos1, pos2, pos3);// not supported
-	   LMFTracker->ShutDown();
-	   LMFTracker->StopMove();// not supported
-
-
-
-
-   // Compensations
-   // Face
-   // InclinationSensor
-   // Laser
-   // Measurement
-   //   LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
-   //   LMFTracker->Measurement->StartMeasurement();
-
-	//  LMF::Tracker::Measurements::MeasurementSettings^ thing;
-	//  thing->MeasureStationary();
-
-   */
-
-	cout << "Perform a Measure Stationary . . .  \n";
-
-	CheckForErrors(LMFTracker);
-	CheckForMeasurementErrors(LMFTracker);
-
-	LMF::Tracker::MeasurementResults::Measurement^ data = LMFTracker->Measurement->MeasureStationary();
-
-	cout << "Measurment Humidity: " << data->Humidity->Value << " " << (decode)(data->Humidity->UnitString)
-		<< " Pressure: " << data->Pressure->Value << " " << (decode)(data->Pressure->UnitString)
-		<< " Temperature: " << data->Temperature->Value << " " << (decode)(data->Temperature->UnitString) << "\n";
-
-
-	StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(data);
-	cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate1->UnitString);
-	cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
-	cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate3->UnitString) << "\n";
-
-	Sleep(2000);
-
-	CheckForErrors(LMFTracker);
-	CheckForMeasurementErrors(LMFTracker);
-
-	cout << "Doing a StartMeasurement . . . status: " << LMFTracker->Measurement->MeasurementInProgress->Value << "\n";
-	LMFTracker->Measurement->StartMeasurement();
-
-	Sleep(20000);
-	LMFTracker->Measurement->StopMeasurement();
-	cout << "Doing a StopMeasurement . . . \n";
-
-
-
-
-
-
-	// MeteoStation
-	// OverviewCamera
-	// PowerLock
-	// PowerSource
-	// QuickRelease
-	// Settings
-	// Targets
-	// TargetSearch
-	// TrackerAlignment
-	// Triggers
 
 	cout << "Shutdown . . . \n";
 	LMFTracker->ShutDown();
@@ -820,21 +552,21 @@ int main()
 void OnDisconnected(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << (decode)(ex->Description) << "\n";;
+	cout << "callback exception " << (decode)(ex->Description) << "\n";;
 	cout << "callback Disconnected finished . . . \n";
 }
 
 void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << (decode)(error->Description) << "\n";;
+	cout << "callback exception " << (decode)(error->Description) << "\n";;
 	cout << "callback Got some sort of error message . . . \n";
 }
 
 void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Direction^ bm, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << (decode)(ex->Description) << "\n";;
+	cout << "callback exception " << (decode)(ex->Description) << "\n";;
 	cout << "callback Got some sort of Get Direction finished message . . . \n";
 
 	cout << "Direction H Angle: " << bm->HorizontalAngle->Value << " V Angle: " << bm->VerticalAngle->Value << "\n";
@@ -845,7 +577,7 @@ void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Directi
 void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::MeasurementResults::Measurement^ paramMeasurement, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << (decode)(ex->Description) << "\n";;
+	cout << "callback exception " << (decode)(ex->Description) << "\n";;
 	cout << "callback OnGetPosition Finished . . . \n";
 
 }
@@ -853,7 +585,7 @@ void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Mea
 void OnGoHomePositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << (decode)(ex->Description) << "\n";;
+	cout << "callback exception " << (decode)(ex->Description) << "\n";;
 	cout << "callback Asyn GoHomePosition finished . . . \n";
 }
 
@@ -867,7 +599,7 @@ void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHand
 void OnInitializeFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << (decode)(ex->Description) << "\n";;
+	cout << "callback exception " << (decode)(ex->Description) << "\n";;
 	cout << "callback Initialization finished . . . \n";
 
 }
@@ -979,11 +711,11 @@ void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, 
 void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
 {
 	cout << "Bool Value changed: " << "\n";
-	throw gcnew System::NotImplementedException();
+//	throw gcnew System::NotImplementedException();
 }
 
 void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
 {
 	cout << "Double Value changed: " << "\n";
-	throw gcnew System::NotImplementedException();
+//	throw gcnew System::NotImplementedException();
 }

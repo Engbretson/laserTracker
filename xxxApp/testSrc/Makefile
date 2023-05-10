@@ -24,6 +24,15 @@ PROD_IOC = $(PROD_NAME)
 
 $(PROD_NAME)_SRCS  +=  $(PROD_NAME)Main.cpp
 
+
+PROD_NAME = QueryTrackerState
+DBD_PREFIX = iocQueryTrackerState
+
+PROD_IOC = $(PROD_NAME)
+
+$(PROD_NAME)_SRCS  +=  $(PROD_NAME).cpp
+
+
 #===========================
 
 include $(TOP)/configure/RULES

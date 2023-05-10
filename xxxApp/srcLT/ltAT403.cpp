@@ -188,7 +188,8 @@ LTAt403::LTAt403(const char *portName)
 	setDoubleParam(L_verticalAngle, dir1->VerticalAngle->Value);
 	setStringParam(L_angleUnits,(decode)(dir1->VerticalAngle->UnitString));
 	
-
+// this code you can't actually do unless a tracker actually exists
+/*
 LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker->Measurement->MeasureStationary();
 
 	cout << "Measurment Humidity: " << data->Humidity->Value << " " << (decode) (data->Humidity->UnitString)
@@ -215,7 +216,7 @@ LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker-
 	setStringParam(L_yUnits,(decode)(stationaryMeas3D->Position->Coordinate2->UnitString) );
 	setStringParam(L_zUnits,(decode)(stationaryMeas3D->Position->Coordinate3->UnitString) );
 
-
+*/
 // end of test commands 
     
 	printf("\n***********************************\n\n");
