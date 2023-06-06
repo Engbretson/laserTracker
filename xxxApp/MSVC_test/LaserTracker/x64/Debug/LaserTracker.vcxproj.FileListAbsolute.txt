@@ -1,1 +1,2 @@
 C:\epics\LaserTracker-R1-0\xxxApp\MSVC_test\LaserTracker\x64\Debug\LaserTracker.vcxproj.AssemblyReference.cache
+D:\epics\LaserTracker-R1-0\xxxApp\MSVC_test\LaserTracker\x64\Debug\LaserTracker.vcxproj.AssemblyReference.cache

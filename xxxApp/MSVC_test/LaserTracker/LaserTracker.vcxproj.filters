@@ -11,6 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\testSrc\LaserTrackerTestMain.cpp" />
+    <ClCompile Include="..\..\testSrc\QueryTrackerState.cpp" />
   </ItemGroup>
 </Project>

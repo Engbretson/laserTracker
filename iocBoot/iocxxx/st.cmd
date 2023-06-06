@@ -3,15 +3,15 @@
 epicsEnvSet("ENGINEER","Engbretson")
 epicsEnvSet("GROUP","8-id-e")
 epicsEnvSet("LOCATION","8-id-e")
-epicsEnvSet("CAMERA_ID","AT403 394712 164.54.116.53")
-epicsEnvSet("CAMERA_ID","AT930 750529 192.168.0.1")
+#epicsEnvSet("CAMERA_ID","AT403 394712 164.54.116.53")
+epicsEnvSet("CAMERA_ID","AT930 750529 164.54.116.53")
 
 epicsEnvSet("IOC","ioc433LT")
 epicsEnvSet("PREFIX","433LT:")
 
 #epicsEnvSet("PORT","At403Simulator")
 #epicsEnvSet("PORT","At930Simulator")
-epicsEnvSet("PORT","192.168.0.1")
+epicsEnvSet("PORT","164.54.116.53")
 
 dbLoadDatabase("../../dbd/windows-x64/iocxxxWin64.dbd")
 iocxxxWin64_registerRecordDeviceDriver(pdbbase)

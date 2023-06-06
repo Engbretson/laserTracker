@@ -23,6 +23,7 @@ using namespace std;
 
 using namespace LMF::Tracker;
 using namespace LMF::Tracker::Compensations;
+using namespace LMF::Tracker::Compensations::AT960;
 using namespace LMF::Tracker::Measurements;
 using namespace LMF::Tracker::MeasurementStatus;
 using namespace LMF::Tracker::MeasurementResults;
@@ -31,6 +32,9 @@ using namespace LMF::Tracker::Targets;
 using namespace LMF::Tracker::Triggers;
 using namespace LMF::Tracker::Enums;
 using namespace LMF::Tracker::BasicTypes;
+
+
+
 
 void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
 void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
@@ -161,6 +165,9 @@ int main2()
 // 1 count, ?? compensations, a selection method, 2 callbacks, which don't actually show up, so something has to be created
 
 	cout << " Compensations Count " << LMFTracker->Compensations->Count << "\n";
+
+
+//	LMFTracker->Compensations->
 
 //face , equally strange, you can flip something as face1 true or face 1 false
 
@@ -320,11 +327,11 @@ int main()
 
 //	cout << "Connecting to At403Simulator \n";
 //	cout << "Connecting to At930Simulator \n";
-	cout << "Connecting to 192.168.0.1 \n";
+	cout << "Connecting to 164.54.116.53 \n";
 
 //	LMFTracker = con->Connect("At403Simulator");
 //	LMFTracker = con->Connect("At930Simulator");
-	LMFTracker = con->Connect("192.168.0.1");
+	LMFTracker = con->Connect("164.54.116.53");
 	
 
 //    closeWindowByTitle("AT403 Simulator 1.8.0.2250");
@@ -806,9 +813,10 @@ int main()
 	// TargetSearch
 	// TrackerAlignment
 	// Triggers
-
-	cout << "Shutdown . . . \n";
-	LMFTracker->ShutDown();
+	
+//This powers down the controller!!!!
+//	cout << "Shutdown . . . \n";
+//	LMFTracker->ShutDown();
 
 	cout << "Disconnect . . . \n";
 	LMFTracker->Disconnect();

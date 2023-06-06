@@ -1,5 +1,5 @@
 epicsEnvSet("IOC","ioc437LT")
-epicsEnvSet("TOP","D:/epics/LaserTracker-R1-0")
+epicsEnvSet("TOP","d:/epics/LaserTracker-R1-0")
 epicsEnvSet("SUPPORT","d:/epics")
 epicsEnvSet("EPICS_BASE","d:/epics/base-R7-0-7")
 epicsEnvSet("ALIVE","d:/epics/alive-R1-4-0")

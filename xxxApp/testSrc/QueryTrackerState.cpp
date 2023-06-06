@@ -6,6 +6,7 @@
 #pragma comment(lib, "User32.lib")
 
 #include <iostream>
+#include<ctime>
 
 //laser tracker realted headers
 
@@ -32,6 +33,8 @@ using namespace LMF::Tracker::Enums;
 using namespace LMF::Tracker::BasicTypes;
 
 
+void OnChangeFinished(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue, LMF::Tracker::ErrorHandling::LmfException^ ex);
+void OnChanged(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue);
 void closeWindowByTitle(const char* title) {
     HWND window = FindWindowA(NULL, title);
     if (window != NULL) {
@@ -105,8 +108,8 @@ int CheckForErrors(LMF::Tracker::Tracker^ LMFTracker)
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << (decode)(e->Description) << "\n";;
-		cout << "Hit an exception trying to decode Check For Errors  \n";
+		cout << "Error exception " << e->Number << " " << (decode)(e->Description) << "\n";;
+//		cout << "Hit an exception trying to decode Check For Errors  \n";
 	}
 
 	return ErrorNumber;
@@ -117,10 +120,10 @@ int  CheckForMeasurementErrors(LMF::Tracker::Tracker^ LMFTracker)
 {
 	LMF::Tracker::Enums::EMeasurementStatus statusValue = LMFTracker->Measurement->Status->Value;
 
-	if (statusValue == EMeasurementStatus::ReadyToMeasure) { cout << " Ready To Measure . . . \n"; }
-	if (statusValue == EMeasurementStatus::MeasurementInProgress) { cout << " Measurement in Progress . . . \n"; }
-	if (statusValue == EMeasurementStatus::NotReady) { cout << " Not Ready to Measure . . . \n"; }
-	if (statusValue == EMeasurementStatus::Invalid) { cout << " Measurement Status Invalid . . . \n"; }
+	if (statusValue == EMeasurementStatus::ReadyToMeasure) { cout << "Ready To Measure . . . \n"; }
+	if (statusValue == EMeasurementStatus::MeasurementInProgress) { cout << "Measurement in Progress . . . \n"; }
+	if (statusValue == EMeasurementStatus::NotReady) { cout << "Not Ready to Measure . . . \n"; }
+	if (statusValue == EMeasurementStatus::Invalid) { cout << "Measurement Status Invalid . . . \n"; }
 
 	if (statusValue == EMeasurementStatus::NotReady)
 	{
@@ -146,6 +149,10 @@ The steps that this new test program will follow
 4) Initialze the Hardware
 5) Return simple top level values 
 6) do 
+
+// Do commands that return reasonable values if there is no valid target So Read values, 
+// next test program actually moves things and writes values
+// epics PV's can start being generated after the first pass of readable values exist
 
 A) List Compensations
 B) List Face
@@ -181,7 +188,9 @@ M) ?? List WrtlBoxes
 	TrackerInfoCollection^ foundTrackers = trackerFinder->Trackers;
 	
 	cout << "Found : " << foundTrackers->Count << "\n";
-
+	
+	String^ UseLastTracker;
+	
 	for (int i = 0; i < foundTrackers->Count; i++)
 	{
 		TrackerInfo^ tracker = foundTrackers[i];
@@ -189,6 +198,7 @@ M) ?? List WrtlBoxes
 		cout << " Tracker Name: " << (decode)(tracker->Name);
 		cout << " Serial Number: " << (decode)(tracker->SerialNumber);
 		cout << " IP Address: " << (decode)(tracker->IPAddress);
+		UseLastTracker = tracker->IPAddress;
 		cout << " Type: " << (decode)(tracker->Type) << "\n";
 	}
 
@@ -208,18 +218,24 @@ M) ?? List WrtlBoxes
 
 //	cout << "Connecting to At403Simulator \n";
 //	cout << "Connecting to At930Simulator \n";
-	cout << "Connecting to 192.168.0.1 \n";
+//	cout << "Connecting to 164.54.116.53 \n";
+//	cout << "Connecting to " << (decode)(UseLastTracker) < "\n";
 
 //	LMFTracker = con->Connect("At403Simulator");
 //	LMFTracker = con->Connect("At930Simulator");
+
     try {
-	LMFTracker = con->Connect("192.168.0.1");
+//	LMFTracker = con->Connect("164.54.116.53");
+	LMFTracker = con->Connect(UseLastTracker);
 	}
 			catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << (decode)(e->Description) << "\n";;
-		cout << "Hit an exception trying to perform a Connect call \n";
-		exit(-1);
+		cout << "Error code: " << e->Number << " " << (decode)(e->Description) << "\n";;
+//		cout << "Hit an exception trying to perform a Connect call, Exiting. \n";
+		
+//		exit(-1);
+        cout << "No actual Hardware seen . . . . using Simulator \n";
+		LMFTracker = con->Connect("At930Simulator");
 	}
 
 ////
@@ -247,40 +263,75 @@ M) ?? List WrtlBoxes
 	LMFTracker->Disconnected += gcnew LMF::Tracker::Tracker::DisconnectedHandler(&OnDisconnected);
 
 // 4
+
 	cout << "Is the hardware ready ?\n";
 
 	CheckForErrors(LMFTracker);
-	CheckForMeasurementErrors(LMFTracker);
+	
+// not valid here, yet
+//	CheckForMeasurementErrors(LMFTracker);
+
+
+// This actually gets tricky , since none of this code actually works correctly if the device is warming up 
+// You can initialze, so can't move anything, or do anything target related
+// do ideally, you need to just sit here and wait and retry until it is . . .  happy?
+// the docs say that this could be as long as 2 *hours*, or more typically 5 7 minutes
+//
+
 
 	cout << "Initialize . . . \n";
 
+#pragma warning(disable : 4996)
+
+   time_t rawtime;
+   struct tm * timeinfo;
+   time (&rawtime); 
+   timeinfo = localtime(&rawtime);
+   cout << "Current Day, Date and Time is = "<< asctime(timeinfo);
+   
+
+int check = 1;	
+while (check) {
 try {
+	check = 0;
 	LMFTracker->Initialize();
 }	
 catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << (decode)(e->Description) << "\n";;
-		cout << "Hit an exception trying to perform an Initialize  call \n";
+		check = 1;
+		cout << "Initialization Error Code: " << e->Number << " " << (decode)(e->Description) << "\n";
+//		cout << "Hit an exception trying to perform an Initialize  call \n";
+//		cout << "waiting for no Initialze exceptions . . . .\n";
+       Sleep(15000);
+
 	}
 
+}	
 
-	
+timeinfo = localtime(&rawtime);
+   cout << "Current Day, Date and Time is = "<< asctime(timeinfo);
+
+
 	cout << "Initialize Async . . . \n";
 	try {
 	LMFTracker->InitializeAsync();
 	}
 		catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << (decode)(e->Description) << "\n";;
+		cout << "Error code: " << e->Number << " " << (decode)(e->Description) << "\n";
 		cout << "Hit an exception trying to perform an Initilize Async call \n";
 	}
 
 	cout << "After Initialization . . . Check for Errors? \n\n";
 
 	CheckForErrors(LMFTracker);
-	CheckForMeasurementErrors(LMFTracker);
+
+// not valid code to check, yet
+//	CheckForMeasurementErrors(LMFTracker);
 
 // 5
+
+	cout << "Top Level  Parameters . . . \n";
 
 	String^ Comment = LMFTracker->Comment;
 	cout << "Comment: " << (decode)(Comment) << "\n";
@@ -311,8 +362,8 @@ catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 // Get Direction
 // Get Direction Async
 // Get Error Description (probably typically used betwen/after every command)
-// Get Prism Position
-
+// Get Prism Position - Nope, this actually requires a locked on target and measureming
+/*
 	cout << "Attempting a GetPrismPosition call \n";
 
 	try
@@ -322,7 +373,7 @@ catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << (decode)(e->Description) << "\n";;
+		cout << "Error code: " << e->Number << " " << (decode)(e->Description) << "\n";
 		cout << "Hit an exception trying to perform a Get Prism Position  call \n";
 	}
 
@@ -337,19 +388,59 @@ catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		cout << (decode)(e->Description) << "\n";;
+		cout << "Error code: " << e->Number << " " << (decode)(e->Description) << "\n";
 		cout << "Hit an exception trying to perform a Get Prism Position Async call \n";
 	}
 
 	Sleep(1000);
 
-
+*/
 
 
 //A) List Compensations
+
+	cout << "Compensation Count: " << LMFTracker->Compensations->Count << "\n";
+// there should be 	Changed and SelectedChanged callbacks that Tracker Scope says exists which the compiler says doesn't exist
+// BUT . . . what would be changing this except us, so we should already know about that, yes?
+
+//	LMFTracker->Compensations->Changed
+//  LMFTracker->Compensations->SelectedChanged
+
+
+	for (int i = 0; i < LMFTracker->Compensations->Count; i++)
+	{
+
+		LMF::Tracker::Compensations::Compensation ^ compensations = LMFTracker->Compensations[i];
+
+
+		cout << "Comment: " << (decode)(compensations->Comment) << " ";
+        cout << "GUID: " << (decode)(compensations->GUID) << " ";
+		cout << "Name: " << (decode)(compensations->Name) << " ";
+		cout << "TimeStamp: is basically Name"  << "\n";
+
+	}
+	cout << "Selected Compensation . . .  \n";
+
+	cout << "Comment: " << (decode)(LMFTracker->Compensations->Selected->Comment) << " ";
+	cout << "GUID: " << (decode)(LMFTracker->Compensations->Selected->GUID) << " ";
+	cout << "Name: " << (decode)(LMFTracker->Compensations->Selected->Name) << " ";
+	cout << "TimeStamp: is basically Name"  << "\n\n";
+
+
+
+	LMFTracker->Laser->
+ 
 //B) List Face
+
+	LMFTracker->Face->Changed += gcnew LMF::Tracker::Face::ChangedHandler(&OnChanged);
+	LMFTracker->Face->ChangeFinished += gcnew LMF::Tracker::Face::ChangeFinishedHandler(&OnChangeFinished);
+
+	cout << "Face: isface1: " << LMFTracker->Face->IsFace1 << "\n\n";
+ 
 //C) List InclinationSensor
+// can not do until the thing can be leveled
 //D) List Laser
+// 
 //E) ?? Measurement Status
 //F) MeteoStaion
 //G) ?? OverViewCamera could be useful finding targets
@@ -538,9 +629,9 @@ catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 //M) ?? List WrtlBoxes
 
 
-
-	cout << "Shutdown . . . \n";
-	LMFTracker->ShutDown();
+// This actually power downs the Unit!!!!!!!!	
+//	cout << "Shutdown . . . \n";
+//	LMFTracker->ShutDown();
 
 	cout << "Disconnect . . . \n";
 	LMFTracker->Disconnect();
@@ -552,14 +643,15 @@ catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 void OnDisconnected(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << "callback exception " << (decode)(ex->Description) << "\n";;
+	if (ex)
+		cout << "callback exception code: " <<ex->Number << " " << (decode)(ex->Description) << "\n";
 	cout << "callback Disconnected finished . . . \n";
 }
 
 void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << "callback exception " << (decode)(error->Description) << "\n";;
+	cout << "callback exception code: " << error->Number << " " << (decode)(error->Description) << "\n";;
 	cout << "callback Got some sort of error message . . . \n";
 }
 
@@ -599,7 +691,8 @@ void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHand
 void OnInitializeFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << "callback exception " << (decode)(ex->Description) << "\n";;
+	if (ex)
+		cout << "callback exception code: " << ex->Number << " " << (decode)(ex->Description) << "\n";
 	cout << "callback Initialization finished . . . \n";
 
 }
@@ -624,7 +717,7 @@ void OnPositionToTargetFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Tar
 void OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfWarning^ warning)
 {
 	//   throw gcnew System::NotImplementedException();
-	cout << "callback Got some sort of Warning message . . . " << decode(warning->Description) << "\n";
+	cout << "callback Warning message: " << warning->Number << " . . . " << decode(warning->Description) << "\n";
 	
 
 }
@@ -699,10 +792,10 @@ void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, 
 	//    throw gcnew System::NotImplementedException();
 	cout << "Measurement Status Value changed: " << "\n";
 
-	if (paramNewValue == EMeasurementStatus::ReadyToMeasure) { cout << " Ready To Measure . . . \n"; }
-	if (paramNewValue == EMeasurementStatus::MeasurementInProgress) { cout << " Measurement in Progress . . . \n"; }
-	if (paramNewValue == EMeasurementStatus::NotReady) { cout << " Not Ready . . . \n"; }
-	if (paramNewValue == EMeasurementStatus::Invalid) { cout << " Measurement Status Invalid . . . \n"; }
+	if (paramNewValue == EMeasurementStatus::ReadyToMeasure) { cout << "Ready To Measure . . . \n"; }
+	if (paramNewValue == EMeasurementStatus::MeasurementInProgress) { cout << "Measurement in Progress . . . \n"; }
+	if (paramNewValue == EMeasurementStatus::NotReady) { cout << "Not Ready . . . \n"; }
+	if (paramNewValue == EMeasurementStatus::Invalid) { cout << "Measurement Status Invalid . . . \n"; }
 }
 
 //decoding these gets . . .  messy, since dozens of things all normally feed into these, so would have to parse through alot of senders to see what actual field and/or PV 
@@ -718,4 +811,14 @@ void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sende
 {
 	cout << "Double Value changed: " << "\n";
 //	throw gcnew System::NotImplementedException();
+}
+
+void OnChanged(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue)
+{
+	throw gcnew System::NotImplementedException();
+}
+
+void OnChangeFinished(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue, LMF::Tracker::ErrorHandling::LmfException^ ex)
+{
+	throw gcnew System::NotImplementedException();
 }
