@@ -1,3 +1,4 @@
 ﻿  QueryTrackerState.cpp
+D:\epics\LaserTracker-R1-0\xxxApp\testSrc\QueryTrackerState.cpp(841,4): warning C4102: 'std': unreferenced label
   QueryTrackerState.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   LaserTracker.vcxproj -> D:\epics\LaserTracker-R1-0\xxxApp\MSVC_test\x64\Debug\LaserTracker.exe
