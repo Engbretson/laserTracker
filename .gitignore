@@ -20,5 +20,8 @@ dbl-all.txt
 scan1Menu.sav
 *.vs
 *.x64
+*.log
+*.tlog
+*.obj
 
 

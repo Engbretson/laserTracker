@@ -9,7 +9,6 @@
 #include <ctime>
 #include <sstream>
 
-
 //laser tracker realted headers
 
 
@@ -18,12 +17,21 @@
 
 
 using namespace System;
+
 using namespace msclr::interop;
-using namespace std;
+// using namespace std;
 
 #using <LMF.Tracker.Connection.dll>
+// These are required to get correct CSharp references back that the imaging system uses
+#using <PresentationCore.dll>
+#using <PresentationFramework.dll>
+#using <Windowsbase.dll>
+
+
+
 
 using namespace LMF::Tracker;
+//using namespace LMF::Tracker::OVC;
 using namespace LMF::Tracker::Compensations;
 using namespace LMF::Tracker::Measurements;
 using namespace LMF::Tracker::MeasurementStatus;
@@ -38,6 +46,14 @@ using namespace LMF::Tracker::BasicTypes;
 //NOTE: asking for the enum string values via the Object viewer returns the strings in alphanumeric order ??? not in the order that they actually are
 // You need to exaine the TLH file, to get the correct order
 
+
+//This net assembly data type doesn't exist in c++
+//void OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+
+void OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+void OnClosed(LMF::Tracker::OVC::Dialog^ sender);
+//void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
 void OnTriggeredMeasurementsArrived(LMF::Tracker::Measurements::Profiles::CustomTriggerProfile^ sender, LMF::Tracker::MeasurementResults::TriggeredMeasurementCollection^ paramMeasurements);
 void OnChanged(LMF::Tracker::BasicTypes::EnumTypes::StartStopSourceValue^ sender, LMF::Tracker::Enums::EStartStopSource paramNewValue);
 void OnChanged(LMF::Tracker::BasicTypes::EnumTypes::StartStopActiveLevelValue^ sender, LMF::Tracker::Enums::EStartStopActiveLevel paramNewValue);
@@ -136,6 +152,7 @@ void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker);
 void Do_InclinationSensor(LMF::Tracker::Tracker^ LMFTracker);
 void Do_Triggers(LMF::Tracker::Tracker^ LMFTracker);
 void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker);
+void Do_OverviewCamera(LMF::Tracker::Tracker^ LMFTracker);
 
 
 void Do_Reflector(LMF::Tracker::Targets::Reflectors::Reflector^ thing);
@@ -154,7 +171,7 @@ void Do_ReadOnlyDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue
 		" UnitType: " << EUnitTypeStrings[(int)thing->UnitType] <<
 		" Value: " << thing->Value <<
 		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
-		endl;
+		std::endl;
 }
 
 void Do_DoubleValueWithRange(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::DoubleValueWithRange^ thing)
@@ -170,7 +187,7 @@ void Do_DoubleValueWithRange(String^ Title, LMF::Tracker::BasicTypes::DoubleValu
 		" UnitType: " << EUnitTypeStrings[(int)thing->UnitType] <<
 		" Value: " << thing->Value <<
 		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
-		endl;
+		std::endl;
 }
 
 void Do_IntValueWithRange(String^ Title, LMF::Tracker::BasicTypes::IntValue::IntValueWithRange^ thing)
@@ -186,7 +203,7 @@ void Do_IntValueWithRange(String^ Title, LMF::Tracker::BasicTypes::IntValue::Int
 		" UnitType: " << EUnitTypeStrings[(int)thing->UnitType] <<
 		" Value: " << thing->Value <<
 		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
-		endl;
+		std::endl;
 }
 
 void Do_SimpleDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::SimpleDoubleValue^ thing)
@@ -196,59 +213,59 @@ void Do_SimpleDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::
 		" UnitType: " << EUnitTypeStrings[(int)thing->UnitType] <<
 		" Value: " << thing->Value <<
 		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
-		endl;
+		std::endl;
 
 }
 
 void Do_Reflector(LMF::Tracker::Targets::Reflectors::Reflector^ thing)
 {
-	std::cout << "Reflector Comment: " << (decode)(thing->Comment) << endl;
-	std::cout << "GUID: " << (decode)(thing->GUID) << endl;
-	std::cout << "IsSelectable: " << TFS[thing->IsSelectable] << endl;
-	std::cout << "Name: " << (decode)(thing->Name) << endl;
-	std::cout << "Product Name: " << (decode)(thing->ProductName) << endl;
+	std::cout << "Reflector Comment: " << (decode)(thing->Comment) << std::endl;
+	std::cout << "GUID: " << (decode)(thing->GUID) << std::endl;
+	std::cout << "IsSelectable: " << TFS[thing->IsSelectable] << std::endl;
+	std::cout << "Name: " << (decode)(thing->Name) << std::endl;
+	std::cout << "Product Name: " << (decode)(thing->ProductName) << std::endl;
 
 	DateTime^ dt;
 	dt = thing->TimeStamp;
-	std::cout << "TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << endl;
+	std::cout << "TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
 	Do_ReadOnlyDoubleValue("ADMOffset:", thing->ADMOffset);
 	Do_ReadOnlyDoubleValue("SurfaceOffset:", thing->SurfaceOffset);
 
 	/*
-		std::cout << "ADMOffset: Label: " << (decode)(thing->ADMOffset->Label) << endl;
-		std::cout << "UnitString: " << (decode)(thing->ADMOffset->UnitString) << endl;
-		std::cout << "UnitType: " << (int)(thing->ADMOffset->UnitType) << endl;
-		std::cout << "Value: " << thing->ADMOffset->Value << endl;
-		std::cout << "ValueInBaseUnits: " << thing->ADMOffset->ValueInBaseUnits << endl;
+		std::cout << "ADMOffset: Label: " << (decode)(thing->ADMOffset->Label) << std::endl;
+		std::cout << "UnitString: " << (decode)(thing->ADMOffset->UnitString) << std::endl;
+		std::cout << "UnitType: " << (int)(thing->ADMOffset->UnitType) << std::endl;
+		std::cout << "Value: " << thing->ADMOffset->Value << std::endl;
+		std::cout << "ValueInBaseUnits: " << thing->ADMOffset->ValueInBaseUnits << std::endl;
 
-		std::cout << "SurfaceOffset: Label:  " << (decode)(thing->SurfaceOffset->Label) << endl;
-		std::cout << "UnitString: " << (decode)(thing->SurfaceOffset->UnitString) << endl;
-		std::cout << "UnitType: " << (int)(thing->SurfaceOffset->UnitType) << endl;
-		std::cout << "Value: " << thing->SurfaceOffset->Value << endl;
-		std::cout << "ValueInBaseUnits: " << thing->SurfaceOffset->ValueInBaseUnits << endl;
+		std::cout << "SurfaceOffset: Label:  " << (decode)(thing->SurfaceOffset->Label) << std::endl;
+		std::cout << "UnitString: " << (decode)(thing->SurfaceOffset->UnitString) << std::endl;
+		std::cout << "UnitType: " << (int)(thing->SurfaceOffset->UnitType) << std::endl;
+		std::cout << "Value: " << thing->SurfaceOffset->Value << std::endl;
+		std::cout << "ValueInBaseUnits: " << thing->SurfaceOffset->ValueInBaseUnits << std::endl;
 	*/
 
 	thing->ADMOffset->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
 	thing->SurfaceOffset->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
 
-	std::cout << endl;
+	std::cout << std::endl;
 
 }
 void Do_GenericTarget(LMF::Tracker::Targets::Target^ thing)
 {
-	std::cout << "***WARNING*** This should resolve to something besides the base class to export all values . . . " << endl;
-	std::cout << "Target Comment: " << (decode)(thing->Comment) << endl;
-	std::cout << "GUID: " << (decode)(thing->GUID) << endl;
-	std::cout << "IsSelectable: " << TFS[thing->IsSelectable] << endl;
-	std::cout << "Name: " << (decode)(thing->Name) << endl;
-	std::cout << "Product Name: " << (decode)(thing->ProductName) << endl;
+	std::cout << "***WARNING*** This should resolve to something besides the base class to export all values . . . " << std::endl;
+	std::cout << "Target Comment: " << (decode)(thing->Comment) << std::endl;
+	std::cout << "GUID: " << (decode)(thing->GUID) << std::endl;
+	std::cout << "IsSelectable: " << TFS[thing->IsSelectable] << std::endl;
+	std::cout << "Name: " << (decode)(thing->Name) << std::endl;
+	std::cout << "Product Name: " << (decode)(thing->ProductName) << std::endl;
 
 	DateTime^ dt;
 	dt = thing->TimeStamp;
-	std::cout << "TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << endl;
+	std::cout << "TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
-	std::cout << endl;
+	std::cout << std::endl;
 
 }
 
@@ -260,7 +277,7 @@ void Do_Compensation(LMF::Tracker::Compensations::Compensation^ thing)
 	std::cout << "GUID: " << (decode)(thing->GUID) << " ";
 	std::cout << "Name: " << (decode)(thing->Name) << " ";
 	dt = thing->TimeStamp;
-	std::cout << "TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << endl;
+	std::cout << "TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
 }
 
@@ -269,7 +286,7 @@ void Do_BoolValue(String^ Title, LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBo
 	thing->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 	std::cout << (decode)(Title) << " Label: " << (decode)(thing->Label) <<
 		" Value: " << TFS[(int)thing->Value] <<
-		endl;
+		std::endl;
 
 }
 
@@ -301,13 +318,13 @@ int CheckForErrors(LMF::Tracker::Tracker^ LMFTracker)
 			std::cout << (decode)(err->Description) << " " <<
 				err->Number << " " <<
 				(decode)(err->Solution) << " " <<
-				(decode)(err->Title) << endl;
+				(decode)(err->Title) << std::endl;
 			return err->Number;
 		}
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		std::cout << "Error exception " << e->Number << " " << (decode)(e->Description) << endl;;
+		std::cout << "Error exception " << e->Number << " " << (decode)(e->Description) << std::endl;;
 		//		std::cout << "Hit an exception trying to decode Check For Errors  \n";
 	}
 
@@ -319,14 +336,14 @@ int  CheckForMeasurementErrors(LMF::Tracker::Tracker^ LMFTracker)
 {
 	LMF::Tracker::Enums::EMeasurementStatus statusValue = LMFTracker->Measurement->Status->Value;
 
-	std::cout << EMeasurementStatusStrings[(int)statusValue] << ". . ." << endl;
+	std::cout << EMeasurementStatusStrings[(int)statusValue] << ". . ." << std::endl;
 
 	if (statusValue == EMeasurementStatus::NotReady)
 	{
 		LMF::Tracker::MeasurementStatus::MeasurementPreconditionCollection^ Preconditions = LMFTracker->Measurement->Status->Preconditions;
 		for (int i = 0; i < Preconditions->Count; ++i) {
 			LMF::Tracker::MeasurementStatus::MeasurementPrecondition^ firstPrecondition = Preconditions[0];
-			std::cout << (decode)(firstPrecondition->Title) << " " << (decode)(firstPrecondition->Description) << " " << (decode)(firstPrecondition->Solution) << endl;
+			std::cout << (decode)(firstPrecondition->Title) << " " << (decode)(firstPrecondition->Description) << " " << (decode)(firstPrecondition->Solution) << std::endl;
 		}
 	}
 	return (int)statusValue;
@@ -383,7 +400,7 @@ int main()
 	TrackerFinder^ trackerFinder = gcnew TrackerFinder();
 	TrackerInfoCollection^ foundTrackers = trackerFinder->Trackers;
 
-	std::cout << "Found : " << foundTrackers->Count << endl;
+	std::cout << "Found : " << foundTrackers->Count << std::endl;
 
 	String^ UseLastTracker;
 
@@ -395,7 +412,7 @@ int main()
 		std::cout << " Serial Number: " << (decode)(tracker->SerialNumber);
 		std::cout << " IP Address: " << (decode)(tracker->IPAddress);
 		UseLastTracker = tracker->IPAddress;
-		std::cout << " Type: " << (decode)(tracker->Type) << endl;
+		std::cout << " Type: " << (decode)(tracker->Type) << std::endl;
 	}
 
 	// 3
@@ -415,7 +432,7 @@ int main()
 	//	std::cout << "Connecting to At403Simulator \n";
 	//	std::cout << "Connecting to At930Simulator \n";
 	//	std::cout << "Connecting to 164.54.116.53 \n";
-	//	std::cout << "Connecting to " << (decode)(UseLastTracker) < endl;
+	//	std::cout << "Connecting to " << (decode)(UseLastTracker) < std::endl;
 
 	//	LMFTracker = con->Connect("At403Simulator");
 	//	LMFTracker = con->Connect("At930Simulator");
@@ -426,7 +443,7 @@ int main()
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		std::cout << "Error code: " << e->Number << " " << (decode)(e->Description) << endl;;
+		std::cout << "Error code: " << e->Number << " " << (decode)(e->Description) << std::endl;;
 		//		std::cout << "Hit an exception trying to perform a Connect call, Exiting. \n";
 
 		//		exit(-1);
@@ -436,7 +453,7 @@ int main()
 
 	////
 	//// I do not want the Simulator Control screen up at all, even when talking to Simulated hardware
-	//// This does not apply at all to real hardware 
+	//// This does not apply at all to real hardware , but you *can* turn it on
 	////
 
 	//  closeWindowByTitle("AT403 Simulator 1.8.0.2250");
@@ -500,10 +517,10 @@ int main()
 		{
 			check = 1;
 			if (LMFTracker->Laser->IsOn->Value == 0) {
-				std::cout << "Attemping Laser On . . . " << endl;
+				std::cout << "laser is off . . . Attemping Laser On . . . " << std::endl;
 				LMFTracker->Laser->IsOn->Value = 1;
 			}
-			std::cout << "Initialization Error Code: " << e->Number << " " << (decode)(e->Description) << endl;
+			std::cout << "Initialization Error Code: " << e->Number << " " << (decode)(e->Description) << std::endl;
 			//		std::cout << "Hit an exception trying to perform an Initialize  call \n";
 			//		std::cout << "waiting for no Initialze exceptions . . . .\n";
 			Sleep(15000); // 15 seconds between test
@@ -524,7 +541,7 @@ int main()
 		}
 		catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 		{
-			std::cout << "Error code: " << e->Number << " " << (decode)(e->Description) << endl;
+			std::cout << "Error code: " << e->Number << " " << (decode)(e->Description) << std::endl;
 			std::cout << "Hit an exception trying to perform an Initilize Async call \n";
 		}
 	*/
@@ -540,25 +557,25 @@ int main()
 	std::cout << "Top Level  Parameters . . . \n";
 
 	String^ Comment = LMFTracker->Comment;
-	std::cout << "Comment: " << (decode)(Comment) << endl;
+	std::cout << "Comment: " << (decode)(Comment) << std::endl;
 
 	String^ Firmware = LMFTracker->ExpectedFirmware;
-	std::cout << "ExpectedFirmware: " << (decode)(Firmware) << endl;
+	std::cout << "ExpectedFirmware: " << (decode)(Firmware) << std::endl;
 
 	String^ InstalledFirmware = LMFTracker->InstalledFirmware;
-	std::cout << "InstalledFirmware: " << (decode)(InstalledFirmware) << endl;
+	std::cout << "InstalledFirmware: " << (decode)(InstalledFirmware) << std::endl;
 
 	String^ IP = LMFTracker->IPAddress;
-	std::cout << "IPAddress: " << (decode)(IP) << endl;
+	std::cout << "IPAddress: " << (decode)(IP) << std::endl;
 
 	Boolean CompatFirmware = LMFTracker->IsCompatibleWithInstalledFirmware;
-	std::cout << "IsCompatibleWithInstalledFirmware: " << TFS[CompatFirmware] << endl;
+	std::cout << "IsCompatibleWithInstalledFirmware: " << TFS[CompatFirmware] << std::endl;
 
 	String^ Name = LMFTracker->Name;
-	std::cout << "Name: " << (decode)(Name) << endl;
+	std::cout << "Name: " << (decode)(Name) << std::endl;
 
 	String^ ProductName = LMFTracker->ProductName;
-	std::cout << "ProductName: " << (decode)(ProductName) << endl;
+	std::cout << "ProductName: " << (decode)(ProductName) << std::endl;
 
 	String^ Serial = LMFTracker->SerialNumber;
 	std::cout << "SerialNumber: " << (decode)(Serial) << "\n\n";
@@ -575,11 +592,11 @@ int main()
 		try
 		{
 					Measurement^ measure = LMFTracker->GetPrismPosition(); //says not supported by this tracker
-					std::cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << endl;
+					std::cout << "Prism Position Humidity: " << measure->Humidity->Value << " Pressure: " << measure->Pressure->Value << " Temperature: " << measure->Temperature->Value << std::endl;
 		}
 		catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 		{
-			std::cout << "Error code: " << e->Number << " " << (decode)(e->Description) << endl;
+			std::cout << "Error code: " << e->Number << " " << (decode)(e->Description) << std::endl;
 			std::cout << "Hit an exception trying to perform a Get Prism Position  call \n";
 		}
 
@@ -594,7 +611,7 @@ int main()
 		}
 		catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 		{
-			std::cout << "Error code: " << e->Number << " " << (decode)(e->Description) << endl;
+			std::cout << "Error code: " << e->Number << " " << (decode)(e->Description) << std::endl;
 			std::cout << "Hit an exception trying to perform a Get Prism Position Async call \n";
 		}
 
@@ -604,17 +621,16 @@ int main()
 
 	// Try to locate a known to be existing reflector, since a lot of this code doesn't actually work unless it is looking at something real
 
-	std::cout << "Trying to pre-position to known position . . . " << endl;
+	std::cout << "Trying to pre-position to known position . . . " << std::endl;
 	LMFTracker->PositionTo(true, false, 546, 3059, 690);
 
 	Do_Compensations(LMFTracker);
 	Do_Face(LMFTracker);
 	Do_InclinationSensor(LMFTracker);
 	Do_Laser(LMFTracker);
-	//E) ?? Measurement Status
 	Do_Measurement(LMFTracker);
 	Do_MeteoStation(LMFTracker);
-	//G) ?? OverViewCamera could be useful finding targets
+	Do_OverviewCamera(LMFTracker);
 	Do_PowerLock(LMFTracker);
 	Do_PowerSource(LMFTracker);
 	Do_QuickRelease(LMFTracker);
@@ -626,6 +642,7 @@ int main()
 	Do_WrtlBoxes(LMFTracker);
 
 
+	system("pause");
 
 	// This actually power downs the Unit!!!!!!!!	
 	//	std::cout << "Shutdown . . . \n";
@@ -641,9 +658,45 @@ int main()
 	return 0;
 }
 
+void Do_OverviewCamera(LMF::Tracker::Tracker^ LMFTracker)
+{
+	std::cout << std::endl;
+	std::cout << "OverviewCamera\n";
+
+	LMFTracker->OverviewCamera->ImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::ImageArrivedHandler(&OnImageArrived);
+	LMFTracker->OverviewCamera->WPFBitmapImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::WPFBitmapImageArrivedHandler(&OnWPFBitmapImageArrived);
+
+// METHODS
+
+	LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::High);
+//	LMFTracker->OverviewCamera->MoveToPixel
+//	LMFTracker->OverviewCamera->StartAsync();
+	LMFTracker->OverviewCamera->Stop();
+
+	LMFTracker->OverviewCamera->Brightness->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+
+
+	Do_DoubleValueWithRange("Brightness", LMFTracker->OverviewCamera->Brightness);
+	Do_DoubleValueWithRange("Constrast", LMFTracker->OverviewCamera->Contrast);
+
+// more Methods
+
+//	LMFTracker->OverviewCamera->Dialog->Closed += gcnew LMF::Tracker::OVC::Dialog::ClosedHandler(&OnClosed);
+
+
+//	LMFTracker->OverviewCamera->Dialog->Close();
+//	LMFTracker->OverviewCamera->Dialog->Show();
+//	LMFTracker->OverviewCamera->Dialog->ShowDialog();
+//	LMFTracker->OverviewCamera->Dialog->ShowOnProcess();
+//	LMFTracker->OverviewCamera->Dialog->ShowTopmost();
+
+
+
+	std::cout << std::endl;
+}
 void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "Measurement\n";
 
 	LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
@@ -659,13 +712,13 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 	LMFTracker->Measurement->MeasurementInProgress->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 
 	Do_BoolValue("MeasurementInProgress", LMFTracker->Measurement->MeasurementInProgress);
-	std::cout << "Profiles: Count: " << LMFTracker->Measurement->Profiles->Count << endl;
+	std::cout << "Profiles: Count: " << LMFTracker->Measurement->Profiles->Count << std::endl;
 
 
 
 	for (int i = 0; i < LMFTracker->Measurement->Profiles->Count; i++)
 	{
-		std::cout << endl;
+		std::cout << std::endl;
 		LMF::Tracker::Measurements::MeasurementProfile^ profile = LMFTracker->Measurement->Profiles[i];
 
 
@@ -673,15 +726,15 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 		{
 			thisProfile->Accuracy->Changed += gcnew LMF::Tracker::BasicTypes::EnumTypes::AccuracyValue::ChangedEventHandler(&OnChanged);
 
-			std::cout << "StationaryMeasurementProfile" << endl;
-			std::cout << "GUID: " << (decode)(profile->GUID) << endl;
-			std::cout << "Name: " << (decode)(profile->Name) << endl;
+			std::cout << "StationaryMeasurementProfile" << std::endl;
+			std::cout << "GUID: " << (decode)(profile->GUID) << std::endl;
+			std::cout << "Name: " << (decode)(profile->Name) << std::endl;
 
 			const char* EAccuracyStrings[] = { "Precise", "Standard", "Fast" }; //ok
 
 			std::cout << "Accuracy: Label: " << (decode)(thisProfile->Accuracy->Label) <<
 				" Value: " << EAccuracyStrings[(int)thisProfile->Accuracy->Value] <<
-				endl;
+				std::endl;
 
 			Do_BoolValue("TwoFace", thisProfile->TwoFace);
 
@@ -690,9 +743,9 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 		}
 		else if (LMF::Tracker::Measurements::Profiles::ContinuousTimeProfile^ thisProfile = dynamic_cast<LMF::Tracker::Measurements::Profiles::ContinuousTimeProfile^>(profile))
 		{
-			std::cout << "ContinuousTimeProfile" << endl;
-			std::cout << "GUID: " << (decode)(profile->GUID) << endl;
-			std::cout << "Name: " << (decode)(profile->Name) << endl;
+			std::cout << "ContinuousTimeProfile" << std::endl;
+			std::cout << "GUID: " << (decode)(profile->GUID) << std::endl;
+			std::cout << "Name: " << (decode)(profile->Name) << std::endl;
 
 			Do_IntValueWithRange("PacketRate", thisProfile->PacketRate);
 			Do_DoubleValueWithRange("TimeSeparation", thisProfile->TimeSeparation);
@@ -702,9 +755,9 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 		}
 		else if (LMF::Tracker::Measurements::Profiles::ContinuousDistanceProfile^ thisProfile = dynamic_cast<LMF::Tracker::Measurements::Profiles::ContinuousDistanceProfile^>(profile))
 		{
-			std::cout << "ContinuousDistanceProfile" << endl;
-			std::cout << "GUID: " << (decode)(profile->GUID) << endl;
-			std::cout << "Name: " << (decode)(profile->Name) << endl;
+			std::cout << "ContinuousDistanceProfile" << std::endl;
+			std::cout << "GUID: " << (decode)(profile->GUID) << std::endl;
+			std::cout << "Name: " << (decode)(profile->Name) << std::endl;
 
 			Do_DoubleValueWithRange("DistanceSeparation", thisProfile->DistanceSeparation);
 		}
@@ -717,20 +770,20 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 			thisProfile->StartStopActiveLevel->Changed += gcnew LMF::Tracker::BasicTypes::EnumTypes::StartStopActiveLevelValue::ChangedEventHandler(&OnChanged);
 			thisProfile->StartStopSource->Changed += gcnew LMF::Tracker::BasicTypes::EnumTypes::StartStopSourceValue::ChangedEventHandler(&OnChanged);
 
-			std::cout << "CustomTriggerProfile" << endl;
-			std::cout << "GUID: " << (decode)(profile->GUID) << endl;
-			std::cout << "Name: " << (decode)(profile->Name) << endl;
+			std::cout << "CustomTriggerProfile" << std::endl;
+			std::cout << "GUID: " << (decode)(profile->GUID) << std::endl;
+			std::cout << "Name: " << (decode)(profile->Name) << std::endl;
 
 			const char* EClockSourceStrings[] = { "Internal", "External" }; //ok
 
 			std::cout << "ClockSource: Label: " << (decode)(thisProfile->ClockSource->Label) <<
 				" Value: " << EClockSourceStrings[(int)thisProfile->ClockSource->Value] <<
-				endl;
+				std::endl;
 
 			const char* EClockTransmissionStrings[] = { "Negative", "Positve" }; //ok
 			std::cout << "ClockTransmission: Label: " << (decode)(thisProfile->ClockTransmission->Label) <<
 				" Value: " << EClockTransmissionStrings[(int)thisProfile->ClockTransmission->Value] <<
-				endl;
+				std::endl;
 
 			Do_DoubleValueWithRange("MinimalTimeDelay", thisProfile->MinimalTimeDelay);
 			Do_IntValueWithRange("PacketRate", thisProfile->PacketRate);
@@ -738,11 +791,11 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 			const char* EStartStopActiveLevelStrings[] = { "Low", "High" }; //ok
 			std::cout << "StartStopActiveLevel: Label: " << (decode)(thisProfile->StartStopActiveLevel->Label) <<
 				" Value: " << EStartStopActiveLevelStrings[(int)thisProfile->StartStopActiveLevel->Value] <<
-				endl;
+				std::endl;
 			const char* EStartStopSourceStrings[] = { "Ignored", "Active" }; //ok
 			std::cout << "StartStopSource: Label: " << (decode)(thisProfile->StartStopSource->Label) <<
 				" Value: " << EStartStopSourceStrings[(int)thisProfile->StartStopSource->Value] <<
-				endl;
+				std::endl;
 
 
 			//methods
@@ -752,9 +805,9 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 	// and the same thing for whatever the selected thing actually is
 
 
-	std::cout << endl << "Selected" << endl;
-	std::cout << "GUID: " << (decode)(LMFTracker->Measurement->Profiles->Selected->GUID) << endl;
-	std::cout << "Name: " << (decode)(LMFTracker->Measurement->Profiles->Selected->Name) << endl;
+	std::cout << std::endl << "Selected" << std::endl;
+	std::cout << "GUID: " << (decode)(LMFTracker->Measurement->Profiles->Selected->GUID) << std::endl;
+	std::cout << "Name: " << (decode)(LMFTracker->Measurement->Profiles->Selected->Name) << std::endl;
 
 	// and again, I have a listed callback that I can not actually reach via normal methods
 			// TODO
@@ -769,12 +822,12 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 	{
 		thisProfile->Accuracy->Changed += gcnew LMF::Tracker::BasicTypes::EnumTypes::AccuracyValue::ChangedEventHandler(&OnChanged);
 
-		std::cout << "StationaryMeasurementProfile" << endl;
+		std::cout << "StationaryMeasurementProfile" << std::endl;
 		const char* EAccuracyStrings[] = { "Precise", "Standard", "Fast" }; //ok
 
 		std::cout << "Accuracy: Label: " << (decode)(thisProfile->Accuracy->Label) <<
 			" Value: " << EAccuracyStrings[(int)thisProfile->Accuracy->Value] <<
-			endl;
+			std::endl;
 
 		Do_BoolValue("TwoFace", thisProfile->TwoFace);
 
@@ -783,7 +836,7 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 	}
 	else if (LMF::Tracker::Measurements::Profiles::ContinuousTimeProfile^ thisProfile = dynamic_cast<LMF::Tracker::Measurements::Profiles::ContinuousTimeProfile^>(LMFTracker->Measurement->Profiles->Selected))
 	{
-		std::cout << "ContinuousTimeProfile" << endl;
+		std::cout << "ContinuousTimeProfile" << std::endl;
 		Do_IntValueWithRange("PacketRate", thisProfile->PacketRate);
 		Do_DoubleValueWithRange("TimeSeparation", thisProfile->TimeSeparation);
 
@@ -792,7 +845,7 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 	}
 	else if (LMF::Tracker::Measurements::Profiles::ContinuousDistanceProfile^ thisProfile = dynamic_cast<LMF::Tracker::Measurements::Profiles::ContinuousDistanceProfile^>(LMFTracker->Measurement->Profiles->Selected))
 	{
-		std::cout << "ContinuousDistanceProfile" << endl;
+		std::cout << "ContinuousDistanceProfile" << std::endl;
 		Do_DoubleValueWithRange("DistanceSeparation", thisProfile->DistanceSeparation);
 	}
 	else if (LMF::Tracker::Measurements::Profiles::CustomTriggerProfile^ thisProfile = dynamic_cast<LMF::Tracker::Measurements::Profiles::CustomTriggerProfile^>(LMFTracker->Measurement->Profiles->Selected))
@@ -805,15 +858,15 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 		thisProfile->StartStopSource->Changed += gcnew LMF::Tracker::BasicTypes::EnumTypes::StartStopSourceValue::ChangedEventHandler(&OnChanged);
 
 		const char* EClockSourceStrings[] = { "Internal", "External" }; //ok
-		std::cout << "CustomTriggerProfile" << endl;
+		std::cout << "CustomTriggerProfile" << std::endl;
 		std::cout << "ClockSource: Label: " << (decode)(thisProfile->ClockSource->Label) <<
 			" Value: " << EClockSourceStrings[(int)thisProfile->ClockSource->Value] <<
-			endl;
+			std::endl;
 
 		const char* EClockTransmissionStrings[] = { "Negative", "Positve" }; //ok
 		std::cout << "ClockTransmission: Label: " << (decode)(thisProfile->ClockTransmission->Label) <<
 			" Value: " << EClockTransmissionStrings[(int)thisProfile->ClockTransmission->Value] <<
-			endl;
+			std::endl;
 
 		Do_DoubleValueWithRange("MinimalTimeDelay", thisProfile->MinimalTimeDelay);
 		Do_IntValueWithRange("PacketRate", thisProfile->PacketRate);
@@ -821,44 +874,44 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 		const char* EStartStopActiveLevelStrings[] = { "Low", "High" }; //ok
 		std::cout << "StartStopActiveLevel: Label: " << (decode)(thisProfile->StartStopActiveLevel->Label) <<
 			" Value: " << EStartStopActiveLevelStrings[(int)thisProfile->StartStopActiveLevel->Value] <<
-			endl;
+			std::endl;
 		const char* EStartStopSourceStrings[] = { "Ignored", "Active" }; //ok
 		std::cout << "StartStopSource: Label: " << (decode)(thisProfile->StartStopSource->Label) <<
 			" Value: " << EStartStopSourceStrings[(int)thisProfile->StartStopSource->Value] <<
-			endl;
+			std::endl;
 
 
 		//methods
 				 //	thisProfile->Select();
 	}
 
-	std::cout << "Status" << endl;
+	std::cout << "Status" << std::endl;
 	LMFTracker->Measurement->Status->Changed += gcnew LMF::Tracker::MeasurementStatus::MeasurementStatusValue::ChangedEventHandler(&OnChanged);
 
-	std::cout << "Label: " << (decode)(LMFTracker->Measurement->Status->Label) << endl;
+	std::cout << "Label: " << (decode)(LMFTracker->Measurement->Status->Label) << std::endl;
 	const char* EMeasurementStatusString[] = { "ReadyToMeasure", "MeasurementInProgress","NotReady","Invalid" };
-	std::cout << "Value: " << EMeasurementStatusString[(int)(LMFTracker->Measurement->Status->Value)] << endl;
-std:cout << "Preconditions: Count: " << LMFTracker->Measurement->Status->Preconditions->Count << endl;
+	std::cout << "Value: " << EMeasurementStatusString[(int)(LMFTracker->Measurement->Status->Value)] << std::endl;
+    std::cout << "Preconditions: Count: " << LMFTracker->Measurement->Status->Preconditions->Count << std::endl;
 
 	for (int i = 0; i < LMFTracker->Measurement->Status->Preconditions->Count; i++)
 	{
 		LMF::Tracker::MeasurementStatus::MeasurementPrecondition^ preconditions = LMFTracker->Measurement->Status->Preconditions[i];
-		std::cout << "Descriptions: " << (decode)(preconditions->Description) << endl;
-		std::cout << "Number: " << preconditions->Number << endl;
-		std::cout << "Solution: " << (decode)(preconditions->Solution) << endl;
-		std::cout << "Title: " << (decode)(preconditions->Title) << endl;
+		std::cout << "Descriptions: " << (decode)(preconditions->Description) << std::endl;
+		std::cout << "Number: " << preconditions->Number << std::endl;
+		std::cout << "Solution: " << (decode)(preconditions->Solution) << std::endl;
+		std::cout << "Title: " << (decode)(preconditions->Title) << std::endl;
 	}
 
 
-	std::cout << endl;
+	std::cout << std::endl;
 }
 
 void Do_Triggers(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "Triggers\n";
 
-	std::cout << "Triggers: Count: " << LMFTracker->Triggers->Count << endl;
+	std::cout << "Triggers: Count: " << LMFTracker->Triggers->Count << std::endl;
 
 	// I should be getting a triggerhappened callback that again, doesn't exist	
 
@@ -882,10 +935,10 @@ void Do_Triggers(LMF::Tracker::Tracker^ LMFTracker)
 	{
 		LMF::Tracker::Triggers::StableProbingTrigger^ trigger = dynamic_cast<LMF::Tracker::Triggers::StableProbingTrigger^> (LMFTracker->Triggers[i]);
 
-		std::cout << "GUID: " << (decode)(trigger->GUID) << endl;
-		std::cout << "Name: " << (decode)(trigger->Name) << endl;
-		std::cout << "IsEnabled: Label: " << (decode)(trigger->IsEnabled->Label) << endl;
-		std::cout << "Value: " << TFS[(int)trigger->IsEnabled->Value] << endl;
+		std::cout << "GUID: " << (decode)(trigger->GUID) << std::endl;
+		std::cout << "Name: " << (decode)(trigger->Name) << std::endl;
+		std::cout << "IsEnabled: Label: " << (decode)(trigger->IsEnabled->Label) << std::endl;
+		std::cout << "Value: " << TFS[(int)trigger->IsEnabled->Value] << std::endl;
 
 		trigger->IsEnabled->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 
@@ -897,12 +950,12 @@ void Do_Triggers(LMF::Tracker::Tracker^ LMFTracker)
 
 	}
 
-	std::cout << endl;
+	std::cout << std::endl;
 }
 
 void Do_InclinationSensor(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "InclinationSensor\n";
 
 	LMFTracker->InclinationSensor->GetInclinationToGravityFinished += gcnew LMF::Tracker::Inclination::InclinationSensor::GetInclinationToGravityFinishedHandler(&OnGetInclinationToGravityFinished);
@@ -916,12 +969,12 @@ void Do_InclinationSensor(LMF::Tracker::Tracker^ LMFTracker)
 
 	LMFTracker->InclinationSensor->BubbleReadout->BubbleReadoutArrived += gcnew LMF::Tracker::Inclination::InclinationBubbleReadout::BubbleReadoutArrivedHandler(&OnBubbleReadoutArrived);
 
-	std::cout << "Attemping InclinationToGravity . . . This is going to take a while . . .  " << endl;
+	std::cout << "Attemping InclinationToGravity . . . This is going to take a while . . .  " << std::endl;
 
 	LMFTracker->InclinationSensor->GetInclinationToGravity();
-	LMFTracker->InclinationSensor->InclinedToGravity->Value = 1;
+//	LMFTracker->InclinationSensor->InclinedToGravity->Value = 1;
 
-	std::cout << "Attemping StartBubbleReadoutStream . . . " << endl;
+	std::cout << "Attemping StartBubbleReadoutStream . . . " << std::endl;
 
 	// This might be about 1/2 event, just doing this to try to capture the event.
 
@@ -935,7 +988,7 @@ void Do_InclinationSensor(LMF::Tracker::Tracker^ LMFTracker)
 
 	DateTime^ dt;
 	dt = LMFTracker->InclinationSensor->CurrentInclinationToGravity->TimeStamp;
-	std::cout << "CurrentInclinationToGravity: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << endl;
+	std::cout << "CurrentInclinationToGravity: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
 	Do_SimpleDoubleValue("InclinationRotX", LMFTracker->InclinationSensor->CurrentInclinationToGravity->InclinationRotX);
 	Do_SimpleDoubleValue("InclinationRotY", LMFTracker->InclinationSensor->CurrentInclinationToGravity->InclinationRotY);
@@ -944,15 +997,15 @@ void Do_InclinationSensor(LMF::Tracker::Tracker^ LMFTracker)
 	LMFTracker->InclinationSensor->Monitoring->InclinationChanged += gcnew LMF::Tracker::Inclination::InclinationMonitoring::InclinationChangedHandler(&OnInclinationChanged);
 
 	dt = LMFTracker->InclinationSensor->Monitoring->ThresholdExceededTime;
-	std::cout << "ThresholdExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << endl;
+	std::cout << "ThresholdExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
 	dt = LMFTracker->InclinationSensor->Monitoring->WorkingRangeExceededTime;
-	std::cout << "WorkingRangeExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << endl;
+	std::cout << "WorkingRangeExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
 	Do_BoolValue("", LMFTracker->InclinationSensor->Monitoring->Active);
 
 	dt = LMFTracker->InclinationSensor->Monitoring->Current->TimeStamp;
-	std::cout << "Current: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << endl;
+	std::cout << "Current: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
 	Do_SimpleDoubleValue("X", LMFTracker->InclinationSensor->Monitoring->Current->X);
 	Do_SimpleDoubleValue("Y", LMFTracker->InclinationSensor->Monitoring->Current->X);
@@ -964,14 +1017,21 @@ void Do_InclinationSensor(LMF::Tracker::Tracker^ LMFTracker)
 
 	//	LMFTracker->InclinationSensor->Monitoring->Reset();
 
+		// This might be about 1/2 event, just doing this to try to capture the event.
 
-	std::cout << endl;
+	LMFTracker->InclinationSensor->BubbleReadout->StartBubbleReadoutStream();
+	Sleep(20);
+	LMFTracker->InclinationSensor->BubbleReadout->StopBubbleReadoutStream();
+
+
+
+	std::cout << std::endl;
 
 }
 
 void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "MeteoStation\n";
 
 	LMFTracker->MeteoStation->EnvironmentalValuesChanged += gcnew LMF::Tracker::Meteo::MeteoStation::EnvironmentalValuesChangedEventHandler(&OnEnvironmentalValuesChanged);
@@ -993,13 +1053,13 @@ void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker)
 		" UnitType: " << EUnitTypeStrings[(int)LMFTracker->MeteoStation->HardwareHumidity->UnitType] <<
 		" Value: " << LMFTracker->MeteoStation->HardwareHumidity->Value <<
 		" ValueInBaseUnits: " << LMFTracker->MeteoStation->HardwareHumidity->ValueInBaseUnits <<
-		endl;
+		std::endl;
 
 	LMFTracker->MeteoStation->HardwareHumidity->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 
 	std::cout << "Available: " << (decode)(LMFTracker->MeteoStation->HardwareHumidity->Available->Label) <<
 		" Value: " << TFS[(int)LMFTracker->MeteoStation->HardwareHumidity->Available->Value] <<
-		endl;
+		std::endl;
 
 	std::cout << "HardwarePressure: Label: " << (decode)(LMFTracker->MeteoStation->HardwarePressure->Label) <<
 		" SerialNumber: " << (decode)(LMFTracker->MeteoStation->HardwarePressure->SerialNumber) <<
@@ -1007,13 +1067,13 @@ void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker)
 		" UnitType: " << EUnitTypeStrings[(int)LMFTracker->MeteoStation->HardwarePressure->UnitType] <<
 		" Value: " << LMFTracker->MeteoStation->HardwarePressure->Value <<
 		" ValueInBaseUnits: " << LMFTracker->MeteoStation->HardwarePressure->ValueInBaseUnits <<
-		endl;
+		std::endl;
 
 	LMFTracker->MeteoStation->HardwarePressure->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 
 	std::cout << "Available: " << (decode)(LMFTracker->MeteoStation->HardwarePressure->Available->Label) <<
 		" Value: " << TFS[(int)LMFTracker->MeteoStation->HardwarePressure->Available->Value] <<
-		endl;
+		std::endl;
 
 	std::cout << "HardwareTemperature: Label: " << (decode)(LMFTracker->MeteoStation->HardwareTemperature->Label) <<
 		" SerialNumber: " << (decode)(LMFTracker->MeteoStation->HardwareTemperature->SerialNumber) <<
@@ -1021,18 +1081,18 @@ void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker)
 		" UnitType: " << EUnitTypeStrings[(int)LMFTracker->MeteoStation->HardwareTemperature->UnitType] <<
 		" Value: " << LMFTracker->MeteoStation->HardwareTemperature->Value <<
 		" ValueInBaseUnits: " << LMFTracker->MeteoStation->HardwareTemperature->ValueInBaseUnits <<
-		endl;
+		std::endl;
 
 	LMFTracker->MeteoStation->HardwareTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 
 	std::cout << "Available: " << (decode)(LMFTracker->MeteoStation->HardwareTemperature->Available->Label) <<
 		" Value: " << TFS[(int)LMFTracker->MeteoStation->HardwareTemperature->Available->Value] <<
-		endl;
+		std::endl;
 
 	LMFTracker->MeteoStation->IsAirSensorConnected->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 	std::cout << "IsAirSensorConnected: Label: " << (decode)(LMFTracker->MeteoStation->IsAirSensorConnected->Label) <<
 		" Value: " << TFS[(int)LMFTracker->MeteoStation->IsAirSensorConnected->Value] <<
-		endl;
+		std::endl;
 
 	//
 	std::cout << "ManualHumidity: Label: " << (decode)(LMFTracker->MeteoStation->ManualHumidity->Label) <<
@@ -1050,13 +1110,13 @@ void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker)
 		" UnitType: " << EUnitTypeStrings[(int)LMFTracker->MeteoStation->ManualHumidity->UnitType] <<
 		" Value: " << LMFTracker->MeteoStation->ManualHumidity->Value <<
 		" ValueInBaseUnits: " << LMFTracker->MeteoStation->ManualHumidity->ValueInBaseUnits <<
-		endl;
+		std::endl;
 
 	LMFTracker->MeteoStation->ManualHumidity->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 
 	std::cout << "Available: " << (decode)(LMFTracker->MeteoStation->ManualHumidity->Available->Label) <<
 		" Value: " << TFS[(int)LMFTracker->MeteoStation->ManualHumidity->Available->Value] <<
-		endl;
+		std::endl;
 
 	std::cout << "ManualPressure: Label: " << (decode)(LMFTracker->MeteoStation->ManualPressure->Label) <<
 
@@ -1072,13 +1132,13 @@ void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker)
 		" UnitType: " << EUnitTypeStrings[(int)LMFTracker->MeteoStation->ManualPressure->UnitType] <<
 		" Value: " << LMFTracker->MeteoStation->ManualPressure->Value <<
 		" ValueInBaseUnits: " << LMFTracker->MeteoStation->ManualPressure->ValueInBaseUnits <<
-		endl;
+		std::endl;
 
 	LMFTracker->MeteoStation->ManualPressure->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 
 	std::cout << "Available: " << (decode)(LMFTracker->MeteoStation->ManualPressure->Available->Label) <<
 		" Value: " << TFS[(int)LMFTracker->MeteoStation->ManualPressure->Available->Value] <<
-		endl;
+		std::endl;
 
 	std::cout << "ManualTemperature: Label: " << (decode)(LMFTracker->MeteoStation->ManualTemperature->Label) <<
 
@@ -1095,13 +1155,13 @@ void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker)
 		" UnitType: " << EUnitTypeStrings[(int)LMFTracker->MeteoStation->ManualTemperature->UnitType] <<
 		" Value: " << LMFTracker->MeteoStation->ManualTemperature->Value <<
 		" ValueInBaseUnits: " << LMFTracker->MeteoStation->ManualTemperature->ValueInBaseUnits <<
-		endl;
+		std::endl;
 
 	LMFTracker->MeteoStation->ManualTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 
 	std::cout << "Available: " << (decode)(LMFTracker->MeteoStation->ManualTemperature->Available->Label) <<
 		" Value: " << TFS[(int)LMFTracker->MeteoStation->ManualTemperature->Available->Value] <<
-		endl;
+		std::endl;
 
 	std::cout << "ObjectTemperature: Label: " << (decode)(LMFTracker->MeteoStation->ObjectTemperature->Label) <<
 		" SerialNumber: " << (decode)(LMFTracker->MeteoStation->ObjectTemperature->SerialNumber) <<
@@ -1109,26 +1169,26 @@ void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker)
 		" UnitType: " << EUnitTypeStrings[(int)LMFTracker->MeteoStation->ObjectTemperature->UnitType] <<
 		" Value: " << LMFTracker->MeteoStation->ObjectTemperature->Value <<
 		" ValueInBaseUnits: " << LMFTracker->MeteoStation->ObjectTemperature->ValueInBaseUnits <<
-		endl;
+		std::endl;
 
 	LMFTracker->MeteoStation->ObjectTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 
 	std::cout << "Available: " << (decode)(LMFTracker->MeteoStation->ObjectTemperature->Available->Label) <<
 		" Value: " << TFS[(int)LMFTracker->MeteoStation->ObjectTemperature->Available->Value] <<
-		endl;
+		std::endl;
 
 	LMFTracker->MeteoStation->Source->Changed += gcnew LMF::Tracker::Meteo::MeteoSource::ChangedEventHandler(&OnChanged);
 	std::cout << "Source: Label: " << (decode)(LMFTracker->MeteoStation->Source->Label) <<
 		" Value: " << EMeteoSourceStrings[(int)LMFTracker->MeteoStation->Source->Value] <<
-		endl;
+		std::endl;
 
-	std::cout << endl;
+	std::cout << std::endl;
 
 }
 
 void Do_TargetSearch(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "TargetSearch\n";
 
 	LMFTracker->TargetSearch->Finished += gcnew LMF::Tracker::Targets::TargetSearch::FinishedEventHandler(&OnFinished);
@@ -1144,25 +1204,25 @@ void Do_TargetSearch(LMF::Tracker::Tracker^ LMFTracker)
 		LMFTracker->TargetSearch->Stop();
 	*/
 
-	std::cout << endl;
+	std::cout << std::endl;
 }
 
 
 void Do_QuickRelease(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "QuickRelease\n";
 
 	LMFTracker->QuickRelease->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
 
-	std::cout << "QuickRelease: Label: " << (decode)(LMFTracker->QuickRelease->Label) << " Value: " << TFS[LMFTracker->QuickRelease->Value] << endl;
+	std::cout << "QuickRelease: Label: " << (decode)(LMFTracker->QuickRelease->Label) << " Value: " << TFS[LMFTracker->QuickRelease->Value] << std::endl;
 
-	std::cout << endl;
+	std::cout << std::endl;
 }
 
 void Do_PowerSource(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "PowerSource\n";
 
 	// does not seem to exist (at run time!) and a try block doesn't correct trap it Maybe only valid on Battery operated units
@@ -1170,11 +1230,11 @@ void Do_PowerSource(LMF::Tracker::Tracker^ LMFTracker)
 	/*
 		try {
 			LMFTracker->PowerSource->SensorPowerStatus->Level->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
-			std::cout << "Sensor Power Status: Label: " << (decode)(LMFTracker->PowerSource->SensorPowerStatus->Level->Label) << " Value: " << LMFTracker->PowerSource->SensorPowerStatus->Level->Value << endl;
+			std::cout << "Sensor Power Status: Label: " << (decode)(LMFTracker->PowerSource->SensorPowerStatus->Level->Label) << " Value: " << LMFTracker->PowerSource->SensorPowerStatus->Level->Value << std::endl;
 		}
 		catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 		{
-			std::cout << "Sensor Power Status Error Code: " << e->Number << " " << (decode)(e->Description) << endl;
+			std::cout << "Sensor Power Status Error Code: " << e->Number << " " << (decode)(e->Description) << std::endl;
 		}
 	*/
 
@@ -1191,22 +1251,22 @@ void Do_PowerSource(LMF::Tracker::Tracker^ LMFTracker)
 	std::cout << "RunsOn: Label: " << (decode)(LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Label) <<
 		" Value: " << EPowerSourceStrings[(int)LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Value] <<
 		//		" Value: " << (int)LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Value <<
-		endl;
+		std::endl;
 
 
-	std::cout << endl;
+	std::cout << std::endl;
 
 }
 
 void Do_PowerLock(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "PowerLock\n";
 	LMFTracker->PowerLock->UsePowerLock->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnChanged);
-	std::cout << "Use Power Lock: Label: " << (decode)(LMFTracker->PowerLock->UsePowerLock->Label) << " Value: " << TFS[LMFTracker->PowerLock->UsePowerLock->Value] << endl;
+	std::cout << "Use Power Lock: Label: " << (decode)(LMFTracker->PowerLock->UsePowerLock->Label) << " Value: " << TFS[LMFTracker->PowerLock->UsePowerLock->Value] << std::endl;
 	LMF::Tracker::OVC::ATRCoordinateCollection^ gettargetdirections = LMFTracker->PowerLock->GetTargetDirections();
 
-	std::cout << "Get Target Directions Count: " << gettargetdirections->Count << endl;
+	std::cout << "Get Target Directions Count: " << gettargetdirections->Count << std::endl;
 	for (int i = 0; i < gettargetdirections->Count; i++)
 	{
 		// And this part now starts to get wierd . . .  since the OVC class is the camera system . . .  and values only seem to exist if you actually collect an image
@@ -1217,12 +1277,12 @@ void Do_PowerLock(LMF::Tracker::Tracker^ LMFTracker)
 		// punt this until later . . .
 	}
 
-	std::cout << endl;
+	std::cout << std::endl;
 
 }
 void Do_Laser(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "Laser\n";
 
 	DateTime^ dt;
@@ -1232,9 +1292,9 @@ void Do_Laser(LMF::Tracker::Tracker^ LMFTracker)
 
 	dt = LMFTracker->Laser->WakeUpTime;
 
-	std::cout << "Wakeup Time: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << endl;
-	std::cout << "Is Laser Warmed Up: Label: " << (decode)(LMFTracker->Laser->IsLaserWarmedUp->Label) << " Value: " << TFS[LMFTracker->Laser->IsLaserWarmedUp->Value] << endl;
-	std::cout << "Is on: " << (decode)(LMFTracker->Laser->IsOn->Label) << " Value : " << TFS[LMFTracker->Laser->IsOn->Value] << endl;
+	std::cout << "Wakeup Time: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+	std::cout << "Is Laser Warmed Up: Label: " << (decode)(LMFTracker->Laser->IsLaserWarmedUp->Label) << " Value: " << TFS[LMFTracker->Laser->IsLaserWarmedUp->Value] << std::endl;
+	std::cout << "Is on: " << (decode)(LMFTracker->Laser->IsOn->Label) << " Value : " << TFS[LMFTracker->Laser->IsOn->Value] << std::endl;
 
 	//This code leaves the unit *on*, but turns off the actual laser until a certain time, right now 24 hours from now
 
@@ -1245,27 +1305,27 @@ void Do_Laser(LMF::Tracker::Tracker^ LMFTracker)
 
 
 	LMFTracker->Laser->GoToSleep(newt);
-	std::cout << "Wakeup From Sleep Time: " << (decode)(newt.ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << endl;
+	std::cout << "Wakeup From Sleep Time: " << (decode)(newt.ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 */
 
-	std::cout << endl;
+	std::cout << std::endl;
 }
 
 
 void Do_WrtlBoxes(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	// does not seem to be implemented on the 930's . . .	
 	std::cout << "WrtlBoxes . . . Not Implemented in this SDK.\n";
-	std::cout << endl;
+	std::cout << std::endl;
 }
 
 void Do_Targets(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "Targets\n";
 
-	std::cout << "Target Count: " << LMFTracker->Targets->Count << endl << endl;
+	std::cout << "Target Count: " << LMFTracker->Targets->Count << std::endl << std::endl;
 
 	LMF::Tracker::Targets::TargetCollection^ foundTargets = LMFTracker->Targets;
 
@@ -1286,13 +1346,13 @@ void Do_Targets(LMF::Tracker::Tracker^ LMFTracker)
 			std::cout << " Target Name: " << (decode)(thisProbe->Name);
 			std::cout << " Product Name: " << (decode)(thisProbe->ProductName);
 			std::cout << " Serial Number: " << (decode)(thisProbe->SerialNumber);
-			std::cout << " IsSelectable: " << TFS[thisProbe->IsSelectable] << endl;
+			std::cout << " IsSelectable: " << TFS[thisProbe->IsSelectable] << std::endl;
 			// I should be able to 'see' FaceCompensation and TipCompensation params if the type and/or cast is correct.
 			std::cout << "     FaceCompensation: " << (decode)(thisProbe->FaceCompensation->Comment);
 			std::cout << " Label: " << (decode)(thisProbe->FaceCompensation->IsCompensated->Label);
 			std::cout << "IsCompensated: " << TFS[(int)thisProbe->FaceCompensation->IsCompensated->Value];
 			std::cout << " Name: " << (decode)(thisProbe->FaceCompensation->Name);
-			std::cout << " Product Name: " << (decode)(thisProbe->FaceCompensation->ProductName) << endl;
+			std::cout << " Product Name: " << (decode)(thisProbe->FaceCompensation->ProductName) << std::endl;
 
 			std::cout << "     TipCompensation BallRadius: " << thisProbe->TipCompensation->BallRadius;
 			std::cout << " Comment: " << (decode)(thisProbe->TipCompensation->Comment);
@@ -1303,7 +1363,7 @@ void Do_Targets(LMF::Tracker::Tracker^ LMFTracker)
 			std::cout << " ProductName: " << (decode)(thisProbe->TipCompensation->ProductName);
 			std::cout << " x: " << thisProbe->TipCompensation->X;
 			std::cout << " y: " << thisProbe->TipCompensation->Y;
-			std::cout << " z: " << thisProbe->TipCompensation->Z << endl;
+			std::cout << " z: " << thisProbe->TipCompensation->Z << std::endl;
 
 		}
 		else if (Target^ thisTarget = foundTargets[i])
@@ -1313,46 +1373,46 @@ void Do_Targets(LMF::Tracker::Tracker^ LMFTracker)
 			Do_GenericTarget(thisTarget);
 		}
 	}
-	std::cout << endl;
+	std::cout << std::endl;
 }
 
 void Do_Settings(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 
 	std::cout << "Settings\n";
 
 	LMF::Units::ECoordinateType coordtype = LMFTracker->Settings->CoordinateType;
 	const char* coordtypeNames[] = { "Spherical", "Cartesian", "Cylindrical" }; //ok
-	std::cout << " CoordinateType : " << coordtypeNames[(int)coordtype] << endl;
+	std::cout << " CoordinateType : " << coordtypeNames[(int)coordtype] << std::endl;
 
 	LMF::Units::ERotationType rottype = LMFTracker->Settings->RotationType;
 	const char* rottypeNames[] = { "RotationAngles", "RollPitchYaw", "Quarternion" }; //ok
-	std::cout << " RotationType : " << rottypeNames[(int)rottype] << endl;
+	std::cout << " RotationType : " << rottypeNames[(int)rottype] << std::endl;
 
 	LMF::Units::EAngleUnit angunit = LMFTracker->Settings->Units->AngleUnit;
 	const char* angunitNames[] = { "Radian", "Millirad", "Degree", "Gon", "CC" }; //ok
-	std::cout << " AngleUnits : " << angunitNames[(int)angunit] << endl;
+	std::cout << " AngleUnits : " << angunitNames[(int)angunit] << std::endl;
 
 	LMF::Units::EHumidityUnit humunit = LMFTracker->Settings->Units->HumidityUnit;
 	const char* humunitNames[] = { "RelativeHumidity" }; //ok
-	std::cout << " HumidityUnits : " << humunitNames[(int)humunit] << endl;
+	std::cout << " HumidityUnits : " << humunitNames[(int)humunit] << std::endl;
 
 	LMF::Units::ELengthUnit lenunit = LMFTracker->Settings->Units->LengthUnit;
 	const char* lenunitNames[] = { "Meter", "Millimeter", "Micrometer","Foot","Yard", "Inch" }; //ok
-	std::cout << " LengthUnits : " << lenunitNames[(int)lenunit] << endl;
+	std::cout << " LengthUnits : " << lenunitNames[(int)lenunit] << std::endl;
 
 	LMF::Units::EPercentUnit perunit = LMFTracker->Settings->Units->PercentUnit;
 	const char* perunitNames[] = { "Percent", "None" }; //ok
-	std::cout << " PercentUnits : " << perunitNames[(int)perunit] << endl;
+	std::cout << " PercentUnits : " << perunitNames[(int)perunit] << std::endl;
 
 	LMF::Units::EPressureUnit presunit = LMFTracker->Settings->Units->PressureUnit;
 	const char* presunitNames[] = { "mBar", "HPascal","KPascal","MmHg", "Psi", "InH2O","InHg" }; //ok
-	std::cout << " PressureUnits : " << presunitNames[(int)presunit] << endl;
+	std::cout << " PressureUnits : " << presunitNames[(int)presunit] << std::endl;
 
 	LMF::Units::ETemperatureUnit tempunit = LMFTracker->Settings->Units->TemperatureUnit;
 	const char* tempunitNames[] = { "Celsius", "Fahrenheit" }; //ok
-	std::cout << " TemperatureUnits : " << tempunitNames[(int)tempunit] << endl;
+	std::cout << " TemperatureUnits : " << tempunitNames[(int)tempunit] << std::endl;
 
 	LMF::Units::ETimeUnit timeunit = LMFTracker->Settings->Units->TimeUnit;
 	const char* timeunitNames[] = { "Millisecond", "Second", "Minute", "Hour" }; //ok
@@ -1362,26 +1422,26 @@ void Do_Settings(LMF::Tracker::Tracker^ LMFTracker)
 	std::cout << " Get Orientation \n";
 	LMF::Tracker::Alignment^ orient = LMFTracker->Settings->GetOrientation();
 
-	std::cout << "  CoordinateType : " << coordtypeNames[(int)orient->CoordinateType] << endl;
-	std::cout << "  RotationType : " << rottypeNames[(int)orient->RotationType] << endl;
+	std::cout << "  CoordinateType : " << coordtypeNames[(int)orient->CoordinateType] << std::endl;
+	std::cout << "  RotationType : " << rottypeNames[(int)orient->RotationType] << std::endl;
 	std::cout << "  Rotation0 : Label: " << (decode)(orient->Rotation0->Label)
 		<< "  UnitString: " << (decode)(orient->Rotation0->UnitString) // Note: the marshalling conversion code throws an exception if the starting string is NULL, which it is here
-		<< "  Value: " << orient->Rotation0->Value << endl;
+		<< "  Value: " << orient->Rotation0->Value << std::endl;
 	std::cout << "  Rotation1 : Label: " << (decode)(orient->Rotation1->Label)
 		<< "  UnitString: " << (decode)(orient->Rotation1->UnitString)
-		<< "  Value: " << orient->Rotation1->Value << endl;
+		<< "  Value: " << orient->Rotation1->Value << std::endl;
 	std::cout << "  Rotation2 : Label: " << (decode)(orient->Rotation2->Label)
 		<< "  UnitString: " << (decode)(orient->Rotation2->UnitString)
-		<< "  Value: " << orient->Rotation2->Value << endl;
+		<< "  Value: " << orient->Rotation2->Value << std::endl;
 	std::cout << "  Rotation3 : Label: " << (decode)(orient->Rotation3->Label)
 		<< "  UnitString: " << (decode)(orient->Rotation3->UnitString)
-		<< "  Value: " << orient->Rotation3->Value << endl;
+		<< "  Value: " << orient->Rotation3->Value << std::endl;
 	std::cout << "  Translation1 : Label: " << (decode)(orient->Translation1->Label)
 		<< "  UnitString: " << (decode)(orient->Translation1->UnitString)
-		<< "  Value: " << orient->Translation1->Value << endl;
+		<< "  Value: " << orient->Translation1->Value << std::endl;
 	std::cout << "  Translation2 : Label: " << (decode)(orient->Translation2->Label)
 		<< "  UnitString: " << (decode)(orient->Translation2->UnitString)
-		<< "  Value: " << orient->Translation2->Value << endl;
+		<< "  Value: " << orient->Translation2->Value << std::endl;
 	std::cout << "  Translation3 : Label: " << (decode)(orient->Translation3->Label)
 		<< "  UnitString: " << (decode)(orient->Translation3->UnitString)
 		<< "  Value: " << orient->Translation3->Value << "\n\n";
@@ -1389,44 +1449,44 @@ void Do_Settings(LMF::Tracker::Tracker^ LMFTracker)
 	std::cout << " Get Transformation \n";
 	LMF::Tracker::AlignmentWithScale^ transf = LMFTracker->Settings->GetTransformation();
 
-	std::cout << "  CoordinateType : " << coordtypeNames[(int)transf->CoordinateType] << endl;
-	std::cout << "  RotationType : " << rottypeNames[(int)transf->RotationType] << endl;
+	std::cout << "  CoordinateType : " << coordtypeNames[(int)transf->CoordinateType] << std::endl;
+	std::cout << "  RotationType : " << rottypeNames[(int)transf->RotationType] << std::endl;
 	std::cout << "  Rotation0 : Label: " << (decode)(transf->Rotation0->Label)
 		<< "  UnitString: " << (decode)(transf->Rotation0->UnitString)
-		<< "  Value: " << transf->Rotation0->Value << endl;
+		<< "  Value: " << transf->Rotation0->Value << std::endl;
 	std::cout << "  Rotation1 : Label: " << (decode)(transf->Rotation1->Label)
 		<< "  UnitString: " << (decode)(transf->Rotation1->UnitString)
-		<< "  Value: " << transf->Rotation1->Value << endl;
+		<< "  Value: " << transf->Rotation1->Value << std::endl;
 	std::cout << "  Rotation2 : Label: " << (decode)(transf->Rotation2->Label)
 		<< "  UnitString: " << (decode)(transf->Rotation2->UnitString)
-		<< "  Value: " << transf->Rotation2->Value << endl;
+		<< "  Value: " << transf->Rotation2->Value << std::endl;
 	std::cout << "  Rotation3 : Label: " << (decode)(transf->Rotation3->Label)
 		<< "  UnitString: " << (decode)(transf->Rotation3->UnitString)
-		<< "  Value: " << transf->Rotation3->Value << endl;
+		<< "  Value: " << transf->Rotation3->Value << std::endl;
 	std::cout << "  Scale : Label: " << (decode)(transf->Scale->Label)
 		<< "  UnitString: " << (decode)(transf->Scale->UnitString)
-		<< "  Value: " << transf->Scale->Value << endl;
+		<< "  Value: " << transf->Scale->Value << std::endl;
 	std::cout << "  Translation1 : Label: " << (decode)(transf->Translation1->Label)
 		<< "  UnitString: " << (decode)(transf->Translation1->UnitString)
-		<< "  Value: " << transf->Translation1->Value << endl;
+		<< "  Value: " << transf->Translation1->Value << std::endl;
 	std::cout << "  Translation2 : Label: " << (decode)(transf->Translation2->Label)
 		<< "  UnitString: " << (decode)(transf->Translation2->UnitString)
-		<< "  Value: " << transf->Translation2->Value << endl;
+		<< "  Value: " << transf->Translation2->Value << std::endl;
 	std::cout << "  Translation3 : Label: " << (decode)(transf->Translation3->Label)
 		<< "  UnitString: " << (decode)(transf->Translation3->UnitString)
 		<< "  Value: " << transf->Translation3->Value << "\n\n";
 
-	std::cout << endl;
+	std::cout << std::endl;
 
 }
 
 void Do_Compensations(LMF::Tracker::Tracker^ LMFTracker)
 {
 
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "Compensations \n";
 
-	std::cout << "Compensation Count: " << LMFTracker->Compensations->Count << endl;
+	std::cout << "Compensation Count: " << LMFTracker->Compensations->Count << std::endl;
 
 	//	LMF::Tracker::Compensations::CompensationCollection^ me = LMFTracker->Compensations;
 	LMF::Tracker::Compensations::CompensationCollection me;
@@ -1455,13 +1515,13 @@ void Do_Compensations(LMF::Tracker::Tracker^ LMFTracker)
 
 	Do_Compensation(LMFTracker->Compensations->Selected);
 
-	std::cout << endl;
+	std::cout << std::endl;
 
 }
 
 void Do_Face(LMF::Tracker::Tracker^ LMFTracker)
 {
-	std::cout << endl;
+	std::cout << std::endl;
 	std::cout << "Face \n";
 
 	//B) List Face
@@ -1469,20 +1529,20 @@ void Do_Face(LMF::Tracker::Tracker^ LMFTracker)
 	LMFTracker->Face->Changed += gcnew LMF::Tracker::Face::ChangedHandler(&OnChanged);
 	LMFTracker->Face->ChangeFinished += gcnew LMF::Tracker::Face::ChangeFinishedHandler(&OnChangeFinished);
 
-	std::cout << "Face: isface1: " << TFS[LMFTracker->Face->IsFace1] << endl;
-	std::cout << "Face: Value: " << EFaceStrings[(int)LMFTracker->Face->Value] << endl;
+	std::cout << "Face: isface1: " << TFS[LMFTracker->Face->IsFace1] << std::endl;
+	std::cout << "Face: Value: " << EFaceStrings[(int)LMFTracker->Face->Value] << std::endl;
 
 	// Just doing the follow as a value check here just to see if it works
 
 		/*
 		std::cout << "Face: Flip \n";
 		LMFTracker->Face->Change();
-		std::cout << "Face: isface1: " << LMFTracker->Face->IsFace1 << endl;
-		std::cout << "Face: Value: " << (int)LMFTracker->Face->Value << endl;
+		std::cout << "Face: isface1: " << LMFTracker->Face->IsFace1 << std::endl;
+		std::cout << "Face: Value: " << (int)LMFTracker->Face->Value << std::endl;
 		std::cout << "Face: UnFlip \n\n";
 		LMFTracker->Face->Change();
 	*/
-	std::cout << endl;
+	std::cout << std::endl;
 }
 
 
@@ -1491,24 +1551,24 @@ void OnDisconnected(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::
 {
 	//   throw gcnew System::NotImplementedException();
 	if (ex)
-		std::cout << "callback exception code: " << ex->Number << " " << (decode)(ex->Description) << endl;
+		std::cout << "callback exception code: " << ex->Number << " " << (decode)(ex->Description) << std::endl;
 	std::cout << "callback Disconnected finished . . . \n";
 }
 
 void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error)
 {
 	//   throw gcnew System::NotImplementedException();
-	std::cout << "callback exception code: " << error->Number << " " << (decode)(error->Description) << endl;;
+	std::cout << "callback exception code: " << error->Number << " " << (decode)(error->Description) << std::endl;;
 	std::cout << "callback Got some sort of error message . . . \n";
 }
 
 void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Direction^ bm, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	std::cout << "callback exception " << (decode)(ex->Description) << endl;;
+	std::cout << "callback exception " << (decode)(ex->Description) << std::endl;;
 	std::cout << "callback Got some sort of Get Direction finished message . . . \n";
 
-	std::cout << "Direction H Angle: " << bm->HorizontalAngle->Value << " V Angle: " << bm->VerticalAngle->Value << endl;
+	std::cout << "Direction H Angle: " << bm->HorizontalAngle->Value << " V Angle: " << bm->VerticalAngle->Value << std::endl;
 
 
 }
@@ -1516,7 +1576,7 @@ void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Directi
 void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::MeasurementResults::Measurement^ paramMeasurement, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	std::cout << "callback exception " << (decode)(ex->Description) << endl;;
+	std::cout << "callback exception " << (decode)(ex->Description) << std::endl;;
 	std::cout << "callback OnGetPosition Finished . . . \n";
 
 }
@@ -1524,14 +1584,14 @@ void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Mea
 void OnGoHomePositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	std::cout << "callback exception " << (decode)(ex->Description) << endl;;
+	std::cout << "callback exception " << (decode)(ex->Description) << std::endl;;
 	std::cout << "callback Asyn GoHomePosition finished . . . \n";
 }
 
 void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo)
 {
 	//   throw gcnew System::NotImplementedException();
-	std::cout << (decode)(paramInfo->Description) << endl;;
+	std::cout << (decode)(paramInfo->Description) << std::endl;;
 	std::cout << "callback Got some sort of Information message . . . \n";
 }
 
@@ -1539,7 +1599,7 @@ void OnInitializeFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHand
 {
 	//   throw gcnew System::NotImplementedException();
 	if (ex)
-		std::cout << "callback exception code: " << ex->Number << " " << (decode)(ex->Description) << endl;
+		std::cout << "callback exception code: " << ex->Number << " " << (decode)(ex->Description) << std::endl;
 	std::cout << "callback Initialization finished . . . \n";
 
 }
@@ -1550,10 +1610,10 @@ void OnPositionToFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Targets::
 
 	std::cout << "callback PositionTo finished . . . ";
 
-	std::cout << "Found a " << (decode)(foundTarget->ProductName) << endl;
+	std::cout << "Found a " << (decode)(foundTarget->ProductName) << std::endl;
 
 	try {
-		std::cout << (decode)(ex->Description) << endl;;
+		std::cout << (decode)(ex->Description) << std::endl;;
 	}
 	catch (...)
 	{
@@ -1574,7 +1634,7 @@ void OnPositionToTargetFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Tar
 void OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfWarning^ warning)
 {
 	//   throw gcnew System::NotImplementedException();
-	std::cout << "callback Warning message: " << warning->Number << " . . . " << decode(warning->Description) << endl;
+	std::cout << "callback Warning message: " << warning->Number << " . . . " << decode(warning->Description) << std::endl;
 
 
 }
@@ -1587,7 +1647,7 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 	// throw gcnew System::NotImplementedException();
 	std::cout << "callback Got a Measurement Value . . . \n";
 
-	std::cout << "counts :" << paramMeasurements->Count << endl;
+	std::cout << "counts :" << paramMeasurements->Count << std::endl;
 
 	if (paramMeasurements)
 	{
@@ -1596,7 +1656,7 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 			{
 				LastMeasurement = paramMeasurements[i];
 
-				std::cout << "Measurment Humidity: " << LastMeasurement->Humidity->Value << " Pressure: " << LastMeasurement->Pressure->Value << " Temperature: " << LastMeasurement->Temperature->Value << endl;
+				std::cout << "Measurment Humidity: " << LastMeasurement->Humidity->Value << " Pressure: " << LastMeasurement->Pressure->Value << " Temperature: " << LastMeasurement->Temperature->Value << std::endl;
 
 
 				if (StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(LastMeasurement))
@@ -1605,7 +1665,7 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 
 					std::cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate1->UnitString);
 					std::cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
-					std::cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate3->UnitString) << endl;
+					std::cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate3->UnitString) << std::endl;
 
 
 
@@ -1616,7 +1676,7 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 
 					std::cout << " X = " << stationaryMeas6D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate1->UnitString);
 					std::cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate2->UnitString);
-					std::cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate3->UnitString) << endl;
+					std::cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate3->UnitString) << std::endl;
 
 
 				}
@@ -1626,7 +1686,7 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 
 					std::cout << " X = " << singleshot3dD->Position->Coordinate1->Value << " " << (decode)(singleshot3dD->Position->Coordinate1->UnitString);
 					std::cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << " " << (decode)(singleshot3dD->Position->Coordinate2->UnitString);
-					std::cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << " " << (decode)(singleshot3dD->Position->Coordinate3->UnitString) << endl;
+					std::cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << " " << (decode)(singleshot3dD->Position->Coordinate3->UnitString) << std::endl;
 
 
 				}
@@ -1636,7 +1696,7 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 
 					std::cout << " X = " << singleshot6dD->Position->Coordinate1->Value << " " << (decode)(singleshot6dD->Position->Coordinate1->UnitString);
 					std::cout << " Y = " << singleshot6dD->Position->Coordinate2->Value << " " << (decode)(singleshot6dD->Position->Coordinate2->UnitString);
-					std::cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << " " << (decode)(singleshot6dD->Position->Coordinate3->UnitString) << endl;
+					std::cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << " " << (decode)(singleshot6dD->Position->Coordinate3->UnitString) << std::endl;
 
 				}
 			}
@@ -1647,7 +1707,7 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, LMF::Tracker::Enums::EMeasurementStatus paramNewValue)
 {
 	//    throw gcnew System::NotImplementedException();
-	std::cout << "Measurement Status Value changed: " << endl;
+	std::cout << "Measurement Status Value changed: " << std::endl;
 
 	if (paramNewValue == EMeasurementStatus::ReadyToMeasure) { std::cout << "Ready To Measure . . . \n"; }
 	if (paramNewValue == EMeasurementStatus::MeasurementInProgress) { std::cout << "Measurement in Progress . . . \n"; }
@@ -1660,19 +1720,19 @@ void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, 
 
 void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
 {
-	std::cout << "Bool Value changed: " << endl;
+	std::cout << "Bool Value changed: " << std::endl;
 	//	throw gcnew System::NotImplementedException();
 }
 
 void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
 {
-	std::cout << "Double Value changed: " << endl;
+	std::cout << "Double Value changed: " << std::endl;
 	//	throw gcnew System::NotImplementedException();
 }
 
 void OnChanged(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue)
 {
-	std::cout << "Callback Face value changed: " << endl;
+	std::cout << "Callback Face value changed: " << std::endl;
 	//	throw gcnew System::NotImplementedException();
 }
 
@@ -1717,8 +1777,8 @@ void OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleReadout^
 	std::cout << " InWorkingRange: " << TFS[(int)paramBubbleReadout->InWorkingRange];
 	DateTime^ dt;
 	dt = paramBubbleReadout->TimeStamp;
-	std::cout << " TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << endl;
-	std::cout << endl;
+	std::cout << " TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+	std::cout << std::endl;
 }
 
 void OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitoring^ sender)
@@ -1759,4 +1819,24 @@ void OnChanged(LMF::Tracker::BasicTypes::EnumTypes::StartStopSourceValue^ sender
 void OnTriggeredMeasurementsArrived(LMF::Tracker::Measurements::Profiles::CustomTriggerProfile^ sender, LMF::Tracker::MeasurementResults::TriggeredMeasurementCollection^ paramMeasurements)
 {
 	throw gcnew System::NotImplementedException();
+}
+
+void OnClosed(LMF::Tracker::OVC::Dialog^ sender)
+{
+	throw gcnew System::NotImplementedException();
+}
+
+
+void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
+{
+//	throw gcnew System::NotImplementedException();
+	std::cout << "Callback OnImageArrived . . . ";
+	std::cout << atrCoordinates->Count << " Targets seen in Image." << std::endl;
+}
+
+void OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
+{
+	// throw gcnew System::NotImplementedException();
+	std::cout << "Callback OnWPFBitmapImageArrived . . . ";
+	std::cout << atrCoordinates->Count << " Targets seen in Image." << std::endl;
 }
