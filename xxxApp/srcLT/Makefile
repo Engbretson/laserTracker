@@ -5,13 +5,14 @@ include $(TOP)/configure/CONFIG
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 #=============================
 
-USR_CXXFLAGS += /EHa /clr /D_AFXDLL /AI.. /D_WIN32_WINNT=0x601
+USR_CXXFLAGS += /EHa /clr /D_AFXDLL /AI.. /D_WIN32_WINNT=0x601 /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5"
+
 
 LIBRARY_IOC += ltAt403
 DBD += ltAT403.dbd
 
 
-ltAt403_SRCS += ltAT403.cpp
+ltAt403_SRCS += ltAT403.cpp QTS.cpp
 ltAt403_LIBS += asyn alive
 
 ltAt403_LIBS += $(EPICS_BASE_IOC_LIBS)

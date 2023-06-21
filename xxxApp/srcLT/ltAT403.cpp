@@ -21,7 +21,12 @@
 #include <windows.h>
 #pragma comment(lib, "User32.lib")
 
+extern void closeWindowByTitle(const char* title); 
+extern void closeWindowByPartialTitle(const char* partialTitle);
+extern std::string decode(System::String^ something);
 
+
+/*
 void closeWindowByTitle(const char* title) {
     HWND window = FindWindow(NULL, title);
     if (window != NULL) {
@@ -45,10 +50,11 @@ void closeWindowByPartialTitle(const char* partialTitle) {
         window = FindWindowEx(NULL, window, NULL, NULL);
     }
 }
-
+*/
 
 static const char *driverName="LTAt403";
 
+/*
 std::string decode(System::String^ something)
 {
 	if (System::String::IsNullOrEmpty(something))
@@ -56,6 +62,7 @@ std::string decode(System::String^ something)
 	else
 		return (msclr::interop::marshal_as<std::string>(something));
 }
+*/
 
 /** Constructor for the LTAt403 class.
   * Calls constructor for the asynPortDriver base class.
@@ -227,6 +234,8 @@ LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker-
 
 }
 
+extern int mainLT(void);
+
 void LTAt403::initializeHardware(const char *portName)
 {
  
@@ -240,6 +249,7 @@ void LTAt403::initializeHardware(const char *portName)
     GlobalObjects::LMFTracker->Initialize();
 	closeWindowByPartialTitle("Simulator"); //but works here, so is the windows not always finsihed generating when this happens?
 
+mainLT();
 };
 
 asynStatus LTAt403::readInt32(asynUser *pasynUser, epicsInt32 *value)

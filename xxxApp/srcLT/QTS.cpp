@@ -15,8 +15,6 @@
 #include <msclr\marshal_cppstd.h>
 
 using namespace System;
-#include "termcolor.hpp"
-using namespace termcolor;
 
 using namespace msclr::interop;
 // using namespace std; 
@@ -347,13 +345,11 @@ int  CheckForMeasurementErrors(LMF::Tracker::Tracker^ LMFTracker)
 }
 int mainLT(void);
 
-#ifdef DO_MAIN
-int main()
-{
-	mainLT();
-}
-#endif
 
+//int main()
+//{
+//	mainLT();
+//}
 
 int mainLT()
 {
@@ -636,7 +632,6 @@ int mainLT()
 
 	CheckForMeasurementErrors(LMFTracker);
 
-
 	Do_Compensations(LMFTracker);
 	Do_Face(LMFTracker);
 	Do_InclinationSensor(LMFTracker);
@@ -663,7 +658,7 @@ int mainLT()
 	//
 	// but certainly could turn off the laser if you plan on leaving it on, but still have a warm-up time
 
-//	LMFTracker->Laser->IsOn->Value = 0;
+	LMFTracker->Laser->IsOn->Value = 0;
 
 
 	std::cout << "Disconnect . . . \n";
@@ -674,7 +669,7 @@ int mainLT()
 void Do_TrackerAlignment(LMF::Tracker::Tracker^ LMFTracker)
 {
 	std::cout << std::endl;
-	std::cout << "TrackerAlignment . . . basically requires real numbers to calculate anything." << std::endl;
+	std::cout << "TrackerAlignment . . . basically requires real number to calculate anything.\n";
 
 	// I guess that I need values for parm1 and param2 for any of this stuff to actually work.
 
@@ -811,11 +806,7 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 	Do_BoolValue("MeasurementInProgress", LMFTracker->Measurement->MeasurementInProgress);
 	std::cout << "Profiles: Count: " << LMFTracker->Measurement->Profiles->Count << std::endl;
 
-	std::cout << "Try Quick Measurement . . . " << std::endl;
 
-	LMFTracker->Measurement->StartMeasurement();
-	Sleep(20);
-	LMFTracker->Measurement->StopMeasurement();
 
 	for (int i = 0; i < LMFTracker->Measurement->Profiles->Count; i++)
 	{
@@ -1004,7 +995,6 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 	}
 
 
-
 	std::cout << std::endl;
 }
 
@@ -1071,17 +1061,10 @@ void Do_InclinationSensor(LMF::Tracker::Tracker^ LMFTracker)
 
 	LMFTracker->InclinationSensor->BubbleReadout->BubbleReadoutArrived += gcnew LMF::Tracker::Inclination::InclinationBubbleReadout::BubbleReadoutArrivedHandler(&OnBubbleReadoutArrived);
 
-	LMFTracker->InclinationSensor->Measure();
-
-
-
-	if (LMFTracker->InclinationSensor->InclinedToGravity->Value == false) {
 	std::cout << "Attemping InclinationToGravity . . . This is going to take a while . . .  " << std::endl;
-		LMFTracker->InclinationSensor->InclinedToGravity->Value = true;
-		LMFTracker->InclinationSensor->GetInclinationToGravity();
-	}
 
-	LMFTracker->InclinationSensor->Monitoring->Active->Value = true;
+	LMFTracker->InclinationSensor->GetInclinationToGravity();
+//	LMFTracker->InclinationSensor->InclinedToGravity->Value = 1;
 
 	std::cout << "Attemping StartBubbleReadoutStream . . . " << std::endl;
 
@@ -1184,11 +1167,9 @@ void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker)
 		" Value: " << TFS[(int)LMFTracker->MeteoStation->HardwarePressure->Available->Value] <<
 		std::endl;
 
-	
 	std::cout << "HardwareTemperature: Label: " << (decode)(LMFTracker->MeteoStation->HardwareTemperature->Label) <<
 		" SerialNumber: " << (decode)(LMFTracker->MeteoStation->HardwareTemperature->SerialNumber) <<
-		// The degree symbol from this device is something wierd, so pop it off and replace it with something correct.
-		" UnitString: " <<  '\370' << (decode)(LMFTracker->MeteoStation->HardwareTemperature->UnitString->Substring(1)) <<
+		" UnitString: " << (decode)(LMFTracker->MeteoStation->HardwareTemperature->UnitString) <<
 		" UnitType: " << EUnitTypeStrings[(int)LMFTracker->MeteoStation->HardwareTemperature->UnitType] <<
 		" Value: " << LMFTracker->MeteoStation->HardwareTemperature->Value <<
 		" ValueInBaseUnits: " << LMFTracker->MeteoStation->HardwareTemperature->ValueInBaseUnits <<
@@ -1262,9 +1243,7 @@ void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker)
 
 
 		" SerialNumber: " << (decode)(LMFTracker->MeteoStation->ManualTemperature->SerialNumber) <<
-		// The degree symbol from this device is something wierd, so pop it off and replace it with something correct.
-		" UnitString: " << '\370' << (decode)(LMFTracker->MeteoStation->ManualTemperature->UnitString->Substring(1)) <<
-//		" UnitString: " << (decode)(LMFTracker->MeteoStation->ManualTemperature->UnitString) <<
+		" UnitString: " << (decode)(LMFTracker->MeteoStation->ManualTemperature->UnitString) <<
 		" UnitType: " << EUnitTypeStrings[(int)LMFTracker->MeteoStation->ManualTemperature->UnitType] <<
 		" Value: " << LMFTracker->MeteoStation->ManualTemperature->Value <<
 		" ValueInBaseUnits: " << LMFTracker->MeteoStation->ManualTemperature->ValueInBaseUnits <<
@@ -1278,9 +1257,7 @@ void Do_MeteoStation(LMF::Tracker::Tracker^ LMFTracker)
 
 	std::cout << "ObjectTemperature: Label: " << (decode)(LMFTracker->MeteoStation->ObjectTemperature->Label) <<
 		" SerialNumber: " << (decode)(LMFTracker->MeteoStation->ObjectTemperature->SerialNumber) <<
-		// The degree symbol from this device is something wierd, so pop it off and replace it with something correct.
-		" UnitString: " << '\370' << (decode)(LMFTracker->MeteoStation->ObjectTemperature->UnitString->Substring(1)) <<
-//		" UnitString: " << (decode)(LMFTracker->MeteoStation->ObjectTemperature->UnitString) <<
+		" UnitString: " << (decode)(LMFTracker->MeteoStation->ObjectTemperature->UnitString) <<
 		" UnitType: " << EUnitTypeStrings[(int)LMFTracker->MeteoStation->ObjectTemperature->UnitType] <<
 		" Value: " << LMFTracker->MeteoStation->ObjectTemperature->Value <<
 		" ValueInBaseUnits: " << LMFTracker->MeteoStation->ObjectTemperature->ValueInBaseUnits <<
@@ -1382,18 +1359,14 @@ void Do_PowerLock(LMF::Tracker::Tracker^ LMFTracker)
 	LMF::Tracker::OVC::ATRCoordinateCollection^ gettargetdirections = LMFTracker->PowerLock->GetTargetDirections();
 
 	std::cout << "Get Target Directions Count: " << gettargetdirections->Count << std::endl;
-	
-// And this is a heck of a lot easier to get the coordinates of the trckers in the camera
 	for (int i = 0; i < gettargetdirections->Count; i++)
 	{
-		std::cout << std::endl;
+		// And this part now starts to get wierd . . .  since the OVC class is the camera system . . .  and values only seem to exist if you actually collect an image
+		// and it reports how to find the target in that picture. So why is this under powerlock? Manual doesn't explain what this is, or why it might exist at all.
+		// Also, The method that *should* return the items so that you can actually read the AngleHz, AngleVt, PixelX, and PixelY values *claims* to be in the TLB, 
+		// but isn't something that I can actually access.
 
-		LMF::Tracker::OVC::ATRCoordinate^ thing = gettargetdirections[i];
-		Do_SimpleDoubleValue("AngleHz", thing->AngleHz);
-		Do_SimpleDoubleValue("AngleVt", thing->AngleVt);	
-		Do_SimpleDoubleValue("PixelX", thing->PixelX);
-		Do_SimpleDoubleValue("PixelY", thing->PixelY);
-//		std::cout << std::endl;
+		// punt this until later . . .
 	}
 
 	std::cout << std::endl;
@@ -1677,19 +1650,17 @@ void OnDisconnected(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::
 void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error)
 {
 	//   throw gcnew System::NotImplementedException();
-	
-	std::cout << "callback OnErrorArivved exception code: " << error->Number << " " << (decode)(error->Description) << std::endl;;
-//	std::cout << "callback Got some sort of error message . . . \n";
+	std::cout << "callback exception code: " << error->Number << " " << (decode)(error->Description) << std::endl;;
+	std::cout << "callback Got some sort of error message . . . \n";
 }
 
 void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Direction^ bm, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	if (ex)
-		std::cout << "callback exception " << (decode)(ex->Description);
-//	std::cout << "callback Got some sort of Get Direction finished message . . . \n";
+	std::cout << "callback exception " << (decode)(ex->Description) << std::endl;;
+	std::cout << "callback Got some sort of Get Direction finished message . . . \n";
 
-	std::cout <<  " Direction H Angle: " << bm->HorizontalAngle->Value << " V Angle: " << bm->VerticalAngle->Value << std::endl;
+	std::cout << "Direction H Angle: " << bm->HorizontalAngle->Value << " V Angle: " << bm->VerticalAngle->Value << std::endl;
 
 
 }
@@ -1697,7 +1668,6 @@ void OnGetDirectionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Directi
 void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::MeasurementResults::Measurement^ paramMeasurement, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	if(ex)
 	std::cout << "callback exception " << (decode)(ex->Description) << std::endl;;
 	std::cout << "callback OnGetPosition Finished . . . \n";
 
@@ -1706,7 +1676,6 @@ void OnGetPrismPositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Mea
 void OnGoHomePositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
 	//   throw gcnew System::NotImplementedException();
-	if (ex)
 	std::cout << "callback exception " << (decode)(ex->Description) << std::endl;;
 	std::cout << "callback Asyn GoHomePosition finished . . . \n";
 }
@@ -1714,8 +1683,8 @@ void OnGoHomePositionFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Error
 void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo)
 {
 	//   throw gcnew System::NotImplementedException();
-	std::cout << "OnInformationArrived: " << (decode)(paramInfo->Description) << std::endl;;
-//	std::cout << "callback Got some sort of Information message . . . \n";
+	std::cout << (decode)(paramInfo->Description) << std::endl;;
+	std::cout << "callback Got some sort of Information message . . . \n";
 }
 
 void OnInitializeFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfException^ ex)
@@ -1733,10 +1702,7 @@ void OnPositionToFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Targets::
 
 	std::cout << "callback PositionTo finished . . . ";
 
-	std::cout << " Found a " << (decode)(foundTarget->ProductName) << std::endl;
-
-// If you determine what sort of target this is, you can pull a bit more information out, but nothing earth shaking.  
-// I.e., position you still need to grab from someone else
+	std::cout << "Found a " << (decode)(foundTarget->ProductName) << std::endl;
 
 	try {
 		std::cout << (decode)(ex->Description) << std::endl;;
@@ -1745,6 +1711,8 @@ void OnPositionToFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Targets::
 	{
 
 	}
+
+
 
 }
 
@@ -1769,7 +1737,6 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 	LMF::Tracker::MeasurementResults::Measurement^ LastMeasurement = nullptr;
 
 	// throw gcnew System::NotImplementedException();
-	std::cout << blue << on_white;
 	std::cout << "callback Got a Measurement Value . . . \n";
 
 	std::cout << "counts :" << paramMeasurements->Count << std::endl;
@@ -1827,12 +1794,10 @@ void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sende
 			}
 		}
 	}
-	std::cout << reset;
 }
 
 void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, LMF::Tracker::Enums::EMeasurementStatus paramNewValue)
 {
-	std::cout << blue << on_white;
 	//    throw gcnew System::NotImplementedException();
 	std::cout << "Measurement Status Value changed: " << std::endl;
 
@@ -1840,8 +1805,6 @@ void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, 
 	if (paramNewValue == EMeasurementStatus::MeasurementInProgress) { std::cout << "Measurement in Progress . . . \n"; }
 	if (paramNewValue == EMeasurementStatus::NotReady) { std::cout << "Not Ready . . . \n"; }
 	if (paramNewValue == EMeasurementStatus::Invalid) { std::cout << "Measurement Status Invalid . . . \n"; }
-std::cout << reset;
-
 }
 
 //decoding these gets . . .  messy, since dozens of things all normally feed into these, so would have to parse through alot of senders to see what actual field and/or PV 
@@ -1849,56 +1812,31 @@ std::cout << reset;
 
 void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
 {
-	std::cout << blue << on_white;
-	std::cout << "Bool Value changed: " << paramNewValue;
-	std::cout << " Label: " << (decode)(sender->Label) <<
-		" Value: " << sender->Value <<
-		std::endl;
+	std::cout << "Bool Value changed: " << std::endl;
 	//	throw gcnew System::NotImplementedException();
-	std::cout << reset;
-
 }
 
 void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
 {
-	std::cout << blue << on_white;
-	std::cout << blue << on_white;
-	std::cout << "Double Value changed: " << paramNewValue;
-
+	std::cout << "Double Value changed: " << std::endl;
 	//	throw gcnew System::NotImplementedException();
-	std::cout << " Label: " << (decode)(sender->Label) <<
-		" Value: " << sender->Value <<
-		std::endl;
-	std::cout << reset;
-	std::cout << reset;
-
 }
 
 void OnChanged(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue)
 {
-	std::cout << blue << on_white;
-	std::cout << "Callback Face value changed: " << (int) paramNewValue << std::endl;
-	std::cout << reset;
-
+	std::cout << "Callback Face value changed: " << std::endl;
 	//	throw gcnew System::NotImplementedException();
 }
 
 void OnChangeFinished(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
-	std::cout << blue << on_white;
-	std::cout << "Callback On Face Change Finished . . . ";
-	std::cout << reset;
-
+	std::cout << "Callback On Face Change Finished . . . \n";
 	//throw gcnew System::NotImplementedException();
 }
 
 void OnChanged(LMF::Tracker::BasicTypes::EnumTypes::ReadOnlyPowerSourceValue^ sender, LMF::Tracker::Enums::EPowerSource paramNewValue)
 {
-	std::cout << blue << on_white;
-	std::cout << "Callback PowerSouceEnum value changed: " << TFS[(int)paramNewValue] << std::endl;
-	std::cout << reset;
-
-//	throw gcnew System::NotImplementedException();
+	throw gcnew System::NotImplementedException();
 }
 
 void OnFinished(LMF::Tracker::Targets::TargetSearch^ sender, LMF::Tracker::Targets::Target^ foundTarget, LMF::Tracker::ErrorHandling::LmfException^ ex)
@@ -1908,15 +1846,7 @@ void OnFinished(LMF::Tracker::Targets::TargetSearch^ sender, LMF::Tracker::Targe
 
 void OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ sender, double paramTemperature, double paramHumidity, double paramPressure)
 {
-	std::cout << blue << on_white;
-	std::cout << "Callback Environment values changed: " << 
-		" Temp: " << paramTemperature <<
-		" Humidity: " << paramHumidity <<
-		" Pressure: " << paramPressure <<
-		std::endl;
-	std::cout << reset;
-
-//	throw gcnew System::NotImplementedException();
+	throw gcnew System::NotImplementedException();
 }
 
 void OnChanged(LMF::Tracker::Meteo::MeteoSource^ sender, LMF::Tracker::Enums::EMeteoSource paramNewValue)
@@ -1931,33 +1861,21 @@ void OnGetInclinationToGravityFinished(LMF::Tracker::Inclination::InclinationSen
 
 void OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleReadout^ sender, LMF::Tracker::Inclination::BubbleReadoutArrivedEventArgs^ paramBubbleReadout)
 {
-std::cout << blue << on_white;
 	//	throw gcnew System::NotImplementedException();
-	std::cout  << "Callback OnBubbleReadoutArrived . . . ";
+	std::cout << "Callback OnBubbleReadoutArrived . . . ";
 	std::cout << " InclinationL: " << paramBubbleReadout->InclinationL;
 	std::cout << " InclinationT: " << paramBubbleReadout->InclinationT;
 	std::cout << " InValidRange: " << TFS[(int)paramBubbleReadout->InValidRange];
 	std::cout << " InWorkingRange: " << TFS[(int)paramBubbleReadout->InWorkingRange];
 	DateTime^ dt;
 	dt = paramBubbleReadout->TimeStamp;
-// for some reason, callback values seem to be in UTC, so need to correct it back to local time
-	dt = dt->ToLocalTime();
 	std::cout << " TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
-	std::cout  << std::endl;
-	std::cout << reset;
+	std::cout << std::endl;
 }
 
 void OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitoring^ sender)
 {
-//	throw gcnew System::NotImplementedException();
-	std::cout << blue << on_white;
-	std::cout << "Callback OnInclinationChange  . . . " <<
-		" X: " << sender->Current->X->Value <<
-		" Y: " << sender->Current->Y->Value <<
-		std::endl;
-
-
-	std::cout << reset;
+	throw gcnew System::NotImplementedException();
 }
 
 void OnChanged(LMF::Tracker::BasicTypes::EnumTypes::AccuracyValue^ sender, LMF::Tracker::Enums::EAccuracy paramNewValue)
@@ -2004,18 +1922,13 @@ void OnClosed(LMF::Tracker::OVC::Dialog^ sender)
 void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
 {
 //	throw gcnew System::NotImplementedException();
-	std::cout << blue << on_white;
 	std::cout << "Callback OnImageArrived . . . ";
 	std::cout << atrCoordinates->Count << " Targets seen in Image." << std::endl;
-	std::cout << reset;
 }
 
 void OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
 {
 	// throw gcnew System::NotImplementedException();
-	std::cout << blue << on_white;
 	std::cout << "Callback OnWPFBitmapImageArrived . . . ";
 	std::cout << atrCoordinates->Count << " Targets seen in Image." << std::endl;
-	std::cout << reset;
-
 }
