@@ -12,5 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\testSrc\QueryTrackerState.cpp" />
+    <ClCompile Include="..\..\testSrc\LaserTrackerCode.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\testSrc\QueryTrackerState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

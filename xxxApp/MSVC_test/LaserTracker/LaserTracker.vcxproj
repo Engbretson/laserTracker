@@ -19,7 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\testSrc\LaserTrackerCode.cpp" />
     <ClCompile Include="..\..\testSrc\QueryTrackerState.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\testSrc\QueryTrackerState.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
