@@ -54,15 +54,44 @@ void closeWindowByPartialTitle(const char* partialTitle) {
 
 static const char *driverName="LTAt403";
 
-/*
+
 std::string decode(System::String^ something)
 {
 	if (System::String::IsNullOrEmpty(something))
-		return "N/A";
+		return "";
 	else
 		return (msclr::interop::marshal_as<std::string>(something));
 }
-*/
+
+
+void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
+{
+//	std::cout << blue << on_white;
+//	std::cout << blue << on_white;
+	std::cout << "Double Value changed: " << paramNewValue;
+
+	//	throw gcnew System::NotImplementedException();
+	std::cout << " Label: " << (decode)(sender->Label) <<
+		" Value: " << sender->Value <<
+		std::endl;
+//	std::cout << reset;
+
+
+}
+
+void OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ sender, double paramTemperature, double paramHumidity, double paramPressure)
+{
+//	std::cout << blue << on_white;
+	std::cout << "Callback Environment values changed: " <<
+		" Temp: " << paramTemperature <<
+		" Humidity: " << paramHumidity <<
+		" Pressure: " << paramPressure <<
+		std::endl;
+//	std::cout << reset;
+
+	//	throw gcnew System::NotImplementedException();
+}
+
 
 /** Constructor for the LTAt403 class.
   * Calls constructor for the asynPortDriver base class.
@@ -82,6 +111,8 @@ LTAt403::LTAt403(const char *portName)
 //    int i;
     const char *functionName = "LTAt403";
 
+	LTAt403_ = this;
+
     initializeHardware(portName);	
  
 	createParam(L_iscompatibleFirmwareString,          asynParamInt32,         &L_iscompatibleFirmware);	
@@ -93,6 +124,7 @@ LTAt403::LTAt403(const char *portName)
     createParam(L_nameString, asynParamOctet, &L_name);
     createParam(L_productNameString, asynParamOctet, &L_productName);
     createParam(L_serialNumberString, asynParamOctet, &L_serialNumber);
+
 	createParam(L_angleUnitsString, asynParamOctet, &L_angleUnits);
 	createParam(L_humidityUnitsString, asynParamOctet, &L_humidityUnits);
 	createParam(L_pressureUnitsString, asynParamOctet, &L_pressureUnits);
@@ -111,6 +143,7 @@ LTAt403::LTAt403(const char *portName)
 	createParam(L_zString, asynParamFloat64, &L_z);
 
 	 // lets do some test commands 
+
  
     printf("\n***********************************\n");
 	printf("\nConnected to Laser Tracker, checking default parameters . . . \n");
@@ -196,8 +229,19 @@ LTAt403::LTAt403(const char *portName)
 	setStringParam(L_angleUnits,(decode)(dir1->VerticalAngle->UnitString));
 	
 // this code you can't actually do unless a tracker actually exists
-/*
-LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker->Measurement->MeasureStationary();
+	GlobalObjects::LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
+	LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker->Measurement->MeasureStationary();
+	
+
+
+GlobalObjects::LMFTracker->Measurement->StartMeasurement();
+
+	 GlobalObjects::LMFTracker->MeteoStation->EnvironmentalValuesChanged += gcnew LMF::Tracker::Meteo::MeteoStation::EnvironmentalValuesChangedEventHandler(&OnEnvironmentalValuesChanged);
+
+	 GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	 GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	 GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+
 
 	cout << "Measurment Humidity: " << data->Humidity->Value << " " << (decode) (data->Humidity->UnitString)
 		<< " Pressure: " << data->Pressure->Value << " " << (decode)(data->Pressure->UnitString)
@@ -223,7 +267,7 @@ LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker-
 	setStringParam(L_yUnits,(decode)(stationaryMeas3D->Position->Coordinate2->UnitString) );
 	setStringParam(L_zUnits,(decode)(stationaryMeas3D->Position->Coordinate3->UnitString) );
 
-*/
+
 // end of test commands 
     
 	printf("\n***********************************\n\n");
@@ -231,26 +275,81 @@ LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker-
 
     callParamCallbacks();	
 
+	
 
 }
 
-extern int mainLT(void);
+
+
+//extern int mainLT(void);
+/*
+I need the msvc compiler development environment to more easily deal with resolving references to the TBL
+I don't expect to actually be able to run this as a binary.
+*/
+#ifdef DO_MAIN
+int main(void) {
+
+}
+#endif
+
+
 
 void LTAt403::initializeHardware(const char *portName)
 {
- 
+
  	GlobalObjects::con = gcnew Connection();
+	try {
     GlobalObjects::LMFTracker = GlobalObjects::con->Connect(marshal_as<String^>(portName));
+	}
+		catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		std::cout << "Error code: " << e->Number << " " << (decode)(e->Description) << std::endl;;
+		//		std::cout << "Hit an exception trying to perform a Connect call, Exiting. \n";
+
+		//		exit(-1);
+		std::cout << "No actual Hardware seen . . . . using Simulator \n";
+		GlobalObjects::LMFTracker = GlobalObjects::con->Connect("At930Simulator");
+	}
 //    closeWindowByTitle("AT403 Simulator 1.8.0.2250"); // up to 1.9.1.11 now
 //	closeWindowByTitle("AT930 Simulator 1.8.0.2250"); // up to 1.9.1.11 now
 // Not sure what a normal laser tracker might show , maybe key on the SDK value?
 
-	closeWindowByPartialTitle("Simulator"); //not working, but the above ones did.
-    GlobalObjects::LMFTracker->Initialize();
-	closeWindowByPartialTitle("Simulator"); //but works here, so is the windows not always finsihed generating when this happens?
+//	closeWindowByPartialTitle("Simulator"); //not working, but the above ones did.
 
-mainLT();
+//	closeWindowByPartialTitle("Simulator"); //but works here, so is the windows not always finsihed generating when this happens?
+
+	int check = 1;
+	while (check) {
+		try {
+			check = 0;
+			GlobalObjects::LMFTracker->Initialize();
+
+		}
+		catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+		{
+			check = 1;
+			if (GlobalObjects::LMFTracker->Laser->IsOn->Value == 0) {
+				std::cout << "laser is off . . . Attemping Laser On . . . " << std::endl;
+				GlobalObjects::LMFTracker->Laser->IsOn->Value = 1;
+			}
+			std::cout << "Initialization Error Code: " << e->Number << " " << (decode)(e->Description) << std::endl;
+			//		std::cout << "Hit an exception trying to perform an Initialize  call \n";
+			//		std::cout << "waiting for no Initialze exceptions . . . .\n";
+			Sleep(15000); // 15 seconds between test
+
+		}
+
+	}
+	
+	GlobalObjects::LMFTracker->PositionTo(true, false, 546, 3059, 690);
+
+	
+// Now we actually need to do more than just connect to it since certain other things should also be happening . . . 
+
+
 };
+
+
 
 asynStatus LTAt403::readInt32(asynUser *pasynUser, epicsInt32 *value)
 {
@@ -261,6 +360,7 @@ asynStatus LTAt403::readInt32(asynUser *pasynUser, epicsInt32 *value)
   
   static const char *functionName = "readInt32";
 
+   
   this->getAddress(pasynUser, &addr);
   
 //  printf("in readInt32 . . . function %d \n",function);
@@ -318,3 +418,134 @@ epicsExportRegistrar(LTAt403Register);
 
 }
 
+/*
+
+void LTAt403::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException)
+{
+//	throw gcnew System::NotImplementedException();
+	std::cout << "I am in the On MeasurementArivved Callback . . . " << std::endl;
+
+	LMF::Tracker::MeasurementResults::Measurement^ LastMeasurement = nullptr;
+
+	// throw gcnew System::NotImplementedException();
+//	std::cout << blue << on_white;
+	std::cout << "callback Got a Measurement Value . . . \n";
+
+	std::cout << "counts :" << paramMeasurements->Count << std::endl;
+
+	if (paramMeasurements)
+	{
+		//        if (paramMeasurements->Count > 0)
+		for (int i = 0; i < paramMeasurements->Count; ++i) {
+			{
+				LastMeasurement = paramMeasurements[i];
+
+				std::cout << "Measurment Humidity: " << LastMeasurement->Humidity->Value << " Pressure: " << LastMeasurement->Pressure->Value << " Temperature: " << LastMeasurement->Temperature->Value << std::endl;
+
+
+				if (StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(LastMeasurement))
+				{
+					std::cout << "I am a stationary3d measurement \n";
+
+					std::cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate1->UnitString);
+					std::cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
+					std::cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate3->UnitString) << std::endl;
+GlobalObjects::myLTAt403->setDoubleParam(L_x, stationaryMeas3D->Position->Coordinate1->Value);
+ //	setDoubleParam(L_x, stationaryMeas3D->Position->Coordinate1->Value);
+//	setDoubleParam(L_y, stationaryMeas3D->Position->Coordinate2->Value);
+//	setDoubleParam(L_z, stationaryMeas3D->Position->Coordinate3->Value);
+
+				}
+				else if (StationaryMeasurement6D^ stationaryMeas6D = dynamic_cast<StationaryMeasurement6D^>(LastMeasurement))
+				{
+					std::cout << "I am a stationary6d measurement \n";
+
+					std::cout << " X = " << stationaryMeas6D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate1->UnitString);
+					std::cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate2->UnitString);
+					std::cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate3->UnitString) << std::endl;
+ //	setDoubleParam(L_x, stationaryMeas3D->Position->Coordinate1->Value);
+//	setDoubleParam(L_y, stationaryMeas3D->Position->Coordinate2->Value);
+//	setDoubleParam(L_z, stationaryMeas3D->Position->Coordinate3->Value);
+
+
+				}
+				else if (SingleShotMeasurement3D^ singleshot3dD = dynamic_cast<SingleShotMeasurement3D^>(LastMeasurement))
+				{
+					std::cout << "I am a singleshot 3d measurement \n";
+
+					std::cout << " X = " << singleshot3dD->Position->Coordinate1->Value << " " << (decode)(singleshot3dD->Position->Coordinate1->UnitString);
+					std::cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << " " << (decode)(singleshot3dD->Position->Coordinate2->UnitString);
+					std::cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << " " << (decode)(singleshot3dD->Position->Coordinate3->UnitString) << std::endl;
+// 	setDoubleParam(L_x, stationaryMeas3D->Position->Coordinate1->Value);
+//	setDoubleParam(L_y, stationaryMeas3D->Position->Coordinate2->Value);
+//	setDoubleParam(L_z, stationaryMeas3D->Position->Coordinate3->Value);
+
+
+				}
+				else if (SingleShotMeasurement6D^ singleshot6dD = dynamic_cast<SingleShotMeasurement6D^>(LastMeasurement))
+				{
+					std::cout << "I am a singleshot 6d measurement \n";
+
+					std::cout << " X = " << singleshot6dD->Position->Coordinate1->Value << " " << (decode)(singleshot6dD->Position->Coordinate1->UnitString);
+					std::cout << " Y = " << singleshot6dD->Position->Coordinate2->Value << " " << (decode)(singleshot6dD->Position->Coordinate2->UnitString);
+					std::cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << " " << (decode)(singleshot6dD->Position->Coordinate3->UnitString) << std::endl;
+ //	setDoubleParam(L_x, stationaryMeas3D->Position->Coordinate1->Value);
+//	setDoubleParam(L_y, stationaryMeas3D->Position->Coordinate2->Value);
+//	setDoubleParam(L_z, stationaryMeas3D->Position->Coordinate3->Value);
+
+				}
+			}
+		}
+	}
+//	    callParamCallbacks();	
+	GlobalObjects::LMFTracker->Measurement->StartMeasurement();
+//	std::cout << reset;
+}
+*/
+
+/*
+Callbacks gets strange since I can not talk to EPICS from a LMF callback since The attmpt is basically flagged as attempting to call a 
+non static method from static code. 
+
+Lightfield gets arround this is 2 ways, the class callback more or less calls a epics callback routine, so the effect gives toy all over the parameters
+provided by the vendor class callback, and since the epics asyn callbacks also have the correct references to the asyn pointer to the object, everything *might*
+actually resolve.
+
+So giving it a try . . . 
+
+
+*/
+/*
+// step #2 The specific call back into the epics side of things . . . 
+void LTAt403::myOnMeasurementArrived(asynUser* pasynUser, LMF::Tracker::MeasurementResults::MeasurementCollection^)
+{
+	callParamCallbacks();
+}
+
+// step #1 the hardware level callback
+
+void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException)
+{
+
+//	LTAt403::myOnMeasurementArrived(paramMeasurements);
+}
+*/
+
+void LTAt403::myOnMeasurementArrived(LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements)
+{
+	LTAt403_->callParamCallbacks();
+	std::cout << paramMeasurements->Count << std::endl;
+
+//		callParamCallbacks();
+}
+
+void LTAt403::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException)
+{
+//	throw gcnew System::NotImplementedException();
+//	myOnMeasurementArrived(paramMeasurements);
+	
+		LTAt403_->callParamCallbacks();
+	std::cout << "in callback " << paramMeasurements->Count << std::endl;
+	GlobalObjects::LMFTracker->Measurement->StartMeasurement();
+
+}

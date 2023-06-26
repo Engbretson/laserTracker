@@ -10,8 +10,8 @@ epicsEnvSet("IOC","ioc433LT")
 epicsEnvSet("PREFIX","433LT:")
 
 #epicsEnvSet("PORT","At403Simulator")
-epicsEnvSet("PORT","At930Simulator")
-#epicsEnvSet("PORT","164.54.116.53")
+#epicsEnvSet("PORT","At930Simulator")
+epicsEnvSet("PORT","164.54.116.53")
 
 dbLoadDatabase("../../dbd/windows-x64/iocxxxWin64.dbd")
 iocxxxWin64_registerRecordDeviceDriver(pdbbase)

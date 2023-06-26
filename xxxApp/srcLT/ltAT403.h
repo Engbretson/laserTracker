@@ -6,6 +6,8 @@
 #include <msclr\marshal.h>
 #include <msclr\marshal_cppstd.h>
 
+#define DRIVER_VERSION "1.0.0"
+
 // a slight space saver, since I have to do this *everywhere*, But I can't marshal null strings, so have to do something else like below
 // to handle the couple of special cases when this actually happens
 //#define decode msclr::interop::marshal_as<std::string>
@@ -63,14 +65,7 @@ using namespace LMF::Tracker::BasicTypes;
 #define L_zString "z"
 
 
-
-ref class GlobalObjects {
-public:
-
-static LMF::Tracker::Tracker^ LMFTracker;   
-static Connection^ con = gcnew Connection();
-
-};
+//void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
 
 
 /** Class that demonstrates the use of the asynPortDriver base class to greatly simplify the task
@@ -90,42 +85,56 @@ public:
 
     /* These are the methods that are new to this class */
 //    void simTask(void);
-static void initializeHardware(const char *portName);
-
-
+//static
+ void initializeHardware(const char *portName);
+ static void myOnMeasurementArrived(LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements);
+//void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);/ static void myOnMeasurementArrived(LMF::Tracker::MeasurementResults::MeasurementCollection^);
 protected:
 
 private:
     /** Values used for pasynUser->reason, and indexes into the parameter library. */
-	int L_iscompatibleFirmware;
+	 int L_iscompatibleFirmware;
 	
-    int L_comment;
-    int L_expectedFirmware;
-    int L_installedFirmware;
-    int L_ipAddress;
-    int L_name; 
-    int L_productName; 
-    int L_serialNumber; 
-	int L_angleUnits; 
-	int L_humidityUnits; 
-	int L_pressureUnits; 
-	int L_temperatureUnits; 
-	int L_xUnits;
-	int L_yUnits;
-	int L_zUnits;
+     int L_comment;
+     int L_expectedFirmware;
+     int L_installedFirmware;
+     int L_ipAddress;
+     int L_name; 
+     int L_productName; 
+     int L_serialNumber; 
+	 int L_angleUnits; 
+	 int L_humidityUnits; 
+	 int L_pressureUnits; 
+	 int L_temperatureUnits; 
+	 int L_xUnits;
+	 int L_yUnits;
+	 int L_zUnits;
 
 	
-	int L_horizontalAngle;
-	int L_verticalAngle;
-	int L_humidity;
-	int L_pressure;
-	int L_temperature;
-	int L_x;
-	int L_y;
-	int L_z;
+	 int L_horizontalAngle;
+	 int L_verticalAngle;
+	 int L_humidity;
+	 int L_pressure;
+	 int L_temperature;
+	 int L_x;
+	 int L_y;
+	 int L_z;
 							
 
+//	  void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo);
+//	 void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
+	 static void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
 };
-#define FIRST_lsAT403_PARAM comment
-#define LAST_lsAT403_PARAM serialNumber
+#define FIRST_lsAT403_PARAM L_iscompatibleFirmware
+#define LAST_lsAT403_PARAM L_z;
 #define NUM_PARAMS (&LAST_lsAT403_PARAM - &FIRST_lsAT403_PARAM + 1) 
+
+    static LTAt403* LTAt403_;
+
+	ref class GlobalObjects {
+public:
+	static LMF::Tracker::Tracker^ LMFTracker;
+	static Connection^ con = gcnew Connection();
+
+};
+

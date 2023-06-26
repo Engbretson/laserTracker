@@ -12,7 +12,7 @@ LIBRARY_IOC += ltAt403
 DBD += ltAT403.dbd
 
 
-ltAt403_SRCS += ltAT403.cpp QTS.cpp
+ltAt403_SRCS += ltAT403.cpp 
 ltAt403_LIBS += asyn alive
 
 ltAt403_LIBS += $(EPICS_BASE_IOC_LIBS)
