@@ -6,11 +6,20 @@
 #include <msclr\marshal.h>
 #include <msclr\marshal_cppstd.h>
 
-#define DRIVER_VERSION "1.0.0"
+#define DRIVER_VERSION "1.1.0"
 
 // a slight space saver, since I have to do this *everywhere*, But I can't marshal null strings, so have to do something else like below
 // to handle the couple of special cases when this actually happens
 //#define decode msclr::interop::marshal_as<std::string>
+
+
+const char* EDisplayUnitSystemStrings[] = { "Metric","Imperial" }; //ok
+const char* EPowerSourceStrings[] = { "Mains", "Battery", "PowerOverEthernet", "BatteryProblems" }; //ok
+const char* EFaceStrings[] = { "Face1", "Face2" }; //ok
+const char* EMeasurementStatusStrings[] = { "ReadyToMeasure","MeasurementInProgress","NotReady","Invalid" }; //ok
+const char* EUnitTypeStrings[] = { "None", "Angle", "Humidity", "Length", "Pressure", "Temperature", "Time", "Percent" }; //ok
+const char* TFS[] = { "False", "True" }; //ok
+const char* EMeteoSourceStrings[] = { "ManualMeteo", "LiveMeteo" };
 
 
 using namespace System;
@@ -31,11 +40,21 @@ using namespace LMF::Tracker::BasicTypes;
 
 // end of Laser Tracker Includes
 
-
-// may not need any of these actually, could hard encode it at point of actual use
-
-//ints
+//ints/bools
 #define L_iscompatibleFirmwareString "iscompatibleFirmware"
+
+#define L_faceString "face"
+#define L_face_commandString "face_command"
+
+#define L_islaseronString "islaseron"
+#define L_islaserwarmString "islaserwarm"
+#define L_laseronoff_commandString "laseronoff_command"
+
+#define L_measonoff_commandString "measonoff_command"
+
+#define L_meas_in_progString "meas_in_prog"
+#define L_end_markerString "end_marker"
+
 
 //strings
 #define L_commentString "comment"
@@ -65,76 +84,89 @@ using namespace LMF::Tracker::BasicTypes;
 #define L_zString "z"
 
 
-//void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
-
-
-/** Class that demonstrates the use of the asynPortDriver base class to greatly simplify the task
-  * of writing an asyn port driver.
-  * This class does a simple simulation of a digital oscilloscope.  It computes a waveform, computes
-  * statistics on the waveform, and does callbacks with the statistics and the waveform data itself.
-  * I have made the methods of this class public in order to generate doxygen documentation for them,
-  * but they should really all be private. */
 class LTAt403 : public asynPortDriver {
 public:
-    LTAt403(const char *portName);
-    virtual asynStatus readInt32(asynUser *pasynUser, epicsInt32 *value);
-    /* These are the methods that we override from asynPortDriver */
- //   virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
+	LTAt403(const char* portName);
+	virtual asynStatus readInt32(asynUser* pasynUser, epicsInt32* value);
+	/* These are the methods that we override from asynPortDriver */
+    virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
 //    virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
 //    virtual asynStatus readFloat64Array(asynUser *pasynUser, epicsFloat64 *value, size_t nElements, size_t *nIn);
 
-    /* These are the methods that are new to this class */
+	/* These are the methods that are new to this class */
 //    void simTask(void);
 //static
- void initializeHardware(const char *portName);
- static void myOnMeasurementArrived(LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements);
-//void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);/ static void myOnMeasurementArrived(LMF::Tracker::MeasurementResults::MeasurementCollection^);
+	void initializeHardware(const char* portName);
+
 protected:
 
 private:
-    /** Values used for pasynUser->reason, and indexes into the parameter library. */
-	 int L_iscompatibleFirmware;
-	
-     int L_comment;
-     int L_expectedFirmware;
-     int L_installedFirmware;
-     int L_ipAddress;
-     int L_name; 
-     int L_productName; 
-     int L_serialNumber; 
-	 int L_angleUnits; 
-	 int L_humidityUnits; 
-	 int L_pressureUnits; 
-	 int L_temperatureUnits; 
-	 int L_xUnits;
-	 int L_yUnits;
-	 int L_zUnits;
+	/** Values used for pasynUser->reason, and indexes into the parameter library. */
+	int L_iscompatibleFirmware;
 
-	
-	 int L_horizontalAngle;
-	 int L_verticalAngle;
-	 int L_humidity;
-	 int L_pressure;
-	 int L_temperature;
-	 int L_x;
-	 int L_y;
-	 int L_z;
-							
+	int L_comment;
+	int L_expectedFirmware;
+	int L_installedFirmware;
+	int L_ipAddress;
+	int L_name;
+	int L_productName;
+	int L_serialNumber;
 
-//	  void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo);
-//	 void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
-	 static void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
+	int L_angleUnits;
+	int L_humidityUnits;
+	int L_pressureUnits;
+	int L_temperatureUnits;
+	int L_xUnits;
+	int L_yUnits;
+	int L_zUnits;
+
+	int L_horizontalAngle;
+	int L_verticalAngle;
+	int L_humidity;
+	int L_pressure;
+	int L_temperature;
+	int L_x;
+	int L_y;
+	int L_z;
+
+	int L_face;
+	int L_face_command;
+
+	int L_islaseron;
+	int L_islaserwarm;
+	int L_laseronoff_command;
+	
+    int L_measonoff_command;
+	int L_meas_in_prog;
+
+	int l_end_marker;
+
+// laser tracker related callbacks
+
+	static void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
+	static void OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ sender, double paramTemperature, double paramHumidity, double paramPressure);
+	static void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error);
+	static void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo);
+	static void OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfWarning^ warning);
+	static void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
+	static void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, LMF::Tracker::Enums::EMeasurementStatus paramNewValue);
+	static void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+	static void OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+	static void OnLaserChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 };
+
 #define FIRST_lsAT403_PARAM L_iscompatibleFirmware
-#define LAST_lsAT403_PARAM L_z;
+#define LAST_lsAT403_PARAM L_end_marker;
 #define NUM_PARAMS (&LAST_lsAT403_PARAM - &FIRST_lsAT403_PARAM + 1) 
 
-    static LTAt403* LTAt403_;
+static LTAt403* LTAt403_;
 
-	ref class GlobalObjects {
+// Not sure if this is actually required, or if this is a carryover from other attempts that did not work without having to do this . . .
+// but too lazy to remove it and see if I can live without it or not.
+
+ref class GlobalObjects {
 public:
 	static LMF::Tracker::Tracker^ LMFTracker;
 	static Connection^ con = gcnew Connection();
-
 };
 

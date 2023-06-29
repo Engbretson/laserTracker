@@ -2,3 +2,4 @@ C:\epics\LaserTracker-R1-0\xxxApp\MSVC_test\LaserTracker\x64\Debug\LaserTracker.
 D:\epics\LaserTracker-R1-0\xxxApp\MSVC_test\x64\Debug\LaserTracker.exe.lastcodeanalysissucceeded
 D:\epics\LaserTracker-R1-0\xxxApp\MSVC_test\x64\Debug\LaserTracker.exe.CodeAnalysisLog.xml
 D:\epics\LaserTracker-R1-0\xxxApp\MSVC_test\LaserTracker\x64\Debug\NativeCodeAnalysis.read.1.tlog
+D:\epics\LaserTracker-R1-1\xxxApp\MSVC_test\LaserTracker\x64\Debug\LaserTracker.vcxproj.AssemblyReference.cache

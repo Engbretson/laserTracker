@@ -1,9 +1,2 @@
 ﻿  LaserTrackerCode.cpp
-  QueryTrackerState.cpp
-  .NETFramework,Version=4.5.AssemblyAttributes.cpp
-  Running Code Analysis for C/C++...
-  Generating Code...
-  LaserTracker.vcxproj -> D:\epics\LaserTracker-R1-0\xxxApp\MSVC_test\x64\Debug\LaserTracker.exe
-  Running Code Analysis...
-MSBUILD : warning CA1016: Microsoft.Design : Add an AssemblyVersion attribute to 'LaserTracker.exe'.
-  Code Analysis Complete -- 0 error(s), 1 warning(s)
+  LaserTracker.vcxproj -> D:\epics\LaserTracker-R1-1\xxxApp\MSVC_test\x64\Debug\LaserTracker.exe

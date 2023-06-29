@@ -1,6 +1,6 @@
 
 file {
-	name="C:\epics\LaserTracker-R1-0\xxxApp\op\adl\LaserTracker.adl"
+	name="D:\epics\LaserTracker-R1-1\xxxApp\op\adl\LaserTracker.adl"
 	version=030109
 }
 display {
@@ -236,7 +236,7 @@ text {
 		x=10
 		y=145
 		width=220
-		height=16
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -264,7 +264,7 @@ text {
 		x=10
 		y=170
 		width=220
-		height=14
+		height=20
 	}
 	"basic attribute" {
 		clr=14
@@ -292,7 +292,7 @@ text {
 		x=10
 		y=195
 		width=220
-		height=16
+		height=20
 	}
 	"basic attribute" {
 		clr=14

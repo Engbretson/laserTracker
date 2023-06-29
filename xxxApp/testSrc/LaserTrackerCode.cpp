@@ -246,9 +246,12 @@ void Do_TrackerAlignment(LMF::Tracker::Tracker^ LMFTracker)
 	std::cout << std::endl;
 	std::cout << "TrackerAlignment . . . basically requires real numbers to calculate anything." << std::endl;
 
-	// I guess that I need values for parm1 and param2 for any of this stuff to actually work.
+// I guess that I need values for parm1 and param2 for any of this stuff to actually work.
+// so all of this requires values and math and I don't have
 
 #ifdef HAVE_VALUES 
+
+
 
 	LMF::Tracker::TrackerAlignments::AlignmentOrientationInput^ param1;
 
@@ -387,11 +390,16 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 	Sleep(20);
 	LMFTracker->Measurement->StopMeasurement();
 
+/* This is actually important,
+
+	The first option is basically a one-shot
+	The second is a periodic one, so potentially a scan forevery.
+*/
+
 	for (int i = 0; i < LMFTracker->Measurement->Profiles->Count; i++)
 	{
 		std::cout << std::endl;
 		LMF::Tracker::Measurements::MeasurementProfile^ profile = LMFTracker->Measurement->Profiles[i];
-
 
 		if (LMF::Tracker::Measurements::Profiles::StationaryMeasurementProfile^ thisProfile = dynamic_cast<LMF::Tracker::Measurements::Profiles::StationaryMeasurementProfile^>(profile))
 		{
@@ -1412,10 +1420,11 @@ void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, 
 	//    throw gcnew System::NotImplementedException();
 	std::cout << "Measurement Status Value changed: " << std::endl;
 
-	if (paramNewValue == EMeasurementStatus::ReadyToMeasure) { std::cout << "Ready To Measure . . . \n"; }
-	if (paramNewValue == EMeasurementStatus::MeasurementInProgress) { std::cout << "Measurement in Progress . . . \n"; }
-	if (paramNewValue == EMeasurementStatus::NotReady) { std::cout << "Not Ready . . . \n"; }
-	if (paramNewValue == EMeasurementStatus::Invalid) { std::cout << "Measurement Status Invalid . . . \n"; }
+//	if (paramNewValue == EMeasurementStatus::ReadyToMeasure) { std::cout << "Ready To Measure . . . \n"; }
+//	if (paramNewValue == EMeasurementStatus::MeasurementInProgress) { std::cout << "Measurement in Progress . . . \n"; }
+//	if (paramNewValue == EMeasurementStatus::NotReady) { std::cout << "Not Ready . . . \n"; }
+//	if (paramNewValue == EMeasurementStatus::Invalid) { std::cout << "Measurement Status Invalid . . . \n"; }
+		std::cout << EMeasurementStatusStrings[(int)paramNewValue] << std::endl;
 	std::cout << reset;
 
 }
@@ -1586,12 +1595,37 @@ void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned ch
 	std::cout << reset;
 }
 
+
+using namespace System::Windows::Media::Imaging;
+using namespace System::Windows::Media;
+using namespace System::IO;
+
+#using <System.Xaml.dll>
+
+int filenamenumber = 0;
+
 void OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
 {
+	filenamenumber++;
+
+
 	// throw gcnew System::NotImplementedException();
 	std::cout << blue << on_white;
 	std::cout << "Callback OnWPFBitmapImageArrived . . . ";
 	std::cout << atrCoordinates->Count << " Targets seen in Image." << std::endl;
 	std::cout << reset;
+
+	// Some sort of image should be in Image.
+	std::cout << "Height: " << image->Height <<
+		" Width: " << image->Width <<
+	 std::endl;
+//	SaveBitmap(image, "test.png");
+
+//	String^ temp = filenamenumber.ToString();
+	FileStream^ fileStream = gcnew FileStream("test" + filenamenumber.ToString() + ".png", FileMode::OpenOrCreate);
+	PngBitmapEncoder^ encoder = gcnew PngBitmapEncoder();
+	encoder->Frames->Add(BitmapFrame::Create(image));
+	encoder->Save(fileStream);
+	fileStream->Close();
 
 }
