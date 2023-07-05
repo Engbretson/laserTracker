@@ -132,7 +132,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;DO_MAIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalOptions>/Zc:twoPhase- %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>D:\epics\asyn-R4-44-2\include;D:\epics\base-R7-0-7\include\os\WIN32;D:\epics\base-R7-0-7\include;D:\epics\base-R7-0-7\include\compiler\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\epics\areaDetector\ADCore\include;D:\epics\asyn-R4-44-2\include;D:\epics\base-R7-0-7\include\os\WIN32;D:\epics\base-R7-0-7\include;D:\epics\base-R7-0-7\include\compiler\msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -13,11 +13,16 @@ epicsEnvSet("PREFIX","433LT:")
 #epicsEnvSet("PORT","At930Simulator")
 epicsEnvSet("PORT","164.54.116.53")
 
+epicsEnvSet("XSIZE","4096")
+epicsEnvSet("YSIZE","4096")
+
 dbLoadDatabase("../../dbd/windows-x64/iocxxxWin64.dbd")
 iocxxxWin64_registerRecordDeviceDriver(pdbbase)
 
 #LTAt403Configure("At403Simulator")
-LTAt403Configure($(PORT))
+#LTAt403Configure($(PORT))
+
+LTAt930Configure("$(PORT)", $(XSIZE), $(YSIZE), 1, 0, 0)
 
 dbLoadRecords("$(TOP)/db/laserTracker.db","P=$(PREFIX),R=scope1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 

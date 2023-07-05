@@ -15,6 +15,7 @@
 #include <epicsEvent.h>
 #include <iocsh.h>
 
+#include "ADDriver.h"
 #include "ltAt403.h"
 #include <epicsExport.h>
 
@@ -26,7 +27,7 @@ extern void closeWindowByPartialTitle(const char* partialTitle);
 extern std::string decode(System::String^ something);
 
 
-static const char* driverName = "LTAt403";
+static const char* driverName = "LTAt930";
 
 
 std::string decode(System::String^ something)
@@ -117,25 +118,34 @@ void Do_SimpleDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::
 }
 
 
-/** Constructor for the LTAt403 class.
+/** Constructor for the LTAt930 class.
   * Calls constructor for the asynPortDriver base class.
   * \param[in] portName The name of the asyn port driver to be created.
   */
-LTAt403::LTAt403(const char* portName)
-	: asynPortDriver(portName,
-		1, /* maxAddr */
-		asynInt32Mask | asynFloat64Mask | asynFloat64ArrayMask | asynEnumMask | asynDrvUserMask | asynOctetMask, /* Interface mask */
-		asynInt32Mask | asynFloat64Mask | asynFloat64ArrayMask | asynEnumMask | asynOctetMask,  /* Interrupt mask */
-		0, /* asynFlags.  This driver does not block and it is not multi-device, so flag is 0 */
-		1, /* Autoconnect */
-		0, /* Default priority */
-		0) /* Default stack size*/
+//LTAt930::LTAt930(const char* portName)
+//	: asynPortDriver(portName,
+//		1, /* maxAddr */
+//		asynInt32Mask | asynFloat64Mask | asynFloat64ArrayMask | asynEnumMask | asynDrvUserMask | asynOctetMask, /* Interface mask */
+//		asynInt32Mask | asynFloat64Mask | asynFloat64ArrayMask | asynEnumMask | asynOctetMask,  /* Interrupt mask */
+//		0, /* asynFlags.  This driver does not block and it is not multi-device, so flag is 0 */
+//		1, /* Autoconnect */
+//		0, /* Default priority */
+//		0) /* Default stack size*/
+
+LTAt930::LTAt930(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t dataType,
+	int maxBuffers, size_t maxMemory, int priority, int stackSize)
+
+	: ADDriver(portName, 1, 0, maxBuffers, maxMemory,
+		0, 0, /* No interfaces beyond those set in ADDriver.cpp */
+		0, 1, /* ASYN_CANBLOCK=0, ASYN_MULTIDEVICE=0, autoConnect=1 */
+		priority, stackSize)
+
 {
 	//    asynStatus status;
 	//    int i;
-	const char* functionName = "LTAt403";
+	const char* functionName = "LTAt930";
 
-	LTAt403_ = this;
+	LTAt930_ = this;
 
 	//	initializeHardware(portName);
 
@@ -439,7 +449,7 @@ int main(void) {
 #endif
 
 
-void LTAt403::initializeHardware(const char* portName)
+void LTAt930::initializeHardware(const char* portName)
 {
 
 	GlobalObjects::con = gcnew Connection();
@@ -455,7 +465,7 @@ void LTAt403::initializeHardware(const char* portName)
 		std::cout << "No actual Hardware seen . . . . using Simulator \n";
 		GlobalObjects::LMFTracker = GlobalObjects::con->Connect("At930Simulator");
 	}
-	//    closeWindowByTitle("AT403 Simulator 1.8.0.2250"); // up to 1.9.1.11 now
+	//    closeWindowByTitle("AT930 Simulator 1.8.0.2250"); // up to 1.9.1.11 now
 	//	closeWindowByTitle("AT930 Simulator 1.8.0.2250"); // up to 1.9.1.11 now
 	// Not sure what a normal laser tracker might show , maybe key on the SDK value?
 
@@ -516,7 +526,7 @@ void LTAt403::initializeHardware(const char* portName)
 
 };
 
-asynStatus LTAt403::writeInt32(asynUser* pasynUser, epicsInt32 value)
+asynStatus LTAt930::writeInt32(asynUser* pasynUser, epicsInt32 value)
 {
 	int function = pasynUser->reason;
 	asynStatus status = asynSuccess;
@@ -560,7 +570,7 @@ asynStatus LTAt403::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	return status;
 }
 
-asynStatus LTAt403::readInt32(asynUser* pasynUser, epicsInt32* value)
+asynStatus LTAt930::readInt32(asynUser* pasynUser, epicsInt32* value)
 {
 	int addr;
 	int function = pasynUser->reason;
@@ -600,12 +610,22 @@ asynStatus LTAt403::readInt32(asynUser* pasynUser, epicsInt32* value)
 
 extern "C" {
 
-	/** EPICS iocsh callable function to call constructor for the LTAt403 class.
+	/** EPICS iocsh callable function to call constructor for the LTAt930 class.
 	  * \param[in] portName The name of the asyn port driver to be created.
 	  */
-	int LTAt403Configure(const char* portName)
+//	int LTAt930Configure(const char* portName)
+//	{
+//		new LTAt930(portName);
+
+//		return(asynSuccess);
+//	}
+	extern "C" int LTAt930Configure(const char* portName, int maxSizeX, int maxSizeY, int dataType,
+		int maxBuffers, int maxMemory, int priority, int stackSize)
 	{
-		new LTAt403(portName);
+		new LTAt930(portName, maxSizeX, maxSizeY, (NDDataType_t)dataType,
+			(maxBuffers < 0) ? 0 : maxBuffers,
+			(maxMemory < 0) ? 0 : maxMemory,
+			priority, stackSize);
 
 		return(asynSuccess);
 	}
@@ -616,18 +636,21 @@ extern "C" {
 	static const iocshArg initArg0 = { "portName",iocshArgString };
 
 	static const iocshArg* const initArgs[] = { &initArg0 };
-	static const iocshFuncDef initFuncDef = { "LTAt403Configure",1,initArgs };
+	static const iocshFuncDef initFuncDef = { "LTAt930Configure",1,initArgs };
 	static void initCallFunc(const iocshArgBuf* args)
 	{
-		LTAt403Configure(args[0].sval);
+//		LTAt930Configure(args[0].sval);
+    LTAt930Configure(args[0].sval, args[1].ival, args[2].ival, args[3].ival,
+                      args[4].ival, args[5].ival, args[6].ival, args[7].ival);
+
 	}
 
-	void LTAt403Register(void)
+	void LTAt930Register(void)
 	{
 		iocshRegister(&initFuncDef, initCallFunc);
 	}
 
-	epicsExportRegistrar(LTAt403Register);
+	epicsExportRegistrar(LTAt930Register);
 
 }
 
@@ -636,7 +659,7 @@ Laser Tracker Related Callbacks !!!!!!
 */
 
 
-void LTAt403::OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
+void LTAt930::OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
 {
 	//	std::cout << blue << on_white;
 	//	std::cout << blue << on_white;
@@ -649,7 +672,7 @@ void LTAt403::OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleVal
 	//	std::cout << reset;
 
 }
-void LTAt403::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException)
+void LTAt930::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException)
 {
 	//	throw gcnew System::NotImplementedException();
 	//	std::cout << "I am in the On MeasurementArivved Callback . . . " << std::endl;
@@ -671,9 +694,9 @@ void LTAt403::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettin
 
 
 				//			std::cout << "Measurment Humidity: " << LastMeasurement->Humidity->Value << " Pressure: " << LastMeasurement->Pressure->Value << " Temperature: " << LastMeasurement->Temperature->Value << std::endl;
-				LTAt403_->setDoubleParam(LTAt403_->L_humidity, LastMeasurement->Humidity->Value);
-				LTAt403_->setDoubleParam(LTAt403_->L_pressure, LastMeasurement->Pressure->Value);
-				LTAt403_->setDoubleParam(LTAt403_->L_temperature, LastMeasurement->Temperature->Value);
+				LTAt930_->setDoubleParam(LTAt930_->L_humidity, LastMeasurement->Humidity->Value);
+				LTAt930_->setDoubleParam(LTAt930_->L_pressure, LastMeasurement->Pressure->Value);
+				LTAt930_->setDoubleParam(LTAt930_->L_temperature, LastMeasurement->Temperature->Value);
 
 
 				if (StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(LastMeasurement))
@@ -686,9 +709,9 @@ void LTAt403::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettin
 
 
 
-					LTAt403_->setDoubleParam(LTAt403_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
-					LTAt403_->setDoubleParam(LTAt403_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
-					LTAt403_->setDoubleParam(LTAt403_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
 
 				}
 				else if (StationaryMeasurement6D^ stationaryMeas6D = dynamic_cast<StationaryMeasurement6D^>(LastMeasurement))
@@ -699,9 +722,9 @@ void LTAt403::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettin
 					//					std::cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate2->UnitString);
 					//					std::cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate3->UnitString) << std::endl;
 
-					LTAt403_->setDoubleParam(LTAt403_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
-					LTAt403_->setDoubleParam(LTAt403_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
-					LTAt403_->setDoubleParam(LTAt403_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
 
 
 				}
@@ -712,9 +735,9 @@ void LTAt403::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettin
 					//					std::cout << " X = " << singleshot3dD->Position->Coordinate1->Value << " " << (decode)(singleshot3dD->Position->Coordinate1->UnitString);
 					//					std::cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << " " << (decode)(singleshot3dD->Position->Coordinate2->UnitString);
 					//					std::cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << " " << (decode)(singleshot3dD->Position->Coordinate3->UnitString) << std::endl;
-					LTAt403_->setDoubleParam(LTAt403_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
-					LTAt403_->setDoubleParam(LTAt403_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
-					LTAt403_->setDoubleParam(LTAt403_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
 
 
 				}
@@ -725,15 +748,15 @@ void LTAt403::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettin
 					//					std::cout << " X = " << singleshot6dD->Position->Coordinate1->Value << " " << (decode)(singleshot6dD->Position->Coordinate1->UnitString);
 					//					std::cout << " Y = " << singleshot6dD->Position->Coordinate2->Value << " " << (decode)(singleshot6dD->Position->Coordinate2->UnitString);
 					//					std::cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << " " << (decode)(singleshot6dD->Position->Coordinate3->UnitString) << std::endl;
-					LTAt403_->setDoubleParam(LTAt403_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
-					LTAt403_->setDoubleParam(LTAt403_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
-					LTAt403_->setDoubleParam(LTAt403_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
+					LTAt930_->setDoubleParam(LTAt930_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
 
 				}
 			}
 		}
 	}
-	LTAt403_->callParamCallbacks();
+	LTAt930_->callParamCallbacks();
 
 	// not sure why This callback has to be restrted while onEnviromnetalValuesChanged does not
 // *AND* should probably check if it is even leagal to restart
@@ -746,7 +769,7 @@ void LTAt403::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettin
 }
 
 
-void LTAt403::OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ sender, double paramTemperature, double paramHumidity, double paramPressure)
+void LTAt930::OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ sender, double paramTemperature, double paramHumidity, double paramPressure)
 {
 	//	std::cout << blue << on_white;
 	std::cout << "Callback Environment values changed: " <<
@@ -755,18 +778,18 @@ void LTAt403::OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ se
 		" Pressure: " << paramPressure <<
 		std::endl;
 
-	LTAt403_->setDoubleParam(LTAt403_->L_humidity, paramHumidity);
-	LTAt403_->setDoubleParam(LTAt403_->L_pressure, paramPressure);
-	LTAt403_->setDoubleParam(LTAt403_->L_temperature, paramTemperature);
+	LTAt930_->setDoubleParam(LTAt930_->L_humidity, paramHumidity);
+	LTAt930_->setDoubleParam(LTAt930_->L_pressure, paramPressure);
+	LTAt930_->setDoubleParam(LTAt930_->L_temperature, paramTemperature);
 
-	LTAt403_->callParamCallbacks();
+	LTAt930_->callParamCallbacks();
 
 	//	std::cout << reset;
 
 		//	throw gcnew System::NotImplementedException();
 }
 
-void LTAt403::OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error)
+void LTAt930::OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error)
 {
 	//	throw gcnew System::NotImplementedException();
 	std::cout << "Callback OnErrorArrived:" <<
@@ -778,7 +801,7 @@ void LTAt403::OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorH
 }
 
 
-void LTAt403::OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo)
+void LTAt930::OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo)
 {
 	//	throw gcnew System::NotImplementedException();
 	std::cout << "Callback OnInformationArrived: " <<
@@ -790,7 +813,7 @@ void LTAt403::OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::
 }
 
 
-void LTAt403::OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfWarning^ warning)
+void LTAt930::OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfWarning^ warning)
 {
 	//	throw gcnew System::NotImplementedException();
 	std::cout << "Callback OnWarningArrived:" <<
@@ -802,7 +825,7 @@ void LTAt403::OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::Erro
 }
 
 
-void LTAt403::OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, LMF::Tracker::Enums::EMeasurementStatus paramNewValue)
+void LTAt930::OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, LMF::Tracker::Enums::EMeasurementStatus paramNewValue)
 {
 	//	throw gcnew System::NotImplementedException();
 
@@ -817,12 +840,12 @@ void LTAt403::OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^
 
 	std::cout << EMeasurementStatusStrings[(int)paramNewValue] << std::endl;
 
-	LTAt403_->setIntegerParam(LTAt403_->L_meas_in_prog, (int)paramNewValue);
-	LTAt403_->callParamCallbacks();
+	LTAt930_->setIntegerParam(LTAt930_->L_meas_in_prog, (int)paramNewValue);
+	LTAt930_->callParamCallbacks();
 }
 
 
-void LTAt403::OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
+void LTAt930::OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
 {
 	//	throw gcnew System::NotImplementedException();
 	std::cout << "Callback OnBool Value changed: " << paramNewValue;
@@ -832,7 +855,7 @@ void LTAt403::OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ 
 }
 
 
-void LTAt403::OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
+void LTAt930::OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
 {
 	//	throw gcnew System::NotImplementedException();
 	std::cout << "Callback OnMeasChanged Bool Value changed: " << paramNewValue;
@@ -840,11 +863,11 @@ void LTAt403::OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolVal
 		" Value: " << TFS[(int)sender->Value] << " (" << (int)sender->Value << ")" <<
 		std::endl;
 
-	LTAt403_->setIntegerParam(LTAt403_->L_meas_in_prog, (int)sender->Value);
-	LTAt403_->callParamCallbacks();
+	LTAt930_->setIntegerParam(LTAt930_->L_meas_in_prog, (int)sender->Value);
+	LTAt930_->callParamCallbacks();
 }
 
-void LTAt403::OnLaserChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
+void LTAt930::OnLaserChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
 {
 	//	throw gcnew System::NotImplementedException();
 	std::cout << "Callback OnLaserChanged Bool Value changed: " << paramNewValue;
@@ -858,12 +881,12 @@ void LTAt403::OnLaserChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolVa
 	string str2 = "Is laser warmed up";
 
 	if (str1 == (decode)(sender->Label)) {
-		LTAt403_->setIntegerParam(LTAt403_->L_islaseron, (int)sender->Value);
-		LTAt403_->callParamCallbacks();
+		LTAt930_->setIntegerParam(LTAt930_->L_islaseron, (int)sender->Value);
+		LTAt930_->callParamCallbacks();
 	}
 	else if (str2 == (decode)(sender->Label)) {
-		LTAt403_->setIntegerParam(LTAt403_->L_islaserwarm, (int)sender->Value);
-		LTAt403_->callParamCallbacks();
+		LTAt930_->setIntegerParam(LTAt930_->L_islaserwarm, (int)sender->Value);
+		LTAt930_->callParamCallbacks();
 	}
 
 }

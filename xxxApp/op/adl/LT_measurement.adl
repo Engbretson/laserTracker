@@ -226,7 +226,7 @@ text {
 		height=18
 	}
 	monitor {
-		chan="$(P)$(R)temperature_RBV"
+		chan="$(P)$(R)ltemperature_RBV"
 		clr=54
 		bclr=4
 	}
