@@ -16,6 +16,19 @@ using namespace std;
 
 #using <LMF.Tracker.Connection.dll>
 
+// These are required to get correct CSharp references back that the imaging system uses
+
+#using <PresentationCore.dll>
+#using <PresentationFramework.dll>
+#using <Windowsbase.dll>
+#using <System.Xaml.dll>
+
+using namespace System::Windows::Media::Imaging;
+using namespace System::Windows::Media;
+using namespace System::IO;
+
+
+
 using namespace LMF::Tracker;
 using namespace LMF::Tracker::Measurements;
 using namespace LMF::Tracker::MeasurementStatus;
@@ -40,18 +53,18 @@ public:
 	LTAt930(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t dataType,
 		int maxBuffers, size_t maxMemory,
 		int priority, int stackSize);
-
-//	LTAt403(const char* portName);
+	~LTAt930(void);
+	//	LTAt403(const char* portName);
 
 	virtual asynStatus readInt32(asynUser* pasynUser, epicsInt32* value);
 	/* These are the methods that we override from asynPortDriver */
-    virtual asynStatus writeInt32(asynUser *pasynUser, epicsInt32 value);
-//    virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
-//    virtual asynStatus readFloat64Array(asynUser *pasynUser, epicsFloat64 *value, size_t nElements, size_t *nIn);
+	virtual asynStatus writeInt32(asynUser* pasynUser, epicsInt32 value);
+	//    virtual asynStatus writeFloat64(asynUser *pasynUser, epicsFloat64 value);
+	//    virtual asynStatus readFloat64Array(asynUser *pasynUser, epicsFloat64 *value, size_t nElements, size_t *nIn);
 
-	/* These are the methods that are new to this class */
-//    void simTask(void);
-//static
+		/* These are the methods that are new to this class */
+	//    void simTask(void);
+	//static
 	void initializeHardware(const char* portName);
 
 protected:
@@ -90,17 +103,21 @@ protected:
 	int L_islaseron;
 	int L_islaserwarm;
 	int L_laseronoff_command;
-	
-    int L_measonoff_command;
+
+	int L_measonoff_command;
 	int L_meas_in_prog;
 
 	int l_end_marker;
 
 private:
 
-	NDArray* pLaserImage;;
+//	NDArray* pImage;
+//	NDDataType_t  imageDataType;
+//	NDArrayInfo arrayInfo;
+//	size_t imageDims[2];
 
-// laser tracker related callbacks
+
+	// laser tracker related callbacks
 
 	static void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
 	static void OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ sender, double paramTemperature, double paramHumidity, double paramPressure);
@@ -112,13 +129,13 @@ private:
 	static void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 	static void OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 	static void OnLaserChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+		static void OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+	//	static void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+
 };
 
-#define FIRST_lsAT403_PARAM L_iscompatibleFirmware
-#define LAST_lsAT403_PARAM L_end_marker;
-#define NUM_PARAMS (&LAST_lsAT403_PARAM - &FIRST_lsAT403_PARAM + 1) 
 
-static LTAt930* LTAt930_;
+ static LTAt930* LTAt930_;
 
 // Not sure if this is actually required, or if this is a carryover from other attempts that did not work without having to do this . . .
 // but too lazy to remove it and see if I can live without it or not.
@@ -150,7 +167,7 @@ const char* EMeteoSourceStrings[] = { "ManualMeteo", "LiveMeteo" };
 
 //ints/bools
 #define L_iscompatibleFirmwareString "iscompatibleFirmware"
-
+#define FIRST_lsAT403_PARAM L_iscompatibleFirmware
 #define L_faceString "face"
 #define L_face_commandString "face_command"
 
@@ -161,7 +178,7 @@ const char* EMeteoSourceStrings[] = { "ManualMeteo", "LiveMeteo" };
 #define L_measonoff_commandString "measonoff_command"
 
 #define L_meas_in_progString "meas_in_prog"
-#define L_end_markerString "end_marker"
+
 
 
 //strings
@@ -190,3 +207,9 @@ const char* EMeteoSourceStrings[] = { "ManualMeteo", "LiveMeteo" };
 #define L_xString "x"
 #define L_yString "y"
 #define L_zString "z"
+
+#define L_end_markerString "end_marker"
+#define LAST_lsAT403_PARAM L_end_marker
+
+
+#define NUM_PARAMS (&LAST_lsAT403_PARAM - &FIRST_lsAT403_PARAM + 1) 

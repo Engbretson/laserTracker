@@ -13,6 +13,8 @@ SUPPORT=d:/epics
 ALIVE=$(SUPPORT)/alive-R1-4-0
 ASYN=$(SUPPORT)/asyn-R4-44-2
 
+AREA_DETECTOR=$(SUPPORT)/areaDetector
+ADCORE=$(AREA_DETECTOR)/ADCore
 
 # EPICS_BASE usually appears last so other apps can override stuff:
 #EPICS_BASE=c:/epics/base-R7-0-7

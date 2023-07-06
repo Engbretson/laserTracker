@@ -13,6 +13,7 @@
 #include <epicsTimer.h>
 #include <epicsMutex.h>
 #include <epicsEvent.h>
+#include <epicsExit.h>
 #include <iocsh.h>
 
 #include "ADDriver.h"
@@ -118,6 +119,16 @@ void Do_SimpleDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::
 }
 
 
+static void exitHandler(void* drvPvt) {
+
+	//  printf("\nThis is an exit handler being hit . . . which invoked heavy magic to actually make the destructor get processed.\n"); 
+
+	LTAt930* pLTAt930 = (LTAt930*)drvPvt;
+	
+	delete pLTAt930;
+
+}
+
 /** Constructor for the LTAt930 class.
   * Calls constructor for the asynPortDriver base class.
   * \param[in] portName The name of the asyn port driver to be created.
@@ -187,7 +198,7 @@ LTAt930::LTAt930(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t 
 	createParam(L_zString, asynParamFloat64, &L_z);
 
 
-
+#ifdef SKIP
 	// lets do some test commands 
 
 	initializeHardware(portName);
@@ -280,6 +291,14 @@ LTAt930::LTAt930(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t 
 	setStringParam(L_angleUnits, (decode)(dir1->VerticalAngle->UnitString));
 
 	// this code you can't actually do unless a tracker actually exists
+
+
+//	GlobalObjects::LMFTracker->OverviewCamera->ImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::ImageArrivedHandler(&OnImageArrived);
+	GlobalObjects::LMFTracker->OverviewCamera->WPFBitmapImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::WPFBitmapImageArrivedHandler(&OnWPFBitmapImageArrived);
+//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::High);
+//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Medium);
+//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Low);
+//	GlobalObjects::LMFTracker->OverviewCamera->Stop();
 
 	GlobalObjects::LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
 	// also not very helpful
@@ -430,10 +449,18 @@ LTAt930::LTAt930(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t 
 
 	// end of test commands 
 
+#endif
+
+
 	printf("\n***********************************\n\n");
 
 
 	callParamCallbacks();
+	
+//	epicsAtExit(exitHandler, this);
+
+
+
 }
 
 
@@ -651,6 +678,17 @@ extern "C" {
 	}
 
 	epicsExportRegistrar(LTAt930Register);
+
+}
+
+LTAt930::~LTAt930(void) {
+	std::cout << "Hitting Class destructor . . . " << std::endl;
+
+ //   GlobalObjects::LMFTracker->Laser->IsOn->Value = 0;
+
+	std::cout << "Disconnect . . . \n";
+	GlobalObjects::LMFTracker->Disconnect();
+
 
 }
 
@@ -890,3 +928,75 @@ void LTAt930::OnLaserChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolVa
 	}
 
 }
+
+//int filenamenumber = 0;
+
+#include <iostream>
+#include <random>
+#include <cstdint>
+
+void* createRandomArray()
+{
+
+	const int size = 2048 * 2048;
+	uint32_t* array = new uint32_t[size];
+
+	for (int i = 0; i < size; ++i)
+	{
+		array[i] = rand() * 2048;
+	}
+
+	return static_cast<void*>(array);
+}
+
+void LTAt930::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
+{
+//	filenamenumber++;
+
+
+	// throw gcnew System::NotImplementedException();
+//	std::cout << blue << on_white;
+	std::cout << "Callback OnWPFBitmapImageArrived . . . ";
+	std::cout << atrCoordinates->Count << " Targets seen in Image.";
+//		<< std::endl;
+//	std::cout << reset;
+	std::cout << ".";
+
+	// Some sort of image should be in Image.
+	std::cout << "Height: " << image->Height <<
+		" Width: " << image->Width <<
+	 std::endl;
+//	SaveBitmap(image, "test.png");
+
+//	String^ temp = filenamenumber.ToString();
+//	FileStream^ fileStream = gcnew FileStream("test" + filenamenumber.ToString() + ".png", FileMode::OpenOrCreate);
+//	PngBitmapEncoder^ encoder = gcnew PngBitmapEncoder();
+//	encoder->Frames->Add(BitmapFrame::Create(image));
+//	encoder->Save(fileStream);
+//	fileStream->Close();
+
+	/* Update the image */
+	/* First release the copy that we held onto last time */
+/*
+	LTAt930_->imageDataType = NDUInt32;
+
+	if (LTAt930_->pArrays[0]) {
+		LTAt930_->pArrays[0]->release();
+	}
+
+	LTAt930_->pArrays[0] = LTAt930_->pNDArrayPool->alloc(2, LTAt930_->imageDims, LTAt930_->imageDataType, 0, NULL);
+	if (LTAt930_->pArrays[0] != NULL) {
+		LTAt930_->pImage = LTAt930_->pArrays[0];
+		LTAt930_->pImage->getInfo(&LTAt930_->arrayInfo);
+//		memcpy(LTAt930_->pImage->pData, (void *) image, sizeof(image));
+		void* randomArray = createRandomArray();
+		memcpy(LTAt930_->pImage->pData, (void *) randomArray, sizeof(randomArray));
+
+		LTAt930_->doCallbacksGenericPointer(LTAt930_->pImage, LTAt930_->NDArrayData, 0);
+		uint32_t* arrayPtr = static_cast<uint32_t*>(randomArray);
+
+		delete[] arrayPtr; 
+	}
+	*/
+}
+ 
