@@ -5,7 +5,7 @@
  * Just need to derive from this since the image info from the Laser Tarcker Camera is probably required.
  *
  * Author: Mark Engbretson
- *         Argonne National Laboratoru
+ *         Argonne National Laboratory
  *
  * Created:  July 11, 2023
  *
@@ -124,14 +124,12 @@ void Do_SimpleDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::
 
 }
 
-
 static void exitHandler(void* drvPvt) {
 
 	//	  printf("\nThis is an exit handler being hit . . . which invoked heavy magic to actually make the destructor get processed.\n"); 
 
 	leica* pleica = (leica*)drvPvt;
 	delete pleica;
-	
 
 }
 
@@ -650,14 +648,16 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	asynStatus status = asynSuccess;
 	const char* paramName;
 	const char* functionName = "writeInt32";
+	char* whoami;
 
 	/* Set the parameter in the parameter library. */
 	status = (asynStatus)setIntegerParam(function, value);
+	getParamName(function, (const char**)&whoami);
 
 	/* Fetch the parameter string name for possible use in debugging */
 	getParamName(function, &paramName);
 
-	printf("in writeInt32 . . . function %d  value %d\n", function, value);
+	printf("in writeInt32 . . . function %d  %s value %d\n", function, whoami, value);
 
 	if (function == L_laseronoff_command) {
 		GlobalObjects::LMFTracker->Laser->IsOn->Value = value;
@@ -721,7 +721,7 @@ asynStatus leica::readInt32(asynUser* pasynUser, epicsInt32* value)
 
 	status = asynPortDriver::readInt32(pasynUser, value);
 	// }
-	
+	if (function > FIRST_LEICA_PARAM )
 	printf("in readInt32 . . . function %d %s value %d\n", function, whoami, *value);
 
 	callParamCallbacks(addr);
@@ -738,7 +738,7 @@ asynStatus leica::readInt32(asynUser* pasynUser, epicsInt32* value)
 void leica::report(FILE* fp, int details)
 {
 
-	fprintf(fp, "Simulation detector %s\n", this->portName);
+	fprintf(fp, "Leica detector %s\n", this->portName);
 	if (details > 0) {
 		int nx, ny, dataType;
 		getIntegerParam(ADSizeX, &nx);
@@ -828,7 +828,8 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
     setStringParam(NDDriverVersion, versionString);
     setStringParam(ADSDKVersion, "1.9.1.11");
  
-    setStringParam(ADFirmwareVersion, "No firmware");
+	setIntegerParam(ADMaxSizeX, 2560);
+	setIntegerParam(ADMaxSizeY, 1920);
 
 	printf("\n***********************************\n");
 	printf("\nConnected to Laser Tracker, checking default parameters . . . \n");
@@ -913,6 +914,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 		cout << " TimeUnits : " << timeunitNames[(int)timeunit] << "\n";
 
 	*/
+
 	GlobalObjects::LMFTracker->GetDirectionAsync();
 	Direction^ dir1 = GlobalObjects::LMFTracker->GetDirection();
 
@@ -927,10 +929,15 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 //	GlobalObjects::LMFTracker->OverviewCamera->ImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::ImageArrivedHandler(&OnImageArrived);
 	GlobalObjects::LMFTracker->OverviewCamera->WPFBitmapImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::WPFBitmapImageArrivedHandler(&OnWPFBitmapImageArrived);
+
+	// if you don't pick mediuam, you get a mix of mostlu medium res images and maybe 2 fps of the larger or smaller ones.
+ 
 	//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::High);
-	//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Medium);
+		GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Medium);
 	//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Low);
-	//	GlobalObjects::LMFTracker->OverviewCamera->Stop();
+		GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
+		Sleep(1000);
+		GlobalObjects::LMFTracker->OverviewCamera->Stop();
 
 	GlobalObjects::LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
 	// also not very helpful
@@ -1404,6 +1411,8 @@ void leica::OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ se
 
 void leica::OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
 {
+	
+
 	//	throw gcnew System::NotImplementedException();
 	std::cout << "Callback OnMeasChanged Bool Value changed: " << paramNewValue;
 	std::cout << " Label: " << (decode)(sender->Label) <<
@@ -1415,7 +1424,7 @@ void leica::OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue
 }
 
 
-//int filenamenumber = 0;
+int filenamenumber = 0;
 
 #include <iostream>
 #include <random>
@@ -1437,7 +1446,7 @@ void* createRandomArray()
 
 void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
 {
-	//	filenamenumber++;
+		filenamenumber++;
 
 
 		// throw gcnew System::NotImplementedException();
@@ -1446,20 +1455,49 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 	std::cout << atrCoordinates->Count << " Targets seen in Image.";
 	//		<< std::endl;
 	//	std::cout << reset;
-	std::cout << ".";
+	//std::cout << ".";
 
 	// Some sort of image should be in Image.
 	std::cout << "Height: " << image->Height <<
 		" Width: " << image->Width <<
 		std::endl;
-	//	SaveBitmap(image, "test.png");
+		//SaveBitmap(image, "test.png");
 
-	//	String^ temp = filenamenumber.ToString();
-	//	FileStream^ fileStream = gcnew FileStream("test" + filenamenumber.ToString() + ".png", FileMode::OpenOrCreate);
-	//	PngBitmapEncoder^ encoder = gcnew PngBitmapEncoder();
-	//	encoder->Frames->Add(BitmapFrame::Create(image));
-	//	encoder->Save(fileStream);
-	//	fileStream->Close();
+		String^ temp = filenamenumber.ToString();
+		FileStream^ fileStream = gcnew FileStream("test" + filenamenumber.ToString() + ".png", FileMode::OpenOrCreate);
+		PngBitmapEncoder^ encoder = gcnew PngBitmapEncoder();
+		encoder->Frames->Add(BitmapFrame::Create(image));
+		encoder->Save(fileStream);
+		fileStream->Close();
+
+//
+
+		BitmapImage^ bitmapImage = image;
+		WriteableBitmap^ writeableBitmap = gcnew WriteableBitmap(bitmapImage);
+
+		cli::array<unsigned char>^ pixelData = gcnew cli::array<unsigned char>(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight * 4);
+		writeableBitmap->CopyPixels(pixelData, writeableBitmap->BackBufferStride, 0);
+
+		std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight);
+
+		for (int i = 0; i < pixelData->Length; i += 4) {
+			float red = static_cast<float>(pixelData[i]);
+			float green = static_cast<float>(pixelData[i + 1]);
+			float blue = static_cast<float>(pixelData[i + 2]);
+
+			grayscaleData[i / 4] = static_cast<uint8_t>(0.299 * red + 0.587 * green + 0.114 * blue);
+		}
+
+		std::cout << 
+			"Pixel Width " << writeableBitmap->PixelWidth <<
+			" Pixel Height " << writeableBitmap->PixelHeight << 
+			" Element Size " << sizeof(writeableBitmap) << 
+			" # of Elements " << grayscaleData.size() << std::endl;
+
+// grayscaleData *might* be a black and white buffer 
+
+//
+
 
 		/* Update the image */
 		/* First release the copy that we held onto last time */
@@ -1586,8 +1624,4 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 
 
 
-//void leica::OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, LMF::Tracker::Enums::EMeasurementStatus paramNewValue)
-//{
-//	throw gcnew System::NotImplementedException();
-//}
 
