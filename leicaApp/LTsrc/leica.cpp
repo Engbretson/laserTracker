@@ -694,12 +694,12 @@ asynStatus leica::readInt32(asynUser* pasynUser, epicsInt32* value)
 	int function = pasynUser->reason;
 	int status = 0;
 	//	epicsInt32 temp;
-
+	char* whoami;
 	static const char* functionName = "readInt32";
 
 	this->getAddress(pasynUser, &addr);
-
-
+	getParamName(function, (const char**)&whoami);
+	epicsInt32 temp;
 
 	// what here is likely to change, that isn't updated via callbacks or other meams?
 	/*
@@ -710,16 +710,20 @@ asynStatus leica::readInt32(asynUser* pasynUser, epicsInt32* value)
 	//	getIntegerParam(L_iscompatibleFirmware, &temp); 
 	//	printf("ReadInt32 values is  %d\n", temp);
 	//    temp = temp +1;
-	//	asynPortDriver::readInt32(pasynUser, &temp);
+		asynPortDriver::readInt32(pasynUser, &temp);
+		*value = temp;
 	//		asynPortDriver::writeInt32(pasynUser, temp);
 	//	callParamCallbacks(addr);
 	//   }
 
 	  // Other functions we call the base class method
 	//  else {
+
 	status = asynPortDriver::readInt32(pasynUser, value);
 	// }
-	printf("in readInt32 . . . function %d  value %d\n", function, value);
+	
+	printf("in readInt32 . . . function %d %s value %d\n", function, whoami, *value);
+
 	callParamCallbacks(addr);
 	return (status == 0) ? asynSuccess : asynError;
 }
@@ -771,7 +775,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 {
 	int status = asynSuccess;
-//	char versionString[20];
+	char versionString[20];
 	const char* functionName = "leica";
 
 	leica_ = this;
@@ -816,10 +820,21 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	// lets do some test commands 
 
 	initializeHardware(portName);
+	
+
+
+    epicsSnprintf(versionString, sizeof(versionString), "%d.%d.%d",
+                  DRIVER_VERSION, DRIVER_REVISION, DRIVER_MODIFICATION);
+    setStringParam(NDDriverVersion, versionString);
+    setStringParam(ADSDKVersion, "1.9.1.11");
+ 
+    setStringParam(ADFirmwareVersion, "No firmware");
 
 	printf("\n***********************************\n");
 	printf("\nConnected to Laser Tracker, checking default parameters . . . \n");
-
+	
+	setStringParam (ADManufacturer, "Leica");
+	
 	String^ Comment = GlobalObjects::LMFTracker->Comment;
 	cout << "Comment: " << (decode)(Comment) << "\n";
 	setStringParam(L_comment, (decode)(Comment));
@@ -831,6 +846,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	String^ InstalledFirmware = GlobalObjects::LMFTracker->InstalledFirmware;
 	cout << "InstalledFirmware: " << (decode)(InstalledFirmware) << "\n";
 	setStringParam(L_installedFirmware, (decode)(InstalledFirmware));
+	setStringParam(ADFirmwareVersion, (decode)(InstalledFirmware));
 
 	String^ IP = GlobalObjects::LMFTracker->IPAddress;
 	cout << "IP: " << (decode)(IP) << "\n";
@@ -847,10 +863,12 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	String^ ProductName = GlobalObjects::LMFTracker->ProductName;
 	cout << "ProductName: " << (decode)(ProductName) << "\n";
 	setStringParam(L_productName, (decode)(ProductName));
+	setStringParam(ADModel, (decode)(ProductName));
 
 	String^ SerialNumber = GlobalObjects::LMFTracker->SerialNumber;
 	cout << "Serial: " << (decode)(SerialNumber) << "\n";
 	setStringParam(L_serialNumber, (decode)(SerialNumber));
+	setStringParam(ADSerialNumber, (decode)(SerialNumber));
 
 	// none of this is particularly useful to anyone
 	// I don't want people flipping any of these, if I can help it

@@ -13,6 +13,7 @@ epicsEnvSet("PREFIX","433LT:")
 #epicsEnvSet("PORT","At930Simulator")
 epicsEnvSet("PORT","164.54.116.53")
 
+
 epicsEnvSet("XSIZE","2560")
 epicsEnvSet("YSIZE","1920")
 epicsEnvSet("NELEMENTS","19660800")
@@ -42,7 +43,7 @@ leicaApp_registerRecordDeviceDriver(pdbbase)
 #LTAt930Configure("$(PORT)", $(XSIZE), $(YSIZE), 1, 0, 0)
 leicaConfig("$(PORT)", $(XSIZE), $(YSIZE), 1, 0, 0)
 
-dbLoadRecords("$(ADleica)/db/leica.template","P=$(PREFIX),R=scope1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
+dbLoadRecords("$(ADleica)/db/leica.template","P=$(PREFIX),R=LT1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 
 # Create a standard arrays plugin
 NDStdArraysConfigure("Image1", 5, 0, "$(PORT)", 0, 0)
