@@ -2,36 +2,7 @@
 # Run "gnumake clean uninstall install" in the application
 # top directory each time this file is changed.
 
-TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
-
-# If you don't want to install into $(TOP) then
-# define INSTALL_LOCATION_APP here
-#INSTALL_LOCATION_APP=<fullpathname>
-
-SUPPORT=d:/epics
-
-ALIVE=$(SUPPORT)/alive-R1-4-0
-ASYN=$(SUPPORT)/asyn-R4-44-2
-
-AREA_DETECTOR=$(SUPPORT)/areaDetector
-ADCORE=$(AREA_DETECTOR)/ADCore
-
-# EPICS_BASE usually appears last so other apps can override stuff:
-#EPICS_BASE=c:/epics/base-R7-0-7
-
-# Specify the standard synApps configuration.
--include $(SUPPORT)/configure/RELEASE
-
-# 
-
-
-LASER_TRACKER=$(SUPPORT)/LaserTracker-R1-0
-
-#Capfast users may need the following definitions
-#CAPFAST_TEMPLATES=
-#SCH2EDIF_PATH=
-
--include $(TOP)/../RELEASE.local
--include $(TOP)/../RELEASE.$(EPICS_HOST_ARCH).local
+-include $(TOP)/../configure/RELEASE_LIBS_INCLUDE
+-include $(TOP)/RELEASE.local
 -include $(TOP)/configure/RELEASE.local
 
