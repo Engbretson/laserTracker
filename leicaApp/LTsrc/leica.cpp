@@ -141,6 +141,60 @@ int leica::computeImage()
 
 }
 
+// Minimal, standalone image array processing -
+#ifdef zzz
+int leica::computeImage()
+{
+	NDDataType_t  imageDataType;
+	size_t imageDims[2];
+	NDArrayInfo arrayInfo;
+	epicsTimeStamp currentTime;
+
+	imageDims[0] = 2048;
+	imageDims[1] = 2048;
+
+
+	//				imageDataType = NDFloat32;
+	//				setIntegerParam(NDDataType, NDFloat32);
+
+	imageDataType = NDUInt8;
+	setIntegerParam(NDDataType, NDUInt8);
+
+	/* Update the image */
+	/* First release the copy that we held onto last time */
+	if (this->pArrays[0]) {
+		this->pArrays[0]->release();
+	}
+
+
+		/* Allocate a new array */
+		this->pArrays[0] = pNDArrayPool->alloc(2, imageDims, imageDataType, 0, NULL);
+		if (this->pArrays[0] != NULL) {
+			pImage = this->pArrays[0];
+			pImage->getInfo(&arrayInfo);
+			// Copy data from the input to the output, correct 
+
+//					memcpy(pImage->pData, buffer, bufferSize);
+
+			epicsTimeGetCurrent(&currentTime);
+			pImage->timeStamp = currentTime.secPastEpoch + currentTime.nsec / 1.e9;
+
+			pImage->uniqueId = rand() * 2048;
+
+			updateTimeStamp(&pImage->epicsTS);
+
+			/* Get attributes that have been defined for this driver */
+			getAttributes(pImage->pAttributeList);
+
+			doCallbacksGenericPointer(pImage, NDArrayData, 0);
+		}
+
+
+}
+
+#endif
+
+
 #ifdef OLDER
 /** Computes the new image data */
 int leica::computeImage()
@@ -1167,7 +1221,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 #endif
 
 	epicsAtExit(exitHandler, this);
-
+	GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
 }
 
 void leica::initializeHardware(const char* portName)
@@ -1250,6 +1304,9 @@ void leica::initializeHardware(const char* portName)
 
 leica::~leica(void)
 {
+
+	GlobalObjects::LMFTracker->OverviewCamera->Stop();
+
 	// code cleanup should happen here like hitting all the lasrer Tracker destructors, as required.
 	//    std::cout << "lecia destructor being hit . . . " << std::endl;
 
@@ -1423,60 +1480,65 @@ void leica::OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue
 	leica_->callParamCallbacks();
 }
 
-
 int filenamenumber = 0;
-
-#include <iostream>
-#include <random>
-#include <cstdint>
-
-void* createRandomArray()
-{
-
-	const int size = 2048 * 2048;
-	uint32_t* array = new uint32_t[size];
-
-	for (int i = 0; i < size; ++i)
-	{
-		array[i] = rand() * 2048;
-	}
-
-	return static_cast<void*>(array);
-}
 
 void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
 {
-		filenamenumber++;
+//		filenamenumber++;
 
 
 		// throw gcnew System::NotImplementedException();
+		// 
+		// 
 	//	std::cout << blue << on_white;
-	std::cout << "Callback OnWPFBitmapImageArrived . . . ";
-	std::cout << atrCoordinates->Count << " Targets seen in Image.";
-	//		<< std::endl;
+//	std::cout << "Callback OnWPFBitmapImageArrived . . . ";
+//	std::cout << atrCoordinates->Count << " Targets seen in Image.";
+//			<< std::endl;
 	//	std::cout << reset;
 	//std::cout << ".";
 
 	// Some sort of image should be in Image.
-	std::cout << "Height: " << image->Height <<
-		" Width: " << image->Width <<
-		std::endl;
-		//SaveBitmap(image, "test.png");
+//	std::cout << "Height: " << image->Height <<
+//		" Width: " << image->Width <<
+//		std::endl;
+//		//SaveBitmap(image, "test.png");
 
+// This prints out the image after converting it to png.
+/*
 		String^ temp = filenamenumber.ToString();
 		FileStream^ fileStream = gcnew FileStream("test" + filenamenumber.ToString() + ".png", FileMode::OpenOrCreate);
 		PngBitmapEncoder^ encoder = gcnew PngBitmapEncoder();
 		encoder->Frames->Add(BitmapFrame::Create(image));
 		encoder->Save(fileStream);
 		fileStream->Close();
+		std::cout << "png" << std::endl;
 
-//
+// This prints out the image after converting it to tiff, since we have tiff file readers that might help.
 
+		String^ temp2 = filenamenumber.ToString();
+		FileStream^ fileStream2 = gcnew FileStream("test" + filenamenumber.ToString() + ".tif", FileMode::OpenOrCreate);
+		TiffBitmapEncoder^ encoder2 = gcnew TiffBitmapEncoder();
+		encoder2->Frames->Add(BitmapFrame::Create(image));
+		encoder2->Save(fileStream2);
+		fileStream2->Close();
+		std::cout << "tiff" << std::endl;
+
+*/
+
+// this is an attempt to get the raw bitmap values and get it into a byte stream that Area Detector expects
+// which is a pain in the . . . 
+
+//	const char* nullTerminatedData;
+
+//	try
+//	{
 		BitmapImage^ bitmapImage = image;
 		WriteableBitmap^ writeableBitmap = gcnew WriteableBitmap(bitmapImage);
 
 		cli::array<unsigned char>^ pixelData = gcnew cli::array<unsigned char>(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight * 4);
 		writeableBitmap->CopyPixels(pixelData, writeableBitmap->BackBufferStride, 0);
+
+		// This starts to flip this to greyscale - not sure if I can leave it as-is if I still want color
 
 		std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight);
 
@@ -1488,40 +1550,52 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 			grayscaleData[i / 4] = static_cast<uint8_t>(0.299 * red + 0.587 * green + 0.114 * blue);
 		}
 
-		std::cout << 
-			"Pixel Width " << writeableBitmap->PixelWidth <<
-			" Pixel Height " << writeableBitmap->PixelHeight << 
-			" Element Size " << sizeof(writeableBitmap) << 
-			" # of Elements " << grayscaleData.size() << std::endl;
+		const char* 	nullTerminatedData = reinterpret_cast<const char*>(grayscaleData.data());
 
-// grayscaleData *might* be a black and white buffer 
+//////
+		NDDataType_t  imageDataType;
+		size_t imageDims[2]; // or 2 for BW
+		NDArrayInfo arrayInfo;
+		epicsTimeStamp currentTime;
 
-//
+		imageDims[0] = 640;
+		imageDims[1] = 480;
 
+	
+//		imageDataType = NDFloat32;
+//		leica_->setIntegerParam(leica_->NDDataType, NDFloat32);
+
+		imageDataType = NDUInt8;
+		leica_->setIntegerParam(leica_->NDDataType, NDUInt8);
 
 		/* Update the image */
 		/* First release the copy that we held onto last time */
-	/*
-		leica_->imageDataType = NDUInt32;
-
 		if (leica_->pArrays[0]) {
 			leica_->pArrays[0]->release();
 		}
 
-		leica_->pArrays[0] =leica_->pNDArrayPool->alloc(2,leica_->imageDims,leica_->imageDataType, 0, NULL);
+		/* Allocate a new array */
+		leica_->pArrays[0] = leica_->pNDArrayPool->alloc(2, imageDims, imageDataType, 0, NULL);
 		if (leica_->pArrays[0] != NULL) {
-			leica_->pImage =leica_->pArrays[0];
-			leica_->pImage->getInfo(&leica_->arrayInfo);
-	//		memcpy(leica_->pImage->pData, (void *) image, sizeof(image));
-			void* randomArray = createRandomArray();
-			memcpy(leica_->pImage->pData, (void *) randomArray, sizeof(randomArray));
+			leica_->pImage = leica_->pArrays[0];
+			leica_->pImage->getInfo(&arrayInfo);
+			// Copy data from the input to the output, correct 
 
-			leica_->doCallbacksGenericPointer(leica_->pImage,leica_->NDArrayData, 0);
-			uint32_t* arrayPtr = static_cast<uint32_t*>(randomArray);
+			memcpy(leica_->pImage->pData, nullTerminatedData, grayscaleData.size());
 
-			delete[] arrayPtr;
+			epicsTimeGetCurrent(&currentTime);
+			leica_->pImage->timeStamp = currentTime.secPastEpoch + currentTime.nsec / 1.e9;
+
+			leica_->pImage->uniqueId = filenamenumber++;
+
+			leica_->updateTimeStamp(&leica_->pImage->epicsTS);
+
+			/* Get attributes that have been defined for this driver */
+			leica_->getAttributes(leica_->pImage->pAttributeList);
+
+			leica_->doCallbacksGenericPointer(leica_->pImage, leica_->NDArrayData, 0);
 		}
-		*/
+		leica_->callParamCallbacks();
 }
 
 

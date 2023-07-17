@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 
+
 // Laser Tracker Includes
 
 #include <iostream>
@@ -23,8 +24,10 @@
 
 
 using namespace System;
+
 using namespace msclr::interop;
 using namespace std;
+
 
 // These are required to get correct CSharp references back that the imaging system uses
 #pragma managed(push, off)
@@ -36,6 +39,7 @@ using namespace std;
 
 using namespace System::Windows::Media::Imaging;
 using namespace System::Windows::Media;
+using namespace System::Collections::Generic;
 using namespace System::IO;
 
 #using <LMF.Tracker.Connection.dll>
@@ -65,6 +69,8 @@ public:
 	virtual void report(FILE* fp, int details);
 	void simTask(); /**< Should be private, but gets called from C, so must be public */
 	void initializeHardware(const char* portName);
+//	asynStatus readTiff(const char* fileName, epicsTimeStamp* pStartTime, double timeout, NDArray* pImage);
+   
 
 	//protected:
 	//private:
@@ -125,6 +131,7 @@ private:
 	NDArray* pRamp_;
 	NDArray* pPeak_;
 	NDArrayInfo arrayInfo_;
+	NDArray* pImage;
 
 
 	// laser tracker related callbacks
