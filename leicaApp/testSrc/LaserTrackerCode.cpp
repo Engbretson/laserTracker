@@ -966,6 +966,7 @@ void Do_PowerLock(LMF::Tracker::Tracker^ LMFTracker)
 	LMF::Tracker::OVC::ATRCoordinateCollection^ gettargetdirections = LMFTracker->PowerLock->GetTargetDirections();
 
 	std::cout << "Get Target Directions Count: " << gettargetdirections->Count << std::endl;
+	
 
 	// And this is a heck of a lot easier to get the coordinates of the trckers in the camera
 	for (int i = 0; i < gettargetdirections->Count; i++)
@@ -973,6 +974,7 @@ void Do_PowerLock(LMF::Tracker::Tracker^ LMFTracker)
 		std::cout << std::endl;
 
 		LMF::Tracker::OVC::ATRCoordinate^ thing = gettargetdirections[i];
+
 		Do_SimpleDoubleValue("AngleHz", thing->AngleHz);
 		Do_SimpleDoubleValue("AngleVt", thing->AngleVt);
 		Do_SimpleDoubleValue("PixelX", thing->PixelX);

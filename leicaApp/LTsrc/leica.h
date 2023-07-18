@@ -64,6 +64,7 @@ public:
 	/* These are the methods that we override from ADDriver */
 	virtual asynStatus readInt32(asynUser* pasynUser, epicsInt32* value);
 	virtual asynStatus writeInt32(asynUser* pasynUser, epicsInt32 value);
+
 	//	virtual asynStatus writeFloat64(asynUser* pasynUser, epicsFloat64 value);
 
 	virtual void report(FILE* fp, int details);
@@ -86,6 +87,7 @@ public:
 	int L_name;
 	int L_productName;
 	int L_serialNumber;
+	int L_targets;
 
 	int L_angleUnits;
 	int L_humidityUnits;
@@ -94,6 +96,7 @@ public:
 	int L_xUnits;
 	int L_yUnits;
 	int L_zUnits;
+
 
 	int L_horizontalAngle;
 	int L_verticalAngle;
@@ -104,12 +107,29 @@ public:
 	int L_y;
 	int L_z;
 
+	int L_XX;
+	int L_YY;
+	int L_X1;
+	int L_Y1;
+    int L_X2;
+	int L_Y2;
+	int L_X3;
+	int L_Y3;
+	int L_X4;
+	int L_Y4;
+	int L_X5;
+	int L_Y5;
+
+
+
 	int L_face;
 	int L_face_command;
 
 	int L_islaseron;
 	int L_islaserwarm;
 	int L_laseronoff_command;
+
+	int L_gotoXY;
 
 	int L_measonoff_command;
 	int L_meas_in_prog;
@@ -192,12 +212,15 @@ const char* EMeteoSourceStrings[] = { "ManualMeteo", "LiveMeteo" };
 
 #define L_islaseronString "islaseron"
 #define L_islaserwarmString "islaserwarm"
-#define L_laseronoff_commandString "laseronoff_command"
 
-#define L_measonoff_commandString "measonoff_command"
 
 #define L_meas_in_progString "meas_in_prog"
+#define L_targetsString "targets"
 
+// octals
+#define L_laseronoff_commandString "laseronoff_command"
+#define L_measonoff_commandString "measonoff_command"
+#define L_gotoXYString "gotoXY"
 
 //strings
 #define L_commentString "comment"
@@ -225,4 +248,19 @@ const char* EMeteoSourceStrings[] = { "ManualMeteo", "LiveMeteo" };
 #define L_xString "x"
 #define L_yString "y"
 #define L_zString "z"
+
+#define L_XXString "XX"
+#define L_YYString "YY"
+#define L_X1String "X1"
+#define L_Y1String "Y1"
+#define L_X2String "X2"
+#define L_Y2String "Y2"
+#define L_X3String "X3"
+#define L_Y3String "Y3"
+#define L_X4String "X4"
+#define L_Y4String "Y4"
+#define L_X5String "X5"
+#define L_Y5String "Y5"
+
+
 
