@@ -195,223 +195,6 @@ int leica::computeImage()
 #endif
 
 
-#ifdef OLDER
-/** Computes the new image data */
-int leica::computeImage()
-{
-	int status = asynSuccess;
-	NDDataType_t dataType;
-	int itemp;
-	int binX, binY, minX, minY, sizeX, sizeY, reverseX, reverseY;
-	int xDim = 0, yDim = 1, colorDim = -1;
-	int resetImage;
-	int maxSizeX, maxSizeY;
-	int colorMode;
-	int ndims = 0;
-	NDDimension_t dimsOut[3];
-	size_t dims[3];
-	NDArrayInfo_t arrayInfo;
-	NDArray* pImage;
-	const char* functionName = "computeImage";
-
-	/* NOTE: The caller of this function must have taken the mutex */
-
-	status |= getIntegerParam(ADBinX, &binX);
-	status |= getIntegerParam(ADBinY, &binY);
-	status |= getIntegerParam(ADMinX, &minX);
-	status |= getIntegerParam(ADMinY, &minY);
-	status |= getIntegerParam(ADSizeX, &sizeX);
-	status |= getIntegerParam(ADSizeY, &sizeY);
-	status |= getIntegerParam(ADReverseX, &reverseX);
-	status |= getIntegerParam(ADReverseY, &reverseY);
-	status |= getIntegerParam(ADMaxSizeX, &maxSizeX);
-	status |= getIntegerParam(ADMaxSizeY, &maxSizeY);
-	status |= getIntegerParam(NDColorMode, &colorMode);
-	status |= getIntegerParam(NDDataType, &itemp); dataType = (NDDataType_t)itemp;
-
-	if (status) asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-		"%s:%s: error getting parameters\n",
-		driverName, functionName);
-
-	/* Make sure parameters are consistent, fix them if they are not */
-	if (minX < 0) {
-		minX = 0;
-		status |= setIntegerParam(ADMinX, minX);
-	}
-	if (minY < 0) {
-		minY = 0;
-		status |= setIntegerParam(ADMinY, minY);
-	}
-	if (minX > maxSizeX - 1) {
-		minX = maxSizeX - 1;
-		status |= setIntegerParam(ADMinX, minX);
-	}
-	if (minY > maxSizeY - 1) {
-		minY = maxSizeY - 1;
-		status |= setIntegerParam(ADMinY, minY);
-	}
-	if (sizeX < 1) {
-		sizeX = 1;
-		status |= setIntegerParam(ADSizeX, sizeX);
-	}
-	if (sizeY < 1) {
-		sizeY = 1;
-		status |= setIntegerParam(ADSizeY, sizeY);
-	}
-	if (sizeX > maxSizeX - minX) {
-		sizeX = maxSizeX - minX;
-		status |= setIntegerParam(ADSizeX, sizeX);
-	}
-	if (sizeY > maxSizeY - minY) {
-		sizeY = maxSizeY - minY;
-		status |= setIntegerParam(ADSizeY, sizeY);
-	}
-	if (binX < 1) {
-		binX = 1;
-		status |= setIntegerParam(ADBinX, binX);
-	}
-	if (binY < 1) {
-		binY = 1;
-		status |= setIntegerParam(ADBinY, binY);
-	}
-	if (binX > sizeX) {
-		binX = sizeX;
-		status |= setIntegerParam(ADBinX, binX);
-	}
-	if (binY > sizeY) {
-		binY = sizeY;
-		status |= setIntegerParam(ADBinY, binY);
-	}
-	if (sizeX % binX != 0) {
-		sizeX = (sizeX / binX) * binX;
-		status |= setIntegerParam(ADSizeX, sizeX);
-	}
-	if (sizeY % binY != 0) {
-		sizeY = (sizeY / binY) * binY;
-		status |= setIntegerParam(ADSizeY, sizeY);
-	}
-
-	switch (colorMode) {
-	case NDColorModeMono:
-		ndims = 2;
-		xDim = 0;
-		yDim = 1;
-		break;
-	case NDColorModeRGB1:
-		ndims = 3;
-		colorDim = 0;
-		xDim = 1;
-		yDim = 2;
-		break;
-	case NDColorModeRGB2:
-		ndims = 3;
-		colorDim = 1;
-		xDim = 0;
-		yDim = 2;
-		break;
-	case NDColorModeRGB3:
-		ndims = 3;
-		colorDim = 2;
-		xDim = 0;
-		yDim = 1;
-		break;
-	}
-
-	if (resetImage) {
-		/* Free the previous buffers */
-		if (pRaw_) pRaw_->release();
-		if (pBackground_) pBackground_->release();
-		if (pRamp_) pRamp_->release();
-		if (pPeak_) pPeak_->release();
-		/* Allocate the raw buffer we use to compute images. */
-		dims[xDim] = maxSizeX;
-		dims[yDim] = maxSizeY;
-		if (ndims > 2) dims[colorDim] = 3;
-		pRaw_ = this->pNDArrayPool->alloc(ndims, dims, dataType, 0, NULL);
-		pBackground_ = this->pNDArrayPool->alloc(ndims, dims, dataType, 0, NULL);
-		pRamp_ = this->pNDArrayPool->alloc(ndims, dims, dataType, 0, NULL);
-		pPeak_ = this->pNDArrayPool->alloc(ndims, dims, dataType, 0, NULL);
-		pRaw_->getInfo(&arrayInfo_);
-
-		if (!pRaw_) {
-			asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-				"%s:%s: error allocating raw buffer\n",
-				driverName, functionName);
-			return(status);
-		}
-	}
-
-	switch (dataType) {
-	case NDInt8:
-		status |= computeArray<epicsInt8>(maxSizeX, maxSizeY);
-		break;
-	case NDUInt8:
-		status |= computeArray<epicsUInt8>(maxSizeX, maxSizeY);
-		break;
-	case NDInt16:
-		status |= computeArray<epicsInt16>(maxSizeX, maxSizeY);
-		break;
-	case NDUInt16:
-		status |= computeArray<epicsUInt16>(maxSizeX, maxSizeY);
-		break;
-	case NDInt32:
-		status |= computeArray<epicsInt32>(maxSizeX, maxSizeY);
-		break;
-	case NDUInt32:
-		status |= computeArray<epicsUInt32>(maxSizeX, maxSizeY);
-		break;
-	case NDInt64:
-		status |= computeArray<epicsInt64>(maxSizeX, maxSizeY);
-		break;
-	case NDUInt64:
-		status |= computeArray<epicsUInt64>(maxSizeX, maxSizeY);
-		break;
-	case NDFloat32:
-		status |= computeArray<epicsFloat32>(maxSizeX, maxSizeY);
-		break;
-	case NDFloat64:
-		status |= computeArray<epicsFloat64>(maxSizeX, maxSizeY);
-		break;
-	}
-
-	/* Extract the region of interest with binning.
-	 * If the entire image is being used (no ROI or binning) that's OK because
-	 * convertImage detects that case and is very efficient */
-	pRaw_->initDimension(&dimsOut[xDim], sizeX);
-	pRaw_->initDimension(&dimsOut[yDim], sizeY);
-	if (ndims > 2) pRaw_->initDimension(&dimsOut[colorDim], 3);
-	dimsOut[xDim].binning = binX;
-	dimsOut[xDim].offset = minX;
-	dimsOut[xDim].reverse = reverseX;
-	dimsOut[yDim].binning = binY;
-	dimsOut[yDim].offset = minY;
-	dimsOut[yDim].reverse = reverseY;
-	/* We save the most recent image buffer so it can be used in the read() function.
-	 * Now release it before getting a new version. */
-	if (this->pArrays[0]) this->pArrays[0]->release();
-	status = this->pNDArrayPool->convert(pRaw_,
-		&this->pArrays[0],
-		dataType,
-		dimsOut);
-	if (status) {
-		asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-			"%s:%s: error allocating buffer in convert()\n",
-			driverName, functionName);
-		return(status);
-	}
-	pImage = this->pArrays[0];
-	pImage->getInfo(&arrayInfo);
-	status = asynSuccess;
-	status |= setIntegerParam(NDArraySize, (int)arrayInfo.totalBytes);
-	status |= setIntegerParam(NDArraySizeX, (int)pImage->dims[xDim].size);
-	status |= setIntegerParam(NDArraySizeY, (int)pImage->dims[yDim].size);
-	status |= setIntegerParam(SimResetImage, 0);
-	if (status) asynPrint(this->pasynUserSelf, ASYN_TRACE_ERROR,
-		"%s:%s: error setting parameters\n",
-		driverName, functionName);
-	return(status);
-}
-#endif
 
 static void simTaskC(void* drvPvt)
 {
@@ -588,113 +371,6 @@ void leica::simTask()
   * \param[in] pasynUser pasynUser structure that encodes the reason and address.
   * \param[in] value Value to write. */
 
-#ifdef FROMSIMDET
-asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
-{
-	int function = pasynUser->reason;
-	int adstatus;
-	int acquiring;
-	int imageMode;
-	asynStatus status = asynSuccess;
-
-	/* Ensure that ADStatus is set correctly before we set ADAcquire.*/
-	getIntegerParam(ADStatus, &adstatus);
-	getIntegerParam(ADAcquire, &acquiring);
-	getIntegerParam(ADImageMode, &imageMode);
-	if (function == ADAcquire) {
-		if (value && !acquiring) {
-			setStringParam(ADStatusMessage, "Acquiring data");
-		}
-		if (!value && acquiring) {
-			setStringParam(ADStatusMessage, "Acquisition stopped");
-			if (imageMode == ADImageContinuous) {
-				setIntegerParam(ADStatus, ADStatusIdle);
-			}
-			else {
-				setIntegerParam(ADStatus, ADStatusAborted);
-			}
-			setIntegerParam(ADStatus, ADStatusAcquire);
-		}
-	}
-	callParamCallbacks();
-
-	/* Set the parameter and readback in the parameter library.  This may be overwritten when we read back the
-	 * status at the end, but that's OK */
-	status = setIntegerParam(function, value);
-
-	/* For a real detector this is where the parameter is sent to the hardware */
-	if (function == ADAcquire) {
-		if (value && !acquiring) {
-			/* Send an event to wake up the simulation task.
-			 * It won't actually start generating new images until we release the lock below */
-			epicsEventSignal(startEventId_);
-		}
-		if (!value && acquiring) {
-			/* This was a command to stop acquisition */
-			/* Send the stop event */
-			epicsEventSignal(stopEventId_);
-		}
-	}
-	else if ((function == NDDataType) ||
-		(function == NDColorMode)) {  // This assumes order in leica.h!
-//	status = setIntegerParam(SimResetImage, 1);
-	}
-	else {
-		/* If this parameter belongs to a base class call its method */
-		if (function < FIRST_LEICA_PARAM) status = ADDriver::writeInt32(pasynUser, value);
-	}
-
-	/* Do callbacks so higher layers see any changes */
-	callParamCallbacks();
-
-	if (status)
-		asynPrint(pasynUser, ASYN_TRACE_ERROR,
-			"%s:writeInt32 error, status=%d function=%d, value=%d\n",
-			driverName, status, function, value);
-	else
-		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
-			"%s:writeInt32: function=%d, value=%d\n",
-			driverName, function, value);
-	return status;
-}
-
-
-/** Called when asyn clients call pasynFloat64->write().
-  * This function performs actions for some parameters, including ADAcquireTime, ADGain, etc.
-  * For all parameters it sets the value in the parameter library and calls any registered callbacks..
-  * \param[in] pasynUser pasynUser structure that encodes the reason and address.
-  * \param[in] value Value to write. */
-asynStatus leica::writeFloat64(asynUser* pasynUser, epicsFloat64 value)
-{
-	int function = pasynUser->reason;
-	asynStatus status = asynSuccess;
-
-	/* Set the parameter and readback in the parameter library.  This may be overwritten when we read back the
-	 * status at the end, but that's OK */
-	status = setDoubleParam(function, value);
-
-	/* Changing any of the simulation parameters requires recomputing the base image */
-	if ((function == ADGain) || (function >= FIRST_LEICA_PARAM)) {
-		//       status = setIntegerParam(SimResetImage, 1);
-	}
-	else {
-		/* This parameter belongs to a base class call its method */
-		status = ADDriver::writeFloat64(pasynUser, value);
-	}
-
-	/* Do callbacks so higher layers see any changes */
-	callParamCallbacks();
-	if (status)
-		asynPrint(pasynUser, ASYN_TRACE_ERROR,
-			"%s:writeFloat64 error, status=%d function=%d, value=%f\n",
-			driverName, status, function, value);
-	else
-		asynPrint(pasynUser, ASYN_TRACEIO_DRIVER,
-			"%s:writeFloat64: function=%d, value=%f\n",
-			driverName, function, value);
-	return status;
-}
-#endif
 
 asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 {
@@ -714,12 +390,23 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	printf("in writeInt32 . . . function %d  %s value %d\n", function, whoami, value);
 
 	if (function == L_gotoXY) {
-		int tempx, tempy;
-		getIntegerParam(L_XX, &tempx);
-		getIntegerParam(L_YY, &tempy);
-///		std::cout << "goto x " << tempx << " y " << tempy << std::endl;
-		GlobalObjects::LMFTracker->OverviewCamera->MoveToPixel(tempx, tempy, 640, 480);
-		GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
+		try
+		{
+			int tempx, tempy, temptargets;
+			getIntegerParam(L_XX, &tempx);
+			getIntegerParam(L_YY, &tempy);
+			///		std::cout << "goto x " << tempx << " y " << tempy << std::endl;
+			GlobalObjects::LMFTracker->OverviewCamera->MoveToPixel(tempx, tempy, 640, 480);
+			getIntegerParam(L_targets, &temptargets);
+			if (temptargets != 0)
+				GlobalObjects::LMFTracker->TargetSearch->Start();
+		}
+		catch(...) {
+// this happens if your moving the trager via the mouse, and there is a race condition between if it sees a tracker
+// that used to exist, and no longer exists, so attempts to find something that no longer exists
+
+			;
+		}
 	}
 	if (function == L_laseronoff_command) {
 		GlobalObjects::LMFTracker->Laser->IsOn->Value = value;
@@ -882,6 +569,10 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	createParam(L_xString, asynParamFloat64, &L_x);
 	createParam(L_yString, asynParamFloat64, &L_y);
 	createParam(L_zString, asynParamFloat64, &L_z);
+	createParam(L_hString, asynParamFloat64, &L_h);
+	createParam(L_vString, asynParamFloat64, &L_v);
+	createParam(L_dString, asynParamFloat64, &L_d);
+
 
 	createParam(L_XXString, asynParamInt32, &L_XX);
 	createParam(L_YYString, asynParamInt32, &L_YY);
@@ -1001,11 +692,13 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	GlobalObjects::LMFTracker->GetDirectionAsync();
 	Direction^ dir1 = GlobalObjects::LMFTracker->GetDirection();
 
+	
 	cout << "Direction H Angle: " << dir1->HorizontalAngle->Value << " " << (decode)(dir1->HorizontalAngle->UnitString)
 		<< " V Angle: " << dir1->VerticalAngle->Value << " " << (decode)(dir1->VerticalAngle->UnitString) << "\n";
 	setDoubleParam(L_horizontalAngle, dir1->HorizontalAngle->Value);
 	setDoubleParam(L_verticalAngle, dir1->VerticalAngle->Value);
 	setStringParam(L_angleUnits, (decode)(dir1->VerticalAngle->UnitString));
+
 
 	// this code you can't actually do unless a tracker actually exists
 
@@ -1031,11 +724,8 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	//almost too generic to be of much use, I.e., not sure that putting this into a PV would be helpful
 	GlobalObjects::LMFTracker->Measurement->MeasurementInProgress->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnMeasChanged);
 
+// set a profile before actually start counting
 
-	LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker->Measurement->MeasureStationary();
-
-	GlobalObjects::LMFTracker->Measurement->StartMeasurement();
-	setIntegerParam(L_measonoff_command, 1);
 
 	std::cout << "Measurement Profiles Count: " << GlobalObjects::LMFTracker->Measurement->Profiles->Count << std::endl;
 	for (int i = 0; i < GlobalObjects::LMFTracker->Measurement->Profiles->Count; i++)
@@ -1068,11 +758,15 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 			std::cout << "GUID: " << (decode)(profile->GUID) << std::endl;
 			std::cout << "Name: " << (decode)(profile->Name) << std::endl;
 
+
+			thisProfile->TimeSeparation->Value = 2000;
+			thisProfile->TimeSeparation->ValueInBaseUnits = 2000;
+
 			Do_IntValueWithRange("PacketRate", thisProfile->PacketRate);
 			Do_DoubleValueWithRange("TimeSeparation", thisProfile->TimeSeparation);
 
 			//methods
-					//	thisProfile->Select();
+			thisProfile->Select();
 		}
 		else if (LMF::Tracker::Measurements::Profiles::ContinuousDistanceProfile^ thisProfile = dynamic_cast<LMF::Tracker::Measurements::Profiles::ContinuousDistanceProfile^>(profile))
 		{
@@ -1131,6 +825,10 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	std::cout << "Name: " << (decode)(GlobalObjects::LMFTracker->Measurement->Profiles->Selected->Name) << std::endl;
 	std::cout << std::endl;
 
+	LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker->Measurement->MeasureStationary();
+
+	GlobalObjects::LMFTracker->Measurement->StartMeasurement();
+	setIntegerParam(L_measonoff_command, 1);
 
 	// This/these may not actually be required since values also appear from various other sources.
 
@@ -1253,6 +951,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 	epicsAtExit(exitHandler, this);
 	GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
+	GlobalObjects::LMFTracker->OpenTrackerScope();
 }
 
 void leica::initializeHardware(const char* portName)
@@ -1716,6 +1415,8 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 	//	throw gcnew System::NotImplementedException();
 	//	std::cout << "I am in the On MeasurementArivved Callback . . . " << std::endl;
 
+	double x=0.0, y=0.0, z=0.0;
+
 	LMF::Tracker::MeasurementResults::Measurement^ LastMeasurement = nullptr;
 
 	// throw gcnew System::NotImplementedException();
@@ -1732,7 +1433,7 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 				LastMeasurement = paramMeasurements[i];
 
 
-				//			std::cout << "Measurment Humidity: " << LastMeasurement->Humidity->Value << " Pressure: " << LastMeasurement->Pressure->Value << " Temperature: " << LastMeasurement->Temperature->Value << std::endl;
+//							std::cout << "Measurment Humidity: " << LastMeasurement->Humidity->Value << " Pressure: " << LastMeasurement->Pressure->Value << " Temperature: " << LastMeasurement->Temperature->Value << std::endl;
 				leica_->setDoubleParam(leica_->L_humidity, LastMeasurement->Humidity->Value);
 				leica_->setDoubleParam(leica_->L_pressure, LastMeasurement->Pressure->Value);
 				leica_->setDoubleParam(leica_->L_temperature, LastMeasurement->Temperature->Value);
@@ -1740,7 +1441,7 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 
 				if (StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(LastMeasurement))
 				{
-					//					std::cout << "I am a stationary3d measurement \n";
+//										std::cout << "I am a stationary3d measurement \n";
 
 					//					std::cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate1->UnitString);
 					//					std::cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
@@ -1752,49 +1453,78 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 					leica_->setDoubleParam(leica_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
 					leica_->setDoubleParam(leica_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
 
+					x = stationaryMeas3D->Position->Coordinate1->Value;
+					y = stationaryMeas3D->Position->Coordinate1->Value;
+					z = stationaryMeas3D->Position->Coordinate1->Value;
+
 				}
 				else if (StationaryMeasurement6D^ stationaryMeas6D = dynamic_cast<StationaryMeasurement6D^>(LastMeasurement))
 				{
-					//					std::cout << "I am a stationary6d measurement \n";
+										std::cout << "I am a stationary6d measurement \n";
 
 					//					std::cout << " X = " << stationaryMeas6D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate1->UnitString);
 					//					std::cout << " Y = " << stationaryMeas6D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate2->UnitString);
 					//					std::cout << " Z = " << stationaryMeas6D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas6D->Position->Coordinate3->UnitString) << std::endl;
 
-					leica_->setDoubleParam(leica_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
-					leica_->setDoubleParam(leica_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
-					leica_->setDoubleParam(leica_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
+					leica_->setDoubleParam(leica_->L_x, stationaryMeas6D->Position->Coordinate1->Value);
+					leica_->setDoubleParam(leica_->L_y, stationaryMeas6D->Position->Coordinate2->Value);
+					leica_->setDoubleParam(leica_->L_z, stationaryMeas6D->Position->Coordinate3->Value);
 
+					x = stationaryMeas6D->Position->Coordinate1->Value;
+					y = stationaryMeas6D->Position->Coordinate1->Value;
+					z = stationaryMeas6D->Position->Coordinate1->Value;
 
 				}
 				else if (SingleShotMeasurement3D^ singleshot3dD = dynamic_cast<SingleShotMeasurement3D^>(LastMeasurement))
 				{
-					//					std::cout << "I am a singleshot 3d measurement \n";
+				
+//						std::cout << "I am a singleshot 3d measurement \n";
 
-					//					std::cout << " X = " << singleshot3dD->Position->Coordinate1->Value << " " << (decode)(singleshot3dD->Position->Coordinate1->UnitString);
-					//					std::cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << " " << (decode)(singleshot3dD->Position->Coordinate2->UnitString);
-					//					std::cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << " " << (decode)(singleshot3dD->Position->Coordinate3->UnitString) << std::endl;
-					leica_->setDoubleParam(leica_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
-					leica_->setDoubleParam(leica_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
-					leica_->setDoubleParam(leica_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
+//						std::cout << " X = " << singleshot3dD->Position->Coordinate1->Value << " " << (decode)(singleshot3dD->Position->Coordinate1->UnitString);
+//						std::cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << " " << (decode)(singleshot3dD->Position->Coordinate2->UnitString);
+//						std::cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << " " << (decode)(singleshot3dD->Position->Coordinate3->UnitString) << std::endl;
+						
+					    leica_->setDoubleParam(leica_->L_x, singleshot3dD->Position->Coordinate1->Value);
+						leica_->setDoubleParam(leica_->L_y, singleshot3dD->Position->Coordinate2->Value);
+						leica_->setDoubleParam(leica_->L_z, singleshot3dD->Position->Coordinate3->Value);
+
+						x = singleshot3dD->Position->Coordinate1->Value;
+						y = singleshot3dD->Position->Coordinate2->Value;
+						z = singleshot3dD->Position->Coordinate3->Value;
 
 
 				}
 				else if (SingleShotMeasurement6D^ singleshot6dD = dynamic_cast<SingleShotMeasurement6D^>(LastMeasurement))
 				{
-					//					std::cout << "I am a singleshot 6d measurement \n";
+										std::cout << "I am a singleshot 6d measurement \n";
 
 					//					std::cout << " X = " << singleshot6dD->Position->Coordinate1->Value << " " << (decode)(singleshot6dD->Position->Coordinate1->UnitString);
 					//					std::cout << " Y = " << singleshot6dD->Position->Coordinate2->Value << " " << (decode)(singleshot6dD->Position->Coordinate2->UnitString);
 					//					std::cout << " Z = " << singleshot6dD->Position->Coordinate3->Value << " " << (decode)(singleshot6dD->Position->Coordinate3->UnitString) << std::endl;
-					leica_->setDoubleParam(leica_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
-					leica_->setDoubleParam(leica_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
-					leica_->setDoubleParam(leica_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
+					leica_->setDoubleParam(leica_->L_x, singleshot6dD->Position->Coordinate1->Value);
+					leica_->setDoubleParam(leica_->L_y, singleshot6dD->Position->Coordinate2->Value);
+					leica_->setDoubleParam(leica_->L_z, singleshot6dD->Position->Coordinate3->Value);
+
+					x = singleshot6dD->Position->Coordinate1->Value;
+					y = singleshot6dD->Position->Coordinate2->Value;
+					z = singleshot6dD->Position->Coordinate3->Value;
+
 
 				}
 			}
 		}
 	}
+
+
+	// HVD info, H and V are directory available, D is math.
+
+	Direction^ dir1 = GlobalObjects::LMFTracker->GetDirection();
+	leica_->setDoubleParam(leica_->L_h, dir1->HorizontalAngle->Value);
+	leica_->setDoubleParam(leica_->L_v, dir1->VerticalAngle->Value);
+// The laser Tracker itself reorts this back in 3 places, math tends to only give 2 . If this is important, change the default coordinate system as required.
+	leica_->setDoubleParam(leica_->L_d, std::sqrt(x * x + y * y + z * z));
+
+
 	leica_->callParamCallbacks();
 
 	// not sure why This callback has to be restrted while onEnviromnetalValuesChanged does not

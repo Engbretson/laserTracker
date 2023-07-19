@@ -106,6 +106,10 @@ public:
 	int L_x;
 	int L_y;
 	int L_z;
+	int L_h;
+	int L_v;
+	int L_d;
+
 
 	int L_XX;
 	int L_YY;
@@ -248,6 +252,10 @@ const char* EMeteoSourceStrings[] = { "ManualMeteo", "LiveMeteo" };
 #define L_xString "x"
 #define L_yString "y"
 #define L_zString "z"
+#define L_hString "h"
+#define L_vString "v"
+#define L_dString "d"
+
 
 #define L_XXString "XX"
 #define L_YYString "YY"
