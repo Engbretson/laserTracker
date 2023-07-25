@@ -759,8 +759,8 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 			std::cout << "Name: " << (decode)(profile->Name) << std::endl;
 
 
-			thisProfile->TimeSeparation->Value = 2000;
-			thisProfile->TimeSeparation->ValueInBaseUnits = 2000;
+			thisProfile->TimeSeparation->Value = 1000;
+			thisProfile->TimeSeparation->ValueInBaseUnits = 1000;
 
 			Do_IntValueWithRange("PacketRate", thisProfile->PacketRate);
 			Do_DoubleValueWithRange("TimeSeparation", thisProfile->TimeSeparation);
@@ -1183,6 +1183,15 @@ void leica::OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ s
 
 	leica_->setIntegerParam(leica_->L_meas_in_prog, (int)paramNewValue);
 	leica_->callParamCallbacks();
+
+	if (paramNewValue == EMeasurementStatus::ReadyToMeasure)
+	{
+		try {
+			GlobalObjects::LMFTracker->Measurement->StartMeasurement();
+	}
+		catch (...)
+		{ }
+	}
 }
 
 

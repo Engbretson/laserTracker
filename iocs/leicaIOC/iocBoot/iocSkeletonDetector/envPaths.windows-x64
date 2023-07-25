@@ -1,6 +1,6 @@
 epicsEnvSet("IOC","iocSkeletonDetector")
-epicsEnvSet("TOP","c:/epics/areaDetector-R3-12-1/LaserTracker-R1-3/iocs/leicaIOC")
-epicsEnvSet("ADleica","c:/epics/areaDetector-R3-12-1/LaserTracker-R1-3/iocs/leicaIOC/../..")
+epicsEnvSet("TOP","C:/epics/areaDetector-R3-12-1/LaserTracker-R1-3/iocs/leicaIOC")
+epicsEnvSet("ADleica","C:/epics/areaDetector-R3-12-1/LaserTracker-R1-3/iocs/leicaIOC/../..")
 epicsEnvSet("SUPPORT","c:/epics")
 epicsEnvSet("ASYN","c:/epics/asyn-R4-44-2")
 epicsEnvSet("AREA_DETECTOR","c:/epics/areaDetector-R3-12-1")
