@@ -134,6 +134,7 @@ public:
 	int L_laseronoff_command;
 
 	int L_gotoXY;
+    int L_gotoHERE;
 
 	int L_measonoff_command;
 	int L_meas_in_prog;
@@ -225,6 +226,7 @@ const char* EMeteoSourceStrings[] = { "ManualMeteo", "LiveMeteo" };
 #define L_laseronoff_commandString "laseronoff_command"
 #define L_measonoff_commandString "measonoff_command"
 #define L_gotoXYString "gotoXY"
+#define L_gotoHEREString "gotoHERE"
 
 //strings
 #define L_commentString "comment"

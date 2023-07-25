@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-07-24 14:57:10 by mengbret-->
+<!--Saved on 2023-07-25 15:44:46 by mengbret-->
 <display version="2.0.0">
   <name>Display</name>
   <widget type="image" version="2.0.0">
     <name>Image</name>
     <pv_name>433LT:image1:ArrayData</pv_name>
+    <x>5</x>
+    <y>5</y>
     <width>640</width>
     <height>480</height>
     <color_map>
@@ -19,7 +21,7 @@
       </scale_font>
     </color_bar>
     <x_axis>
-      <visible>false</visible>
+      <visible>true</visible>
       <title>X</title>
       <minimum>0.0</minimum>
       <maximum>640.0</maximum>
@@ -33,7 +35,7 @@
       </scale_font>
     </x_axis>
     <y_axis>
-      <visible>false</visible>
+      <visible>true</visible>
       <title>Y</title>
       <minimum>480.0</minimum>
       <maximum>0.0</maximum>
@@ -74,7 +76,7 @@
   <widget type="textentry" version="3.0.0">
     <name>Text Entry</name>
     <pv_name>433LT:LT1:XX</pv_name>
-    <x>50</x>
+    <x>80</x>
     <y>510</y>
     <width>80</width>
     <height>40</height>
@@ -193,56 +195,78 @@
     </actions>
     <pv_name>433LT:LT1:gotoXY</pv_name>
     <text>Goto XY</text>
-    <x>400</x>
-    <y>520</y>
+    <x>260</x>
+    <y>510</y>
     <height>40</height>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_7</name>
     <pv_name>433LT:LT1:x_RBV</pv_name>
-    <x>570</x>
-    <y>540</y>
-    <width>40</width>
+    <x>520</x>
+    <y>490</y>
+    <width>60</width>
     <height>30</height>
+    <precision>2</precision>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_8</name>
     <pv_name>433LT:LT1:y_RBV</pv_name>
-    <x>630</x>
-    <y>540</y>
-    <width>40</width>
+    <x>590</x>
+    <y>490</y>
+    <width>60</width>
     <height>30</height>
+    <precision>3</precision>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_13</name>
     <pv_name>433LT:LT1:z_RBV</pv_name>
-    <x>700</x>
-    <y>540</y>
-    <width>40</width>
+    <x>660</x>
+    <y>490</y>
+    <width>60</width>
     <height>30</height>
+    <precision>3</precision>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_14</name>
     <pv_name>433LT:LT1:h_RBV</pv_name>
-    <x>570</x>
-    <y>570</y>
-    <width>40</width>
+    <x>520</x>
+    <y>560</y>
+    <width>60</width>
     <height>30</height>
+    <precision>3</precision>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_15</name>
     <pv_name>433LT:LT1:v_RBV</pv_name>
-    <x>630</x>
-    <y>570</y>
-    <width>40</width>
+    <x>590</x>
+    <y>560</y>
+    <width>60</width>
     <height>30</height>
+    <precision>3</precision>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_16</name>
     <pv_name>433LT:LT1:d_RBV</pv_name>
-    <x>700</x>
-    <y>570</y>
-    <width>40</width>
+    <x>660</x>
+    <y>560</y>
+    <width>60</width>
     <height>30</height>
+    <precision>3</precision>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_1</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>WritePV</description>
+      </action>
+    </actions>
+    <pv_name>433LT:LT1:gotoHERE</pv_name>
+    <text>Go Here</text>
+    <x>660</x>
+    <y>440</y>
+    <width>67</width>
+    <height>40</height>
   </widget>
 </display>

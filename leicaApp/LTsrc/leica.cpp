@@ -408,6 +408,27 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 			;
 		}
 	}
+		if (function == L_gotoHERE) {
+		try
+		{
+			double tempx, tempy, tempz;
+			int temptargets;
+			getDoubleParam(L_x, &tempx);
+			getDoubleParam(L_y, &tempy);
+			getDoubleParam(L_z, &tempz);
+			///		std::cout << "goto x " << tempx << " y " << tempy << std::endl;
+			GlobalObjects::LMFTracker->PositionTo(true, false, tempx, tempy, tempz);
+			getIntegerParam(L_targets, &temptargets);
+			if (temptargets != 0)
+				GlobalObjects::LMFTracker->TargetSearch->Start();
+		}
+		catch(...) {
+// this happens if your moving the trager via the mouse, and there is a race condition between if it sees a tracker
+// that used to exist, and no longer exists, so attempts to find something that no longer exists
+
+			;
+		}
+		}
 	if (function == L_laseronoff_command) {
 		GlobalObjects::LMFTracker->Laser->IsOn->Value = value;
 	}
@@ -550,7 +571,8 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	createParam(L_productNameString, asynParamOctet, &L_productName);
 	createParam(L_serialNumberString, asynParamOctet, &L_serialNumber);
 
-	createParam(L_gotoXYString, asynParamOctet, &L_gotoXY);
+	createParam(L_gotoXYString, asynParamInt32, &L_gotoXY);
+    createParam(L_gotoHEREString, asynParamInt32, &L_gotoHERE);
 
 
 	createParam(L_angleUnitsString, asynParamOctet, &L_angleUnits);
