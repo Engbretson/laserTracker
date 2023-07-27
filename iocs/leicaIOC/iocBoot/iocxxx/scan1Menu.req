@@ -1,4 +1,7 @@
 file configMenu.req P=$(P),CONFIG=$(CONFIG)
-file scan_settings.req P=$(P),S=scan2
-file scan_settings.req P=$(P),S=scan1
-file scan_settings.req P=$(P),S=scanH
+#file scan_settings.req P=$(P),S=scan2
+#file scan_settings.req P=$(P),S=scan1
+#file scan_settings.req P=$(P),S=scanH
+$(P)$(R)h_RBV
+$(P)$(R)v_RBV
+$(P)$(R)d_RBV

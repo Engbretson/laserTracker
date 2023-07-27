@@ -70,8 +70,11 @@ asynSetTraceIOMask($(PORT),0,0x2)
 
 iocInit()
 
+
+
 # save things every thirty seconds
-create_monitor_set("auto_settings.req", 30, "P=$(PREFIX)")
+create_monitor_set("auto_settings.req", 30, "P=$(PREFIX),R=LT1:")
+create_manual_set("ADAutoSaveMenu.req","P=$(PREFIX),CONFIG=ADAutoSave,CONFIGMENU=1")
 
 # write all the PV names to a local file
 dbl > dbl-all.txt
@@ -81,4 +84,6 @@ dbcar(0,1)
 
 # print the time our boot was finished
 date
+
+
 
