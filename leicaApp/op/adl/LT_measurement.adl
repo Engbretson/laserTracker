@@ -1,6 +1,6 @@
 
 file {
-	name="D:\epics\LaserTracker-R1-1\xxxApp\op\adl\LT_measurement.adl"
+	name="C:\epics\areaDetector-R3-12-1\LaserTracker-R1-3\leicaApp\op\adl\LT_measurement.adl"
 	version=030109
 }
 display {
@@ -415,7 +415,7 @@ text {
 		height=18
 	}
 	monitor {
-		chan="$(P)$(R)temperatureUnits_RBV"
+		chan="$(P)$(R)ltemperatureUnits_RBV"
 		clr=54
 		bclr=4
 	}
@@ -493,31 +493,5 @@ text {
 		bclr=4
 	}
 	limits {
-	}
-}
-"choice button" {
-	object {
-		x=19
-		y=152
-		width=70
-		height=40
-	}
-	control {
-		chan="$(P)$(R)laseron_command"
-		clr=54
-		bclr=4
-	}
-}
-"choice button" {
-	object {
-		x=102
-		y=151
-		width=70
-		height=40
-	}
-	control {
-		chan="$(P)$(R)measonoff_command"
-		clr=54
-		bclr=4
 	}
 }

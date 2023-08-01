@@ -9,6 +9,7 @@ html/
 include/
 lib/
 templates/
+autosave/
 cdCommands
 envPaths
 dllPath.bat

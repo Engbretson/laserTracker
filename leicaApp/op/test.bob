@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-07-25 15:44:46 by mengbret-->
+<!--Saved on 2023-08-01 14:27:22 by mengbret-->
 <display version="2.0.0">
   <name>Display</name>
   <widget type="image" version="2.0.0">
@@ -80,6 +80,7 @@
     <y>510</y>
     <width>80</width>
     <height>40</height>
+    <visible>false</visible>
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>Text Entry_1</name>
@@ -88,6 +89,7 @@
     <y>510</y>
     <width>80</width>
     <height>40</height>
+    <visible>false</visible>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label</name>
@@ -198,6 +200,7 @@
     <x>260</x>
     <y>510</y>
     <height>40</height>
+    <visible>false</visible>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_7</name>
@@ -230,7 +233,7 @@
     <name>Text Update_14</name>
     <pv_name>433LT:LT1:h_RBV</pv_name>
     <x>520</x>
-    <y>560</y>
+    <y>525</y>
     <width>60</width>
     <height>30</height>
     <precision>3</precision>
@@ -239,7 +242,7 @@
     <name>Text Update_15</name>
     <pv_name>433LT:LT1:v_RBV</pv_name>
     <x>590</x>
-    <y>560</y>
+    <y>525</y>
     <width>60</width>
     <height>30</height>
     <precision>3</precision>
@@ -248,7 +251,7 @@
     <name>Text Update_16</name>
     <pv_name>433LT:LT1:d_RBV</pv_name>
     <x>660</x>
-    <y>560</y>
+    <y>525</y>
     <width>60</width>
     <height>30</height>
     <precision>3</precision>
@@ -263,10 +266,61 @@
       </action>
     </actions>
     <pv_name>433LT:LT1:gotoHERE</pv_name>
-    <text>Go Here</text>
+    <text>Go Saved</text>
     <x>660</x>
-    <y>440</y>
+    <y>436</y>
     <width>67</width>
     <height>40</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_26</name>
+    <pv_name>433LT:LT1:x00_RBV</pv_name>
+    <x>740</x>
+    <y>440</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>2</precision>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_27</name>
+    <pv_name>433LT:LT1:y00_RBV</pv_name>
+    <x>810</x>
+    <y>440</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>3</precision>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_28</name>
+    <pv_name>433LT:LT1:z00_RBV</pv_name>
+    <x>880</x>
+    <y>440</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>3</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_1</name>
+    <text>XYZ</text>
+    <x>485</x>
+    <y>490</y>
+    <width>30</width>
+    <height>30</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_2</name>
+    <text>HVD</text>
+    <x>485</x>
+    <y>525</y>
+    <width>30</width>
+    <height>30</height>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display</name>
+    <file>configMenu.bob</file>
+    <x>950</x>
+    <y>20</y>
+    <width>300</width>
+    <height>470</height>
   </widget>
 </display>

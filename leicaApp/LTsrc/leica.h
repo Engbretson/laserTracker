@@ -64,6 +64,12 @@ public:
 	/* These are the methods that we override from ADDriver */
 	virtual asynStatus readInt32(asynUser* pasynUser, epicsInt32* value);
 	virtual asynStatus writeInt32(asynUser* pasynUser, epicsInt32 value);
+//	virtual asynStatus readOctet(asynUser* pasynUser, char* value,
+//		size_t maxChars, size_t* nActual,
+//		int* eomReason);
+	virtual asynStatus writeOctet(asynUser* pasynUser, const char* value,
+		size_t maxChars, size_t* nActual);
+//	virtual asynStatus flushOctet(asynUser* pasynUser);
 
 	//	virtual asynStatus writeFloat64(asynUser* pasynUser, epicsFloat64 value);
 
@@ -80,6 +86,8 @@ public:
 	int L_iscompatibleFirmware;
 #define FIRST_LEICA_PARAM L_iscompatibleFirmware
 
+// strings
+
 	int L_comment;
 	int L_expectedFirmware;
 	int L_installedFirmware;
@@ -87,29 +95,39 @@ public:
 	int L_name;
 	int L_productName;
 	int L_serialNumber;
-	int L_targets;
+
 
 	int L_angleUnits;
 	int L_humidityUnits;
 	int L_pressureUnits;
-	int L_temperatureUnits;
+	int L_ltemperatureUnits;
 	int L_xUnits;
 	int L_yUnits;
 	int L_zUnits;
 
+//doubles
 
 	int L_horizontalAngle;
 	int L_verticalAngle;
 	int L_humidity;
 	int L_pressure;
-	int L_temperature;
+	int L_ltemperature;
 	int L_x;
 	int L_y;
 	int L_z;
+	int L_x0;
+	int L_y0;
+	int L_z0;
+	int L_x00;
+	int L_y00;
+	int L_z00;
+
+
 	int L_h;
 	int L_v;
 	int L_d;
 
+//ints
 
 	int L_XX;
 	int L_YY;
@@ -125,9 +143,10 @@ public:
 	int L_Y5;
 
 
-
 	int L_face;
 	int L_face_command;
+
+	int L_targets;
 
 	int L_islaseron;
 	int L_islaserwarm;
@@ -240,7 +259,7 @@ const char* EMeteoSourceStrings[] = { "ManualMeteo", "LiveMeteo" };
 #define L_angleUnitsString "angleunits"
 #define L_humidityUnitsString "humidityunits"
 #define L_pressureUnitsString "pressureunits"
-#define L_temperatureUnitsString "temperatureunits"
+#define L_ltemperatureUnitsString "ltemperatureunits"
 #define L_xUnitsString "xunits"
 #define L_yUnitsString "yunits"
 #define L_zUnitsString "zunits"
@@ -250,10 +269,18 @@ const char* EMeteoSourceStrings[] = { "ManualMeteo", "LiveMeteo" };
 #define L_horizontalAngleString "horizontalAngle"
 #define L_humidityString "humidity"
 #define L_pressureString "pressure"
-#define L_temperatureString "ltemperature"
+#define L_ltemperatureString "ltemperature"
 #define L_xString "x"
 #define L_yString "y"
 #define L_zString "z"
+#define L_x0String "x0"
+#define L_y0String "y0"
+#define L_z0String "z0"
+#define L_x00String "x00"
+#define L_y00String "y00"
+#define L_z00String "z00"
+
+
 #define L_hString "h"
 #define L_vString "v"
 #define L_dString "d"

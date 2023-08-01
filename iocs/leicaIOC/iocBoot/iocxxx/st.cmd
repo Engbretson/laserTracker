@@ -70,7 +70,7 @@ asynSetTraceIOMask($(PORT),0,0x2)
 
 iocInit()
 
-
+#dbpf("$(PREFIX)ADAutoSaveMenu:enableSave","0")
 
 # save things every thirty seconds
 create_monitor_set("auto_settings.req", 30, "P=$(PREFIX),R=LT1:")
