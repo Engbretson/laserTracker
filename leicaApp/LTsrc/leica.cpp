@@ -853,11 +853,18 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	std::cout << "Name: " << (decode)(GlobalObjects::LMFTracker->Measurement->Profiles->Selected->Name) << std::endl;
 	std::cout << std::endl;
 
+//	printf("%s\n",__LINE__);
+
+#ifdef TARGETATSTARTUP
+
 	LMF::Tracker::MeasurementResults::Measurement^ data = GlobalObjects::LMFTracker->Measurement->MeasureStationary();
 
+// May not have a visible target at startup . . . 
+// 
 	GlobalObjects::LMFTracker->Measurement->StartMeasurement();
+////	CALL_AND_HANDLE(GlobalObjects::LMFTracker->Measurement->StartMeasurement());
 	setIntegerParam(L_measonoff_command, 1);
-
+	printf("%s\n", __LINE__);
 	// This/these may not actually be required since values also appear from various other sources.
 
 //	GlobalObjects::LMFTracker->MeteoStation->EnvironmentalValuesChanged += gcnew LMF::Tracker::Meteo::MeteoStation::EnvironmentalValuesChangedEventHandler(&OnEnvironmentalValuesChanged);
@@ -867,6 +874,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 //	GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
 //	GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
 
+	printf("%s\n", __LINE__);
 
 	cout << "Measurment Humidity: " << data->Humidity->Value << " " << (decode)(data->Humidity->UnitString)
 		<< " Pressure: " << data->Pressure->Value << " " << (decode)(data->Pressure->UnitString)
@@ -883,7 +891,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 //	aa[0] = '\370';
 //std::cout << aa;
 // prints correctly but is not displayed correctly in medm/caqtdm, so just pop off the degree symbol
-
+	printf("%s\n", __LINE__);
 	setStringParam(L_ltemperatureUnits, (decode)(data->Temperature->UnitString->Substring(1)));
 
 	StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(data);
@@ -903,6 +911,8 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 
 	callParamCallbacks();
+#endif
+
 
 #ifdef FROMSIMDET
 
@@ -1055,7 +1065,9 @@ void leica::initializeHardware(const char* portName)
 	But since I also do not know what commands that I will end up implementing, also don't know how big of a deal this is likley to be.
 	*/
 
-	GlobalObjects::LMFTracker->PositionTo(true, false, 546, 3059, 690);
+//	GlobalObjects::LMFTracker->PositionTo(true, false, 546, 3059, 690);
+// trying this without an actual visibale target . . . 
+	GlobalObjects::LMFTracker->GoHomePosition();
 
 }
 

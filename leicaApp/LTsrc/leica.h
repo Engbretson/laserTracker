@@ -54,6 +54,19 @@ using namespace LMF::Tracker::Triggers;
 using namespace LMF::Tracker::Enums;
 using namespace LMF::Tracker::BasicTypes;
 
+
+// I have to try block various things better at startup if the laser does not have access to a 
+// valid tracker that I can point to at startup.
+
+#define CALL_AND_HANDLE(expr)           \
+    try {                               \
+        expr;                           \
+    }                                   \
+    catch (...) {                       \
+        printf("Exception Trapped . . . %s at line %d \n",__FILE__,__LINE__); \
+    }
+	
+
 class /*epicsShareClass*/ leica : public ADDriver {
 public:
 	leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t dataType,

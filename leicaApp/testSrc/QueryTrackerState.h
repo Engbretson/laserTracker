@@ -47,7 +47,13 @@ extern const char* EUnitTypeStrings[];
 extern const char* TFS[];
 extern const char* EMeteoSourceStrings[];
 
-
+#define CALL_AND_HANDLE(expr)           \
+    try {                               \
+        expr;                  \
+    }                                   \
+    catch (...) {                       \
+        printf("Exception Trapped . . . %s at line %d \n",__FILE__,__LINE__);\
+    }
 
 //NOTE: asking for the enum string values via the Object viewer returns the strings in alphanumeric order ??? not in the order that they actually are
 // You need to exaine the TLH file, to get the correct order

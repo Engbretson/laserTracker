@@ -3,3 +3,4 @@ D:\epics\LaserTracker-R1-0\xxxApp\MSVC_test\x64\Debug\LaserTracker.exe.lastcodea
 D:\epics\LaserTracker-R1-0\xxxApp\MSVC_test\x64\Debug\LaserTracker.exe.CodeAnalysisLog.xml
 D:\epics\LaserTracker-R1-0\xxxApp\MSVC_test\LaserTracker\x64\Debug\NativeCodeAnalysis.read.1.tlog
 D:\epics\LaserTracker-R1-1\xxxApp\MSVC_test\LaserTracker\x64\Debug\LaserTracker.vcxproj.AssemblyReference.cache
+C:\epics\areaDetector-R3-12-1\LaserTracker-R1-3\leicaApp\MSVC_test\LaserTracker\x64\Debug\LaserTracker.vcxproj.AssemblyReference.cache

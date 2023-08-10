@@ -45,6 +45,7 @@ leicaConfig("$(PORT)", $(XSIZE), $(YSIZE), 1, 0, 0)
 
 dbLoadRecords("$(ADleica)/db/leica.template","P=$(PREFIX),R=LT1:,PORT=$(PORT),ADDR=0,TIMEOUT=1")
 
+
 # Create a standard arrays plugin
 NDStdArraysConfigure("Image1", 5, 0, "$(PORT)", 0, 0)
 # Use this line for 8-bit data only

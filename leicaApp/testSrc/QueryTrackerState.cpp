@@ -291,7 +291,12 @@ int mainLT()
 	// Try to locate a known to be existing reflector, since a lot of this code doesn't actually work unless it is looking at something real
 
 	std::cout << "Trying to pre-position to known position . . . " << std::endl;
-	LMFTracker->PositionTo(true, false, 546, 3059, 690);
+
+	CALL_AND_HANDLE(LMFTracker->PositionTo(true, false, 546, 3059, 690));
+//	LMFTracker->GetPrismPosition();
+	CALL_AND_HANDLE(LMFTracker->GetPrismPosition());
+
+//	LMFTracker->PositionTo(true, false, 546, 3059, 690);
 
 	// These sorts of tests/checks should be valid now
 

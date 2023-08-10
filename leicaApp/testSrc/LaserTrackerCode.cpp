@@ -1325,7 +1325,7 @@ void OnPositionToFinished(LMF::Tracker::Tracker^ sender, LMF::Tracker::Targets::
 	// I.e., position you still need to grab from someone else
 
 	try {
-		std::cout << (decode)(ex->Description) << std::endl;;
+		std::cout << (decode)(ex->Description) << std::endl;
 	}
 	catch (...)
 	{

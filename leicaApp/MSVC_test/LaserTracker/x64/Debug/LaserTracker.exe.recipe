@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\epics\LaserTracker-R1-1\xxxApp\MSVC_test\x64\Debug\LaserTracker.exe</FullPath>
+      <FullPath>C:\epics\areaDetector-R3-12-1\LaserTracker-R1-3\leicaApp\MSVC_test\x64\Debug\LaserTracker.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
