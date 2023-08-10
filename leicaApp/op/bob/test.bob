@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2023-08-09 16:27:17 by mengbret-->
+<display version="2.0.0">
+  <name>Display</name>
+  <widget type="image" version="2.0.0">
+    <name>Image</name>
+    <pv_name>$(P)image1:ArrayData</pv_name>
+    <x>5</x>
+    <y>5</y>
+    <width>640</width>
+    <height>480</height>
+    <color_map>
+      <name>GRAY</name>
+    </color_map>
+    <color_bar>
+      <visible>false</visible>
+      <bar_size>40</bar_size>
+      <scale_font>
+        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+        </font>
+      </scale_font>
+    </color_bar>
+    <x_axis>
+      <visible>true</visible>
+      <title>X</title>
+      <minimum>0.0</minimum>
+      <maximum>640.0</maximum>
+      <title_font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </title_font>
+      <scale_font>
+        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+        </font>
+      </scale_font>
+    </x_axis>
+    <y_axis>
+      <visible>true</visible>
+      <title>Y</title>
+      <minimum>480.0</minimum>
+      <maximum>0.0</maximum>
+      <title_font>
+        <font name="Default Bold" family="Liberation Sans" style="BOLD" size="14.0">
+        </font>
+      </title_font>
+      <scale_font>
+        <font name="Default" family="Liberation Sans" style="REGULAR" size="14.0">
+        </font>
+      </scale_font>
+    </y_axis>
+    <border_alarm_sensitive>false</border_alarm_sensitive>
+    <data_width>640</data_width>
+    <data_height>480</data_height>
+    <interpolation>1</interpolation>
+    <autoscale>false</autoscale>
+    <x_pv>$(P)$(R)L_XX</x_pv>
+    <y_pv>$(P)$(R)L_YY</y_pv>
+    <cursor_crosshair>true</cursor_crosshair>
+    <rois>
+      <roi>
+        <name></name>
+        <color>
+          <color red="255" green="0" blue="0">
+          </color>
+        </color>
+        <visible>true</visible>
+        <interactive>false</interactive>
+        <x_pv>loc://roi_x(294)</x_pv>
+        <y_pv>loc://roi_y(235)</y_pv>
+        <width_pv>loc://roi_w(50)</width_pv>
+        <height_pv>loc://roi_h(50)</height_pv>
+        <file>xmark.png</file>
+      </roi>
+    </rois>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry</name>
+    <pv_name>$(P)$(R)XX</pv_name>
+    <x>80</x>
+    <y>510</y>
+    <width>80</width>
+    <height>40</height>
+    <visible>false</visible>
+  </widget>
+  <widget type="textentry" version="3.0.0">
+    <name>Text Entry_1</name>
+    <pv_name>$(P)$(R)YY</pv_name>
+    <x>170</x>
+    <y>510</y>
+    <width>80</width>
+    <height>40</height>
+    <visible>false</visible>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <text>Targets</text>
+    <x>670</x>
+    <y>20</y>
+    <width>80</width>
+    <height>30</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update</name>
+    <pv_name>$(P)$(R)L_Count_3_RBV</pv_name>
+    <x>660</x>
+    <y>70</y>
+    <width>80</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_1</name>
+    <pv_name>$(P)$(R)L_x1_RBV</pv_name>
+    <x>650</x>
+    <y>120</y>
+    <width>40</width>
+    <height>30</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_2</name>
+    <pv_name>$(P)$(R)L_y1_RBV</pv_name>
+    <x>710</x>
+    <y>120</y>
+    <width>40</width>
+    <height>30</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_3</name>
+    <pv_name>$(P)$(R)L_y2_RBV</pv_name>
+    <x>710</x>
+    <y>170</y>
+    <width>40</width>
+    <height>30</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_4</name>
+    <pv_name>$(P)$(R)L_x2_RBV</pv_name>
+    <x>650</x>
+    <y>170</y>
+    <width>40</width>
+    <height>30</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_5</name>
+    <pv_name>$(P)$(R)L_y3_RBV</pv_name>
+    <x>710</x>
+    <y>220</y>
+    <width>40</width>
+    <height>30</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_6</name>
+    <pv_name>$(P)$(R)L_x3_RBV</pv_name>
+    <x>650</x>
+    <y>220</y>
+    <width>40</width>
+    <height>30</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_9</name>
+    <pv_name>$(P)$(R)L_y4_RBV</pv_name>
+    <x>710</x>
+    <y>270</y>
+    <width>40</width>
+    <height>30</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_10</name>
+    <pv_name>$(P)$(R)L_x4_RBV</pv_name>
+    <x>650</x>
+    <y>270</y>
+    <width>40</width>
+    <height>30</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_11</name>
+    <pv_name>$(P)$(R)L_x5_RBV</pv_name>
+    <x>710</x>
+    <y>320</y>
+    <width>40</width>
+    <height>30</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_12</name>
+    <pv_name>$(P)$(R)L_x5_RBV</pv_name>
+    <x>650</x>
+    <y>320</y>
+    <width>40</width>
+    <height>30</height>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>WritePV</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)gotoXY</pv_name>
+    <text>Goto XY</text>
+    <x>260</x>
+    <y>510</y>
+    <height>40</height>
+    <visible>false</visible>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_7</name>
+    <pv_name>$(P)$(R)L_x_RBV</pv_name>
+    <x>520</x>
+    <y>490</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>2</precision>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_8</name>
+    <pv_name>$(P)$(R)L_y_RBV</pv_name>
+    <x>590</x>
+    <y>490</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>3</precision>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_13</name>
+    <pv_name>$(P)$(R)L_z_RBV</pv_name>
+    <x>660</x>
+    <y>490</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>3</precision>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_14</name>
+    <pv_name>$(P)$(R)L_h_RBV</pv_name>
+    <x>520</x>
+    <y>525</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>3</precision>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_15</name>
+    <pv_name>$(P)$(R)L_v_RBV</pv_name>
+    <x>590</x>
+    <y>525</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>3</precision>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_16</name>
+    <pv_name>$(P)$(R)L_d_RBV</pv_name>
+    <x>660</x>
+    <y>525</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>3</precision>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_1</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>WritePV</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_GotoXYZ</pv_name>
+    <text>Go Saved</text>
+    <x>660</x>
+    <y>436</y>
+    <width>67</width>
+    <height>40</height>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_26</name>
+    <pv_name>$(P)$(R)L_x00_RBV</pv_name>
+    <x>740</x>
+    <y>440</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>2</precision>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_27</name>
+    <pv_name>$(P)$(R)L_y00_RBV</pv_name>
+    <x>810</x>
+    <y>440</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>3</precision>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_28</name>
+    <pv_name>$(P)$(R)L_z00_RBV</pv_name>
+    <x>880</x>
+    <y>440</y>
+    <width>60</width>
+    <height>30</height>
+    <precision>3</precision>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_1</name>
+    <text>XYZ</text>
+    <x>485</x>
+    <y>490</y>
+    <width>30</width>
+    <height>30</height>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label_2</name>
+    <text>HVD</text>
+    <x>485</x>
+    <y>525</y>
+    <width>30</width>
+    <height>30</height>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display</name>
+    <file>configMenu.bob</file>
+    <x>950</x>
+    <y>20</y>
+    <width>300</width>
+    <height>470</height>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display_1</name>
+    <file>main.bob</file>
+    <x>40</x>
+    <y>500</y>
+    <height>90</height>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_2</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>WritePV</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_GotoHere_1</pv_name>
+    <text>Go</text>
+    <x>760</x>
+    <y>120</y>
+    <width>40</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_3</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>WritePV</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_GotoHere_2</pv_name>
+    <text>Go</text>
+    <x>760</x>
+    <y>170</y>
+    <width>40</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_4</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>WritePV</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_GotoHere_3</pv_name>
+    <text>Go</text>
+    <x>760</x>
+    <y>220</y>
+    <width>40</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_5</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>WritePV</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_GotoHere_4</pv_name>
+    <text>Go</text>
+    <x>760</x>
+    <y>270</y>
+    <width>40</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_6</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>WritePV</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_GotoHere_5</pv_name>
+    <text>Go</text>
+    <x>760</x>
+    <y>320</y>
+    <width>40</width>
+  </widget>
+</display>

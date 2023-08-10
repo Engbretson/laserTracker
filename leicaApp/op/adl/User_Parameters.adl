@@ -1,0 +1,2080 @@
+
+    
+file {
+	name="Template.adl"
+	version=030109
+} 
+display {
+	object {
+		x=50
+		y=50
+		width=900
+		height=1060
+	}
+	clr=14
+	bclr=4
+	cmap=""
+	gridSpacing=5
+	gridOn=0
+	snapToGrid=0
+}
+"color map" {
+	ncolors=65
+	colors {
+		ffffff,
+		ececec,
+		dadada,
+		c8c8c8,
+		bbbbbb,
+		aeaeae,
+		9e9e9e,
+		919191,
+		858585,
+		787878,
+		696969,
+		5a5a5a,
+		464646,
+		2d2d2d,
+		000000,
+		00d800,
+		1ebb00,
+		339900,
+		2d7f00,
+		216c00,
+		fd0000,
+		de1309,
+		be190b,
+		a01207,
+		820400,
+		5893ff,
+		597ee1,
+		4b6ec7,
+		3a5eab,
+		27548d,
+		fbf34a,
+		f9da3c,
+		eeb62b,
+		e19015,
+		cd6100,
+		ffb0ff,
+		d67fe2,
+		ae4ebc,
+		8b1a96,
+		610a75,
+		a4aaff,
+		8793e2,
+		6a73c1,
+		4d52a4,
+		343386,
+		c7bb6d,
+		b79d5c,
+		a47e3c,
+		7d5627,
+		58340f,
+		99ffff,
+		73dfff,
+		4ea5f9,
+		2a63e4,
+		0a00b8,
+		ebf1b5,
+		d4db9d,
+		bbc187,
+		a6a462,
+		8b8239,
+		73ff6b,
+		52da3b,
+		3cb420,
+		289315,
+		1a7309,
+	}
+}
+    
+rectangle {
+   object {
+      x=10
+      y=5
+      width=580
+      height=30
+    }
+    "basic attribute" {
+       clr=25
+       fill="outline"
+     }
+}
+text {
+   object {
+      x=10
+      y=15
+      width=580
+      height=15
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="User_Parameters"
+	align="horiz. centered"
+}
+text {
+   object {
+      x=10
+      y=50
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="x00"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=50
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_x00"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=50
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_x00_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=75
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="y00"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=75
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_y00"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=75
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_y00_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=100
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="z00"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=100
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_z00"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=100
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_z00_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=125
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="GotoXYZ"
+	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=125
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_GotoXYZ"
+     clr=14
+     bclr=51
+   }
+   label="GotoXYZ"
+   press_msg="1"
+}
+"text update" {
+   object {
+      x=365
+      y=125
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_GotoXYZ_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=150
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="Targets"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=150
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Targets"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=150
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Targets_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=175
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="x1"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=175
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_x1"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=175
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_x1_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=200
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="y1"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=200
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_y1"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=200
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_y1_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=225
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="GotoHere"
+	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=225
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_GotoHere"
+     clr=14
+     bclr=51
+   }
+   label="GotoHere"
+   press_msg="1"
+}
+"text update" {
+   object {
+      x=365
+      y=225
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_GotoHere_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=250
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="x2"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=250
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_x2"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=250
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_x2_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=275
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="y2"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=275
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_y2"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=275
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_y2_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=300
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="GotoHere"
+	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=300
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_GotoHere_1"
+     clr=14
+     bclr=51
+   }
+   label="GotoHere"
+   press_msg="1"
+}
+"text update" {
+   object {
+      x=365
+      y=300
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_GotoHere_1_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=325
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="x3"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=325
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_x3"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=325
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_x3_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=350
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="y3"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=350
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_y3"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=350
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_y3_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=375
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="GotoHere"
+	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=375
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_GotoHere_2"
+     clr=14
+     bclr=51
+   }
+   label="GotoHere"
+   press_msg="1"
+}
+"text update" {
+   object {
+      x=365
+      y=375
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_GotoHere_2_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=400
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="x4"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=400
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_x4"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=400
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_x4_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=425
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="y4"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=425
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_y4"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=425
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_y4_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=450
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="GotoHere"
+	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=450
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_GotoHere_3"
+     clr=14
+     bclr=51
+   }
+   label="GotoHere"
+   press_msg="1"
+}
+"text update" {
+   object {
+      x=365
+      y=450
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_GotoHere_3_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=475
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="x5"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=475
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_x5"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=475
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_x5_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=500
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="y5"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=500
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_y5"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=500
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_y5_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=525
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="GotoHere"
+	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=525
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_GotoHere_4"
+     clr=14
+     bclr=51
+   }
+   label="GotoHere"
+   press_msg="1"
+}
+"text update" {
+   object {
+      x=365
+      y=525
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_GotoHere_4_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=550
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="x6"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=550
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_x6"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=550
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_x6_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=575
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="y6"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=575
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_y6"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=575
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_y6_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=600
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="GotoHere"
+	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=600
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_GotoHere_5"
+     clr=14
+     bclr=51
+   }
+   label="GotoHere"
+   press_msg="1"
+}
+"text update" {
+   object {
+      x=365
+      y=600
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_GotoHere_5_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=625
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="XX"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=625
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_XX"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=625
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_XX_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=650
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="YY"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=650
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_YY"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=650
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_YY_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=675
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="GotoXY"
+	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=675
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_GotoXY"
+     clr=14
+     bclr=51
+   }
+   label="GotoXY"
+   press_msg="1"
+}
+"text update" {
+   object {
+      x=365
+      y=675
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_GotoXY_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=700
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="x"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=700
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_x"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=700
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_x_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=725
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="y"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=725
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_y"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=725
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_y_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=750
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="z"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=750
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_z"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=750
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_z_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=775
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="x0"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=775
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_x0"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=775
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_x0_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=800
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="y0"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=800
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_y0"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=800
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_y0_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=825
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="z0"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=825
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_z0"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=825
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_z0_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=850
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="h"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=850
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_h"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=850
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_h_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=875
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="v"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=875
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_v"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=875
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_v_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=900
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="d"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=900
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_d"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=900
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_d_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=925
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="Topcomment"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=925
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Topcomment"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=925
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Topcomment_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=950
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="expectedFirmware"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=950
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_expectedFirmware"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=950
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_expectedFirmware_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=975
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="installedFirmware"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=975
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_installedFirmware"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=975
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_installedFirmware_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=1000
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="ipAddress"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=1000
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_ipAddress"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=1000
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_ipAddress_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=50
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="IsCompatible"
+	align="horiz. right"
+}
+"text update" {
+   object {
+      x=765
+      y=50
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_IsCompatible_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=75
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="Name"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=75
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Name_15"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=75
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Name_15_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=100
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="ProductName"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=100
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_ProductName_3"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=100
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_ProductName_3_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=125
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="SerialNumber"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=125
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_SerialNumber_7"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=125
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_SerialNumber_7_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=150
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="horizontalAngle"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=150
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_horizontalAngle"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=150
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_horizontalAngle_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=175
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="verticalAngle"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=175
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_verticalAngle"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=175
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_verticalAngle_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=200
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="angleUnits"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=200
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_angleUnits"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=200
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_angleUnits_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+}
