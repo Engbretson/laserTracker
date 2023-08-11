@@ -769,10 +769,14 @@ leica::leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 
 //	GlobalObjects::LMFTracker->OverviewCamera->ImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::ImageArrivedHandler(&OnImageArrived);
+
 	GlobalObjects::LMFTracker->OverviewCamera->WPFBitmapImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::WPFBitmapImageArrivedHandler(&OnWPFBitmapImageArrived);
 
-	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::High);
-	//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Medium);
+	GlobalObjects::LMFTracker->OverviewCamera->Stop();
+
+	//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::High);
+
+	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Medium);
 	//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Low);
 
 	GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
@@ -949,6 +953,9 @@ leica::leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 
 	epicsAtExit(exitHandler, this);
+
+	GlobalObjects::LMFTracker->OverviewCamera->Stop();
+	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Medium);
 	GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
 	
 }
@@ -1231,26 +1238,32 @@ int filenamenumber = 0;
 
 void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
 {
-	//		filenamenumber++;
+//		filenamenumber++;
 
 
 
-			// throw gcnew System::NotImplementedException();
-			// 
-			// 
-		//	std::cout << blue << on_white;
-	//	std::cout << "Callback OnWPFBitmapImageArrived . . . ";
-	//	std::cout << atrCoordinates->Count << " Targets seen in Image.";
-	//			<< std::endl;
-		//	std::cout << reset;
-		//std::cout << ".";
+		// throw gcnew System::NotImplementedException();
+		// 
+		// 
+	//	std::cout << blue << on_white;
+//	std::cout << "Callback OnWPFBitmapImageArrived . . . ";
+//	std::cout << atrCoordinates->Count << " Targets seen in Image.";
+//			<< std::endl;
+	//	std::cout << reset;
+	//std::cout << ".";
+
+//	std::cout << image->Height << " " <<image->Width << std::endl;
+
+
+// WARNNGS: while the resolution of the overviewCameras can be set to low, medium, and high, the position in image commands
+// all assume that you are using medium
 
 	leica_->setIntegerParam(leica_->L_Count_3, atrCoordinates->Count);
 
 
 	LMF::Tracker::OVC::ATRCoordinateCollection^ gettargetdirections = atrCoordinates;
 
-	// this will get over written by real values, if any . . . 
+// this will get over written by real values, if any . . . 
 
 	leica_->setIntegerParam(leica_->L_x1, 0);
 	leica_->setIntegerParam(leica_->L_y1, 0);
@@ -1264,180 +1277,169 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 	leica_->setIntegerParam(leica_->L_y5, 0);
 	leica_->setIntegerParam(leica_->L_x6, 0);
 	leica_->setIntegerParam(leica_->L_y6, 0);
-	
 
 	// And this is a heck of a lot easier to get the coordinates of the trckers in the camera
 	for (int i = 0; i < gettargetdirections->Count; i++)
 	{
-		//		std::cout << std::endl;
+//		std::cout << std::endl;
 
 		LMF::Tracker::OVC::ATRCoordinate^ thing = gettargetdirections[i];
 
-		// don't print, just do
-		/*		Do_SimpleDoubleValue("AngleHz", thing->AngleHz);
-				Do_SimpleDoubleValue("AngleVt", thing->AngleVt);
-				Do_SimpleDoubleValue("PixelX", thing->PixelX);
-				Do_SimpleDoubleValue("PixelY", thing->PixelY);
-		*/
+// don't print, just do
+/*		Do_SimpleDoubleValue("AngleHz", thing->AngleHz);
+		Do_SimpleDoubleValue("AngleVt", thing->AngleVt);
 
+		Do_SimpleDoubleValue("PixelX", thing->PixelX);
+		Do_SimpleDoubleValue("PixelY", thing->PixelY);
+
+*/
 
 		if (i == 0)
 		{
-			leica_->setIntegerParam(leica_->L_x1, int(thing->PixelX->Value));
-			leica_->setIntegerParam(leica_->L_y1, int(thing->PixelY->Value));
+			leica_->setIntegerParam(leica_->L_x1, int(thing->PixelX->Value / 2 ));
+			leica_->setIntegerParam(leica_->L_y1, int(thing->PixelY->Value / 2 ));
 		}
 		if (i == 1)
 		{
-			leica_->setIntegerParam(leica_->L_x2, int(thing->PixelX->Value));
-			leica_->setIntegerParam(leica_->L_y2, int(thing->PixelY->Value));
+			leica_->setIntegerParam(leica_->L_x2, int(thing->PixelX->Value / 2 ));
+			leica_->setIntegerParam(leica_->L_y2, int(thing->PixelY->Value / 2 ));
 		}
 		if (i == 2)
 		{
-			leica_->setIntegerParam(leica_->L_x3, int(thing->PixelX->Value));
-			leica_->setIntegerParam(leica_->L_y3, int(thing->PixelY->Value));
+			leica_->setIntegerParam(leica_->L_x3, int(thing->PixelX->Value / 2));
+			leica_->setIntegerParam(leica_->L_y3, int(thing->PixelY->Value / 2));
 		}
 		if (i == 3)
 		{
-			leica_->setIntegerParam(leica_->L_x4, int(thing->PixelX->Value));
-			leica_->setIntegerParam(leica_->L_y4, int(thing->PixelY->Value));
+			leica_->setIntegerParam(leica_->L_x4, int(thing->PixelX->Value / 2 ));
+			leica_->setIntegerParam(leica_->L_y4, int(thing->PixelY->Value / 2));
 		}
 		if (i == 4)
 		{
-			leica_->setIntegerParam(leica_->L_x5, int(thing->PixelX->Value));
-			leica_->setIntegerParam(leica_->L_y5, int(thing->PixelY->Value));
+			leica_->setIntegerParam(leica_->L_x5, int(thing->PixelX->Value / 2 ));
+			leica_->setIntegerParam(leica_->L_y5, int(thing->PixelY->Value / 2));
 		}
 		if (i == 5)
 		{
-			leica_->setIntegerParam(leica_->L_x6, int(thing->PixelX->Value));
-			leica_->setIntegerParam(leica_->L_y6, int(thing->PixelY->Value));
+			leica_->setIntegerParam(leica_->L_x6, int(thing->PixelX->Value / 2 ));
+			leica_->setIntegerParam(leica_->L_y6, int(thing->PixelY->Value / 2));
 		}
 
-
-		//		std::cout << std::endl;
 	}
 
 
-	// Some sort of image should be in Image.
-//	std::cout << "Height: " << image->Height <<
-//		" Width: " << image->Width <<
-//		std::endl;
-
-	// Some sort of image should be in Image.
-//	std::cout << "Pixel Height: " << image->PixelHeight <<
-//		" Pixel Width: " << image->PixelWidth <<
-//		std::endl;
-//		//SaveBitmap(image, "test.png");
-
-// This prints out the image after converting it to png.
-/*
-		String^ temp = filenamenumber.ToString();
-		FileStream^ fileStream = gcnew FileStream("test" + filenamenumber.ToString() + ".png", FileMode::OpenOrCreate);
-		PngBitmapEncoder^ encoder = gcnew PngBitmapEncoder();
-		encoder->Frames->Add(BitmapFrame::Create(image));
-		encoder->Save(fileStream);
-		fileStream->Close();
-		std::cout << "png" << std::endl;
-
-// This prints out the image after converting it to tiff, since we have tiff file readers that might help.
-
-		String^ temp2 = filenamenumber.ToString();
-		FileStream^ fileStream2 = gcnew FileStream("test" + filenamenumber.ToString() + ".tif", FileMode::OpenOrCreate);
-		TiffBitmapEncoder^ encoder2 = gcnew TiffBitmapEncoder();
-		encoder2->Frames->Add(BitmapFrame::Create(image));
-		encoder2->Save(fileStream2);
-		fileStream2->Close();
-		std::cout << "tiff" << std::endl;
-
-*/
 
 // this is an attempt to get the raw bitmap values and get it into a byte stream that Area Detector expects
 // which is a pain in the . . . 
 
-//	const char* nullTerminatedData;
+
 
 //	try
 //	{
-	BitmapImage^ bitmapImage = image;
-	WriteableBitmap^ writeableBitmap = gcnew WriteableBitmap(bitmapImage);
+		BitmapImage^ bitmapImage = image;
+		WriteableBitmap^ writeableBitmap = gcnew WriteableBitmap(bitmapImage);
 
-	cli::array<unsigned char>^ pixelData = gcnew cli::array<unsigned char>(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight * 4);
-	writeableBitmap->CopyPixels(pixelData, writeableBitmap->BackBufferStride, 0);
+		cli::array<unsigned char>^ pixelData = gcnew cli::array<unsigned char>(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight * 4);
+		writeableBitmap->CopyPixels(pixelData, writeableBitmap->BackBufferStride, 0);
 
-	// This starts to flip this to greyscale - not sure if I can leave it as-is if I still want color
+		// This starts to flip this to greyscale - caqtdm minimal image display only understand (at the instant) greyscale
+		// It seems as if Phoebus also hates it, and the image mode *has* to be set at design time . . . . reallY?
 
-	std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight);
+#ifdef BW
+		std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight);
+		for (int i = 0; i < pixelData->Length; i += 4) {
+			float red = static_cast<float>(pixelData[i]);
+			float green = static_cast<float>(pixelData[i + 1]);
+			float blue = static_cast<float>(pixelData[i + 2]);
 
+			grayscaleData[i / 4] = static_cast<uint8_t>(0.299 * red + 0.587 * green + 0.114 * blue);
+		}
+		int ndims = 2;
+#else
+		std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight * 4);
+		for (int i = 0; i < pixelData->Length; i += 4) {
+//
+// The image using the *expected* values is horribly blue - if I flip R and B colors are about right.
+//
+			grayscaleData[(i / 4) * 3 + 2] = pixelData[i + 0]; // Red component
+			grayscaleData[(i / 4) * 3 + 1] = pixelData[i + 1]; // Green component
+			grayscaleData[(i / 4) * 3 + 0] = pixelData[i + 2]; // Blue component
+			grayscaleData[(i / 4) * 3 + 3] = pixelData[i + 3]; // Alpha component
 
-	for (int i = 0; i < pixelData->Length; i += 4) {
-		float red = static_cast<float>(pixelData[i]);
-		float green = static_cast<float>(pixelData[i + 1]);
-		float blue = static_cast<float>(pixelData[i + 2]);
-
-		grayscaleData[i / 4] = static_cast<uint8_t>(0.299 * red + 0.587 * green + 0.114 * blue);
-	}
-	const char* nullTerminatedData = reinterpret_cast<const char*>(grayscaleData.data());
-
-	size_t imageDims[2];
-
-
-	//////
-	NDDataType_t  imageDataType;
-	//		size_t imageDims[3]; // or 2 for BW
-	NDArrayInfo arrayInfo;
-	epicsTimeStamp currentTime;
-
-	imageDims[0] = image->PixelWidth;
-	imageDims[1] = image->PixelHeight;
-
-	//		imageDims[2] = 0;
-
-	//		imageDataType = NDFloat32;
-	//		leica_->setIntegerParam(leica_->NDDataType, NDFloat32);
-
-	imageDataType = NDUInt8;
-	leica_->setIntegerParam(leica_->NDDataType, NDUInt8);
+		}
+		int ndims = 3;
+#endif
 
 
+		const char* 	nullTerminatedData = reinterpret_cast<const char*>(grayscaleData.data());
 
-	/* Update the image */
-	/* First release the copy that we held onto last time */
-	if (leica_->pArrays[0]) {
-		leica_->pArrays[0]->release();
-	}
+		size_t imageDims[3]; 
 
-	//		std::cout << grayscaleData.size() << " " << 640 * 480 << std::endl;
+		NDDataType_t  imageDataType;
+
+		NDArrayInfo arrayInfo;
+		epicsTimeStamp currentTime;
+
+#ifdef BW
+		imageDims[0] = image->PixelWidth;
+		imageDims[1] = image->PixelHeight;
+
+#else
+		imageDims[1] = image->PixelWidth;
+		imageDims[2] = image->PixelHeight;
+		imageDims[0] = 3;
+#endif
+
+		imageDataType = NDUInt8;
+		leica_->setIntegerParam(leica_->NDDataType, NDUInt8);
+
+		/* Update the image */
+		/* First release the copy that we held onto last time */
+		if (leica_->pArrays[0]) {
+			leica_->pArrays[0]->release();
+		}
 
 
-			/* Allocate a new array */
-	leica_->pArrays[0] = leica_->pNDArrayPool->alloc(2, imageDims, imageDataType, 0, NULL);
-	//		leica_->pArrays[0] = leica_->pNDArrayPool->alloc(3, imageDims, imageDataType, 0, NULL);
-	if (leica_->pArrays[0] != NULL) {
-		leica_->pImage = leica_->pArrays[0];
-		leica_->pImage->getInfo(&arrayInfo);
-		// Copy data from the input to the output, correct 
 
-		memcpy(leica_->pImage->pData, nullTerminatedData, grayscaleData.size());
-		//			memcpy(leica_->pImage->pData, nullTerminatedData, 640 *480 );
+		/* Allocate a new array */
+		leica_->pArrays[0] = leica_->pNDArrayPool->alloc(ndims, imageDims, imageDataType, 0, NULL);
+		if (leica_->pArrays[0] != NULL) {
+			leica_->pImage = leica_->pArrays[0];
+			leica_->pImage->getInfo(&arrayInfo);
+			// Copy data from the input to the output, correct 
+//			printf("%d %d %d %d\n", imageDims[0], imageDims[1], grayscaleData.size());
+//			printf("%d %d %d %d\n", arrayInfo.);
+			
+#ifdef BW
+			memcpy(leica_->pImage->pData, nullTerminatedData, grayscaleData.size());
+#else
+			memcpy(leica_->pImage->pData, nullTerminatedData, imageDims[1]*imageDims[2]*imageDims[0]);
+			NDColorMode_t colorMode = NDColorModeRGB1;
 
-		epicsTimeGetCurrent(&currentTime);
-		leica_->pImage->timeStamp = currentTime.secPastEpoch + currentTime.nsec / 1.e9;
+#endif
 
-		leica_->pImage->uniqueId = filenamenumber++;
+			epicsTimeGetCurrent(&currentTime);
+			leica_->pImage->timeStamp = currentTime.secPastEpoch + currentTime.nsec / 1.e9;
 
-		leica_->updateTimeStamp(&leica_->pImage->epicsTS);
+			leica_->pImage->uniqueId = filenamenumber++;
 
-		/* Get attributes that have been defined for this driver */
-		leica_->getAttributes(leica_->pImage->pAttributeList);
+			leica_->updateTimeStamp(&leica_->pImage->epicsTS);
 
-		leica_->doCallbacksGenericPointer(leica_->pImage, leica_->NDArrayData, 0);
-	}
-	leica_->callParamCallbacks();
+			/* Get attributes that have been defined for this driver */
+			leica_->getAttributes(leica_->pImage->pAttributeList);
+#ifdef BW
+#else
+			leica_->pAttributeList->add("ColorMode", "Color mode", NDAttrInt32, &colorMode);
+#endif
 
-	// since this can get lost when the laser is turned off . . . and various things don't like randomly resizing images.
-	// BUT NOT in the middle of a callback . . . . bad!
-	// 
-	//		GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::High);
+
+			leica_->doCallbacksGenericPointer(leica_->pImage, leica_->NDArrayData, 0);
+		}
+		leica_->callParamCallbacks();
+
+
 }
+
 
 
 
@@ -1655,4 +1657,5 @@ void OnOnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender,
 }
 
 */
+
 
