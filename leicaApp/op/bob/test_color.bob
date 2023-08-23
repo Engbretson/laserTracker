@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-08-11 14:22:53 by mengbret-->
+<!--Saved on 2023-08-11 14:48:51 by mengbret-->
 <display version="2.0.0">
   <name>Display</name>
   <widget type="image" version="2.0.0">
@@ -51,6 +51,7 @@
     <data_width>1280</data_width>
     <data_height>960</data_height>
     <interpolation>0</interpolation>
+    <color_mode>7</color_mode>
     <autoscale>false</autoscale>
     <x_pv>$(P)$(R)L_XX</x_pv>
     <y_pv>$(P)$(R)L_YY</y_pv>

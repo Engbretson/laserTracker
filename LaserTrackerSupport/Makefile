@@ -7,8 +7,8 @@ include $(TOP)/configure/CONFIG
 ifeq (windows-x64, $(findstring windows-x64, $(T_A)))
 
 BIN_INSTALLS    += ../LMF.Tracker.Connection.dll
-BIN_INSTALLS    += ../LMF.Tracker.Connection.tlb
-BIN_INSTALLS    += ../LMF.Tracker.Connection.xml
+#BIN_INSTALLS    += ../LMF.Tracker.Connection.tlb
+#BIN_INSTALLS    += ../LMF.Tracker.Connection.xml
 
 BIN_INSTALLS    += ../TrackerScope.exe
 
@@ -25,11 +25,13 @@ BIN_INSTALLS    += ../procServ.exe
 #that some of those actually use/call. Maybe run time resolution??
 #
 
-BIN_INSTALLS    += ../cbw64.dll
-BIN_INSTALLS    += ../libusb-1.0.dll
-BIN_INSTALLS    += ../Packet.dll
-BIN_INSTALLS    += ../wpcap.dll
-BIN_INSTALLS    += ../vac.dll
+# BUT . . .  at the instant, not using an xxx derived softioc
+ 
+#BIN_INSTALLS    += ../cbw64.dll
+#BIN_INSTALLS    += ../libusb-1.0.dll
+#BIN_INSTALLS    += ../Packet.dll
+#BIN_INSTALLS    += ../wpcap.dll
+#BIN_INSTALLS    += ../vac.dll
 
 endif
 

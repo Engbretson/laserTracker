@@ -77,6 +77,18 @@ void Do_ReadOnlyDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue
 		std::endl;
 }
 
+void Do_SimpleDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::SimpleDoubleValue^ thing)
+{
+	//	thing->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+
+	std::cout << (decode)(Title) << ": Label: " << (decode)(thing->Label) <<
+		" UnitString: " << (decode)(thing->UnitString) <<
+		" UnitType: " << EUnitTypeStrings[(int)thing->UnitType] <<
+		" Value: " << thing->Value <<
+		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
+		std::endl;
+}
+
 void Do_SimpleDoubleValueWithAccuracy(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::SimpleDoubleValueWithAccuracy^ thing)
 {
 	std::cout << (decode)(Title) << std::endl <<
@@ -120,17 +132,6 @@ void Do_IntValueWithRange(String^ Title, LMF::Tracker::BasicTypes::IntValue::Int
 		" Value: " << thing->Value <<
 		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
 		std::endl;
-}
-
-void Do_SimpleDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::SimpleDoubleValue^ thing)
-{
-	std::cout << (decode)(Title) << " Label: " << (decode)(thing->Label) <<
-		" UnitString: " << (decode)(thing->UnitString) <<
-		" UnitType: " << EUnitTypeStrings[(int)thing->UnitType] <<
-		" Value: " << thing->Value <<
-		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
-		std::endl;
-
 }
 
 
@@ -537,80 +538,90 @@ void leica::Do_Settings(void)
 	LMF::Units::ELengthUnit lenunit = GlobalObjects::LMFTracker->Settings->Units->LengthUnit;
 	const char* lenunitNames[] = { "Meter", "Millimeter", "Micrometer","Foot","Yard", "Inch" }; //ok
 	std::cout << " LengthUnits : " << lenunitNames[(int)lenunit] << std::endl;
+	leica_->setStringParam(leica_->L_LengthUnit, lenunitNames[(int)lenunit]);
 
 	LMF::Units::EPercentUnit perunit = GlobalObjects::LMFTracker->Settings->Units->PercentUnit;
 	const char* perunitNames[] = { "Percent", "None" }; //ok
 	std::cout << " PercentUnits : " << perunitNames[(int)perunit] << std::endl;
+	leica_->setStringParam(leica_->L_PercentUnit, perunitNames[(int)perunit]);
 
 	LMF::Units::EPressureUnit presunit = GlobalObjects::LMFTracker->Settings->Units->PressureUnit;
 	const char* presunitNames[] = { "mBar", "HPascal","KPascal","MmHg", "Psi", "InH2O","InHg" }; //ok
 	std::cout << " PressureUnits : " << presunitNames[(int)presunit] << std::endl;
+	leica_->setStringParam(leica_->L_PressureUnit, presunitNames[(int)presunit]);
 
 	LMF::Units::ETemperatureUnit tempunit = GlobalObjects::LMFTracker->Settings->Units->TemperatureUnit;
 	const char* tempunitNames[] = { "Celsius", "Fahrenheit" }; //ok
 	std::cout << " TemperatureUnits : " << tempunitNames[(int)tempunit] << std::endl;
+	leica_->setStringParam(leica_->L_TemperatureUnit, tempunitNames[(int)tempunit]);
 
 	LMF::Units::ETimeUnit timeunit = GlobalObjects::LMFTracker->Settings->Units->TimeUnit;
 	const char* timeunitNames[] = { "Millisecond", "Second", "Minute", "Hour" }; //ok
 	std::cout << " TimeUnits : " << timeunitNames[(int)timeunit] << "\n\n";
-
+	leica_->setStringParam(leica_->L_TimeUnit, timeunitNames[(int)timeunit]);
 
 	std::cout << " Get Orientation \n";
 	LMF::Tracker::Alignment^ orient = GlobalObjects::LMFTracker->Settings->GetOrientation();
 
 	std::cout << "  CoordinateType : " << coordtypeNames[(int)orient->CoordinateType] << std::endl;
+	leica_->setStringParam(leica_->L_CoordinateType, coordtypeNames[(int)orient->CoordinateType]);	
+	
 	std::cout << "  RotationType : " << rottypeNames[(int)orient->RotationType] << std::endl;
-	std::cout << "  Rotation0 : Label: " << (decode)(orient->Rotation0->Label)
-		<< "  UnitString: " << (decode)(orient->Rotation0->UnitString) // Note: the marshalling conversion code throws an exception if the starting string is NULL, which it is here
-		<< "  Value: " << orient->Rotation0->Value << std::endl;
-	std::cout << "  Rotation1 : Label: " << (decode)(orient->Rotation1->Label)
-		<< "  UnitString: " << (decode)(orient->Rotation1->UnitString)
-		<< "  Value: " << orient->Rotation1->Value << std::endl;
-	std::cout << "  Rotation2 : Label: " << (decode)(orient->Rotation2->Label)
-		<< "  UnitString: " << (decode)(orient->Rotation2->UnitString)
-		<< "  Value: " << orient->Rotation2->Value << std::endl;
-	std::cout << "  Rotation3 : Label: " << (decode)(orient->Rotation3->Label)
-		<< "  UnitString: " << (decode)(orient->Rotation3->UnitString)
-		<< "  Value: " << orient->Rotation3->Value << std::endl;
-	std::cout << "  Translation1 : Label: " << (decode)(orient->Translation1->Label)
-		<< "  UnitString: " << (decode)(orient->Translation1->UnitString)
-		<< "  Value: " << orient->Translation1->Value << std::endl;
-	std::cout << "  Translation2 : Label: " << (decode)(orient->Translation2->Label)
-		<< "  UnitString: " << (decode)(orient->Translation2->UnitString)
-		<< "  Value: " << orient->Translation2->Value << std::endl;
-	std::cout << "  Translation3 : Label: " << (decode)(orient->Translation3->Label)
-		<< "  UnitString: " << (decode)(orient->Translation3->UnitString)
-		<< "  Value: " << orient->Translation3->Value << "\n\n";
+	leica_->setStringParam(leica_->L_RotationType, rottypeNames[(int)orient->RotationType]);
+
+//
+//     The issue at this point is that as-is, none of these actually contain any actually values, and while it is trivial to print out the values
+// 	   that I get back from the hardware, slightly messier to do the epics aspects, so using a macro
+//
+
+#define PV_IT(a,b,c,thing) \
+leica_->setStringParam(leica_->L_Label_##a, (decode)(##thing->Label)); \
+leica_->setStringParam(leica_->L_UnitString_##b, (decode)(##thing->UnitString)); \
+leica_->setStringParam(leica_->L_UnitType_##b, EUnitTypeStrings[(int)##thing->UnitType]); \
+leica_->setDoubleParam(leica_->L_Value_##c, ##thing->Value); \
+leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits); 
+
+	Do_SimpleDoubleValue("  Rotation0", orient->Rotation0);
+	Do_SimpleDoubleValue("  Rotation1", orient->Rotation1);
+	Do_SimpleDoubleValue("  Rotation2", orient->Rotation2);
+	Do_SimpleDoubleValue("  Rotation3", orient->Rotation3);
+	Do_SimpleDoubleValue("  Translation1", orient->Translation1);
+	Do_SimpleDoubleValue("  Translation2", orient->Translation2);
+	Do_SimpleDoubleValue("  Translation3", orient->Translation3);
+
+	PV_IT(42, 19, 34, orient->Rotation0);
+	PV_IT(43, 20, 35, orient->Rotation1);
+	PV_IT(44, 21, 36, orient->Rotation2);
+	PV_IT(45, 22, 37, orient->Rotation3);
+	PV_IT(46, 23, 38, orient->Translation1);
+	PV_IT(47, 24, 39, orient->Translation2);
+	PV_IT(48, 25, 40, orient->Translation3);
+
 
 	std::cout << " Get Transformation \n";
 	LMF::Tracker::AlignmentWithScale^ transf = GlobalObjects::LMFTracker->Settings->GetTransformation();
 
 	std::cout << "  CoordinateType : " << coordtypeNames[(int)transf->CoordinateType] << std::endl;
 	std::cout << "  RotationType : " << rottypeNames[(int)transf->RotationType] << std::endl;
-	std::cout << "  Rotation0 : Label: " << (decode)(transf->Rotation0->Label)
-		<< "  UnitString: " << (decode)(transf->Rotation0->UnitString)
-		<< "  Value: " << transf->Rotation0->Value << std::endl;
-	std::cout << "  Rotation1 : Label: " << (decode)(transf->Rotation1->Label)
-		<< "  UnitString: " << (decode)(transf->Rotation1->UnitString)
-		<< "  Value: " << transf->Rotation1->Value << std::endl;
-	std::cout << "  Rotation2 : Label: " << (decode)(transf->Rotation2->Label)
-		<< "  UnitString: " << (decode)(transf->Rotation2->UnitString)
-		<< "  Value: " << transf->Rotation2->Value << std::endl;
-	std::cout << "  Rotation3 : Label: " << (decode)(transf->Rotation3->Label)
-		<< "  UnitString: " << (decode)(transf->Rotation3->UnitString)
-		<< "  Value: " << transf->Rotation3->Value << std::endl;
-	std::cout << "  Scale : Label: " << (decode)(transf->Scale->Label)
-		<< "  UnitString: " << (decode)(transf->Scale->UnitString)
-		<< "  Value: " << transf->Scale->Value << std::endl;
-	std::cout << "  Translation1 : Label: " << (decode)(transf->Translation1->Label)
-		<< "  UnitString: " << (decode)(transf->Translation1->UnitString)
-		<< "  Value: " << transf->Translation1->Value << std::endl;
-	std::cout << "  Translation2 : Label: " << (decode)(transf->Translation2->Label)
-		<< "  UnitString: " << (decode)(transf->Translation2->UnitString)
-		<< "  Value: " << transf->Translation2->Value << std::endl;
-	std::cout << "  Translation3 : Label: " << (decode)(transf->Translation3->Label)
-		<< "  UnitString: " << (decode)(transf->Translation3->UnitString)
-		<< "  Value: " << transf->Translation3->Value << "\n\n";
+
+	Do_SimpleDoubleValue("  Rotation0", transf->Rotation0);
+	Do_SimpleDoubleValue("  Rotation1", transf->Rotation1);
+	Do_SimpleDoubleValue("  Rotation2", transf->Rotation2);
+	Do_SimpleDoubleValue("  Rotation3", transf->Rotation3);
+	Do_SimpleDoubleValue("  Scale", transf->Scale);
+	Do_SimpleDoubleValue("  Translation1", transf->Translation1);
+	Do_SimpleDoubleValue("  Translation2", transf->Translation2);
+	Do_SimpleDoubleValue("  Translation3", transf->Translation3);
+
+	PV_IT(49, 26, 41, transf->Rotation0);
+	PV_IT(50, 27, 42, transf->Rotation1);
+	PV_IT(51, 28, 43, transf->Rotation2);
+	PV_IT(52, 29, 44, transf->Rotation3);
+	PV_IT(53, 30, 45, transf->Scale);
+	PV_IT(54, 31, 46, transf->Translation1);
+	PV_IT(55, 32, 47, transf->Translation2);
+	PV_IT(56, 33, 48, transf->Translation3);
+
 
 	std::cout << std::endl;
 
@@ -654,11 +665,17 @@ leica::leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 
 	initializeHardware(portName);
+
+
+	printf("\n***********************************\n");
+	printf("\nConnected to Laser Tracker, checking default parameters . . . \n");
+
 	Do_Face();
 	Do_Laser();
 	Do_Settings();
 
-
+// Global top level parameters	
+	
 	epicsSnprintf(versionString, sizeof(versionString), "%d.%d.%d",
 		DRIVER_VERSION, DRIVER_REVISION, DRIVER_MODIFICATION);
 	setStringParam(NDDriverVersion, versionString);
@@ -666,9 +683,6 @@ leica::leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 	setIntegerParam(ADMaxSizeX, 2560);
 	setIntegerParam(ADMaxSizeY, 1920);
-
-	printf("\n***********************************\n");
-	printf("\nConnected to Laser Tracker, checking default parameters . . . \n");
 
 	setStringParam(ADManufacturer, "Leica");
 
@@ -707,49 +721,6 @@ leica::leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	setStringParam(L_SerialNumber_7, (decode)(SerialNumber));
 	setStringParam(ADSerialNumber, (decode)(SerialNumber));
 
-	// none of this is particularly useful to anyone
-	// I don't want people flipping any of these, if I can help it
-
-	/*
-		cout << "Getting Info from Settings . . .  \n";
-
-		LMF::Units::ECoordinateType coordtype = GlobalObjects::LMFTracker->Settings->CoordinateType;
-		const char* coordtypeNames[] = { "Spherical", "Cartesian", "Cylindrical" };
-		cout << " CoordinateType : " << coordtypeNames[(int)coordtype] << "\n";
-
-		LMF::Units::ERotationType rottype = GlobalObjects::LMFTracker->Settings->RotationType;
-		const char* rottypeNames[] = { "RotationAngles", "RollPitchYaw", "Quarternion" };
-		cout << " RotationType : " << rottypeNames[(int)coordtype] << "\n";
-
-		LMF::Units::EAngleUnit angunit = GlobalObjects::LMFTracker->Settings->Units->AngleUnit;
-		const char* angunitNames[] = { "Radian", "Millirad", "Degree", "Gon", "CC" };
-		cout << " AngleUnits : " << angunitNames[(int)angunit] << "\n";
-
-		LMF::Units::EHumidityUnit humunit = GlobalObjects::LMFTracker->Settings->Units->HumidityUnit;
-		const char* humunitNames[] = { "RelativeHumidity" };
-		cout << " HumidityUnits : " << humunitNames[(int)humunit] << "\n";
-
-		LMF::Units::ELengthUnit lenunit = GlobalObjects::LMFTracker->Settings->Units->LengthUnit;
-		const char* lenunitNames[] = { "Meter", "Millimeter", "Micrometer","Foot","Yard", "Inch" };
-		cout << " LengthUnits : " << lenunitNames[(int)humunit] << "\n";
-
-		LMF::Units::EPercentUnit perunit = GlobalObjects::LMFTracker->Settings->Units->PercentUnit;
-		const char* perunitNames[] = { "Percent", "None" };
-		cout << " PercentUnits : " << perunitNames[(int)perunit] << "\n";
-
-		LMF::Units::EPressureUnit presunit = GlobalObjects::LMFTracker->Settings->Units->PressureUnit;
-		const char* presunitNames[] = { "mBar", "HPascal","KPascal","MmHg", "Psi", "InH2O","InHg" };
-		cout << " PressureUnits : " << presunitNames[(int)presunit] << "\n";
-
-		LMF::Units::ETemperatureUnit tempunit = GlobalObjects::LMFTracker->Settings->Units->TemperatureUnit;
-		const char* tempunitNames[] = { "Celsius", "Fahrenheit" };
-		cout << " TemperatureUnits : " << tempunitNames[(int)tempunit] << "\n";
-
-		LMF::Units::ETimeUnit timeunit = GlobalObjects::LMFTracker->Settings->Units->TimeUnit;
-		const char* timeunitNames[] = { "Millisecond", "Second", "Minute", "Hour" };
-		cout << " TimeUnits : " << timeunitNames[(int)timeunit] << "\n";
-
-	*/
 
 	GlobalObjects::LMFTracker->GetDirectionAsync();
 	Direction^ dir1 = GlobalObjects::LMFTracker->GetDirection();
