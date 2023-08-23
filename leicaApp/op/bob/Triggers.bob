@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-08-09 16:01:18 by mengbret-->
+<!--Saved on 2023-08-23 11:14:56 by mengbret-->
 <display version="2.0.0">
   <name>Triggers</name>
   <x>50</x>
@@ -76,6 +76,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -97,6 +98,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -159,6 +161,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -180,6 +183,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -213,6 +217,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -234,6 +239,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -284,7 +290,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #62</name>
-    <pv_name>$(P)$(R)L_Label_65</pv_name>
+    <pv_name>$(P)$(R)L_Label_66</pv_name>
     <x>245</x>
     <y>175</y>
     <width>120</width>
@@ -296,12 +302,13 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #66</name>
-    <pv_name>$(P)$(R)L_Label_65_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_66_RBV</pv_name>
     <x>365</x>
     <y>175</y>
     <width>120</width>
@@ -317,6 +324,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -338,7 +346,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #73</name>
-    <pv_name>$(P)$(R)L_Value_57_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Value_58_RBV</pv_name>
     <x>365</x>
     <y>200</y>
     <width>120</width>
@@ -354,6 +362,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -404,7 +413,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #87</name>
-    <pv_name>$(P)$(R)L_Label_66</pv_name>
+    <pv_name>$(P)$(R)L_Label_67</pv_name>
     <x>245</x>
     <y>250</y>
     <width>120</width>
@@ -416,12 +425,13 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #91</name>
-    <pv_name>$(P)$(R)L_Label_66_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_67_RBV</pv_name>
     <x>365</x>
     <y>250</y>
     <width>120</width>
@@ -437,6 +447,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -470,6 +481,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -491,6 +503,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -524,6 +537,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -545,6 +559,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -578,6 +593,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -599,6 +615,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -632,6 +649,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -653,6 +671,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -674,7 +693,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #142</name>
-    <pv_name>$(P)$(R)L_UnitString_42</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_43</pv_name>
     <x>245</x>
     <y>375</y>
     <width>120</width>
@@ -686,12 +705,13 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #146</name>
-    <pv_name>$(P)$(R)L_UnitString_42_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_43_RBV</pv_name>
     <x>365</x>
     <y>375</y>
     <width>120</width>
@@ -707,6 +727,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -728,7 +749,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #153</name>
-    <pv_name>$(P)$(R)L_UnitType_42</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_43</pv_name>
     <x>245</x>
     <y>400</y>
     <width>120</width>
@@ -740,12 +761,13 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #157</name>
-    <pv_name>$(P)$(R)L_UnitType_42_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_43_RBV</pv_name>
     <x>365</x>
     <y>400</y>
     <width>120</width>
@@ -761,6 +783,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -782,7 +805,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #164</name>
-    <pv_name>$(P)$(R)L_Value_58</pv_name>
+    <pv_name>$(P)$(R)L_Value_59</pv_name>
     <x>245</x>
     <y>425</y>
     <width>120</width>
@@ -794,12 +817,13 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #168</name>
-    <pv_name>$(P)$(R)L_Value_58_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Value_59_RBV</pv_name>
     <x>365</x>
     <y>425</y>
     <width>120</width>
@@ -815,6 +839,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -836,7 +861,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #175</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_42</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_43</pv_name>
     <x>245</x>
     <y>450</y>
     <width>120</width>
@@ -848,12 +873,13 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #179</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_42_RBV</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_43_RBV</pv_name>
     <x>365</x>
     <y>450</y>
     <width>120</width>
@@ -869,6 +895,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -919,7 +946,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #193</name>
-    <pv_name>$(P)$(R)L_Label_67</pv_name>
+    <pv_name>$(P)$(R)L_Label_68</pv_name>
     <x>245</x>
     <y>500</y>
     <width>120</width>
@@ -931,12 +958,13 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #197</name>
-    <pv_name>$(P)$(R)L_Label_67_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_68_RBV</pv_name>
     <x>365</x>
     <y>500</y>
     <width>120</width>
@@ -952,6 +980,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -985,6 +1014,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1006,6 +1036,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1039,6 +1070,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1060,6 +1092,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1093,6 +1126,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1114,6 +1148,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1147,6 +1182,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1168,6 +1204,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1189,7 +1226,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #248</name>
-    <pv_name>$(P)$(R)L_UnitString_43</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_44</pv_name>
     <x>245</x>
     <y>625</y>
     <width>120</width>
@@ -1201,12 +1238,13 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #252</name>
-    <pv_name>$(P)$(R)L_UnitString_43_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_44_RBV</pv_name>
     <x>365</x>
     <y>625</y>
     <width>120</width>
@@ -1222,6 +1260,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1243,7 +1282,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #259</name>
-    <pv_name>$(P)$(R)L_UnitType_43</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_44</pv_name>
     <x>245</x>
     <y>650</y>
     <width>120</width>
@@ -1255,12 +1294,13 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #263</name>
-    <pv_name>$(P)$(R)L_UnitType_43_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_44_RBV</pv_name>
     <x>365</x>
     <y>650</y>
     <width>120</width>
@@ -1276,6 +1316,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1297,7 +1338,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #270</name>
-    <pv_name>$(P)$(R)L_Value_59</pv_name>
+    <pv_name>$(P)$(R)L_Value_60</pv_name>
     <x>245</x>
     <y>675</y>
     <width>120</width>
@@ -1309,12 +1350,13 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #274</name>
-    <pv_name>$(P)$(R)L_Value_59_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Value_60_RBV</pv_name>
     <x>365</x>
     <y>675</y>
     <width>120</width>
@@ -1330,6 +1372,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1351,7 +1394,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #281</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_43</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_44</pv_name>
     <x>245</x>
     <y>700</y>
     <width>120</width>
@@ -1363,12 +1406,13 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #285</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_43_RBV</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_44_RBV</pv_name>
     <x>365</x>
     <y>700</y>
     <width>120</width>
@@ -1384,6 +1428,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
