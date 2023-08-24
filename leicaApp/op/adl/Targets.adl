@@ -479,7 +479,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Name_11"
+     chan="$(P)$(R)L_Name_12"
      clr=14
      bclr=51
    }
@@ -494,7 +494,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Name_11_RBV"
+     chan="$(P)$(R)L_Name_12_RBV"
      clr=54
      bclr=4
    }
@@ -522,7 +522,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ProductName"
+     chan="$(P)$(R)L_ProductName_1"
      clr=14
      bclr=51
    }
@@ -537,7 +537,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ProductName_RBV"
+     chan="$(P)$(R)L_ProductName_1_RBV"
      clr=54
      bclr=4
    }
@@ -565,7 +565,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_TimeStamp_7"
+     chan="$(P)$(R)L_TimeStamp_9"
      clr=14
      bclr=51
    }
@@ -580,7 +580,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_TimeStamp_7_RBV"
+     chan="$(P)$(R)L_TimeStamp_9_RBV"
      clr=54
      bclr=4
    }
@@ -637,7 +637,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_57"
+     chan="$(P)$(R)L_Label_63"
      clr=14
      bclr=51
    }
@@ -652,7 +652,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_57_RBV"
+     chan="$(P)$(R)L_Label_63_RBV"
      clr=54
      bclr=4
    }
@@ -680,7 +680,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_34"
+     chan="$(P)$(R)L_UnitString_42"
      clr=14
      bclr=51
    }
@@ -695,7 +695,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_34_RBV"
+     chan="$(P)$(R)L_UnitString_42_RBV"
      clr=54
      bclr=4
    }
@@ -723,7 +723,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_34"
+     chan="$(P)$(R)L_UnitType_42"
      clr=14
      bclr=51
    }
@@ -738,7 +738,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_34_RBV"
+     chan="$(P)$(R)L_UnitType_42_RBV"
      clr=54
      bclr=4
    }
@@ -766,7 +766,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_49"
+     chan="$(P)$(R)L_Value_57"
      clr=14
      bclr=51
    }
@@ -781,7 +781,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_49_RBV"
+     chan="$(P)$(R)L_Value_57_RBV"
      clr=54
      bclr=4
    }
@@ -809,7 +809,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_34"
+     chan="$(P)$(R)L_ValueInBaseUnits_42"
      clr=14
      bclr=51
    }
@@ -824,7 +824,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_34_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_42_RBV"
      clr=54
      bclr=4
    }
@@ -881,7 +881,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_58"
+     chan="$(P)$(R)L_Label_64"
      clr=14
      bclr=51
    }
@@ -896,7 +896,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_58_RBV"
+     chan="$(P)$(R)L_Label_64_RBV"
      clr=54
      bclr=4
    }
@@ -924,7 +924,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_35"
+     chan="$(P)$(R)L_UnitString_43"
      clr=14
      bclr=51
    }
@@ -939,7 +939,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_35_RBV"
+     chan="$(P)$(R)L_UnitString_43_RBV"
      clr=54
      bclr=4
    }
@@ -967,7 +967,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_35"
+     chan="$(P)$(R)L_UnitType_43"
      clr=14
      bclr=51
    }
@@ -982,7 +982,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_35_RBV"
+     chan="$(P)$(R)L_UnitType_43_RBV"
      clr=54
      bclr=4
    }
@@ -1010,7 +1010,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_50"
+     chan="$(P)$(R)L_Value_58"
      clr=14
      bclr=51
    }
@@ -1025,7 +1025,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_50_RBV"
+     chan="$(P)$(R)L_Value_58_RBV"
      clr=54
      bclr=4
    }
@@ -1053,7 +1053,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_35"
+     chan="$(P)$(R)L_ValueInBaseUnits_43"
      clr=14
      bclr=51
    }
@@ -1068,7 +1068,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_35_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_43_RBV"
      clr=54
      bclr=4
    }
@@ -1325,7 +1325,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Name_12"
+     chan="$(P)$(R)L_Name_13"
      clr=14
      bclr=51
    }
@@ -1340,7 +1340,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Name_12_RBV"
+     chan="$(P)$(R)L_Name_13_RBV"
      clr=54
      bclr=4
    }
@@ -1368,7 +1368,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ProductName_1"
+     chan="$(P)$(R)L_ProductName_2"
      clr=14
      bclr=51
    }
@@ -1383,7 +1383,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ProductName_1_RBV"
+     chan="$(P)$(R)L_ProductName_2_RBV"
      clr=54
      bclr=4
    }
@@ -1411,7 +1411,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_TimeStamp_8"
+     chan="$(P)$(R)L_TimeStamp_10"
      clr=14
      bclr=51
    }
@@ -1426,7 +1426,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_TimeStamp_8_RBV"
+     chan="$(P)$(R)L_TimeStamp_10_RBV"
      clr=54
      bclr=4
    }
@@ -1483,7 +1483,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_59"
+     chan="$(P)$(R)L_Label_65"
      clr=14
      bclr=51
    }
@@ -1498,7 +1498,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_59_RBV"
+     chan="$(P)$(R)L_Label_65_RBV"
      clr=54
      bclr=4
    }
@@ -1526,7 +1526,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_36"
+     chan="$(P)$(R)L_UnitString_44"
      clr=14
      bclr=51
    }
@@ -1541,7 +1541,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_36_RBV"
+     chan="$(P)$(R)L_UnitString_44_RBV"
      clr=54
      bclr=4
    }
@@ -1569,7 +1569,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_36"
+     chan="$(P)$(R)L_UnitType_44"
      clr=14
      bclr=51
    }
@@ -1584,7 +1584,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_36_RBV"
+     chan="$(P)$(R)L_UnitType_44_RBV"
      clr=54
      bclr=4
    }
@@ -1612,7 +1612,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_51"
+     chan="$(P)$(R)L_Value_59"
      clr=14
      bclr=51
    }
@@ -1627,7 +1627,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_51_RBV"
+     chan="$(P)$(R)L_Value_59_RBV"
      clr=54
      bclr=4
    }
@@ -1655,7 +1655,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_36"
+     chan="$(P)$(R)L_ValueInBaseUnits_44"
      clr=14
      bclr=51
    }
@@ -1670,7 +1670,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_36_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_44_RBV"
      clr=54
      bclr=4
    }
@@ -1727,7 +1727,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_60"
+     chan="$(P)$(R)L_Label_66"
      clr=14
      bclr=51
    }
@@ -1742,7 +1742,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_60_RBV"
+     chan="$(P)$(R)L_Label_66_RBV"
      clr=54
      bclr=4
    }
@@ -1770,7 +1770,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_37"
+     chan="$(P)$(R)L_UnitString_45"
      clr=14
      bclr=51
    }
@@ -1785,7 +1785,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_37_RBV"
+     chan="$(P)$(R)L_UnitString_45_RBV"
      clr=54
      bclr=4
    }
@@ -1813,7 +1813,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_37"
+     chan="$(P)$(R)L_UnitType_45"
      clr=14
      bclr=51
    }
@@ -1828,7 +1828,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_37_RBV"
+     chan="$(P)$(R)L_UnitType_45_RBV"
      clr=54
      bclr=4
    }
@@ -1856,7 +1856,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_52"
+     chan="$(P)$(R)L_Value_60"
      clr=14
      bclr=51
    }
@@ -1871,7 +1871,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_52_RBV"
+     chan="$(P)$(R)L_Value_60_RBV"
      clr=54
      bclr=4
    }
@@ -1899,7 +1899,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_37"
+     chan="$(P)$(R)L_ValueInBaseUnits_45"
      clr=14
      bclr=51
    }
@@ -1914,7 +1914,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_37_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_45_RBV"
      clr=54
      bclr=4
    }
@@ -2171,7 +2171,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Name_13"
+     chan="$(P)$(R)L_Name_14"
      clr=14
      bclr=51
    }
@@ -2186,7 +2186,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Name_13_RBV"
+     chan="$(P)$(R)L_Name_14_RBV"
      clr=54
      bclr=4
    }
@@ -2214,7 +2214,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ProductName_2"
+     chan="$(P)$(R)L_ProductName_3"
      clr=14
      bclr=51
    }
@@ -2229,7 +2229,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ProductName_2_RBV"
+     chan="$(P)$(R)L_ProductName_3_RBV"
      clr=54
      bclr=4
    }
@@ -2257,7 +2257,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_TimeStamp_9"
+     chan="$(P)$(R)L_TimeStamp_11"
      clr=14
      bclr=51
    }
@@ -2272,7 +2272,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_TimeStamp_9_RBV"
+     chan="$(P)$(R)L_TimeStamp_11_RBV"
      clr=54
      bclr=4
    }
@@ -2329,7 +2329,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_61"
+     chan="$(P)$(R)L_Label_67"
      clr=14
      bclr=51
    }
@@ -2344,7 +2344,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_61_RBV"
+     chan="$(P)$(R)L_Label_67_RBV"
      clr=54
      bclr=4
    }
@@ -2372,7 +2372,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_38"
+     chan="$(P)$(R)L_UnitString_46"
      clr=14
      bclr=51
    }
@@ -2387,7 +2387,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_38_RBV"
+     chan="$(P)$(R)L_UnitString_46_RBV"
      clr=54
      bclr=4
    }
@@ -2415,7 +2415,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_38"
+     chan="$(P)$(R)L_UnitType_46"
      clr=14
      bclr=51
    }
@@ -2430,7 +2430,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_38_RBV"
+     chan="$(P)$(R)L_UnitType_46_RBV"
      clr=54
      bclr=4
    }
@@ -2458,7 +2458,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_53"
+     chan="$(P)$(R)L_Value_61"
      clr=14
      bclr=51
    }
@@ -2473,7 +2473,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_53_RBV"
+     chan="$(P)$(R)L_Value_61_RBV"
      clr=54
      bclr=4
    }
@@ -2501,7 +2501,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_38"
+     chan="$(P)$(R)L_ValueInBaseUnits_46"
      clr=14
      bclr=51
    }
@@ -2516,7 +2516,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_38_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_46_RBV"
      clr=54
      bclr=4
    }
@@ -2573,7 +2573,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_62"
+     chan="$(P)$(R)L_Label_68"
      clr=14
      bclr=51
    }
@@ -2588,7 +2588,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_62_RBV"
+     chan="$(P)$(R)L_Label_68_RBV"
      clr=54
      bclr=4
    }
@@ -2616,7 +2616,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_39"
+     chan="$(P)$(R)L_UnitString_47"
      clr=14
      bclr=51
    }
@@ -2631,7 +2631,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_39_RBV"
+     chan="$(P)$(R)L_UnitString_47_RBV"
      clr=54
      bclr=4
    }
@@ -2659,7 +2659,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_39"
+     chan="$(P)$(R)L_UnitType_47"
      clr=14
      bclr=51
    }
@@ -2674,7 +2674,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_39_RBV"
+     chan="$(P)$(R)L_UnitType_47_RBV"
      clr=54
      bclr=4
    }
@@ -2702,7 +2702,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_54"
+     chan="$(P)$(R)L_Value_62"
      clr=14
      bclr=51
    }
@@ -2717,7 +2717,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_54_RBV"
+     chan="$(P)$(R)L_Value_62_RBV"
      clr=54
      bclr=4
    }
@@ -2745,7 +2745,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_39"
+     chan="$(P)$(R)L_ValueInBaseUnits_47"
      clr=14
      bclr=51
    }
@@ -2760,7 +2760,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_39_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_47_RBV"
      clr=54
      bclr=4
    }

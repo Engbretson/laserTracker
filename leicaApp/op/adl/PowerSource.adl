@@ -193,7 +193,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_39"
+     chan="$(P)$(R)L_Label_45"
      clr=14
      bclr=51
    }
@@ -208,7 +208,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_39_RBV"
+     chan="$(P)$(R)L_Label_45_RBV"
      clr=54
      bclr=4
    }
@@ -236,7 +236,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_18"
+     chan="$(P)$(R)L_UnitString_26"
      clr=14
      bclr=51
    }
@@ -251,7 +251,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_18_RBV"
+     chan="$(P)$(R)L_UnitString_26_RBV"
      clr=54
      bclr=4
    }
@@ -279,7 +279,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_18"
+     chan="$(P)$(R)L_UnitType_26"
      clr=14
      bclr=51
    }
@@ -294,7 +294,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_18_RBV"
+     chan="$(P)$(R)L_UnitType_26_RBV"
      clr=54
      bclr=4
    }
@@ -322,7 +322,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_31"
+     chan="$(P)$(R)L_Value_39"
      clr=14
      bclr=51
    }
@@ -337,7 +337,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_31_RBV"
+     chan="$(P)$(R)L_Value_39_RBV"
      clr=54
      bclr=4
    }
@@ -365,7 +365,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_18"
+     chan="$(P)$(R)L_ValueInBaseUnits_26"
      clr=14
      bclr=51
    }
@@ -380,7 +380,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_18_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_26_RBV"
      clr=54
      bclr=4
    }
@@ -437,7 +437,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_40"
+     chan="$(P)$(R)L_Label_46"
      clr=14
      bclr=51
    }
@@ -452,7 +452,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_40_RBV"
+     chan="$(P)$(R)L_Label_46_RBV"
      clr=54
      bclr=4
    }
@@ -480,7 +480,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_32"
+     chan="$(P)$(R)L_Value_40"
      clr=14
      bclr=51
    }
@@ -495,7 +495,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_32_RBV"
+     chan="$(P)$(R)L_Value_40_RBV"
      clr=54
      bclr=4
    }

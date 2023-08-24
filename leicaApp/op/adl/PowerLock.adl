@@ -164,7 +164,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_38"
+     chan="$(P)$(R)L_Label_44"
      clr=14
      bclr=51
    }
@@ -179,7 +179,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_38_RBV"
+     chan="$(P)$(R)L_Label_44_RBV"
      clr=54
      bclr=4
    }
@@ -207,7 +207,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_30_RBV"
+     chan="$(P)$(R)L_Value_38_RBV"
      clr=54
      bclr=4
    }

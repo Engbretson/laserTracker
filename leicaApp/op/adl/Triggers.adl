@@ -250,7 +250,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Name_14"
+     chan="$(P)$(R)L_Name_15"
      clr=14
      bclr=51
    }
@@ -265,7 +265,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Name_14_RBV"
+     chan="$(P)$(R)L_Name_15_RBV"
      clr=54
      bclr=4
    }
@@ -322,7 +322,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_66"
+     chan="$(P)$(R)L_Label_72"
      clr=14
      bclr=51
    }
@@ -337,7 +337,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_66_RBV"
+     chan="$(P)$(R)L_Label_72_RBV"
      clr=54
      bclr=4
    }
@@ -365,7 +365,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_58_RBV"
+     chan="$(P)$(R)L_Value_66_RBV"
      clr=54
      bclr=4
    }
@@ -422,7 +422,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_67"
+     chan="$(P)$(R)L_Label_73"
      clr=14
      bclr=51
    }
@@ -437,7 +437,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_67_RBV"
+     chan="$(P)$(R)L_Label_73_RBV"
      clr=54
      bclr=4
    }
@@ -637,7 +637,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_43"
+     chan="$(P)$(R)L_UnitString_51"
      clr=14
      bclr=51
    }
@@ -652,7 +652,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_43_RBV"
+     chan="$(P)$(R)L_UnitString_51_RBV"
      clr=54
      bclr=4
    }
@@ -680,7 +680,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_43"
+     chan="$(P)$(R)L_UnitType_51"
      clr=14
      bclr=51
    }
@@ -695,7 +695,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_43_RBV"
+     chan="$(P)$(R)L_UnitType_51_RBV"
      clr=54
      bclr=4
    }
@@ -723,7 +723,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_59"
+     chan="$(P)$(R)L_Value_67"
      clr=14
      bclr=51
    }
@@ -738,7 +738,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_59_RBV"
+     chan="$(P)$(R)L_Value_67_RBV"
      clr=54
      bclr=4
    }
@@ -766,7 +766,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_43"
+     chan="$(P)$(R)L_ValueInBaseUnits_51"
      clr=14
      bclr=51
    }
@@ -781,7 +781,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_43_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_51_RBV"
      clr=54
      bclr=4
    }
@@ -838,7 +838,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_68"
+     chan="$(P)$(R)L_Label_74"
      clr=14
      bclr=51
    }
@@ -853,7 +853,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_68_RBV"
+     chan="$(P)$(R)L_Label_74_RBV"
      clr=54
      bclr=4
    }
@@ -1053,7 +1053,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_44"
+     chan="$(P)$(R)L_UnitString_52"
      clr=14
      bclr=51
    }
@@ -1068,7 +1068,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_44_RBV"
+     chan="$(P)$(R)L_UnitString_52_RBV"
      clr=54
      bclr=4
    }
@@ -1096,7 +1096,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_44"
+     chan="$(P)$(R)L_UnitType_52"
      clr=14
      bclr=51
    }
@@ -1111,7 +1111,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_44_RBV"
+     chan="$(P)$(R)L_UnitType_52_RBV"
      clr=54
      bclr=4
    }
@@ -1139,7 +1139,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_60"
+     chan="$(P)$(R)L_Value_68"
      clr=14
      bclr=51
    }
@@ -1154,7 +1154,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_60_RBV"
+     chan="$(P)$(R)L_Value_68_RBV"
      clr=54
      bclr=4
    }
@@ -1182,7 +1182,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_44"
+     chan="$(P)$(R)L_ValueInBaseUnits_52"
      clr=14
      bclr=51
    }
@@ -1197,7 +1197,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_44_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_52_RBV"
      clr=54
      bclr=4
    }

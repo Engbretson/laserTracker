@@ -925,10 +925,14 @@ leica::leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 	epicsAtExit(exitHandler, this);
 
+// which works . . . . assuming that the system sees a target
+
 	GlobalObjects::LMFTracker->OverviewCamera->Stop();
 	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Medium);
 	GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
-	
+
+
+	GlobalObjects::LMFTracker->OpenTrackerScope();
 }
 
 
@@ -1014,6 +1018,7 @@ void leica::initializeHardware(const char* portName)
 
 
 //	GlobalObjects::LMFTracker->GoHomePosition();
+
 
 }
 
@@ -1579,6 +1584,7 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 
 
 //	GlobalObjects::LMFTracker->Measurement->StartMeasurement();
+
 
 	//	std::cout << reset;
 }

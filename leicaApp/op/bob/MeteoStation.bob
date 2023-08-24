@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-08-23 11:14:16 by mengbret-->
+<!--Saved on 2023-08-24 10:50:38 by mengbret-->
 <display version="2.0.0">
   <name>MeteoStation</name>
   <x>50</x>
@@ -93,7 +93,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #22</name>
-    <pv_name>$(P)$(R)L_Label_23</pv_name>
+    <pv_name>$(P)$(R)L_Label_29</pv_name>
     <x>245</x>
     <y>75</y>
     <width>120</width>
@@ -111,7 +111,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #26</name>
-    <pv_name>$(P)$(R)L_Label_23_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_29_RBV</pv_name>
     <x>365</x>
     <y>75</y>
     <width>120</width>
@@ -149,7 +149,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #33</name>
-    <pv_name>$(P)$(R)L_SerialNumber</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_1</pv_name>
     <x>245</x>
     <y>100</y>
     <width>120</width>
@@ -167,7 +167,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #37</name>
-    <pv_name>$(P)$(R)L_SerialNumber_RBV</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_1_RBV</pv_name>
     <x>365</x>
     <y>100</y>
     <width>120</width>
@@ -205,7 +205,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #44</name>
-    <pv_name>$(P)$(R)L_UnitString_9</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_17</pv_name>
     <x>245</x>
     <y>125</y>
     <width>120</width>
@@ -223,7 +223,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #48</name>
-    <pv_name>$(P)$(R)L_UnitString_9_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_17_RBV</pv_name>
     <x>365</x>
     <y>125</y>
     <width>120</width>
@@ -261,7 +261,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #55</name>
-    <pv_name>$(P)$(R)L_UnitType_9</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_17</pv_name>
     <x>245</x>
     <y>150</y>
     <width>120</width>
@@ -279,7 +279,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #59</name>
-    <pv_name>$(P)$(R)L_UnitType_9_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_17_RBV</pv_name>
     <x>365</x>
     <y>150</y>
     <width>120</width>
@@ -373,7 +373,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #77</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_9</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_17</pv_name>
     <x>245</x>
     <y>200</y>
     <width>120</width>
@@ -391,7 +391,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #81</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_9_RBV</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_17_RBV</pv_name>
     <x>365</x>
     <y>200</y>
     <width>120</width>
@@ -458,7 +458,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #95</name>
-    <pv_name>$(P)$(R)L_Label_24</pv_name>
+    <pv_name>$(P)$(R)L_Label_30</pv_name>
     <x>245</x>
     <y>250</y>
     <width>120</width>
@@ -476,7 +476,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #99</name>
-    <pv_name>$(P)$(R)L_Label_24_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_30_RBV</pv_name>
     <x>365</x>
     <y>250</y>
     <width>120</width>
@@ -514,7 +514,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #106</name>
-    <pv_name>$(P)$(R)L_Value_22_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Value_30_RBV</pv_name>
     <x>365</x>
     <y>275</y>
     <width>120</width>
@@ -581,7 +581,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #120</name>
-    <pv_name>$(P)$(R)L_Label_25</pv_name>
+    <pv_name>$(P)$(R)L_Label_31</pv_name>
     <x>245</x>
     <y>325</y>
     <width>120</width>
@@ -599,7 +599,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #124</name>
-    <pv_name>$(P)$(R)L_Label_25_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_31_RBV</pv_name>
     <x>365</x>
     <y>325</y>
     <width>120</width>
@@ -637,7 +637,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #131</name>
-    <pv_name>$(P)$(R)L_SerialNumber_1</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_2</pv_name>
     <x>245</x>
     <y>350</y>
     <width>120</width>
@@ -655,7 +655,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #135</name>
-    <pv_name>$(P)$(R)L_SerialNumber_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_2_RBV</pv_name>
     <x>365</x>
     <y>350</y>
     <width>120</width>
@@ -693,7 +693,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #142</name>
-    <pv_name>$(P)$(R)L_UnitString_10</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_18</pv_name>
     <x>245</x>
     <y>375</y>
     <width>120</width>
@@ -711,7 +711,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #146</name>
-    <pv_name>$(P)$(R)L_UnitString_10_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_18_RBV</pv_name>
     <x>365</x>
     <y>375</y>
     <width>120</width>
@@ -749,7 +749,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #153</name>
-    <pv_name>$(P)$(R)L_UnitType_10</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_18</pv_name>
     <x>245</x>
     <y>400</y>
     <width>120</width>
@@ -767,7 +767,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #157</name>
-    <pv_name>$(P)$(R)L_UnitType_10_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_18_RBV</pv_name>
     <x>365</x>
     <y>400</y>
     <width>120</width>
@@ -861,7 +861,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #175</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_10</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_18</pv_name>
     <x>245</x>
     <y>450</y>
     <width>120</width>
@@ -879,7 +879,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #179</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_10_RBV</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_18_RBV</pv_name>
     <x>365</x>
     <y>450</y>
     <width>120</width>
@@ -946,7 +946,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #193</name>
-    <pv_name>$(P)$(R)L_Label_26</pv_name>
+    <pv_name>$(P)$(R)L_Label_32</pv_name>
     <x>245</x>
     <y>500</y>
     <width>120</width>
@@ -964,7 +964,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #197</name>
-    <pv_name>$(P)$(R)L_Label_26_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_32_RBV</pv_name>
     <x>365</x>
     <y>500</y>
     <width>120</width>
@@ -1002,7 +1002,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #204</name>
-    <pv_name>$(P)$(R)L_Value_23_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Value_31_RBV</pv_name>
     <x>365</x>
     <y>525</y>
     <width>120</width>
@@ -1069,7 +1069,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #218</name>
-    <pv_name>$(P)$(R)L_Label_27</pv_name>
+    <pv_name>$(P)$(R)L_Label_33</pv_name>
     <x>245</x>
     <y>575</y>
     <width>120</width>
@@ -1087,7 +1087,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #222</name>
-    <pv_name>$(P)$(R)L_Label_27_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_33_RBV</pv_name>
     <x>365</x>
     <y>575</y>
     <width>120</width>
@@ -1125,7 +1125,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #229</name>
-    <pv_name>$(P)$(R)L_SerialNumber_2</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_3</pv_name>
     <x>245</x>
     <y>600</y>
     <width>120</width>
@@ -1143,7 +1143,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #233</name>
-    <pv_name>$(P)$(R)L_SerialNumber_2_RBV</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_3_RBV</pv_name>
     <x>365</x>
     <y>600</y>
     <width>120</width>
@@ -1181,7 +1181,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #240</name>
-    <pv_name>$(P)$(R)L_UnitString_11</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_19</pv_name>
     <x>245</x>
     <y>625</y>
     <width>120</width>
@@ -1199,7 +1199,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #244</name>
-    <pv_name>$(P)$(R)L_UnitString_11_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_19_RBV</pv_name>
     <x>365</x>
     <y>625</y>
     <width>120</width>
@@ -1237,7 +1237,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #251</name>
-    <pv_name>$(P)$(R)L_UnitType_11</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_19</pv_name>
     <x>245</x>
     <y>650</y>
     <width>120</width>
@@ -1255,7 +1255,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #255</name>
-    <pv_name>$(P)$(R)L_UnitType_11_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_19_RBV</pv_name>
     <x>365</x>
     <y>650</y>
     <width>120</width>
@@ -1349,7 +1349,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #273</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_11</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_19</pv_name>
     <x>245</x>
     <y>700</y>
     <width>120</width>
@@ -1367,7 +1367,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #277</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_11_RBV</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_19_RBV</pv_name>
     <x>365</x>
     <y>700</y>
     <width>120</width>
@@ -1434,7 +1434,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #291</name>
-    <pv_name>$(P)$(R)L_Label_28</pv_name>
+    <pv_name>$(P)$(R)L_Label_34</pv_name>
     <x>245</x>
     <y>750</y>
     <width>120</width>
@@ -1452,7 +1452,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #295</name>
-    <pv_name>$(P)$(R)L_Label_28_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_34_RBV</pv_name>
     <x>365</x>
     <y>750</y>
     <width>120</width>
@@ -1490,7 +1490,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #302</name>
-    <pv_name>$(P)$(R)L_Value_24_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Value_32_RBV</pv_name>
     <x>365</x>
     <y>775</y>
     <width>120</width>
@@ -1557,7 +1557,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #316</name>
-    <pv_name>$(P)$(R)L_Label_29</pv_name>
+    <pv_name>$(P)$(R)L_Label_35</pv_name>
     <x>245</x>
     <y>825</y>
     <width>120</width>
@@ -1575,7 +1575,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #320</name>
-    <pv_name>$(P)$(R)L_Label_29_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_35_RBV</pv_name>
     <x>365</x>
     <y>825</y>
     <width>120</width>
@@ -1613,7 +1613,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #327</name>
-    <pv_name>$(P)$(R)L_Value_25_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Value_33_RBV</pv_name>
     <x>365</x>
     <y>850</y>
     <width>120</width>
@@ -1680,7 +1680,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #341</name>
-    <pv_name>$(P)$(R)L_Label_30</pv_name>
+    <pv_name>$(P)$(R)L_Label_36</pv_name>
     <x>245</x>
     <y>900</y>
     <width>120</width>
@@ -1698,7 +1698,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #345</name>
-    <pv_name>$(P)$(R)L_Label_30_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_36_RBV</pv_name>
     <x>365</x>
     <y>900</y>
     <width>120</width>
@@ -1960,7 +1960,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #396</name>
-    <pv_name>$(P)$(R)L_SerialNumber_3</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_4</pv_name>
     <x>645</x>
     <y>50</y>
     <width>120</width>
@@ -1978,7 +1978,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #400</name>
-    <pv_name>$(P)$(R)L_SerialNumber_3_RBV</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_4_RBV</pv_name>
     <x>765</x>
     <y>50</y>
     <width>120</width>
@@ -2016,7 +2016,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #407</name>
-    <pv_name>$(P)$(R)L_UnitString_12</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_20</pv_name>
     <x>645</x>
     <y>75</y>
     <width>120</width>
@@ -2034,7 +2034,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #411</name>
-    <pv_name>$(P)$(R)L_UnitString_12_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_20_RBV</pv_name>
     <x>765</x>
     <y>75</y>
     <width>120</width>
@@ -2072,7 +2072,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #418</name>
-    <pv_name>$(P)$(R)L_UnitType_12</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_20</pv_name>
     <x>645</x>
     <y>100</y>
     <width>120</width>
@@ -2090,7 +2090,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #422</name>
-    <pv_name>$(P)$(R)L_UnitType_12_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_20_RBV</pv_name>
     <x>765</x>
     <y>100</y>
     <width>120</width>
@@ -2184,7 +2184,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #440</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_12</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_20</pv_name>
     <x>645</x>
     <y>150</y>
     <width>120</width>
@@ -2202,7 +2202,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #444</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_12_RBV</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_20_RBV</pv_name>
     <x>765</x>
     <y>150</y>
     <width>120</width>
@@ -2269,7 +2269,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #458</name>
-    <pv_name>$(P)$(R)L_Label_31</pv_name>
+    <pv_name>$(P)$(R)L_Label_37</pv_name>
     <x>645</x>
     <y>200</y>
     <width>120</width>
@@ -2287,7 +2287,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #462</name>
-    <pv_name>$(P)$(R)L_Label_31_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_37_RBV</pv_name>
     <x>765</x>
     <y>200</y>
     <width>120</width>
@@ -2549,7 +2549,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #513</name>
-    <pv_name>$(P)$(R)L_SerialNumber_4</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_5</pv_name>
     <x>645</x>
     <y>325</y>
     <width>120</width>
@@ -2567,7 +2567,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #517</name>
-    <pv_name>$(P)$(R)L_SerialNumber_4_RBV</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_5_RBV</pv_name>
     <x>765</x>
     <y>325</y>
     <width>120</width>
@@ -2605,7 +2605,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #524</name>
-    <pv_name>$(P)$(R)L_UnitString_13</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_21</pv_name>
     <x>645</x>
     <y>350</y>
     <width>120</width>
@@ -2623,7 +2623,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #528</name>
-    <pv_name>$(P)$(R)L_UnitString_13_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_21_RBV</pv_name>
     <x>765</x>
     <y>350</y>
     <width>120</width>
@@ -2661,7 +2661,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #535</name>
-    <pv_name>$(P)$(R)L_UnitType_13</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_21</pv_name>
     <x>645</x>
     <y>375</y>
     <width>120</width>
@@ -2679,7 +2679,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #539</name>
-    <pv_name>$(P)$(R)L_UnitType_13_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_21_RBV</pv_name>
     <x>765</x>
     <y>375</y>
     <width>120</width>
@@ -2773,7 +2773,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #557</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_13</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_21</pv_name>
     <x>645</x>
     <y>425</y>
     <width>120</width>
@@ -2791,7 +2791,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #561</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_13_RBV</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_21_RBV</pv_name>
     <x>765</x>
     <y>425</y>
     <width>120</width>
@@ -2858,7 +2858,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #575</name>
-    <pv_name>$(P)$(R)L_Label_32</pv_name>
+    <pv_name>$(P)$(R)L_Label_38</pv_name>
     <x>645</x>
     <y>475</y>
     <width>120</width>
@@ -2876,7 +2876,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #579</name>
-    <pv_name>$(P)$(R)L_Label_32_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_38_RBV</pv_name>
     <x>765</x>
     <y>475</y>
     <width>120</width>
@@ -3138,7 +3138,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #630</name>
-    <pv_name>$(P)$(R)L_SerialNumber_5</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_6</pv_name>
     <x>645</x>
     <y>600</y>
     <width>120</width>
@@ -3156,7 +3156,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #634</name>
-    <pv_name>$(P)$(R)L_SerialNumber_5_RBV</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_6_RBV</pv_name>
     <x>765</x>
     <y>600</y>
     <width>120</width>
@@ -3194,7 +3194,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #641</name>
-    <pv_name>$(P)$(R)L_UnitString_14</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_22</pv_name>
     <x>645</x>
     <y>625</y>
     <width>120</width>
@@ -3212,7 +3212,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #645</name>
-    <pv_name>$(P)$(R)L_UnitString_14_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_22_RBV</pv_name>
     <x>765</x>
     <y>625</y>
     <width>120</width>
@@ -3250,7 +3250,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #652</name>
-    <pv_name>$(P)$(R)L_UnitType_14</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_22</pv_name>
     <x>645</x>
     <y>650</y>
     <width>120</width>
@@ -3268,7 +3268,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #656</name>
-    <pv_name>$(P)$(R)L_UnitType_14_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_22_RBV</pv_name>
     <x>765</x>
     <y>650</y>
     <width>120</width>
@@ -3362,7 +3362,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #674</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_14</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_22</pv_name>
     <x>645</x>
     <y>700</y>
     <width>120</width>
@@ -3380,7 +3380,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #678</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_14_RBV</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_22_RBV</pv_name>
     <x>765</x>
     <y>700</y>
     <width>120</width>
@@ -3447,7 +3447,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #692</name>
-    <pv_name>$(P)$(R)L_Label_33</pv_name>
+    <pv_name>$(P)$(R)L_Label_39</pv_name>
     <x>645</x>
     <y>750</y>
     <width>120</width>
@@ -3465,7 +3465,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #696</name>
-    <pv_name>$(P)$(R)L_Label_33_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_39_RBV</pv_name>
     <x>765</x>
     <y>750</y>
     <width>120</width>
@@ -3503,7 +3503,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #703</name>
-    <pv_name>$(P)$(R)L_SerialNumber_6</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_7</pv_name>
     <x>645</x>
     <y>775</y>
     <width>120</width>
@@ -3521,7 +3521,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #707</name>
-    <pv_name>$(P)$(R)L_SerialNumber_6_RBV</pv_name>
+    <pv_name>$(P)$(R)L_SerialNumber_7_RBV</pv_name>
     <x>765</x>
     <y>775</y>
     <width>120</width>
@@ -3559,7 +3559,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #714</name>
-    <pv_name>$(P)$(R)L_UnitString_15</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_23</pv_name>
     <x>645</x>
     <y>800</y>
     <width>120</width>
@@ -3577,7 +3577,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #718</name>
-    <pv_name>$(P)$(R)L_UnitString_15_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitString_23_RBV</pv_name>
     <x>765</x>
     <y>800</y>
     <width>120</width>
@@ -3615,7 +3615,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #725</name>
-    <pv_name>$(P)$(R)L_UnitType_15</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_23</pv_name>
     <x>645</x>
     <y>825</y>
     <width>120</width>
@@ -3633,7 +3633,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #729</name>
-    <pv_name>$(P)$(R)L_UnitType_15_RBV</pv_name>
+    <pv_name>$(P)$(R)L_UnitType_23_RBV</pv_name>
     <x>765</x>
     <y>825</y>
     <width>120</width>
@@ -3727,7 +3727,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #747</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_15</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_23</pv_name>
     <x>645</x>
     <y>875</y>
     <width>120</width>
@@ -3745,7 +3745,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #751</name>
-    <pv_name>$(P)$(R)L_ValueInBaseUnits_15_RBV</pv_name>
+    <pv_name>$(P)$(R)L_ValueInBaseUnits_23_RBV</pv_name>
     <x>765</x>
     <y>875</y>
     <width>120</width>
@@ -3812,7 +3812,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #765</name>
-    <pv_name>$(P)$(R)L_Label_34</pv_name>
+    <pv_name>$(P)$(R)L_Label_40</pv_name>
     <x>645</x>
     <y>925</y>
     <width>120</width>
@@ -3830,7 +3830,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #769</name>
-    <pv_name>$(P)$(R)L_Label_34_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_40_RBV</pv_name>
     <x>765</x>
     <y>925</y>
     <width>120</width>
@@ -3868,7 +3868,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #776</name>
-    <pv_name>$(P)$(R)L_Value_26_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Value_34_RBV</pv_name>
     <x>765</x>
     <y>950</y>
     <width>120</width>
@@ -3935,7 +3935,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #790</name>
-    <pv_name>$(P)$(R)L_Label_35</pv_name>
+    <pv_name>$(P)$(R)L_Label_41</pv_name>
     <x>645</x>
     <y>1000</y>
     <width>120</width>
@@ -3953,7 +3953,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #794</name>
-    <pv_name>$(P)$(R)L_Label_35_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_41_RBV</pv_name>
     <x>765</x>
     <y>1000</y>
     <width>120</width>
@@ -3991,7 +3991,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #801</name>
-    <pv_name>$(P)$(R)L_Value_27_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Value_35_RBV</pv_name>
     <x>1165</x>
     <y>50</y>
     <width>120</width>

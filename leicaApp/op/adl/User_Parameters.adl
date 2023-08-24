@@ -8,8 +8,8 @@ display {
 	object {
 		x=50
 		y=50
-		width=900
-		height=1060
+		width=500
+		height=925
 	}
 	clr=14
 	bclr=4
@@ -135,7 +135,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_x00"
+     chan="$(P)$(R)L_x00_1"
      clr=14
      bclr=51
    }
@@ -150,7 +150,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_x00_RBV"
+     chan="$(P)$(R)L_x00_1_RBV"
      clr=54
      bclr=4
    }
@@ -178,7 +178,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_y00"
+     chan="$(P)$(R)L_y00_1"
      clr=14
      bclr=51
    }
@@ -193,7 +193,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_y00_RBV"
+     chan="$(P)$(R)L_y00_1_RBV"
      clr=54
      bclr=4
    }
@@ -221,7 +221,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_z00"
+     chan="$(P)$(R)L_z00_1"
      clr=14
      bclr=51
    }
@@ -236,7 +236,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_z00_RBV"
+     chan="$(P)$(R)L_z00_1_RBV"
      clr=54
      bclr=4
    }
@@ -264,7 +264,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_GotoXYZ"
+     chan="$(P)$(R)L_GotoXYZ_1"
      clr=14
      bclr=51
    }
@@ -279,7 +279,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_GotoXYZ_RBV"
+     chan="$(P)$(R)L_GotoXYZ_1_RBV"
      clr=54
      bclr=4
    }
@@ -307,7 +307,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Targets"
+     chan="$(P)$(R)L_Targets_1"
      clr=14
      bclr=51
    }
@@ -322,7 +322,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Targets_RBV"
+     chan="$(P)$(R)L_Targets_1_RBV"
      clr=54
      bclr=4
    }
@@ -350,7 +350,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_x1"
+     chan="$(P)$(R)L_x1_1"
      clr=14
      bclr=51
    }
@@ -365,7 +365,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_x1_RBV"
+     chan="$(P)$(R)L_x1_1_RBV"
      clr=54
      bclr=4
    }
@@ -393,7 +393,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_y1"
+     chan="$(P)$(R)L_y1_1"
      clr=14
      bclr=51
    }
@@ -408,7 +408,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_y1_RBV"
+     chan="$(P)$(R)L_y1_1_RBV"
      clr=54
      bclr=4
    }
@@ -436,7 +436,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_GotoHere"
+     chan="$(P)$(R)L_GotoHere_6"
      clr=14
      bclr=51
    }
@@ -451,7 +451,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_GotoHere_RBV"
+     chan="$(P)$(R)L_GotoHere_6_RBV"
      clr=54
      bclr=4
    }
@@ -479,7 +479,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_x2"
+     chan="$(P)$(R)L_x2_1"
      clr=14
      bclr=51
    }
@@ -494,7 +494,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_x2_RBV"
+     chan="$(P)$(R)L_x2_1_RBV"
      clr=54
      bclr=4
    }
@@ -522,7 +522,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_y2"
+     chan="$(P)$(R)L_y2_1"
      clr=14
      bclr=51
    }
@@ -537,7 +537,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_y2_RBV"
+     chan="$(P)$(R)L_y2_1_RBV"
      clr=54
      bclr=4
    }
@@ -565,7 +565,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_GotoHere_1"
+     chan="$(P)$(R)L_GotoHere_7"
      clr=14
      bclr=51
    }
@@ -580,7 +580,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_GotoHere_1_RBV"
+     chan="$(P)$(R)L_GotoHere_7_RBV"
      clr=54
      bclr=4
    }
@@ -608,7 +608,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_x3"
+     chan="$(P)$(R)L_x3_1"
      clr=14
      bclr=51
    }
@@ -623,7 +623,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_x3_RBV"
+     chan="$(P)$(R)L_x3_1_RBV"
      clr=54
      bclr=4
    }
@@ -651,7 +651,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_y3"
+     chan="$(P)$(R)L_y3_1"
      clr=14
      bclr=51
    }
@@ -666,7 +666,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_y3_RBV"
+     chan="$(P)$(R)L_y3_1_RBV"
      clr=54
      bclr=4
    }
@@ -694,7 +694,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_GotoHere_2"
+     chan="$(P)$(R)L_GotoHere_8"
      clr=14
      bclr=51
    }
@@ -709,7 +709,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_GotoHere_2_RBV"
+     chan="$(P)$(R)L_GotoHere_8_RBV"
      clr=54
      bclr=4
    }
@@ -737,7 +737,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_x4"
+     chan="$(P)$(R)L_x4_1"
      clr=14
      bclr=51
    }
@@ -752,7 +752,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_x4_RBV"
+     chan="$(P)$(R)L_x4_1_RBV"
      clr=54
      bclr=4
    }
@@ -780,7 +780,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_y4"
+     chan="$(P)$(R)L_y4_1"
      clr=14
      bclr=51
    }
@@ -795,7 +795,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_y4_RBV"
+     chan="$(P)$(R)L_y4_1_RBV"
      clr=54
      bclr=4
    }
@@ -823,7 +823,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_GotoHere_3"
+     chan="$(P)$(R)L_GotoHere_9"
      clr=14
      bclr=51
    }
@@ -838,7 +838,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_GotoHere_3_RBV"
+     chan="$(P)$(R)L_GotoHere_9_RBV"
      clr=54
      bclr=4
    }
@@ -866,7 +866,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_x5"
+     chan="$(P)$(R)L_x5_1"
      clr=14
      bclr=51
    }
@@ -881,7 +881,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_x5_RBV"
+     chan="$(P)$(R)L_x5_1_RBV"
      clr=54
      bclr=4
    }
@@ -909,7 +909,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_y5"
+     chan="$(P)$(R)L_y5_1"
      clr=14
      bclr=51
    }
@@ -924,7 +924,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_y5_RBV"
+     chan="$(P)$(R)L_y5_1_RBV"
      clr=54
      bclr=4
    }
@@ -952,7 +952,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_GotoHere_4"
+     chan="$(P)$(R)L_GotoHere_10"
      clr=14
      bclr=51
    }
@@ -967,7 +967,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_GotoHere_4_RBV"
+     chan="$(P)$(R)L_GotoHere_10_RBV"
      clr=54
      bclr=4
    }
@@ -995,7 +995,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_x6"
+     chan="$(P)$(R)L_x6_1"
      clr=14
      bclr=51
    }
@@ -1010,7 +1010,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_x6_RBV"
+     chan="$(P)$(R)L_x6_1_RBV"
      clr=54
      bclr=4
    }
@@ -1038,7 +1038,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_y6"
+     chan="$(P)$(R)L_y6_1"
      clr=14
      bclr=51
    }
@@ -1053,7 +1053,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_y6_RBV"
+     chan="$(P)$(R)L_y6_1_RBV"
      clr=54
      bclr=4
    }
@@ -1081,7 +1081,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_GotoHere_5"
+     chan="$(P)$(R)L_GotoHere_11"
      clr=14
      bclr=51
    }
@@ -1096,7 +1096,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_GotoHere_5_RBV"
+     chan="$(P)$(R)L_GotoHere_11_RBV"
      clr=54
      bclr=4
    }
@@ -1124,7 +1124,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_XX"
+     chan="$(P)$(R)L_XX_1"
      clr=14
      bclr=51
    }
@@ -1139,7 +1139,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_XX_RBV"
+     chan="$(P)$(R)L_XX_1_RBV"
      clr=54
      bclr=4
    }
@@ -1167,7 +1167,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_YY"
+     chan="$(P)$(R)L_YY_1"
      clr=14
      bclr=51
    }
@@ -1182,7 +1182,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_YY_RBV"
+     chan="$(P)$(R)L_YY_1_RBV"
      clr=54
      bclr=4
    }
@@ -1210,7 +1210,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_GotoXY"
+     chan="$(P)$(R)L_GotoXY_1"
      clr=14
      bclr=51
    }
@@ -1225,7 +1225,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_GotoXY_RBV"
+     chan="$(P)$(R)L_GotoXY_1_RBV"
      clr=54
      bclr=4
    }
@@ -1253,7 +1253,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_x"
+     chan="$(P)$(R)L_x_1"
      clr=14
      bclr=51
    }
@@ -1268,7 +1268,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_x_RBV"
+     chan="$(P)$(R)L_x_1_RBV"
      clr=54
      bclr=4
    }
@@ -1296,7 +1296,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_y"
+     chan="$(P)$(R)L_y_1"
      clr=14
      bclr=51
    }
@@ -1311,7 +1311,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_y_RBV"
+     chan="$(P)$(R)L_y_1_RBV"
      clr=54
      bclr=4
    }
@@ -1339,7 +1339,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_z"
+     chan="$(P)$(R)L_z_1"
      clr=14
      bclr=51
    }
@@ -1354,7 +1354,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_z_RBV"
+     chan="$(P)$(R)L_z_1_RBV"
      clr=54
      bclr=4
    }
@@ -1382,7 +1382,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_x0"
+     chan="$(P)$(R)L_x0_1"
      clr=14
      bclr=51
    }
@@ -1397,7 +1397,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_x0_RBV"
+     chan="$(P)$(R)L_x0_1_RBV"
      clr=54
      bclr=4
    }
@@ -1425,7 +1425,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_y0"
+     chan="$(P)$(R)L_y0_1"
      clr=14
      bclr=51
    }
@@ -1440,7 +1440,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_y0_RBV"
+     chan="$(P)$(R)L_y0_1_RBV"
      clr=54
      bclr=4
    }
@@ -1468,7 +1468,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_z0"
+     chan="$(P)$(R)L_z0_1"
      clr=14
      bclr=51
    }
@@ -1483,7 +1483,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_z0_RBV"
+     chan="$(P)$(R)L_z0_1_RBV"
      clr=54
      bclr=4
    }
@@ -1511,7 +1511,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_h"
+     chan="$(P)$(R)L_h_1"
      clr=14
      bclr=51
    }
@@ -1526,7 +1526,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_h_RBV"
+     chan="$(P)$(R)L_h_1_RBV"
      clr=54
      bclr=4
    }
@@ -1554,7 +1554,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_v"
+     chan="$(P)$(R)L_v_1"
      clr=14
      bclr=51
    }
@@ -1569,7 +1569,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_v_RBV"
+     chan="$(P)$(R)L_v_1_RBV"
      clr=54
      bclr=4
    }
@@ -1597,7 +1597,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_d"
+     chan="$(P)$(R)L_d_1"
      clr=14
      bclr=51
    }
@@ -1612,465 +1612,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_d_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=925
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Topcomment"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=925
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Topcomment"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=925
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Topcomment_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=950
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="expectedFirmware"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=950
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_expectedFirmware"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=950
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_expectedFirmware_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=975
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="installedFirmware"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=975
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_installedFirmware"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=975
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_installedFirmware_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=1000
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="ipAddress"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=1000
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_ipAddress"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=1000
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_ipAddress_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=50
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="IsCompatible"
-	align="horiz. right"
-}
-"text update" {
-   object {
-      x=765
-      y=50
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_IsCompatible_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=75
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Name"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=75
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Name_15"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=75
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Name_15_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=100
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="ProductName"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=100
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_ProductName_3"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=100
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_ProductName_3_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=125
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="SerialNumber"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=125
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_SerialNumber_7"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=125
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_SerialNumber_7_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=150
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="horizontalAngle"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=150
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_horizontalAngle"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=150
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_horizontalAngle_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=175
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="verticalAngle"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=175
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_verticalAngle"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=175
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_verticalAngle_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=200
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="angleUnits"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=200
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_angleUnits"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=200
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_angleUnits_RBV"
+     chan="$(P)$(R)L_d_1_RBV"
      clr=54
      bclr=4
    }
