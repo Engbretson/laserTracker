@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-08-24 10:51:26 by mengbret-->
+<!--Saved on 2023-08-24 11:48:40 by mengbret-->
 <display version="2.0.0">
   <name>User_Parameters</name>
   <x>50</x>
@@ -64,7 +64,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #15</name>
-    <pv_name>$(P)$(R)L_x00_1</pv_name>
+    <pv_name>$(P)$(R)L_x00</pv_name>
     <x>245</x>
     <y>50</y>
     <width>120</width>
@@ -82,7 +82,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #19</name>
-    <pv_name>$(P)$(R)L_x00_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_x00_RBV</pv_name>
     <x>365</x>
     <y>50</y>
     <width>120</width>
@@ -120,7 +120,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #26</name>
-    <pv_name>$(P)$(R)L_y00_1</pv_name>
+    <pv_name>$(P)$(R)L_y00</pv_name>
     <x>245</x>
     <y>75</y>
     <width>120</width>
@@ -138,7 +138,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #30</name>
-    <pv_name>$(P)$(R)L_y00_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_y00_RBV</pv_name>
     <x>365</x>
     <y>75</y>
     <width>120</width>
@@ -176,7 +176,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #37</name>
-    <pv_name>$(P)$(R)L_z00_1</pv_name>
+    <pv_name>$(P)$(R)L_z00</pv_name>
     <x>245</x>
     <y>100</y>
     <width>120</width>
@@ -194,7 +194,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #41</name>
-    <pv_name>$(P)$(R)L_z00_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_z00_RBV</pv_name>
     <x>365</x>
     <y>100</y>
     <width>120</width>
@@ -234,12 +234,12 @@
     <name>message button #48</name>
     <actions>
       <action type="write_pv">
-        <pv_name>$(P)$(R)L_GotoXYZ_1</pv_name>
+        <pv_name>$(P)$(R)L_GotoXYZ</pv_name>
         <value>1</value>
         <description>Write</description>
       </action>
     </actions>
-    <pv_name>$(P)$(R)L_GotoXYZ_1</pv_name>
+    <pv_name>$(P)$(R)L_GotoXYZ</pv_name>
     <text>GotoXYZ</text>
     <x>245</x>
     <y>125</y>
@@ -252,7 +252,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #51</name>
-    <pv_name>$(P)$(R)L_GotoXYZ_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_GotoXYZ_RBV</pv_name>
     <x>365</x>
     <y>125</y>
     <width>120</width>
@@ -290,7 +290,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #58</name>
-    <pv_name>$(P)$(R)L_Targets_1</pv_name>
+    <pv_name>$(P)$(R)L_Targets</pv_name>
     <x>245</x>
     <y>150</y>
     <width>120</width>
@@ -308,7 +308,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #62</name>
-    <pv_name>$(P)$(R)L_Targets_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Targets_RBV</pv_name>
     <x>365</x>
     <y>150</y>
     <width>120</width>
@@ -346,7 +346,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #69</name>
-    <pv_name>$(P)$(R)L_x1_1</pv_name>
+    <pv_name>$(P)$(R)L_x1</pv_name>
     <x>245</x>
     <y>175</y>
     <width>120</width>
@@ -364,7 +364,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #73</name>
-    <pv_name>$(P)$(R)L_x1_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_x1_RBV</pv_name>
     <x>365</x>
     <y>175</y>
     <width>120</width>
@@ -402,7 +402,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #80</name>
-    <pv_name>$(P)$(R)L_y1_1</pv_name>
+    <pv_name>$(P)$(R)L_y1</pv_name>
     <x>245</x>
     <y>200</y>
     <width>120</width>
@@ -420,7 +420,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #84</name>
-    <pv_name>$(P)$(R)L_y1_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_y1_RBV</pv_name>
     <x>365</x>
     <y>200</y>
     <width>120</width>
@@ -460,12 +460,12 @@
     <name>message button #91</name>
     <actions>
       <action type="write_pv">
-        <pv_name>$(P)$(R)L_GotoHere_6</pv_name>
+        <pv_name>$(P)$(R)L_GotoHere</pv_name>
         <value>1</value>
         <description>Write</description>
       </action>
     </actions>
-    <pv_name>$(P)$(R)L_GotoHere_6</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere</pv_name>
     <text>GotoHere</text>
     <x>245</x>
     <y>225</y>
@@ -478,7 +478,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #94</name>
-    <pv_name>$(P)$(R)L_GotoHere_6_RBV</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere_RBV</pv_name>
     <x>365</x>
     <y>225</y>
     <width>120</width>
@@ -516,7 +516,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #101</name>
-    <pv_name>$(P)$(R)L_x2_1</pv_name>
+    <pv_name>$(P)$(R)L_x2</pv_name>
     <x>245</x>
     <y>250</y>
     <width>120</width>
@@ -534,7 +534,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #105</name>
-    <pv_name>$(P)$(R)L_x2_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_x2_RBV</pv_name>
     <x>365</x>
     <y>250</y>
     <width>120</width>
@@ -572,7 +572,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #112</name>
-    <pv_name>$(P)$(R)L_y2_1</pv_name>
+    <pv_name>$(P)$(R)L_y2</pv_name>
     <x>245</x>
     <y>275</y>
     <width>120</width>
@@ -590,7 +590,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #116</name>
-    <pv_name>$(P)$(R)L_y2_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_y2_RBV</pv_name>
     <x>365</x>
     <y>275</y>
     <width>120</width>
@@ -630,12 +630,12 @@
     <name>message button #123</name>
     <actions>
       <action type="write_pv">
-        <pv_name>$(P)$(R)L_GotoHere_7</pv_name>
+        <pv_name>$(P)$(R)L_GotoHere_1</pv_name>
         <value>1</value>
         <description>Write</description>
       </action>
     </actions>
-    <pv_name>$(P)$(R)L_GotoHere_7</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere_1</pv_name>
     <text>GotoHere</text>
     <x>245</x>
     <y>300</y>
@@ -648,7 +648,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #126</name>
-    <pv_name>$(P)$(R)L_GotoHere_7_RBV</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere_1_RBV</pv_name>
     <x>365</x>
     <y>300</y>
     <width>120</width>
@@ -686,7 +686,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #133</name>
-    <pv_name>$(P)$(R)L_x3_1</pv_name>
+    <pv_name>$(P)$(R)L_x3</pv_name>
     <x>245</x>
     <y>325</y>
     <width>120</width>
@@ -704,7 +704,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #137</name>
-    <pv_name>$(P)$(R)L_x3_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_x3_RBV</pv_name>
     <x>365</x>
     <y>325</y>
     <width>120</width>
@@ -742,7 +742,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #144</name>
-    <pv_name>$(P)$(R)L_y3_1</pv_name>
+    <pv_name>$(P)$(R)L_y3</pv_name>
     <x>245</x>
     <y>350</y>
     <width>120</width>
@@ -760,7 +760,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #148</name>
-    <pv_name>$(P)$(R)L_y3_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_y3_RBV</pv_name>
     <x>365</x>
     <y>350</y>
     <width>120</width>
@@ -800,12 +800,12 @@
     <name>message button #155</name>
     <actions>
       <action type="write_pv">
-        <pv_name>$(P)$(R)L_GotoHere_8</pv_name>
+        <pv_name>$(P)$(R)L_GotoHere_2</pv_name>
         <value>1</value>
         <description>Write</description>
       </action>
     </actions>
-    <pv_name>$(P)$(R)L_GotoHere_8</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere_2</pv_name>
     <text>GotoHere</text>
     <x>245</x>
     <y>375</y>
@@ -818,7 +818,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #158</name>
-    <pv_name>$(P)$(R)L_GotoHere_8_RBV</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere_2_RBV</pv_name>
     <x>365</x>
     <y>375</y>
     <width>120</width>
@@ -856,7 +856,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #165</name>
-    <pv_name>$(P)$(R)L_x4_1</pv_name>
+    <pv_name>$(P)$(R)L_x4</pv_name>
     <x>245</x>
     <y>400</y>
     <width>120</width>
@@ -874,7 +874,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #169</name>
-    <pv_name>$(P)$(R)L_x4_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_x4_RBV</pv_name>
     <x>365</x>
     <y>400</y>
     <width>120</width>
@@ -912,7 +912,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #176</name>
-    <pv_name>$(P)$(R)L_y4_1</pv_name>
+    <pv_name>$(P)$(R)L_y4</pv_name>
     <x>245</x>
     <y>425</y>
     <width>120</width>
@@ -930,7 +930,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #180</name>
-    <pv_name>$(P)$(R)L_y4_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_y4_RBV</pv_name>
     <x>365</x>
     <y>425</y>
     <width>120</width>
@@ -970,12 +970,12 @@
     <name>message button #187</name>
     <actions>
       <action type="write_pv">
-        <pv_name>$(P)$(R)L_GotoHere_9</pv_name>
+        <pv_name>$(P)$(R)L_GotoHere_3</pv_name>
         <value>1</value>
         <description>Write</description>
       </action>
     </actions>
-    <pv_name>$(P)$(R)L_GotoHere_9</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere_3</pv_name>
     <text>GotoHere</text>
     <x>245</x>
     <y>450</y>
@@ -988,7 +988,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #190</name>
-    <pv_name>$(P)$(R)L_GotoHere_9_RBV</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere_3_RBV</pv_name>
     <x>365</x>
     <y>450</y>
     <width>120</width>
@@ -1026,7 +1026,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #197</name>
-    <pv_name>$(P)$(R)L_x5_1</pv_name>
+    <pv_name>$(P)$(R)L_x5</pv_name>
     <x>245</x>
     <y>475</y>
     <width>120</width>
@@ -1044,7 +1044,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #201</name>
-    <pv_name>$(P)$(R)L_x5_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_x5_RBV</pv_name>
     <x>365</x>
     <y>475</y>
     <width>120</width>
@@ -1082,7 +1082,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #208</name>
-    <pv_name>$(P)$(R)L_y5_1</pv_name>
+    <pv_name>$(P)$(R)L_y5</pv_name>
     <x>245</x>
     <y>500</y>
     <width>120</width>
@@ -1100,7 +1100,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #212</name>
-    <pv_name>$(P)$(R)L_y5_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_y5_RBV</pv_name>
     <x>365</x>
     <y>500</y>
     <width>120</width>
@@ -1140,12 +1140,12 @@
     <name>message button #219</name>
     <actions>
       <action type="write_pv">
-        <pv_name>$(P)$(R)L_GotoHere_10</pv_name>
+        <pv_name>$(P)$(R)L_GotoHere_4</pv_name>
         <value>1</value>
         <description>Write</description>
       </action>
     </actions>
-    <pv_name>$(P)$(R)L_GotoHere_10</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere_4</pv_name>
     <text>GotoHere</text>
     <x>245</x>
     <y>525</y>
@@ -1158,7 +1158,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #222</name>
-    <pv_name>$(P)$(R)L_GotoHere_10_RBV</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere_4_RBV</pv_name>
     <x>365</x>
     <y>525</y>
     <width>120</width>
@@ -1196,7 +1196,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #229</name>
-    <pv_name>$(P)$(R)L_x6_1</pv_name>
+    <pv_name>$(P)$(R)L_x6</pv_name>
     <x>245</x>
     <y>550</y>
     <width>120</width>
@@ -1214,7 +1214,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #233</name>
-    <pv_name>$(P)$(R)L_x6_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_x6_RBV</pv_name>
     <x>365</x>
     <y>550</y>
     <width>120</width>
@@ -1252,7 +1252,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #240</name>
-    <pv_name>$(P)$(R)L_y6_1</pv_name>
+    <pv_name>$(P)$(R)L_y6</pv_name>
     <x>245</x>
     <y>575</y>
     <width>120</width>
@@ -1270,7 +1270,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #244</name>
-    <pv_name>$(P)$(R)L_y6_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_y6_RBV</pv_name>
     <x>365</x>
     <y>575</y>
     <width>120</width>
@@ -1310,12 +1310,12 @@
     <name>message button #251</name>
     <actions>
       <action type="write_pv">
-        <pv_name>$(P)$(R)L_GotoHere_11</pv_name>
+        <pv_name>$(P)$(R)L_GotoHere_5</pv_name>
         <value>1</value>
         <description>Write</description>
       </action>
     </actions>
-    <pv_name>$(P)$(R)L_GotoHere_11</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere_5</pv_name>
     <text>GotoHere</text>
     <x>245</x>
     <y>600</y>
@@ -1328,7 +1328,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #254</name>
-    <pv_name>$(P)$(R)L_GotoHere_11_RBV</pv_name>
+    <pv_name>$(P)$(R)L_GotoHere_5_RBV</pv_name>
     <x>365</x>
     <y>600</y>
     <width>120</width>
@@ -1366,7 +1366,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #261</name>
-    <pv_name>$(P)$(R)L_XX_1</pv_name>
+    <pv_name>$(P)$(R)L_XX</pv_name>
     <x>245</x>
     <y>625</y>
     <width>120</width>
@@ -1384,7 +1384,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #265</name>
-    <pv_name>$(P)$(R)L_XX_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_XX_RBV</pv_name>
     <x>365</x>
     <y>625</y>
     <width>120</width>
@@ -1422,7 +1422,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #272</name>
-    <pv_name>$(P)$(R)L_YY_1</pv_name>
+    <pv_name>$(P)$(R)L_YY</pv_name>
     <x>245</x>
     <y>650</y>
     <width>120</width>
@@ -1440,7 +1440,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #276</name>
-    <pv_name>$(P)$(R)L_YY_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_YY_RBV</pv_name>
     <x>365</x>
     <y>650</y>
     <width>120</width>
@@ -1480,12 +1480,12 @@
     <name>message button #283</name>
     <actions>
       <action type="write_pv">
-        <pv_name>$(P)$(R)L_GotoXY_1</pv_name>
+        <pv_name>$(P)$(R)L_GotoXY</pv_name>
         <value>1</value>
         <description>Write</description>
       </action>
     </actions>
-    <pv_name>$(P)$(R)L_GotoXY_1</pv_name>
+    <pv_name>$(P)$(R)L_GotoXY</pv_name>
     <text>GotoXY</text>
     <x>245</x>
     <y>675</y>
@@ -1498,7 +1498,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #286</name>
-    <pv_name>$(P)$(R)L_GotoXY_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_GotoXY_RBV</pv_name>
     <x>365</x>
     <y>675</y>
     <width>120</width>
@@ -1536,7 +1536,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #293</name>
-    <pv_name>$(P)$(R)L_x_1</pv_name>
+    <pv_name>$(P)$(R)L_x</pv_name>
     <x>245</x>
     <y>700</y>
     <width>120</width>
@@ -1554,7 +1554,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #297</name>
-    <pv_name>$(P)$(R)L_x_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_x_RBV</pv_name>
     <x>365</x>
     <y>700</y>
     <width>120</width>
@@ -1592,7 +1592,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #304</name>
-    <pv_name>$(P)$(R)L_y_1</pv_name>
+    <pv_name>$(P)$(R)L_y</pv_name>
     <x>245</x>
     <y>725</y>
     <width>120</width>
@@ -1610,7 +1610,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #308</name>
-    <pv_name>$(P)$(R)L_y_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_y_RBV</pv_name>
     <x>365</x>
     <y>725</y>
     <width>120</width>
@@ -1648,7 +1648,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #315</name>
-    <pv_name>$(P)$(R)L_z_1</pv_name>
+    <pv_name>$(P)$(R)L_z</pv_name>
     <x>245</x>
     <y>750</y>
     <width>120</width>
@@ -1666,7 +1666,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #319</name>
-    <pv_name>$(P)$(R)L_z_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_z_RBV</pv_name>
     <x>365</x>
     <y>750</y>
     <width>120</width>
@@ -1704,7 +1704,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #326</name>
-    <pv_name>$(P)$(R)L_x0_1</pv_name>
+    <pv_name>$(P)$(R)L_x0</pv_name>
     <x>245</x>
     <y>775</y>
     <width>120</width>
@@ -1722,7 +1722,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #330</name>
-    <pv_name>$(P)$(R)L_x0_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_x0_RBV</pv_name>
     <x>365</x>
     <y>775</y>
     <width>120</width>
@@ -1760,7 +1760,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #337</name>
-    <pv_name>$(P)$(R)L_y0_1</pv_name>
+    <pv_name>$(P)$(R)L_y0</pv_name>
     <x>245</x>
     <y>800</y>
     <width>120</width>
@@ -1778,7 +1778,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #341</name>
-    <pv_name>$(P)$(R)L_y0_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_y0_RBV</pv_name>
     <x>365</x>
     <y>800</y>
     <width>120</width>
@@ -1816,7 +1816,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #348</name>
-    <pv_name>$(P)$(R)L_z0_1</pv_name>
+    <pv_name>$(P)$(R)L_z0</pv_name>
     <x>245</x>
     <y>825</y>
     <width>120</width>
@@ -1834,7 +1834,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #352</name>
-    <pv_name>$(P)$(R)L_z0_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_z0_RBV</pv_name>
     <x>365</x>
     <y>825</y>
     <width>120</width>
@@ -1872,7 +1872,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #359</name>
-    <pv_name>$(P)$(R)L_h_1</pv_name>
+    <pv_name>$(P)$(R)L_h</pv_name>
     <x>245</x>
     <y>850</y>
     <width>120</width>
@@ -1890,7 +1890,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #363</name>
-    <pv_name>$(P)$(R)L_h_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_h_RBV</pv_name>
     <x>365</x>
     <y>850</y>
     <width>120</width>
@@ -1928,7 +1928,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #370</name>
-    <pv_name>$(P)$(R)L_v_1</pv_name>
+    <pv_name>$(P)$(R)L_v</pv_name>
     <x>245</x>
     <y>875</y>
     <width>120</width>
@@ -1946,7 +1946,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #374</name>
-    <pv_name>$(P)$(R)L_v_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_v_RBV</pv_name>
     <x>365</x>
     <y>875</y>
     <width>120</width>
@@ -1984,7 +1984,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #381</name>
-    <pv_name>$(P)$(R)L_d_1</pv_name>
+    <pv_name>$(P)$(R)L_d</pv_name>
     <x>245</x>
     <y>900</y>
     <width>120</width>
@@ -2002,7 +2002,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #385</name>
-    <pv_name>$(P)$(R)L_d_1_RBV</pv_name>
+    <pv_name>$(P)$(R)L_d_RBV</pv_name>
     <x>365</x>
     <y>900</y>
     <width>120</width>

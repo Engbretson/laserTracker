@@ -7,7 +7,7 @@
             <x>1199</x>
             <y>211</y>
             <width>400</width>
-            <height>400</height>
+            <height>139</height>
         </rect>
     </property>
     <property name="styleSheet">
@@ -120,7 +120,7 @@ border-radius: 2px;
             <property name="geometry">
                 <rect>
                     <x>34</x>
-                    <y>28</y>
+                    <y>25</y>
                     <width>308</width>
                     <height>44</height>
                 </rect>
@@ -146,19 +146,62 @@ border-radius: 2px;
                 <enum>Menu</enum>
             </property>
             <property name="labels">
-                <string>Compensations;Face;InclinationSensor;Laser;Measurement;MeteoStation;OverviewCamera;PowerLock;PowerSource;QuickRelease;Settings;Targets;TargetSearch;TrackerAlignment;Triggers;WrtlBoxes;User_Parameters</string>
+                <string>Compensations;Face;InclinationSensor;Laser;Measurement;MeteoStation;OverviewCamera;PowerLock;PowerSource;Settings;Targets;TargetSearch;TrackerAlignment;Triggers;User_Parameters;Top_Level</string>
             </property>
             <property name="files">
-                <string>Compensations.ui ;Face.ui ;Inclination_Sensor.ui ;Laser.ui ;Measurement.ui ;MeteoStation.ui ;OverviewCamera.ui ;PowerLock.ui ;PowerSource.ui ;QuickRelease.ui ;Settings.ui ;Targets.ui ;TargetSearch.ui ;TrackerAlignment.ui ;Triggers.ui ;WrtlBoxes.ui ;User_Parameters.ui </string>
+                <string>Compensations.ui ;Face.ui ;Inclination_Sensor.ui ;Laser.ui ;Measurement.ui ;MeteoStation.ui ;OverviewCamera.ui ;PowerLock.ui ;PowerSource.ui ;Settings.ui ;Targets.ui ;TargetSearch.ui ;TrackerAlignment.ui ;Triggers.ui ;User_Parameters.ui ;Top_Level.ui </string>
             </property>
             <property name="args">
-                <string>P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R)</string>
+                <string>P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R)</string>
             </property>
             <property name="removeParent">
-                <string>false;false;false;false;false;false;false;false;false;false;false;false;false;false;false;false;false</string>
+                <string>false;false;false;false;false;false;false;false;false;false;false;false;false;false;false;false</string>
+            </property>
+        </widget>
+        <widget class="caRelatedDisplay" name="caRelatedDisplay_1">
+            <property name="geometry">
+                <rect>
+                    <x>34</x>
+                    <y>70</y>
+                    <width>308</width>
+                    <height>44</height>
+                </rect>
+            </property>
+            <property name="foreground">
+                <color alpha="255">
+                    <red>0</red>
+                    <green>0</green>
+                    <blue>0</blue>
+                </color>
+            </property>
+            <property name="background">
+                <color alpha="255">
+                    <red>187</red>
+                    <green>187</green>
+                    <blue>187</blue>
+                </color>
+            </property>
+            <property name="label">
+                <string>Laser Tracker Functional Screens #2</string>
+            </property>
+            <property name="stackingMode">
+                <enum>Menu</enum>
+            </property>
+            <property name="labels">
+                <string>QuickRelease;WrtlBoxes</string>
+            </property>
+            <property name="files">
+                <string>QuickRelease.ui ;WrtlBoxes.ui </string>
+            </property>
+            <property name="args">
+                <string>P=$(P),R=$(R);P=$(P),R=$(R)</string>
+            </property>
+            <property name="removeParent">
+                <string>false;false</string>
             </property>
         </widget>
         <zorder>caRelatedDisplay_0</zorder>
+        <zorder>caRelatedDisplay_1</zorder>
     </widget>
 </widget>
 </ui>

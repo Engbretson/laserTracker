@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-08-24 10:50:22 by mengbret-->
+<!--Saved on 2023-08-24 11:47:41 by mengbret-->
 <display version="2.0.0">
   <name>main</name>
   <x>1199</x>
   <y>211</y>
   <width>400</width>
-  <height>400</height>
+  <height>139</height>
   <background_color>
     <color red="187" green="187" blue="187">
     </color>
@@ -61,11 +61,6 @@
         <description>PowerSource</description>
       </action>
       <action type="open_display">
-        <file>QuickRelease.opi</file>
-        <target>tab</target>
-        <description>QuickRelease</description>
-      </action>
-      <action type="open_display">
         <file>Settings.opi</file>
         <target>tab</target>
         <description>Settings</description>
@@ -91,19 +86,43 @@
         <description>Triggers</description>
       </action>
       <action type="open_display">
-        <file>WrtlBoxes.opi</file>
-        <target>tab</target>
-        <description>WrtlBoxes</description>
-      </action>
-      <action type="open_display">
         <file>User_Parameters.opi</file>
         <target>tab</target>
         <description>User_Parameters</description>
       </action>
+      <action type="open_display">
+        <file>Top_Level.opi</file>
+        <target>tab</target>
+        <description>Top_Level</description>
+      </action>
     </actions>
     <text>Laser Tracker Functional Screens</text>
     <x>34</x>
-    <y>28</y>
+    <y>25</y>
+    <width>308</width>
+    <height>44</height>
+    <background_color>
+      <color red="187" green="187" blue="187">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>related display #24</name>
+    <actions>
+      <action type="open_display">
+        <file>QuickRelease.opi</file>
+        <target>tab</target>
+        <description>QuickRelease</description>
+      </action>
+      <action type="open_display">
+        <file>WrtlBoxes.opi</file>
+        <target>tab</target>
+        <description>WrtlBoxes</description>
+      </action>
+    </actions>
+    <text>Laser Tracker Functional Screens #2</text>
+    <x>34</x>
+    <y>70</y>
     <width>308</width>
     <height>44</height>
     <background_color>

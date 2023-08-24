@@ -8,7 +8,7 @@ display {
 		x=1199
 		y=211
 		width=400
-		height=400
+		height=139
 	}
 	clr=14
 	bclr=4
@@ -90,7 +90,7 @@ display {
 "related display" {
 	object {
 		x=34
-		y=28
+		y=25
 		width=308
 		height=44
 	}
@@ -124,7 +124,6 @@ display {
 		name="MeteoStation.adl"
 		args="P=$(P),R=$(R)"
 	}
-
 	display[6] {
 		label="OverviewCamera"
 		name="OverviewCamera.adl"
@@ -141,47 +140,62 @@ display {
 		args="P=$(P),R=$(R)"
 	}
 	display[9] {
-		label="QuickRelease"
-		name="QuickRelease.adl"
-		args="P=$(P),R=$(R)"
-	}
-	display[10] {
 		label="Settings"
 		name="Settings.adl"
 		args="P=$(P),R=$(R)"
 	}
-	display[11] {
+	display[10] {
 		label="Targets"
 		name="Targets.adl"
 		args="P=$(P),R=$(R)"
 	}
-	display[12] {
+	display[11] {
 		label="TargetSearch"
 		name="TargetSearch.adl"
 		args="P=$(P),R=$(R)"
 	}
-	display[13] {
+	display[12] {
 		label="TrackerAlignment"
 		name="TrackerAlignment.adl"
 		args="P=$(P),R=$(R)"
 	}
-	display[14] {
+	display[13] {
 		label="Triggers"
 		name="Triggers.adl"
 		args="P=$(P),R=$(R)"
 	}
-	display[15] {
-		label="WrtlBoxes"
-		name="WrtlBoxes.adl"
-		args="P=$(P),R=$(R)"
-	}
-	
-	display[16] {
+	display[14] {
 		label="User_Parameters"
 		name="User_Parameters.adl"
+		args="P=$(P),R=$(R)"
+	}
+	display[15] {
+		label="Top_Level"
+		name="Top_Level.adl"
 		args="P=$(P),R=$(R)"
 	}
 	clr=14
 	bclr=4
 	label="Laser Tracker Functional Screens"
+}
+"related display" {
+	object {
+		x=34
+		y=70
+		width=308
+		height=44
+	}
+	display[0] {
+		label="QuickRelease"
+		name="QuickRelease.adl"
+		args="P=$(P),R=$(R)"
+	}
+	display[1] {
+		label="WrtlBoxes"
+		name="WrtlBoxes.adl"
+		args="P=$(P),R=$(R)"
+	}
+	clr=14
+	bclr=4
+	label="Laser Tracker Functional Screens #2"
 }

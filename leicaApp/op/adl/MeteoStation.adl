@@ -164,7 +164,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_29"
+     chan="$(P)$(R)L_Label_23"
      clr=14
      bclr=51
    }
@@ -179,7 +179,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_29_RBV"
+     chan="$(P)$(R)L_Label_23_RBV"
      clr=54
      bclr=4
    }
@@ -207,7 +207,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_SerialNumber_1"
+     chan="$(P)$(R)L_SerialNumber"
      clr=14
      bclr=51
    }
@@ -222,7 +222,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_SerialNumber_1_RBV"
+     chan="$(P)$(R)L_SerialNumber_RBV"
      clr=54
      bclr=4
    }
@@ -250,7 +250,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_17"
+     chan="$(P)$(R)L_UnitString_9"
      clr=14
      bclr=51
    }
@@ -265,7 +265,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_17_RBV"
+     chan="$(P)$(R)L_UnitString_9_RBV"
      clr=54
      bclr=4
    }
@@ -293,7 +293,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_17"
+     chan="$(P)$(R)L_UnitType_9"
      clr=14
      bclr=51
    }
@@ -308,7 +308,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_17_RBV"
+     chan="$(P)$(R)L_UnitType_9_RBV"
      clr=54
      bclr=4
    }
@@ -379,7 +379,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_17"
+     chan="$(P)$(R)L_ValueInBaseUnits_9"
      clr=14
      bclr=51
    }
@@ -394,7 +394,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_17_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_9_RBV"
      clr=54
      bclr=4
    }
@@ -451,7 +451,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_30"
+     chan="$(P)$(R)L_Label_24"
      clr=14
      bclr=51
    }
@@ -466,7 +466,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_30_RBV"
+     chan="$(P)$(R)L_Label_24_RBV"
      clr=54
      bclr=4
    }
@@ -494,7 +494,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_30_RBV"
+     chan="$(P)$(R)L_Value_22_RBV"
      clr=54
      bclr=4
    }
@@ -551,7 +551,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_31"
+     chan="$(P)$(R)L_Label_25"
      clr=14
      bclr=51
    }
@@ -566,7 +566,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_31_RBV"
+     chan="$(P)$(R)L_Label_25_RBV"
      clr=54
      bclr=4
    }
@@ -594,7 +594,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_SerialNumber_2"
+     chan="$(P)$(R)L_SerialNumber_1"
      clr=14
      bclr=51
    }
@@ -609,7 +609,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_SerialNumber_2_RBV"
+     chan="$(P)$(R)L_SerialNumber_1_RBV"
      clr=54
      bclr=4
    }
@@ -637,7 +637,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_18"
+     chan="$(P)$(R)L_UnitString_10"
      clr=14
      bclr=51
    }
@@ -652,7 +652,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_18_RBV"
+     chan="$(P)$(R)L_UnitString_10_RBV"
      clr=54
      bclr=4
    }
@@ -680,7 +680,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_18"
+     chan="$(P)$(R)L_UnitType_10"
      clr=14
      bclr=51
    }
@@ -695,7 +695,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_18_RBV"
+     chan="$(P)$(R)L_UnitType_10_RBV"
      clr=54
      bclr=4
    }
@@ -766,7 +766,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_18"
+     chan="$(P)$(R)L_ValueInBaseUnits_10"
      clr=14
      bclr=51
    }
@@ -781,7 +781,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_18_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_10_RBV"
      clr=54
      bclr=4
    }
@@ -838,7 +838,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_32"
+     chan="$(P)$(R)L_Label_26"
      clr=14
      bclr=51
    }
@@ -853,7 +853,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_32_RBV"
+     chan="$(P)$(R)L_Label_26_RBV"
      clr=54
      bclr=4
    }
@@ -881,7 +881,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_31_RBV"
+     chan="$(P)$(R)L_Value_23_RBV"
      clr=54
      bclr=4
    }
@@ -938,7 +938,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_33"
+     chan="$(P)$(R)L_Label_27"
      clr=14
      bclr=51
    }
@@ -953,7 +953,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_33_RBV"
+     chan="$(P)$(R)L_Label_27_RBV"
      clr=54
      bclr=4
    }
@@ -981,7 +981,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_SerialNumber_3"
+     chan="$(P)$(R)L_SerialNumber_2"
      clr=14
      bclr=51
    }
@@ -996,7 +996,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_SerialNumber_3_RBV"
+     chan="$(P)$(R)L_SerialNumber_2_RBV"
      clr=54
      bclr=4
    }
@@ -1024,7 +1024,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_19"
+     chan="$(P)$(R)L_UnitString_11"
      clr=14
      bclr=51
    }
@@ -1039,7 +1039,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_19_RBV"
+     chan="$(P)$(R)L_UnitString_11_RBV"
      clr=54
      bclr=4
    }
@@ -1067,7 +1067,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_19"
+     chan="$(P)$(R)L_UnitType_11"
      clr=14
      bclr=51
    }
@@ -1082,7 +1082,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_19_RBV"
+     chan="$(P)$(R)L_UnitType_11_RBV"
      clr=54
      bclr=4
    }
@@ -1153,7 +1153,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_19"
+     chan="$(P)$(R)L_ValueInBaseUnits_11"
      clr=14
      bclr=51
    }
@@ -1168,7 +1168,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_19_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_11_RBV"
      clr=54
      bclr=4
    }
@@ -1225,7 +1225,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_34"
+     chan="$(P)$(R)L_Label_28"
      clr=14
      bclr=51
    }
@@ -1240,7 +1240,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_34_RBV"
+     chan="$(P)$(R)L_Label_28_RBV"
      clr=54
      bclr=4
    }
@@ -1268,7 +1268,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_32_RBV"
+     chan="$(P)$(R)L_Value_24_RBV"
      clr=54
      bclr=4
    }
@@ -1325,7 +1325,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_35"
+     chan="$(P)$(R)L_Label_29"
      clr=14
      bclr=51
    }
@@ -1340,7 +1340,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_35_RBV"
+     chan="$(P)$(R)L_Label_29_RBV"
      clr=54
      bclr=4
    }
@@ -1368,7 +1368,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_33_RBV"
+     chan="$(P)$(R)L_Value_25_RBV"
      clr=54
      bclr=4
    }
@@ -1425,7 +1425,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_36"
+     chan="$(P)$(R)L_Label_30"
      clr=14
      bclr=51
    }
@@ -1440,7 +1440,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_36_RBV"
+     chan="$(P)$(R)L_Label_30_RBV"
      clr=54
      bclr=4
    }
@@ -1640,7 +1640,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_SerialNumber_4"
+     chan="$(P)$(R)L_SerialNumber_3"
      clr=14
      bclr=51
    }
@@ -1655,7 +1655,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_SerialNumber_4_RBV"
+     chan="$(P)$(R)L_SerialNumber_3_RBV"
      clr=54
      bclr=4
    }
@@ -1683,7 +1683,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_20"
+     chan="$(P)$(R)L_UnitString_12"
      clr=14
      bclr=51
    }
@@ -1698,7 +1698,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_20_RBV"
+     chan="$(P)$(R)L_UnitString_12_RBV"
      clr=54
      bclr=4
    }
@@ -1726,7 +1726,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_20"
+     chan="$(P)$(R)L_UnitType_12"
      clr=14
      bclr=51
    }
@@ -1741,7 +1741,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_20_RBV"
+     chan="$(P)$(R)L_UnitType_12_RBV"
      clr=54
      bclr=4
    }
@@ -1812,7 +1812,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_20"
+     chan="$(P)$(R)L_ValueInBaseUnits_12"
      clr=14
      bclr=51
    }
@@ -1827,7 +1827,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_20_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_12_RBV"
      clr=54
      bclr=4
    }
@@ -1884,7 +1884,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_37"
+     chan="$(P)$(R)L_Label_31"
      clr=14
      bclr=51
    }
@@ -1899,7 +1899,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_37_RBV"
+     chan="$(P)$(R)L_Label_31_RBV"
      clr=54
      bclr=4
    }
@@ -2099,7 +2099,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_SerialNumber_5"
+     chan="$(P)$(R)L_SerialNumber_4"
      clr=14
      bclr=51
    }
@@ -2114,7 +2114,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_SerialNumber_5_RBV"
+     chan="$(P)$(R)L_SerialNumber_4_RBV"
      clr=54
      bclr=4
    }
@@ -2142,7 +2142,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_21"
+     chan="$(P)$(R)L_UnitString_13"
      clr=14
      bclr=51
    }
@@ -2157,7 +2157,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_21_RBV"
+     chan="$(P)$(R)L_UnitString_13_RBV"
      clr=54
      bclr=4
    }
@@ -2185,7 +2185,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_21"
+     chan="$(P)$(R)L_UnitType_13"
      clr=14
      bclr=51
    }
@@ -2200,7 +2200,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_21_RBV"
+     chan="$(P)$(R)L_UnitType_13_RBV"
      clr=54
      bclr=4
    }
@@ -2271,7 +2271,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_21"
+     chan="$(P)$(R)L_ValueInBaseUnits_13"
      clr=14
      bclr=51
    }
@@ -2286,7 +2286,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_21_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_13_RBV"
      clr=54
      bclr=4
    }
@@ -2343,7 +2343,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_38"
+     chan="$(P)$(R)L_Label_32"
      clr=14
      bclr=51
    }
@@ -2358,7 +2358,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_38_RBV"
+     chan="$(P)$(R)L_Label_32_RBV"
      clr=54
      bclr=4
    }
@@ -2558,7 +2558,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_SerialNumber_6"
+     chan="$(P)$(R)L_SerialNumber_5"
      clr=14
      bclr=51
    }
@@ -2573,7 +2573,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_SerialNumber_6_RBV"
+     chan="$(P)$(R)L_SerialNumber_5_RBV"
      clr=54
      bclr=4
    }
@@ -2601,7 +2601,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_22"
+     chan="$(P)$(R)L_UnitString_14"
      clr=14
      bclr=51
    }
@@ -2616,7 +2616,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_22_RBV"
+     chan="$(P)$(R)L_UnitString_14_RBV"
      clr=54
      bclr=4
    }
@@ -2644,7 +2644,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_22"
+     chan="$(P)$(R)L_UnitType_14"
      clr=14
      bclr=51
    }
@@ -2659,7 +2659,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_22_RBV"
+     chan="$(P)$(R)L_UnitType_14_RBV"
      clr=54
      bclr=4
    }
@@ -2730,7 +2730,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_22"
+     chan="$(P)$(R)L_ValueInBaseUnits_14"
      clr=14
      bclr=51
    }
@@ -2745,7 +2745,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_22_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_14_RBV"
      clr=54
      bclr=4
    }
@@ -2802,7 +2802,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_39"
+     chan="$(P)$(R)L_Label_33"
      clr=14
      bclr=51
    }
@@ -2817,7 +2817,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_39_RBV"
+     chan="$(P)$(R)L_Label_33_RBV"
      clr=54
      bclr=4
    }
@@ -2845,7 +2845,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_SerialNumber_7"
+     chan="$(P)$(R)L_SerialNumber_6"
      clr=14
      bclr=51
    }
@@ -2860,7 +2860,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_SerialNumber_7_RBV"
+     chan="$(P)$(R)L_SerialNumber_6_RBV"
      clr=54
      bclr=4
    }
@@ -2888,7 +2888,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_23"
+     chan="$(P)$(R)L_UnitString_15"
      clr=14
      bclr=51
    }
@@ -2903,7 +2903,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_23_RBV"
+     chan="$(P)$(R)L_UnitString_15_RBV"
      clr=54
      bclr=4
    }
@@ -2931,7 +2931,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_23"
+     chan="$(P)$(R)L_UnitType_15"
      clr=14
      bclr=51
    }
@@ -2946,7 +2946,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_23_RBV"
+     chan="$(P)$(R)L_UnitType_15_RBV"
      clr=54
      bclr=4
    }
@@ -3017,7 +3017,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_23"
+     chan="$(P)$(R)L_ValueInBaseUnits_15"
      clr=14
      bclr=51
    }
@@ -3032,7 +3032,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_23_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_15_RBV"
      clr=54
      bclr=4
    }
@@ -3089,7 +3089,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_40"
+     chan="$(P)$(R)L_Label_34"
      clr=14
      bclr=51
    }
@@ -3104,7 +3104,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_40_RBV"
+     chan="$(P)$(R)L_Label_34_RBV"
      clr=54
      bclr=4
    }
@@ -3132,7 +3132,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_34_RBV"
+     chan="$(P)$(R)L_Value_26_RBV"
      clr=54
      bclr=4
    }
@@ -3189,7 +3189,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_41"
+     chan="$(P)$(R)L_Label_35"
      clr=14
      bclr=51
    }
@@ -3204,7 +3204,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_41_RBV"
+     chan="$(P)$(R)L_Label_35_RBV"
      clr=54
      bclr=4
    }
@@ -3232,7 +3232,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_35_RBV"
+     chan="$(P)$(R)L_Value_27_RBV"
      clr=54
      bclr=4
    }

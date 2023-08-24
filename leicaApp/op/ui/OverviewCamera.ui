@@ -310,7 +310,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Label_42</string>
+                <string>$(P)$(R)L_Label_36</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -361,7 +361,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Label_42_RBV</string>
+                <string>$(P)$(R)L_Label_36_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -1015,7 +1015,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_UnitString_24</string>
+                <string>$(P)$(R)L_UnitString_16</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -1066,7 +1066,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_UnitString_24_RBV</string>
+                <string>$(P)$(R)L_UnitString_16_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -1156,7 +1156,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_UnitType_24</string>
+                <string>$(P)$(R)L_UnitType_16</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -1207,7 +1207,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_UnitType_24_RBV</string>
+                <string>$(P)$(R)L_UnitType_16_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -1297,7 +1297,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Value_36</string>
+                <string>$(P)$(R)L_Value_28</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -1348,7 +1348,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Value_36_RBV</string>
+                <string>$(P)$(R)L_Value_28_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -1438,7 +1438,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_ValueInBaseUnits_24</string>
+                <string>$(P)$(R)L_ValueInBaseUnits_16</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -1489,7 +1489,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_ValueInBaseUnits_24_RBV</string>
+                <string>$(P)$(R)L_ValueInBaseUnits_16_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -1651,7 +1651,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Label_43</string>
+                <string>$(P)$(R)L_Label_37</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -1702,7 +1702,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Label_43_RBV</string>
+                <string>$(P)$(R)L_Label_37_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -2356,7 +2356,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_UnitString_25</string>
+                <string>$(P)$(R)L_UnitString_17</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -2407,7 +2407,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_UnitString_25_RBV</string>
+                <string>$(P)$(R)L_UnitString_17_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -2497,7 +2497,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_UnitType_25</string>
+                <string>$(P)$(R)L_UnitType_17</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -2548,7 +2548,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_UnitType_25_RBV</string>
+                <string>$(P)$(R)L_UnitType_17_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -2638,7 +2638,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Value_37</string>
+                <string>$(P)$(R)L_Value_29</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -2689,7 +2689,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Value_37_RBV</string>
+                <string>$(P)$(R)L_Value_29_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -2779,7 +2779,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_ValueInBaseUnits_25</string>
+                <string>$(P)$(R)L_ValueInBaseUnits_17</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -2830,7 +2830,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_ValueInBaseUnits_25_RBV</string>
+                <string>$(P)$(R)L_ValueInBaseUnits_17_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">

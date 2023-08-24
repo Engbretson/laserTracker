@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-08-24 10:50:47 by mengbret-->
+<!--Saved on 2023-08-24 11:48:04 by mengbret-->
 <display version="2.0.0">
   <name>PowerLock</name>
   <x>50</x>
@@ -93,7 +93,7 @@
   </widget>
   <widget type="textentry" version="3.0.0">
     <name>text entry #22</name>
-    <pv_name>$(P)$(R)L_Label_44</pv_name>
+    <pv_name>$(P)$(R)L_Label_38</pv_name>
     <x>245</x>
     <y>75</y>
     <width>120</width>
@@ -111,7 +111,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #26</name>
-    <pv_name>$(P)$(R)L_Label_44_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Label_38_RBV</pv_name>
     <x>365</x>
     <y>75</y>
     <width>120</width>
@@ -149,7 +149,7 @@
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #33</name>
-    <pv_name>$(P)$(R)L_Value_38_RBV</pv_name>
+    <pv_name>$(P)$(R)L_Value_30_RBV</pv_name>
     <x>365</x>
     <y>100</y>
     <width>120</width>

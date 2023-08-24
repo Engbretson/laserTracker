@@ -135,7 +135,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_CoordinateType_1"
+     chan="$(P)$(R)L_CoordinateType"
      clr=14
      bclr=51
    }
@@ -150,7 +150,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_CoordinateType_1_RBV"
+     chan="$(P)$(R)L_CoordinateType_RBV"
      clr=54
      bclr=4
    }
@@ -939,7 +939,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_CoordinateType_2"
+     chan="$(P)$(R)L_CoordinateType_1"
      clr=14
      bclr=51
    }
@@ -954,7 +954,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_CoordinateType_2_RBV"
+     chan="$(P)$(R)L_CoordinateType_1_RBV"
      clr=54
      bclr=4
    }
@@ -1054,7 +1054,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_48"
+     chan="$(P)$(R)L_Label_42"
      clr=14
      bclr=51
    }
@@ -1069,7 +1069,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_48_RBV"
+     chan="$(P)$(R)L_Label_42_RBV"
      clr=54
      bclr=4
    }
@@ -1097,7 +1097,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_27"
+     chan="$(P)$(R)L_UnitString_19"
      clr=14
      bclr=51
    }
@@ -1112,7 +1112,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_27_RBV"
+     chan="$(P)$(R)L_UnitString_19_RBV"
      clr=54
      bclr=4
    }
@@ -1140,7 +1140,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_27"
+     chan="$(P)$(R)L_UnitType_19"
      clr=14
      bclr=51
    }
@@ -1155,7 +1155,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_27_RBV"
+     chan="$(P)$(R)L_UnitType_19_RBV"
      clr=54
      bclr=4
    }
@@ -1183,7 +1183,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_42"
+     chan="$(P)$(R)L_Value_34"
      clr=14
      bclr=51
    }
@@ -1198,7 +1198,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_42_RBV"
+     chan="$(P)$(R)L_Value_34_RBV"
      clr=54
      bclr=4
    }
@@ -1226,7 +1226,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_27"
+     chan="$(P)$(R)L_ValueInBaseUnits_19"
      clr=14
      bclr=51
    }
@@ -1241,7 +1241,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_27_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_19_RBV"
      clr=54
      bclr=4
    }
@@ -1298,7 +1298,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_49"
+     chan="$(P)$(R)L_Label_43"
      clr=14
      bclr=51
    }
@@ -1313,7 +1313,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_49_RBV"
+     chan="$(P)$(R)L_Label_43_RBV"
      clr=54
      bclr=4
    }
@@ -1341,7 +1341,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_28"
+     chan="$(P)$(R)L_UnitString_20"
      clr=14
      bclr=51
    }
@@ -1356,7 +1356,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_28_RBV"
+     chan="$(P)$(R)L_UnitString_20_RBV"
      clr=54
      bclr=4
    }
@@ -1384,7 +1384,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_28"
+     chan="$(P)$(R)L_UnitType_20"
      clr=14
      bclr=51
    }
@@ -1399,7 +1399,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_28_RBV"
+     chan="$(P)$(R)L_UnitType_20_RBV"
      clr=54
      bclr=4
    }
@@ -1427,7 +1427,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_43"
+     chan="$(P)$(R)L_Value_35"
      clr=14
      bclr=51
    }
@@ -1442,7 +1442,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_43_RBV"
+     chan="$(P)$(R)L_Value_35_RBV"
      clr=54
      bclr=4
    }
@@ -1470,7 +1470,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_28"
+     chan="$(P)$(R)L_ValueInBaseUnits_20"
      clr=14
      bclr=51
    }
@@ -1485,7 +1485,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_28_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_20_RBV"
      clr=54
      bclr=4
    }
@@ -1542,7 +1542,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_50"
+     chan="$(P)$(R)L_Label_44"
      clr=14
      bclr=51
    }
@@ -1557,7 +1557,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_50_RBV"
+     chan="$(P)$(R)L_Label_44_RBV"
      clr=54
      bclr=4
    }
@@ -1585,7 +1585,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_29"
+     chan="$(P)$(R)L_UnitString_21"
      clr=14
      bclr=51
    }
@@ -1600,7 +1600,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_29_RBV"
+     chan="$(P)$(R)L_UnitString_21_RBV"
      clr=54
      bclr=4
    }
@@ -1628,7 +1628,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_29"
+     chan="$(P)$(R)L_UnitType_21"
      clr=14
      bclr=51
    }
@@ -1643,7 +1643,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_29_RBV"
+     chan="$(P)$(R)L_UnitType_21_RBV"
      clr=54
      bclr=4
    }
@@ -1671,7 +1671,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_44"
+     chan="$(P)$(R)L_Value_36"
      clr=14
      bclr=51
    }
@@ -1686,7 +1686,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_44_RBV"
+     chan="$(P)$(R)L_Value_36_RBV"
      clr=54
      bclr=4
    }
@@ -1714,7 +1714,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_29"
+     chan="$(P)$(R)L_ValueInBaseUnits_21"
      clr=14
      bclr=51
    }
@@ -1729,7 +1729,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_29_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_21_RBV"
      clr=54
      bclr=4
    }
@@ -1786,7 +1786,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_51"
+     chan="$(P)$(R)L_Label_45"
      clr=14
      bclr=51
    }
@@ -1801,7 +1801,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_51_RBV"
+     chan="$(P)$(R)L_Label_45_RBV"
      clr=54
      bclr=4
    }
@@ -1829,7 +1829,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_30"
+     chan="$(P)$(R)L_UnitString_22"
      clr=14
      bclr=51
    }
@@ -1844,7 +1844,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_30_RBV"
+     chan="$(P)$(R)L_UnitString_22_RBV"
      clr=54
      bclr=4
    }
@@ -1872,7 +1872,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_30"
+     chan="$(P)$(R)L_UnitType_22"
      clr=14
      bclr=51
    }
@@ -1887,7 +1887,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_30_RBV"
+     chan="$(P)$(R)L_UnitType_22_RBV"
      clr=54
      bclr=4
    }
@@ -1915,7 +1915,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_45"
+     chan="$(P)$(R)L_Value_37"
      clr=14
      bclr=51
    }
@@ -1930,7 +1930,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_45_RBV"
+     chan="$(P)$(R)L_Value_37_RBV"
      clr=54
      bclr=4
    }
@@ -1958,7 +1958,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_30"
+     chan="$(P)$(R)L_ValueInBaseUnits_22"
      clr=14
      bclr=51
    }
@@ -1973,7 +1973,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_30_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_22_RBV"
      clr=54
      bclr=4
    }
@@ -2030,7 +2030,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_52"
+     chan="$(P)$(R)L_Label_46"
      clr=14
      bclr=51
    }
@@ -2045,7 +2045,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_52_RBV"
+     chan="$(P)$(R)L_Label_46_RBV"
      clr=54
      bclr=4
    }
@@ -2073,7 +2073,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_31"
+     chan="$(P)$(R)L_UnitString_23"
      clr=14
      bclr=51
    }
@@ -2088,7 +2088,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_31_RBV"
+     chan="$(P)$(R)L_UnitString_23_RBV"
      clr=54
      bclr=4
    }
@@ -2116,7 +2116,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_31"
+     chan="$(P)$(R)L_UnitType_23"
      clr=14
      bclr=51
    }
@@ -2131,7 +2131,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_31_RBV"
+     chan="$(P)$(R)L_UnitType_23_RBV"
      clr=54
      bclr=4
    }
@@ -2159,7 +2159,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_46"
+     chan="$(P)$(R)L_Value_38"
      clr=14
      bclr=51
    }
@@ -2174,7 +2174,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_46_RBV"
+     chan="$(P)$(R)L_Value_38_RBV"
      clr=54
      bclr=4
    }
@@ -2202,7 +2202,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_31"
+     chan="$(P)$(R)L_ValueInBaseUnits_23"
      clr=14
      bclr=51
    }
@@ -2217,7 +2217,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_31_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_23_RBV"
      clr=54
      bclr=4
    }
@@ -2274,7 +2274,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_53"
+     chan="$(P)$(R)L_Label_47"
      clr=14
      bclr=51
    }
@@ -2289,7 +2289,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_53_RBV"
+     chan="$(P)$(R)L_Label_47_RBV"
      clr=54
      bclr=4
    }
@@ -2317,7 +2317,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_32"
+     chan="$(P)$(R)L_UnitString_24"
      clr=14
      bclr=51
    }
@@ -2332,7 +2332,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_32_RBV"
+     chan="$(P)$(R)L_UnitString_24_RBV"
      clr=54
      bclr=4
    }
@@ -2360,7 +2360,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_32"
+     chan="$(P)$(R)L_UnitType_24"
      clr=14
      bclr=51
    }
@@ -2375,7 +2375,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_32_RBV"
+     chan="$(P)$(R)L_UnitType_24_RBV"
      clr=54
      bclr=4
    }
@@ -2403,7 +2403,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_47"
+     chan="$(P)$(R)L_Value_39"
      clr=14
      bclr=51
    }
@@ -2418,7 +2418,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_47_RBV"
+     chan="$(P)$(R)L_Value_39_RBV"
      clr=54
      bclr=4
    }
@@ -2446,7 +2446,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_32"
+     chan="$(P)$(R)L_ValueInBaseUnits_24"
      clr=14
      bclr=51
    }
@@ -2461,7 +2461,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_32_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_24_RBV"
      clr=54
      bclr=4
    }
@@ -2518,7 +2518,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_54"
+     chan="$(P)$(R)L_Label_48"
      clr=14
      bclr=51
    }
@@ -2533,7 +2533,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_54_RBV"
+     chan="$(P)$(R)L_Label_48_RBV"
      clr=54
      bclr=4
    }
@@ -2561,7 +2561,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_33"
+     chan="$(P)$(R)L_UnitString_25"
      clr=14
      bclr=51
    }
@@ -2576,7 +2576,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_33_RBV"
+     chan="$(P)$(R)L_UnitString_25_RBV"
      clr=54
      bclr=4
    }
@@ -2604,7 +2604,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_33"
+     chan="$(P)$(R)L_UnitType_25"
      clr=14
      bclr=51
    }
@@ -2619,7 +2619,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_33_RBV"
+     chan="$(P)$(R)L_UnitType_25_RBV"
      clr=54
      bclr=4
    }
@@ -2647,7 +2647,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_48"
+     chan="$(P)$(R)L_Value_40"
      clr=14
      bclr=51
    }
@@ -2662,7 +2662,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_48_RBV"
+     chan="$(P)$(R)L_Value_40_RBV"
      clr=54
      bclr=4
    }
@@ -2690,7 +2690,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_33"
+     chan="$(P)$(R)L_ValueInBaseUnits_25"
      clr=14
      bclr=51
    }
@@ -2705,7 +2705,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_33_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_25_RBV"
      clr=54
      bclr=4
    }
@@ -2776,7 +2776,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_CoordinateType_3"
+     chan="$(P)$(R)L_CoordinateType_2"
      clr=14
      bclr=51
    }
@@ -2791,7 +2791,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_CoordinateType_3_RBV"
+     chan="$(P)$(R)L_CoordinateType_2_RBV"
      clr=54
      bclr=4
    }
@@ -2891,7 +2891,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_55"
+     chan="$(P)$(R)L_Label_49"
      clr=14
      bclr=51
    }
@@ -2906,7 +2906,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_55_RBV"
+     chan="$(P)$(R)L_Label_49_RBV"
      clr=54
      bclr=4
    }
@@ -2934,7 +2934,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_34"
+     chan="$(P)$(R)L_UnitString_26"
      clr=14
      bclr=51
    }
@@ -2949,7 +2949,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_34_RBV"
+     chan="$(P)$(R)L_UnitString_26_RBV"
      clr=54
      bclr=4
    }
@@ -2977,7 +2977,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_34"
+     chan="$(P)$(R)L_UnitType_26"
      clr=14
      bclr=51
    }
@@ -2992,7 +2992,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_34_RBV"
+     chan="$(P)$(R)L_UnitType_26_RBV"
      clr=54
      bclr=4
    }
@@ -3020,7 +3020,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_49"
+     chan="$(P)$(R)L_Value_41"
      clr=14
      bclr=51
    }
@@ -3035,7 +3035,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_49_RBV"
+     chan="$(P)$(R)L_Value_41_RBV"
      clr=54
      bclr=4
    }
@@ -3063,7 +3063,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_34"
+     chan="$(P)$(R)L_ValueInBaseUnits_26"
      clr=14
      bclr=51
    }
@@ -3078,7 +3078,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_34_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_26_RBV"
      clr=54
      bclr=4
    }
@@ -3135,7 +3135,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_56"
+     chan="$(P)$(R)L_Label_50"
      clr=14
      bclr=51
    }
@@ -3150,7 +3150,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_56_RBV"
+     chan="$(P)$(R)L_Label_50_RBV"
      clr=54
      bclr=4
    }
@@ -3178,7 +3178,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_35"
+     chan="$(P)$(R)L_UnitString_27"
      clr=14
      bclr=51
    }
@@ -3193,7 +3193,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_35_RBV"
+     chan="$(P)$(R)L_UnitString_27_RBV"
      clr=54
      bclr=4
    }
@@ -3221,7 +3221,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_35"
+     chan="$(P)$(R)L_UnitType_27"
      clr=14
      bclr=51
    }
@@ -3236,7 +3236,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_35_RBV"
+     chan="$(P)$(R)L_UnitType_27_RBV"
      clr=54
      bclr=4
    }
@@ -3264,7 +3264,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_50"
+     chan="$(P)$(R)L_Value_42"
      clr=14
      bclr=51
    }
@@ -3279,7 +3279,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_50_RBV"
+     chan="$(P)$(R)L_Value_42_RBV"
      clr=54
      bclr=4
    }
@@ -3307,7 +3307,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_35"
+     chan="$(P)$(R)L_ValueInBaseUnits_27"
      clr=14
      bclr=51
    }
@@ -3322,7 +3322,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_35_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_27_RBV"
      clr=54
      bclr=4
    }
@@ -3379,7 +3379,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_57"
+     chan="$(P)$(R)L_Label_51"
      clr=14
      bclr=51
    }
@@ -3394,7 +3394,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_57_RBV"
+     chan="$(P)$(R)L_Label_51_RBV"
      clr=54
      bclr=4
    }
@@ -3422,7 +3422,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_36"
+     chan="$(P)$(R)L_UnitString_28"
      clr=14
      bclr=51
    }
@@ -3437,7 +3437,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_36_RBV"
+     chan="$(P)$(R)L_UnitString_28_RBV"
      clr=54
      bclr=4
    }
@@ -3465,7 +3465,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_36"
+     chan="$(P)$(R)L_UnitType_28"
      clr=14
      bclr=51
    }
@@ -3480,7 +3480,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_36_RBV"
+     chan="$(P)$(R)L_UnitType_28_RBV"
      clr=54
      bclr=4
    }
@@ -3508,7 +3508,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_51"
+     chan="$(P)$(R)L_Value_43"
      clr=14
      bclr=51
    }
@@ -3523,7 +3523,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_51_RBV"
+     chan="$(P)$(R)L_Value_43_RBV"
      clr=54
      bclr=4
    }
@@ -3551,7 +3551,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_36"
+     chan="$(P)$(R)L_ValueInBaseUnits_28"
      clr=14
      bclr=51
    }
@@ -3566,7 +3566,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_36_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_28_RBV"
      clr=54
      bclr=4
    }
@@ -3623,7 +3623,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_58"
+     chan="$(P)$(R)L_Label_52"
      clr=14
      bclr=51
    }
@@ -3638,7 +3638,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_58_RBV"
+     chan="$(P)$(R)L_Label_52_RBV"
      clr=54
      bclr=4
    }
@@ -3666,7 +3666,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_37"
+     chan="$(P)$(R)L_UnitString_29"
      clr=14
      bclr=51
    }
@@ -3681,7 +3681,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_37_RBV"
+     chan="$(P)$(R)L_UnitString_29_RBV"
      clr=54
      bclr=4
    }
@@ -3709,7 +3709,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_37"
+     chan="$(P)$(R)L_UnitType_29"
      clr=14
      bclr=51
    }
@@ -3724,7 +3724,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_37_RBV"
+     chan="$(P)$(R)L_UnitType_29_RBV"
      clr=54
      bclr=4
    }
@@ -3752,7 +3752,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_52"
+     chan="$(P)$(R)L_Value_44"
      clr=14
      bclr=51
    }
@@ -3767,7 +3767,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_52_RBV"
+     chan="$(P)$(R)L_Value_44_RBV"
      clr=54
      bclr=4
    }
@@ -3795,7 +3795,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_37"
+     chan="$(P)$(R)L_ValueInBaseUnits_29"
      clr=14
      bclr=51
    }
@@ -3810,7 +3810,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_37_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_29_RBV"
      clr=54
      bclr=4
    }
@@ -3867,7 +3867,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_59"
+     chan="$(P)$(R)L_Label_53"
      clr=14
      bclr=51
    }
@@ -3882,7 +3882,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_59_RBV"
+     chan="$(P)$(R)L_Label_53_RBV"
      clr=54
      bclr=4
    }
@@ -3910,7 +3910,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_38"
+     chan="$(P)$(R)L_UnitString_30"
      clr=14
      bclr=51
    }
@@ -3925,7 +3925,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_38_RBV"
+     chan="$(P)$(R)L_UnitString_30_RBV"
      clr=54
      bclr=4
    }
@@ -3953,7 +3953,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_38"
+     chan="$(P)$(R)L_UnitType_30"
      clr=14
      bclr=51
    }
@@ -3968,7 +3968,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_38_RBV"
+     chan="$(P)$(R)L_UnitType_30_RBV"
      clr=54
      bclr=4
    }
@@ -3996,7 +3996,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_53"
+     chan="$(P)$(R)L_Value_45"
      clr=14
      bclr=51
    }
@@ -4011,7 +4011,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_53_RBV"
+     chan="$(P)$(R)L_Value_45_RBV"
      clr=54
      bclr=4
    }
@@ -4039,7 +4039,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_38"
+     chan="$(P)$(R)L_ValueInBaseUnits_30"
      clr=14
      bclr=51
    }
@@ -4054,7 +4054,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_38_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_30_RBV"
      clr=54
      bclr=4
    }
@@ -4111,7 +4111,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_60"
+     chan="$(P)$(R)L_Label_54"
      clr=14
      bclr=51
    }
@@ -4126,7 +4126,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_60_RBV"
+     chan="$(P)$(R)L_Label_54_RBV"
      clr=54
      bclr=4
    }
@@ -4154,7 +4154,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_39"
+     chan="$(P)$(R)L_UnitString_31"
      clr=14
      bclr=51
    }
@@ -4169,7 +4169,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_39_RBV"
+     chan="$(P)$(R)L_UnitString_31_RBV"
      clr=54
      bclr=4
    }
@@ -4197,7 +4197,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_39"
+     chan="$(P)$(R)L_UnitType_31"
      clr=14
      bclr=51
    }
@@ -4212,7 +4212,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_39_RBV"
+     chan="$(P)$(R)L_UnitType_31_RBV"
      clr=54
      bclr=4
    }
@@ -4240,7 +4240,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_54"
+     chan="$(P)$(R)L_Value_46"
      clr=14
      bclr=51
    }
@@ -4255,7 +4255,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_54_RBV"
+     chan="$(P)$(R)L_Value_46_RBV"
      clr=54
      bclr=4
    }
@@ -4283,7 +4283,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_39"
+     chan="$(P)$(R)L_ValueInBaseUnits_31"
      clr=14
      bclr=51
    }
@@ -4298,7 +4298,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_39_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_31_RBV"
      clr=54
      bclr=4
    }
@@ -4355,7 +4355,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_61"
+     chan="$(P)$(R)L_Label_55"
      clr=14
      bclr=51
    }
@@ -4370,7 +4370,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_61_RBV"
+     chan="$(P)$(R)L_Label_55_RBV"
      clr=54
      bclr=4
    }
@@ -4398,7 +4398,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_40"
+     chan="$(P)$(R)L_UnitString_32"
      clr=14
      bclr=51
    }
@@ -4413,7 +4413,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_40_RBV"
+     chan="$(P)$(R)L_UnitString_32_RBV"
      clr=54
      bclr=4
    }
@@ -4441,7 +4441,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_40"
+     chan="$(P)$(R)L_UnitType_32"
      clr=14
      bclr=51
    }
@@ -4456,7 +4456,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_40_RBV"
+     chan="$(P)$(R)L_UnitType_32_RBV"
      clr=54
      bclr=4
    }
@@ -4484,7 +4484,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_55"
+     chan="$(P)$(R)L_Value_47"
      clr=14
      bclr=51
    }
@@ -4499,7 +4499,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_55_RBV"
+     chan="$(P)$(R)L_Value_47_RBV"
      clr=54
      bclr=4
    }
@@ -4527,7 +4527,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_40"
+     chan="$(P)$(R)L_ValueInBaseUnits_32"
      clr=14
      bclr=51
    }
@@ -4542,7 +4542,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_40_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_32_RBV"
      clr=54
      bclr=4
    }
@@ -4599,7 +4599,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_62"
+     chan="$(P)$(R)L_Label_56"
      clr=14
      bclr=51
    }
@@ -4614,7 +4614,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_62_RBV"
+     chan="$(P)$(R)L_Label_56_RBV"
      clr=54
      bclr=4
    }
@@ -4642,7 +4642,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_41"
+     chan="$(P)$(R)L_UnitString_33"
      clr=14
      bclr=51
    }
@@ -4657,7 +4657,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_41_RBV"
+     chan="$(P)$(R)L_UnitString_33_RBV"
      clr=54
      bclr=4
    }
@@ -4685,7 +4685,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_41"
+     chan="$(P)$(R)L_UnitType_33"
      clr=14
      bclr=51
    }
@@ -4700,7 +4700,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_41_RBV"
+     chan="$(P)$(R)L_UnitType_33_RBV"
      clr=54
      bclr=4
    }
@@ -4728,7 +4728,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_56"
+     chan="$(P)$(R)L_Value_48"
      clr=14
      bclr=51
    }
@@ -4743,7 +4743,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_56_RBV"
+     chan="$(P)$(R)L_Value_48_RBV"
      clr=54
      bclr=4
    }
@@ -4771,7 +4771,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_41"
+     chan="$(P)$(R)L_ValueInBaseUnits_33"
      clr=14
      bclr=51
    }
@@ -4786,7 +4786,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_41_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_33_RBV"
      clr=54
      bclr=4
    }
