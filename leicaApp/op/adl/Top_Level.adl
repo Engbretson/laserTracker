@@ -299,6 +299,36 @@ text {
     textix="IsCompatible"
 	align="horiz. right"
 }
+"message button" {
+   object {
+      x=245
+      y=150
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_IsCompatible"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=305
+      y=150
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_IsCompatible"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
+}
 "text update" {
    object {
       x=365
@@ -2179,6 +2209,36 @@ text {
     textix="isFace2"
 	align="horiz. right"
 }
+"message button" {
+   object {
+      x=645
+      y=350
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_isFace2"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=705
+      y=350
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_isFace2"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
+}
 "text update" {
    object {
       x=765
@@ -3757,6 +3817,36 @@ text {
     textix="searchTarget"
 	align="horiz. right"
 }
+"message button" {
+   object {
+      x=1045
+      y=350
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_searchTarget"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=1105
+      y=350
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_searchTarget"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
+}
 "text update" {
    object {
       x=1165
@@ -3784,6 +3874,36 @@ text {
     }
     textix="isRelative"
 	align="horiz. right"
+}
+"message button" {
+   object {
+      x=1045
+      y=375
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_isRelative"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=1105
+      y=375
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_isRelative"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
 }
 "text update" {
    object {
@@ -4027,6 +4147,36 @@ text {
     }
     textix="isRelative"
 	align="horiz. right"
+}
+"message button" {
+   object {
+      x=1045
+      y=525
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_isRelative_1"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=1105
+      y=525
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_isRelative_1"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
 }
 "text update" {
    object {

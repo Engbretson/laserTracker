@@ -199,6 +199,36 @@ text {
     textix="Value"
 	align="horiz. right"
 }
+"message button" {
+   object {
+      x=245
+      y=100
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_30"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=305
+      y=100
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_30"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
+}
 "text update" {
    object {
       x=365

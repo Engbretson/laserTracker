@@ -311,7 +311,24 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	else if ((function == L_Change) || (function == L_isFace1)) {
 		GlobalObjects::LMFTracker->Face->Change();
 	}
+// Top Level commands
+	else if (function == L_GoHomePosition) {
+		GlobalObjects::LMFTracker->GoHomePosition();
+	}
+	else if (function == L_OpenTrackerScope) {
+		GlobalObjects::LMFTracker->OpenTrackerScope();
+	}
+	else if (function == L_PositionTo) {
+		double tempx, tempy, tempz;
+		int tempi, tempj;
+		getDoubleParam(L_Pos1, &tempx);
+		getDoubleParam(L_Pos2, &tempy);
+		getDoubleParam(L_Pos3, &tempz);
+		getIntegerParam(L_searchTarget, &tempi);
+		getIntegerParam(L_isRelative, &tempj);
+		GlobalObjects::LMFTracker->PositionTo(tempi, tempj, tempx, tempy, tempz);
 
+	}
 	else {
 		/* All other parameters just get set in parameter list, no need to
 		 * act on them here */
@@ -932,7 +949,7 @@ leica::leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
 
 
-	GlobalObjects::LMFTracker->OpenTrackerScope();
+//	GlobalObjects::LMFTracker->OpenTrackerScope();
 }
 
 

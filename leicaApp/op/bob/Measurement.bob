@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-08-24 11:47:50 by mengbret-->
+<!--Saved on 2023-08-24 14:03:29 by mengbret-->
 <display version="2.0.0">
   <name>Measurement</name>
   <x>50</x>
@@ -147,8 +147,48 @@
     </foreground_color>
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #33</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_Value_9</pv_name>
+        <value>0</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_Value_9</pv_name>
+    <text>False</text>
+    <x>245</x>
+    <y>100</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #36</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_Value_9</pv_name>
+        <value>1</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_Value_9</pv_name>
+    <text>True</text>
+    <x>305</x>
+    <y>100</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #33</name>
+    <name>text update #39</name>
     <pv_name>$(P)$(R)L_Value_9_RBV</pv_name>
     <x>365</x>
     <y>100</y>
@@ -170,7 +210,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #37</name>
+    <name>text #43</name>
     <text>Profiles</text>
     <x>10</x>
     <y>125</y>
@@ -182,7 +222,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #40</name>
+    <name>polyline #46</name>
     <x>10</x>
     <y>125</y>
     <width>220</width>
@@ -199,7 +239,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #44</name>
+    <name>text #50</name>
     <text>Count</text>
     <x>10</x>
     <y>150</y>
@@ -215,7 +255,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #47</name>
+    <name>text entry #53</name>
     <pv_name>$(P)$(R)L_Count_1</pv_name>
     <x>245</x>
     <y>150</y>
@@ -233,7 +273,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #51</name>
+    <name>text update #57</name>
     <pv_name>$(P)$(R)L_Count_1_RBV</pv_name>
     <x>365</x>
     <y>150</y>
@@ -255,7 +295,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #55</name>
+    <name>text #61</name>
     <text>[0] StationaryMeasurementProfile</text>
     <x>10</x>
     <y>175</y>
@@ -267,7 +307,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #58</name>
+    <name>polyline #64</name>
     <x>10</x>
     <y>175</y>
     <width>220</width>
@@ -284,7 +324,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #62</name>
+    <name>text #68</name>
     <text>GUID</text>
     <x>10</x>
     <y>200</y>
@@ -300,7 +340,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #65</name>
+    <name>text entry #71</name>
     <pv_name>$(P)$(R)L_GUID_6</pv_name>
     <x>245</x>
     <y>200</y>
@@ -318,7 +358,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #69</name>
+    <name>text update #75</name>
     <pv_name>$(P)$(R)L_GUID_6_RBV</pv_name>
     <x>365</x>
     <y>200</y>
@@ -340,7 +380,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #73</name>
+    <name>text #79</name>
     <text>Name</text>
     <x>10</x>
     <y>225</y>
@@ -356,7 +396,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #76</name>
+    <name>text entry #82</name>
     <pv_name>$(P)$(R)L_Name_6</pv_name>
     <x>245</x>
     <y>225</y>
@@ -374,7 +414,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #80</name>
+    <name>text update #86</name>
     <pv_name>$(P)$(R)L_Name_6_RBV</pv_name>
     <x>365</x>
     <y>225</y>
@@ -396,7 +436,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #84</name>
+    <name>text #90</name>
     <text>Accuracy</text>
     <x>10</x>
     <y>250</y>
@@ -408,7 +448,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #87</name>
+    <name>polyline #93</name>
     <x>10</x>
     <y>250</y>
     <width>220</width>
@@ -425,7 +465,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #91</name>
+    <name>text #97</name>
     <text>Label</text>
     <x>10</x>
     <y>275</y>
@@ -441,7 +481,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #94</name>
+    <name>text entry #100</name>
     <pv_name>$(P)$(R)L_Label_11</pv_name>
     <x>245</x>
     <y>275</y>
@@ -459,7 +499,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #98</name>
+    <name>text update #104</name>
     <pv_name>$(P)$(R)L_Label_11_RBV</pv_name>
     <x>365</x>
     <y>275</y>
@@ -481,7 +521,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #102</name>
+    <name>text #108</name>
     <text>Value</text>
     <x>10</x>
     <y>300</y>
@@ -496,8 +536,48 @@
     </foreground_color>
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #111</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_Value_10</pv_name>
+        <value>0</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_Value_10</pv_name>
+    <text>False</text>
+    <x>245</x>
+    <y>300</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #114</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_Value_10</pv_name>
+        <value>1</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_Value_10</pv_name>
+    <text>True</text>
+    <x>305</x>
+    <y>300</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #105</name>
+    <name>text update #117</name>
     <pv_name>$(P)$(R)L_Value_10_RBV</pv_name>
     <x>365</x>
     <y>300</y>
@@ -519,7 +599,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #109</name>
+    <name>text #121</name>
     <text>TwoFace</text>
     <x>10</x>
     <y>325</y>
@@ -531,7 +611,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #112</name>
+    <name>polyline #124</name>
     <x>10</x>
     <y>325</y>
     <width>220</width>
@@ -548,7 +628,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #116</name>
+    <name>text #128</name>
     <text>Label</text>
     <x>10</x>
     <y>350</y>
@@ -564,7 +644,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #119</name>
+    <name>text entry #131</name>
     <pv_name>$(P)$(R)L_Label_12</pv_name>
     <x>245</x>
     <y>350</y>
@@ -582,7 +662,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #123</name>
+    <name>text update #135</name>
     <pv_name>$(P)$(R)L_Label_12_RBV</pv_name>
     <x>365</x>
     <y>350</y>
@@ -604,7 +684,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #127</name>
+    <name>text #139</name>
     <text>Value</text>
     <x>10</x>
     <y>375</y>
@@ -619,8 +699,48 @@
     </foreground_color>
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #142</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_Value_11</pv_name>
+        <value>0</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_Value_11</pv_name>
+    <text>False</text>
+    <x>245</x>
+    <y>375</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #145</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_Value_11</pv_name>
+        <value>1</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_Value_11</pv_name>
+    <text>True</text>
+    <x>305</x>
+    <y>375</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #130</name>
+    <name>text update #148</name>
     <pv_name>$(P)$(R)L_Value_11_RBV</pv_name>
     <x>365</x>
     <y>375</y>
@@ -642,7 +762,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #134</name>
+    <name>text #152</name>
     <text>Select</text>
     <x>10</x>
     <y>400</y>
@@ -658,7 +778,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #137</name>
+    <name>message button #155</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_Select_6</pv_name>
@@ -678,7 +798,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #140</name>
+    <name>text update #158</name>
     <pv_name>$(P)$(R)L_Select_6_RBV</pv_name>
     <x>365</x>
     <y>400</y>
@@ -700,7 +820,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #144</name>
+    <name>text #162</name>
     <text>[1] ContinuousTimeProfile</text>
     <x>10</x>
     <y>425</y>
@@ -712,7 +832,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #147</name>
+    <name>polyline #165</name>
     <x>10</x>
     <y>425</y>
     <width>220</width>
@@ -729,7 +849,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #151</name>
+    <name>text #169</name>
     <text>GUID</text>
     <x>10</x>
     <y>450</y>
@@ -745,7 +865,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #154</name>
+    <name>text entry #172</name>
     <pv_name>$(P)$(R)L_GUID_7</pv_name>
     <x>245</x>
     <y>450</y>
@@ -763,7 +883,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #158</name>
+    <name>text update #176</name>
     <pv_name>$(P)$(R)L_GUID_7_RBV</pv_name>
     <x>365</x>
     <y>450</y>
@@ -785,7 +905,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #162</name>
+    <name>text #180</name>
     <text>Name</text>
     <x>10</x>
     <y>475</y>
@@ -801,7 +921,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #165</name>
+    <name>text entry #183</name>
     <pv_name>$(P)$(R)L_Name_7</pv_name>
     <x>245</x>
     <y>475</y>
@@ -819,7 +939,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #169</name>
+    <name>text update #187</name>
     <pv_name>$(P)$(R)L_Name_7_RBV</pv_name>
     <x>365</x>
     <y>475</y>
@@ -841,7 +961,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #173</name>
+    <name>text #191</name>
     <text>PacketRate</text>
     <x>10</x>
     <y>500</y>
@@ -853,7 +973,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #176</name>
+    <name>polyline #194</name>
     <x>10</x>
     <y>500</y>
     <width>220</width>
@@ -870,7 +990,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #180</name>
+    <name>text #198</name>
     <text>Label</text>
     <x>10</x>
     <y>525</y>
@@ -886,7 +1006,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #183</name>
+    <name>text entry #201</name>
     <pv_name>$(P)$(R)L_Label_13</pv_name>
     <x>245</x>
     <y>525</y>
@@ -904,7 +1024,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #187</name>
+    <name>text update #205</name>
     <pv_name>$(P)$(R)L_Label_13_RBV</pv_name>
     <x>365</x>
     <y>525</y>
@@ -926,7 +1046,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #191</name>
+    <name>text #209</name>
     <text>MaxValue</text>
     <x>10</x>
     <y>550</y>
@@ -942,7 +1062,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #194</name>
+    <name>text entry #212</name>
     <pv_name>$(P)$(R)L_MaxValue</pv_name>
     <x>245</x>
     <y>550</y>
@@ -960,7 +1080,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #198</name>
+    <name>text update #216</name>
     <pv_name>$(P)$(R)L_MaxValue_RBV</pv_name>
     <x>365</x>
     <y>550</y>
@@ -982,7 +1102,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #202</name>
+    <name>text #220</name>
     <text>MaxValueInBaseUnits</text>
     <x>10</x>
     <y>575</y>
@@ -998,7 +1118,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #205</name>
+    <name>text entry #223</name>
     <pv_name>$(P)$(R)L_MaxValueInBaseUnits</pv_name>
     <x>245</x>
     <y>575</y>
@@ -1016,7 +1136,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #209</name>
+    <name>text update #227</name>
     <pv_name>$(P)$(R)L_MaxValueInBaseUnits_RBV</pv_name>
     <x>365</x>
     <y>575</y>
@@ -1038,7 +1158,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #213</name>
+    <name>text #231</name>
     <text>MinValue</text>
     <x>10</x>
     <y>600</y>
@@ -1054,7 +1174,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #216</name>
+    <name>text entry #234</name>
     <pv_name>$(P)$(R)L_MinValue</pv_name>
     <x>245</x>
     <y>600</y>
@@ -1072,7 +1192,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #220</name>
+    <name>text update #238</name>
     <pv_name>$(P)$(R)L_MinValue_RBV</pv_name>
     <x>365</x>
     <y>600</y>
@@ -1094,7 +1214,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #224</name>
+    <name>text #242</name>
     <text>MinValueInBaseUnits</text>
     <x>10</x>
     <y>625</y>
@@ -1110,7 +1230,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #227</name>
+    <name>text entry #245</name>
     <pv_name>$(P)$(R)L_MinValueInBaseUnits</pv_name>
     <x>245</x>
     <y>625</y>
@@ -1128,7 +1248,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #231</name>
+    <name>text update #249</name>
     <pv_name>$(P)$(R)L_MinValueInBaseUnits_RBV</pv_name>
     <x>365</x>
     <y>625</y>
@@ -1150,7 +1270,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #235</name>
+    <name>text #253</name>
     <text>UnitString</text>
     <x>10</x>
     <y>650</y>
@@ -1166,7 +1286,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #238</name>
+    <name>text entry #256</name>
     <pv_name>$(P)$(R)L_UnitString_4</pv_name>
     <x>245</x>
     <y>650</y>
@@ -1184,7 +1304,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #242</name>
+    <name>text update #260</name>
     <pv_name>$(P)$(R)L_UnitString_4_RBV</pv_name>
     <x>365</x>
     <y>650</y>
@@ -1206,7 +1326,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #246</name>
+    <name>text #264</name>
     <text>UnitType</text>
     <x>10</x>
     <y>675</y>
@@ -1222,7 +1342,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #249</name>
+    <name>text entry #267</name>
     <pv_name>$(P)$(R)L_UnitType_4</pv_name>
     <x>245</x>
     <y>675</y>
@@ -1240,7 +1360,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #253</name>
+    <name>text update #271</name>
     <pv_name>$(P)$(R)L_UnitType_4_RBV</pv_name>
     <x>365</x>
     <y>675</y>
@@ -1262,7 +1382,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #257</name>
+    <name>text #275</name>
     <text>Value</text>
     <x>10</x>
     <y>700</y>
@@ -1278,7 +1398,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #260</name>
+    <name>text entry #278</name>
     <pv_name>$(P)$(R)L_Value_12</pv_name>
     <x>245</x>
     <y>700</y>
@@ -1296,7 +1416,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #264</name>
+    <name>text update #282</name>
     <pv_name>$(P)$(R)L_Value_12_RBV</pv_name>
     <x>365</x>
     <y>700</y>
@@ -1318,7 +1438,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #268</name>
+    <name>text #286</name>
     <text>ValueInBaseUnits</text>
     <x>10</x>
     <y>725</y>
@@ -1334,7 +1454,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #271</name>
+    <name>text entry #289</name>
     <pv_name>$(P)$(R)L_ValueInBaseUnits_4</pv_name>
     <x>245</x>
     <y>725</y>
@@ -1352,7 +1472,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #275</name>
+    <name>text update #293</name>
     <pv_name>$(P)$(R)L_ValueInBaseUnits_4_RBV</pv_name>
     <x>365</x>
     <y>725</y>
@@ -1374,7 +1494,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #279</name>
+    <name>text #297</name>
     <text>TimeSeparation</text>
     <x>10</x>
     <y>750</y>
@@ -1386,7 +1506,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #282</name>
+    <name>polyline #300</name>
     <x>10</x>
     <y>750</y>
     <width>220</width>
@@ -1403,7 +1523,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #286</name>
+    <name>text #304</name>
     <text>Label</text>
     <x>10</x>
     <y>775</y>
@@ -1419,7 +1539,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #289</name>
+    <name>text entry #307</name>
     <pv_name>$(P)$(R)L_Label_14</pv_name>
     <x>245</x>
     <y>775</y>
@@ -1437,7 +1557,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #293</name>
+    <name>text update #311</name>
     <pv_name>$(P)$(R)L_Label_14_RBV</pv_name>
     <x>365</x>
     <y>775</y>
@@ -1459,7 +1579,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #297</name>
+    <name>text #315</name>
     <text>MaxValue</text>
     <x>10</x>
     <y>800</y>
@@ -1475,7 +1595,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #300</name>
+    <name>text entry #318</name>
     <pv_name>$(P)$(R)L_MaxValue_1</pv_name>
     <x>245</x>
     <y>800</y>
@@ -1493,7 +1613,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #304</name>
+    <name>text update #322</name>
     <pv_name>$(P)$(R)L_MaxValue_1_RBV</pv_name>
     <x>365</x>
     <y>800</y>
@@ -1515,7 +1635,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #308</name>
+    <name>text #326</name>
     <text>MaxValueInBaseUnits</text>
     <x>10</x>
     <y>825</y>
@@ -1531,7 +1651,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #311</name>
+    <name>text entry #329</name>
     <pv_name>$(P)$(R)L_MaxValueInBaseUnits_1</pv_name>
     <x>245</x>
     <y>825</y>
@@ -1549,7 +1669,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #315</name>
+    <name>text update #333</name>
     <pv_name>$(P)$(R)L_MaxValueInBaseUnits_1_RBV</pv_name>
     <x>365</x>
     <y>825</y>
@@ -1571,7 +1691,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #319</name>
+    <name>text #337</name>
     <text>MinValue</text>
     <x>10</x>
     <y>850</y>
@@ -1587,7 +1707,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #322</name>
+    <name>text entry #340</name>
     <pv_name>$(P)$(R)L_MinValue_1</pv_name>
     <x>245</x>
     <y>850</y>
@@ -1605,7 +1725,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #326</name>
+    <name>text update #344</name>
     <pv_name>$(P)$(R)L_MinValue_1_RBV</pv_name>
     <x>365</x>
     <y>850</y>
@@ -1627,7 +1747,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #330</name>
+    <name>text #348</name>
     <text>MinValueInBaseUnits</text>
     <x>10</x>
     <y>875</y>
@@ -1643,7 +1763,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #333</name>
+    <name>text entry #351</name>
     <pv_name>$(P)$(R)L_MinValueInBaseUnits_1</pv_name>
     <x>245</x>
     <y>875</y>
@@ -1661,7 +1781,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #337</name>
+    <name>text update #355</name>
     <pv_name>$(P)$(R)L_MinValueInBaseUnits_1_RBV</pv_name>
     <x>365</x>
     <y>875</y>
@@ -1683,7 +1803,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #341</name>
+    <name>text #359</name>
     <text>UnitString</text>
     <x>10</x>
     <y>900</y>
@@ -1699,7 +1819,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #344</name>
+    <name>text entry #362</name>
     <pv_name>$(P)$(R)L_UnitString_5</pv_name>
     <x>245</x>
     <y>900</y>
@@ -1717,7 +1837,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #348</name>
+    <name>text update #366</name>
     <pv_name>$(P)$(R)L_UnitString_5_RBV</pv_name>
     <x>365</x>
     <y>900</y>
@@ -1739,7 +1859,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #352</name>
+    <name>text #370</name>
     <text>UnitType</text>
     <x>10</x>
     <y>925</y>
@@ -1755,7 +1875,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #355</name>
+    <name>text entry #373</name>
     <pv_name>$(P)$(R)L_UnitType_5</pv_name>
     <x>245</x>
     <y>925</y>
@@ -1773,7 +1893,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #359</name>
+    <name>text update #377</name>
     <pv_name>$(P)$(R)L_UnitType_5_RBV</pv_name>
     <x>365</x>
     <y>925</y>
@@ -1795,7 +1915,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #363</name>
+    <name>text #381</name>
     <text>Value</text>
     <x>10</x>
     <y>950</y>
@@ -1811,7 +1931,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #366</name>
+    <name>text entry #384</name>
     <pv_name>$(P)$(R)L_Value_13</pv_name>
     <x>245</x>
     <y>950</y>
@@ -1829,7 +1949,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #370</name>
+    <name>text update #388</name>
     <pv_name>$(P)$(R)L_Value_13_RBV</pv_name>
     <x>365</x>
     <y>950</y>
@@ -1851,7 +1971,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #374</name>
+    <name>text #392</name>
     <text>ValueInBaseUnits</text>
     <x>10</x>
     <y>975</y>
@@ -1867,7 +1987,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #377</name>
+    <name>text entry #395</name>
     <pv_name>$(P)$(R)L_ValueInBaseUnits_5</pv_name>
     <x>245</x>
     <y>975</y>
@@ -1885,7 +2005,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #381</name>
+    <name>text update #399</name>
     <pv_name>$(P)$(R)L_ValueInBaseUnits_5_RBV</pv_name>
     <x>365</x>
     <y>975</y>
@@ -1907,7 +2027,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #385</name>
+    <name>text #403</name>
     <text>Select</text>
     <x>10</x>
     <y>1000</y>
@@ -1923,7 +2043,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #388</name>
+    <name>message button #406</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_Select_7</pv_name>
@@ -1943,7 +2063,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #391</name>
+    <name>text update #409</name>
     <pv_name>$(P)$(R)L_Select_7_RBV</pv_name>
     <x>365</x>
     <y>1000</y>
@@ -1965,7 +2085,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #395</name>
+    <name>text #413</name>
     <text>[2] ContinuousDistanceProfile</text>
     <x>410</x>
     <y>50</y>
@@ -1977,7 +2097,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #398</name>
+    <name>polyline #416</name>
     <x>410</x>
     <y>50</y>
     <width>220</width>
@@ -1994,7 +2114,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #402</name>
+    <name>text #420</name>
     <text>GUID</text>
     <x>410</x>
     <y>75</y>
@@ -2010,7 +2130,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #405</name>
+    <name>text entry #423</name>
     <pv_name>$(P)$(R)L_GUID_8</pv_name>
     <x>645</x>
     <y>75</y>
@@ -2028,7 +2148,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #409</name>
+    <name>text update #427</name>
     <pv_name>$(P)$(R)L_GUID_8_RBV</pv_name>
     <x>765</x>
     <y>75</y>
@@ -2050,7 +2170,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #413</name>
+    <name>text #431</name>
     <text>Name</text>
     <x>410</x>
     <y>100</y>
@@ -2066,7 +2186,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #416</name>
+    <name>text entry #434</name>
     <pv_name>$(P)$(R)L_Name_8</pv_name>
     <x>645</x>
     <y>100</y>
@@ -2084,7 +2204,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #420</name>
+    <name>text update #438</name>
     <pv_name>$(P)$(R)L_Name_8_RBV</pv_name>
     <x>765</x>
     <y>100</y>
@@ -2106,7 +2226,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #424</name>
+    <name>text #442</name>
     <text>DistanceSeparation</text>
     <x>410</x>
     <y>125</y>
@@ -2118,7 +2238,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #427</name>
+    <name>polyline #445</name>
     <x>410</x>
     <y>125</y>
     <width>220</width>
@@ -2135,7 +2255,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #431</name>
+    <name>text #449</name>
     <text>Label</text>
     <x>410</x>
     <y>150</y>
@@ -2151,7 +2271,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #434</name>
+    <name>text entry #452</name>
     <pv_name>$(P)$(R)L_Label_15</pv_name>
     <x>645</x>
     <y>150</y>
@@ -2169,7 +2289,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #438</name>
+    <name>text update #456</name>
     <pv_name>$(P)$(R)L_Label_15_RBV</pv_name>
     <x>765</x>
     <y>150</y>
@@ -2191,7 +2311,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #442</name>
+    <name>text #460</name>
     <text>MaxValue</text>
     <x>410</x>
     <y>175</y>
@@ -2207,7 +2327,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #445</name>
+    <name>text entry #463</name>
     <pv_name>$(P)$(R)L_MaxValue_2</pv_name>
     <x>645</x>
     <y>175</y>
@@ -2225,7 +2345,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #449</name>
+    <name>text update #467</name>
     <pv_name>$(P)$(R)L_MaxValue_2_RBV</pv_name>
     <x>765</x>
     <y>175</y>
@@ -2247,7 +2367,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #453</name>
+    <name>text #471</name>
     <text>MaxValueInBaseUnits</text>
     <x>410</x>
     <y>200</y>
@@ -2263,7 +2383,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #456</name>
+    <name>text entry #474</name>
     <pv_name>$(P)$(R)L_MaxValueInBaseUnits_2</pv_name>
     <x>645</x>
     <y>200</y>
@@ -2281,7 +2401,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #460</name>
+    <name>text update #478</name>
     <pv_name>$(P)$(R)L_MaxValueInBaseUnits_2_RBV</pv_name>
     <x>765</x>
     <y>200</y>
@@ -2303,7 +2423,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #464</name>
+    <name>text #482</name>
     <text>MinValue</text>
     <x>410</x>
     <y>225</y>
@@ -2319,7 +2439,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #467</name>
+    <name>text entry #485</name>
     <pv_name>$(P)$(R)L_MinValue_2</pv_name>
     <x>645</x>
     <y>225</y>
@@ -2337,7 +2457,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #471</name>
+    <name>text update #489</name>
     <pv_name>$(P)$(R)L_MinValue_2_RBV</pv_name>
     <x>765</x>
     <y>225</y>
@@ -2359,7 +2479,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #475</name>
+    <name>text #493</name>
     <text>MinValueInBaseUnits</text>
     <x>410</x>
     <y>250</y>
@@ -2375,7 +2495,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #478</name>
+    <name>text entry #496</name>
     <pv_name>$(P)$(R)L_MinValueInBaseUnits_2</pv_name>
     <x>645</x>
     <y>250</y>
@@ -2393,7 +2513,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #482</name>
+    <name>text update #500</name>
     <pv_name>$(P)$(R)L_MinValueInBaseUnits_2_RBV</pv_name>
     <x>765</x>
     <y>250</y>
@@ -2415,7 +2535,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #486</name>
+    <name>text #504</name>
     <text>UnitString</text>
     <x>410</x>
     <y>275</y>
@@ -2431,7 +2551,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #489</name>
+    <name>text entry #507</name>
     <pv_name>$(P)$(R)L_UnitString_6</pv_name>
     <x>645</x>
     <y>275</y>
@@ -2449,7 +2569,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #493</name>
+    <name>text update #511</name>
     <pv_name>$(P)$(R)L_UnitString_6_RBV</pv_name>
     <x>765</x>
     <y>275</y>
@@ -2471,7 +2591,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #497</name>
+    <name>text #515</name>
     <text>UnitType</text>
     <x>410</x>
     <y>300</y>
@@ -2487,7 +2607,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #500</name>
+    <name>text entry #518</name>
     <pv_name>$(P)$(R)L_UnitType_6</pv_name>
     <x>645</x>
     <y>300</y>
@@ -2505,7 +2625,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #504</name>
+    <name>text update #522</name>
     <pv_name>$(P)$(R)L_UnitType_6_RBV</pv_name>
     <x>765</x>
     <y>300</y>
@@ -2527,7 +2647,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #508</name>
+    <name>text #526</name>
     <text>Value</text>
     <x>410</x>
     <y>325</y>
@@ -2543,7 +2663,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #511</name>
+    <name>text entry #529</name>
     <pv_name>$(P)$(R)L_Value_14</pv_name>
     <x>645</x>
     <y>325</y>
@@ -2561,7 +2681,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #515</name>
+    <name>text update #533</name>
     <pv_name>$(P)$(R)L_Value_14_RBV</pv_name>
     <x>765</x>
     <y>325</y>
@@ -2583,7 +2703,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #519</name>
+    <name>text #537</name>
     <text>ValueInBaseUnits</text>
     <x>410</x>
     <y>350</y>
@@ -2599,7 +2719,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #522</name>
+    <name>text entry #540</name>
     <pv_name>$(P)$(R)L_ValueInBaseUnits_6</pv_name>
     <x>645</x>
     <y>350</y>
@@ -2617,7 +2737,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #526</name>
+    <name>text update #544</name>
     <pv_name>$(P)$(R)L_ValueInBaseUnits_6_RBV</pv_name>
     <x>765</x>
     <y>350</y>
@@ -2639,7 +2759,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #530</name>
+    <name>text #548</name>
     <text>Select</text>
     <x>410</x>
     <y>375</y>
@@ -2655,7 +2775,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #533</name>
+    <name>message button #551</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_Select_8</pv_name>
@@ -2675,7 +2795,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #536</name>
+    <name>text update #554</name>
     <pv_name>$(P)$(R)L_Select_8_RBV</pv_name>
     <x>765</x>
     <y>375</y>
@@ -2697,7 +2817,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #540</name>
+    <name>text #558</name>
     <text>[3] CustomTriggerProfileProfile</text>
     <x>410</x>
     <y>400</y>
@@ -2709,7 +2829,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #543</name>
+    <name>polyline #561</name>
     <x>410</x>
     <y>400</y>
     <width>220</width>
@@ -2726,7 +2846,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #547</name>
+    <name>text #565</name>
     <text>GUID</text>
     <x>410</x>
     <y>425</y>
@@ -2742,7 +2862,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #550</name>
+    <name>text entry #568</name>
     <pv_name>$(P)$(R)L_GUID_9</pv_name>
     <x>645</x>
     <y>425</y>
@@ -2760,7 +2880,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #554</name>
+    <name>text update #572</name>
     <pv_name>$(P)$(R)L_GUID_9_RBV</pv_name>
     <x>765</x>
     <y>425</y>
@@ -2782,7 +2902,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #558</name>
+    <name>text #576</name>
     <text>Name</text>
     <x>410</x>
     <y>450</y>
@@ -2798,7 +2918,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #561</name>
+    <name>text entry #579</name>
     <pv_name>$(P)$(R)L_Name_9</pv_name>
     <x>645</x>
     <y>450</y>
@@ -2816,7 +2936,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #565</name>
+    <name>text update #583</name>
     <pv_name>$(P)$(R)L_Name_9_RBV</pv_name>
     <x>765</x>
     <y>450</y>
@@ -2838,7 +2958,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #569</name>
+    <name>text #587</name>
     <text>ClockSource</text>
     <x>410</x>
     <y>475</y>
@@ -2850,7 +2970,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #572</name>
+    <name>polyline #590</name>
     <x>410</x>
     <y>475</y>
     <width>220</width>
@@ -2867,7 +2987,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #576</name>
+    <name>text #594</name>
     <text>Label</text>
     <x>410</x>
     <y>500</y>
@@ -2883,7 +3003,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #579</name>
+    <name>text entry #597</name>
     <pv_name>$(P)$(R)L_Label_16</pv_name>
     <x>645</x>
     <y>500</y>
@@ -2901,7 +3021,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #583</name>
+    <name>text update #601</name>
     <pv_name>$(P)$(R)L_Label_16_RBV</pv_name>
     <x>765</x>
     <y>500</y>
@@ -2923,7 +3043,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #587</name>
+    <name>text #605</name>
     <text>Value</text>
     <x>410</x>
     <y>525</y>
@@ -2939,7 +3059,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="combo" version="2.0.0">
-    <name>menu #590</name>
+    <name>menu #608</name>
     <pv_name>$(P)$(R)L_Value_15</pv_name>
     <x>645</x>
     <y>525</y>
@@ -2952,7 +3072,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #593</name>
+    <name>text update #611</name>
     <pv_name>$(P)$(R)L_Value_15_RBV</pv_name>
     <x>765</x>
     <y>525</y>
@@ -2974,7 +3094,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #597</name>
+    <name>text #615</name>
     <text>ClockTransmission</text>
     <x>410</x>
     <y>550</y>
@@ -2986,7 +3106,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #600</name>
+    <name>polyline #618</name>
     <x>410</x>
     <y>550</y>
     <width>220</width>
@@ -3003,7 +3123,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #604</name>
+    <name>text #622</name>
     <text>Label</text>
     <x>410</x>
     <y>575</y>
@@ -3019,7 +3139,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #607</name>
+    <name>text entry #625</name>
     <pv_name>$(P)$(R)L_Label_17</pv_name>
     <x>645</x>
     <y>575</y>
@@ -3037,7 +3157,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #611</name>
+    <name>text update #629</name>
     <pv_name>$(P)$(R)L_Label_17_RBV</pv_name>
     <x>765</x>
     <y>575</y>
@@ -3059,7 +3179,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #615</name>
+    <name>text #633</name>
     <text>Value</text>
     <x>410</x>
     <y>600</y>
@@ -3075,7 +3195,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="combo" version="2.0.0">
-    <name>menu #618</name>
+    <name>menu #636</name>
     <pv_name>$(P)$(R)L_Value_16</pv_name>
     <x>645</x>
     <y>600</y>
@@ -3088,7 +3208,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #621</name>
+    <name>text update #639</name>
     <pv_name>$(P)$(R)L_Value_16_RBV</pv_name>
     <x>765</x>
     <y>600</y>
@@ -3110,7 +3230,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #625</name>
+    <name>text #643</name>
     <text>MinimalTimeDelay</text>
     <x>410</x>
     <y>625</y>
@@ -3122,7 +3242,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #628</name>
+    <name>polyline #646</name>
     <x>410</x>
     <y>625</y>
     <width>220</width>
@@ -3139,7 +3259,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #632</name>
+    <name>text #650</name>
     <text>Label</text>
     <x>410</x>
     <y>650</y>
@@ -3155,7 +3275,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #635</name>
+    <name>text entry #653</name>
     <pv_name>$(P)$(R)L_Label_18</pv_name>
     <x>645</x>
     <y>650</y>
@@ -3173,7 +3293,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #639</name>
+    <name>text update #657</name>
     <pv_name>$(P)$(R)L_Label_18_RBV</pv_name>
     <x>765</x>
     <y>650</y>
@@ -3195,7 +3315,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #643</name>
+    <name>text #661</name>
     <text>MaxValue</text>
     <x>410</x>
     <y>675</y>
@@ -3211,7 +3331,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #646</name>
+    <name>text entry #664</name>
     <pv_name>$(P)$(R)L_MaxValue_3</pv_name>
     <x>645</x>
     <y>675</y>
@@ -3229,7 +3349,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #650</name>
+    <name>text update #668</name>
     <pv_name>$(P)$(R)L_MaxValue_3_RBV</pv_name>
     <x>765</x>
     <y>675</y>
@@ -3251,7 +3371,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #654</name>
+    <name>text #672</name>
     <text>MaxValueInBaseUnits</text>
     <x>410</x>
     <y>700</y>
@@ -3267,7 +3387,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #657</name>
+    <name>text entry #675</name>
     <pv_name>$(P)$(R)L_MaxValueInBaseUnits_3</pv_name>
     <x>645</x>
     <y>700</y>
@@ -3285,7 +3405,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #661</name>
+    <name>text update #679</name>
     <pv_name>$(P)$(R)L_MaxValueInBaseUnits_3_RBV</pv_name>
     <x>765</x>
     <y>700</y>
@@ -3307,7 +3427,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #665</name>
+    <name>text #683</name>
     <text>MinValue</text>
     <x>410</x>
     <y>725</y>
@@ -3323,7 +3443,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #668</name>
+    <name>text entry #686</name>
     <pv_name>$(P)$(R)L_MinValue_3</pv_name>
     <x>645</x>
     <y>725</y>
@@ -3341,7 +3461,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #672</name>
+    <name>text update #690</name>
     <pv_name>$(P)$(R)L_MinValue_3_RBV</pv_name>
     <x>765</x>
     <y>725</y>
@@ -3363,7 +3483,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #676</name>
+    <name>text #694</name>
     <text>MinValueInBaseUnits</text>
     <x>410</x>
     <y>750</y>
@@ -3379,7 +3499,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #679</name>
+    <name>text entry #697</name>
     <pv_name>$(P)$(R)L_MinValueInBaseUnits_3</pv_name>
     <x>645</x>
     <y>750</y>
@@ -3397,7 +3517,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #683</name>
+    <name>text update #701</name>
     <pv_name>$(P)$(R)L_MinValueInBaseUnits_3_RBV</pv_name>
     <x>765</x>
     <y>750</y>
@@ -3419,7 +3539,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #687</name>
+    <name>text #705</name>
     <text>UnitString</text>
     <x>410</x>
     <y>775</y>
@@ -3435,7 +3555,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #690</name>
+    <name>text entry #708</name>
     <pv_name>$(P)$(R)L_UnitString_7</pv_name>
     <x>645</x>
     <y>775</y>
@@ -3453,7 +3573,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #694</name>
+    <name>text update #712</name>
     <pv_name>$(P)$(R)L_UnitString_7_RBV</pv_name>
     <x>765</x>
     <y>775</y>
@@ -3475,7 +3595,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #698</name>
+    <name>text #716</name>
     <text>UnitType</text>
     <x>410</x>
     <y>800</y>
@@ -3491,7 +3611,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #701</name>
+    <name>text entry #719</name>
     <pv_name>$(P)$(R)L_UnitType_7</pv_name>
     <x>645</x>
     <y>800</y>
@@ -3509,7 +3629,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #705</name>
+    <name>text update #723</name>
     <pv_name>$(P)$(R)L_UnitType_7_RBV</pv_name>
     <x>765</x>
     <y>800</y>
@@ -3531,7 +3651,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #709</name>
+    <name>text #727</name>
     <text>Value</text>
     <x>410</x>
     <y>825</y>
@@ -3547,7 +3667,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #712</name>
+    <name>text entry #730</name>
     <pv_name>$(P)$(R)L_Value_17</pv_name>
     <x>645</x>
     <y>825</y>
@@ -3565,7 +3685,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #716</name>
+    <name>text update #734</name>
     <pv_name>$(P)$(R)L_Value_17_RBV</pv_name>
     <x>765</x>
     <y>825</y>
@@ -3587,7 +3707,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #720</name>
+    <name>text #738</name>
     <text>ValueInBaseUnits</text>
     <x>410</x>
     <y>850</y>
@@ -3603,7 +3723,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #723</name>
+    <name>text entry #741</name>
     <pv_name>$(P)$(R)L_ValueInBaseUnits_7</pv_name>
     <x>645</x>
     <y>850</y>
@@ -3621,7 +3741,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #727</name>
+    <name>text update #745</name>
     <pv_name>$(P)$(R)L_ValueInBaseUnits_7_RBV</pv_name>
     <x>765</x>
     <y>850</y>
@@ -3643,7 +3763,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #731</name>
+    <name>text #749</name>
     <text>PacketRate</text>
     <x>410</x>
     <y>875</y>
@@ -3655,7 +3775,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #734</name>
+    <name>polyline #752</name>
     <x>410</x>
     <y>875</y>
     <width>220</width>
@@ -3672,7 +3792,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #738</name>
+    <name>text #756</name>
     <text>Label</text>
     <x>410</x>
     <y>900</y>
@@ -3688,7 +3808,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #741</name>
+    <name>text entry #759</name>
     <pv_name>$(P)$(R)L_Label_19</pv_name>
     <x>645</x>
     <y>900</y>
@@ -3706,7 +3826,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #745</name>
+    <name>text update #763</name>
     <pv_name>$(P)$(R)L_Label_19_RBV</pv_name>
     <x>765</x>
     <y>900</y>
@@ -3728,7 +3848,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #749</name>
+    <name>text #767</name>
     <text>MaxValue</text>
     <x>410</x>
     <y>925</y>
@@ -3744,7 +3864,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #752</name>
+    <name>text entry #770</name>
     <pv_name>$(P)$(R)L_MaxValue_4</pv_name>
     <x>645</x>
     <y>925</y>
@@ -3762,7 +3882,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #756</name>
+    <name>text update #774</name>
     <pv_name>$(P)$(R)L_MaxValue_4_RBV</pv_name>
     <x>765</x>
     <y>925</y>
@@ -3784,7 +3904,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #760</name>
+    <name>text #778</name>
     <text>MaxValueInBaseUnits</text>
     <x>410</x>
     <y>950</y>
@@ -3800,7 +3920,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #763</name>
+    <name>text entry #781</name>
     <pv_name>$(P)$(R)L_MaxValueInBaseUnits_4</pv_name>
     <x>645</x>
     <y>950</y>
@@ -3818,7 +3938,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #767</name>
+    <name>text update #785</name>
     <pv_name>$(P)$(R)L_MaxValueInBaseUnits_4_RBV</pv_name>
     <x>765</x>
     <y>950</y>
@@ -3840,7 +3960,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #771</name>
+    <name>text #789</name>
     <text>MinValue</text>
     <x>410</x>
     <y>975</y>
@@ -3856,7 +3976,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #774</name>
+    <name>text entry #792</name>
     <pv_name>$(P)$(R)L_MinValue_4</pv_name>
     <x>645</x>
     <y>975</y>
@@ -3874,7 +3994,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #778</name>
+    <name>text update #796</name>
     <pv_name>$(P)$(R)L_MinValue_4_RBV</pv_name>
     <x>765</x>
     <y>975</y>
@@ -3896,7 +4016,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #782</name>
+    <name>text #800</name>
     <text>MinValueInBaseUnits</text>
     <x>410</x>
     <y>1000</y>
@@ -3912,7 +4032,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #785</name>
+    <name>text entry #803</name>
     <pv_name>$(P)$(R)L_MinValueInBaseUnits_4</pv_name>
     <x>645</x>
     <y>1000</y>
@@ -3930,7 +4050,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #789</name>
+    <name>text update #807</name>
     <pv_name>$(P)$(R)L_MinValueInBaseUnits_4_RBV</pv_name>
     <x>765</x>
     <y>1000</y>
@@ -3952,7 +4072,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #793</name>
+    <name>text #811</name>
     <text>UnitString</text>
     <x>810</x>
     <y>50</y>
@@ -3968,7 +4088,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #796</name>
+    <name>text entry #814</name>
     <pv_name>$(P)$(R)L_UnitString_8</pv_name>
     <x>1045</x>
     <y>50</y>
@@ -3986,7 +4106,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #800</name>
+    <name>text update #818</name>
     <pv_name>$(P)$(R)L_UnitString_8_RBV</pv_name>
     <x>1165</x>
     <y>50</y>
@@ -4008,7 +4128,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #804</name>
+    <name>text #822</name>
     <text>UnitType</text>
     <x>810</x>
     <y>75</y>
@@ -4024,7 +4144,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #807</name>
+    <name>text entry #825</name>
     <pv_name>$(P)$(R)L_UnitType_8</pv_name>
     <x>1045</x>
     <y>75</y>
@@ -4042,7 +4162,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #811</name>
+    <name>text update #829</name>
     <pv_name>$(P)$(R)L_UnitType_8_RBV</pv_name>
     <x>1165</x>
     <y>75</y>
@@ -4064,7 +4184,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #815</name>
+    <name>text #833</name>
     <text>Value</text>
     <x>810</x>
     <y>100</y>
@@ -4080,7 +4200,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #818</name>
+    <name>text entry #836</name>
     <pv_name>$(P)$(R)L_Value_18</pv_name>
     <x>1045</x>
     <y>100</y>
@@ -4098,7 +4218,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #822</name>
+    <name>text update #840</name>
     <pv_name>$(P)$(R)L_Value_18_RBV</pv_name>
     <x>1165</x>
     <y>100</y>
@@ -4120,7 +4240,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #826</name>
+    <name>text #844</name>
     <text>ValueInBaseUnits</text>
     <x>810</x>
     <y>125</y>
@@ -4136,7 +4256,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #829</name>
+    <name>text entry #847</name>
     <pv_name>$(P)$(R)L_ValueInBaseUnits_8</pv_name>
     <x>1045</x>
     <y>125</y>
@@ -4154,7 +4274,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #833</name>
+    <name>text update #851</name>
     <pv_name>$(P)$(R)L_ValueInBaseUnits_8_RBV</pv_name>
     <x>1165</x>
     <y>125</y>
@@ -4176,7 +4296,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #837</name>
+    <name>text #855</name>
     <text>StartStopActiveLevel</text>
     <x>810</x>
     <y>150</y>
@@ -4188,7 +4308,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #840</name>
+    <name>polyline #858</name>
     <x>810</x>
     <y>150</y>
     <width>220</width>
@@ -4205,7 +4325,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #844</name>
+    <name>text #862</name>
     <text>Label</text>
     <x>810</x>
     <y>175</y>
@@ -4221,7 +4341,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #847</name>
+    <name>text entry #865</name>
     <pv_name>$(P)$(R)L_Label_20</pv_name>
     <x>1045</x>
     <y>175</y>
@@ -4239,7 +4359,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #851</name>
+    <name>text update #869</name>
     <pv_name>$(P)$(R)L_Label_20_RBV</pv_name>
     <x>1165</x>
     <y>175</y>
@@ -4261,7 +4381,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #855</name>
+    <name>text #873</name>
     <text>Value</text>
     <x>810</x>
     <y>200</y>
@@ -4277,7 +4397,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="combo" version="2.0.0">
-    <name>menu #858</name>
+    <name>menu #876</name>
     <pv_name>$(P)$(R)L_Value_19</pv_name>
     <x>1045</x>
     <y>200</y>
@@ -4290,7 +4410,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #861</name>
+    <name>text update #879</name>
     <pv_name>$(P)$(R)L_Value_19_RBV</pv_name>
     <x>1165</x>
     <y>200</y>
@@ -4312,7 +4432,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #865</name>
+    <name>text #883</name>
     <text>StartStopSource</text>
     <x>810</x>
     <y>225</y>
@@ -4324,7 +4444,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #868</name>
+    <name>polyline #886</name>
     <x>810</x>
     <y>225</y>
     <width>220</width>
@@ -4341,7 +4461,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #872</name>
+    <name>text #890</name>
     <text>Label</text>
     <x>810</x>
     <y>250</y>
@@ -4357,7 +4477,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #875</name>
+    <name>text entry #893</name>
     <pv_name>$(P)$(R)L_Label_21</pv_name>
     <x>1045</x>
     <y>250</y>
@@ -4375,7 +4495,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #879</name>
+    <name>text update #897</name>
     <pv_name>$(P)$(R)L_Label_21_RBV</pv_name>
     <x>1165</x>
     <y>250</y>
@@ -4397,7 +4517,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #883</name>
+    <name>text #901</name>
     <text>Value</text>
     <x>810</x>
     <y>275</y>
@@ -4413,7 +4533,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="combo" version="2.0.0">
-    <name>menu #886</name>
+    <name>menu #904</name>
     <pv_name>$(P)$(R)L_Value_20</pv_name>
     <x>1045</x>
     <y>275</y>
@@ -4426,7 +4546,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #889</name>
+    <name>text update #907</name>
     <pv_name>$(P)$(R)L_Value_20_RBV</pv_name>
     <x>1165</x>
     <y>275</y>
@@ -4448,7 +4568,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #893</name>
+    <name>text #911</name>
     <text>Select</text>
     <x>810</x>
     <y>300</y>
@@ -4464,7 +4584,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #896</name>
+    <name>message button #914</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_Select_9</pv_name>
@@ -4484,7 +4604,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #899</name>
+    <name>text update #917</name>
     <pv_name>$(P)$(R)L_Select_9_RBV</pv_name>
     <x>1165</x>
     <y>300</y>
@@ -4506,7 +4626,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #903</name>
+    <name>text #921</name>
     <text>Selected</text>
     <x>810</x>
     <y>325</y>
@@ -4518,7 +4638,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #906</name>
+    <name>polyline #924</name>
     <x>810</x>
     <y>325</y>
     <width>220</width>
@@ -4535,7 +4655,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #910</name>
+    <name>text #928</name>
     <text>GUID</text>
     <x>810</x>
     <y>350</y>
@@ -4551,7 +4671,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #913</name>
+    <name>text entry #931</name>
     <pv_name>$(P)$(R)L_GUID_10</pv_name>
     <x>1045</x>
     <y>350</y>
@@ -4569,7 +4689,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #917</name>
+    <name>text update #935</name>
     <pv_name>$(P)$(R)L_GUID_10_RBV</pv_name>
     <x>1165</x>
     <y>350</y>
@@ -4591,7 +4711,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #921</name>
+    <name>text #939</name>
     <text>Name</text>
     <x>810</x>
     <y>375</y>
@@ -4607,7 +4727,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #924</name>
+    <name>text entry #942</name>
     <pv_name>$(P)$(R)L_Name_10</pv_name>
     <x>1045</x>
     <y>375</y>
@@ -4625,7 +4745,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #928</name>
+    <name>text update #946</name>
     <pv_name>$(P)$(R)L_Name_10_RBV</pv_name>
     <x>1165</x>
     <y>375</y>
@@ -4647,7 +4767,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #932</name>
+    <name>text #950</name>
     <text>Status</text>
     <x>810</x>
     <y>400</y>
@@ -4659,7 +4779,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #935</name>
+    <name>polyline #953</name>
     <x>810</x>
     <y>400</y>
     <width>220</width>
@@ -4676,7 +4796,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #939</name>
+    <name>text #957</name>
     <text>Label</text>
     <x>810</x>
     <y>425</y>
@@ -4692,7 +4812,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #942</name>
+    <name>text entry #960</name>
     <pv_name>$(P)$(R)L_Label_22</pv_name>
     <x>1045</x>
     <y>425</y>
@@ -4710,7 +4830,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #946</name>
+    <name>text update #964</name>
     <pv_name>$(P)$(R)L_Label_22_RBV</pv_name>
     <x>1165</x>
     <y>425</y>
@@ -4732,7 +4852,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #950</name>
+    <name>text #968</name>
     <text>Value</text>
     <x>810</x>
     <y>450</y>
@@ -4747,8 +4867,48 @@
     </foreground_color>
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #971</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_Value_21</pv_name>
+        <value>0</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_Value_21</pv_name>
+    <text>False</text>
+    <x>1045</x>
+    <y>450</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #974</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_Value_21</pv_name>
+        <value>1</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_Value_21</pv_name>
+    <text>True</text>
+    <x>1105</x>
+    <y>450</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #953</name>
+    <name>text update #977</name>
     <pv_name>$(P)$(R)L_Value_21_RBV</pv_name>
     <x>1165</x>
     <y>450</y>
@@ -4770,7 +4930,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #957</name>
+    <name>text #981</name>
     <text>Preconditions</text>
     <x>810</x>
     <y>475</y>
@@ -4782,7 +4942,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #960</name>
+    <name>polyline #984</name>
     <x>810</x>
     <y>475</y>
     <width>220</width>
@@ -4799,7 +4959,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #964</name>
+    <name>text #988</name>
     <text>Count</text>
     <x>810</x>
     <y>500</y>
@@ -4815,7 +4975,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #967</name>
+    <name>text entry #991</name>
     <pv_name>$(P)$(R)L_Count_2</pv_name>
     <x>1045</x>
     <y>500</y>
@@ -4833,7 +4993,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #971</name>
+    <name>text update #995</name>
     <pv_name>$(P)$(R)L_Count_2_RBV</pv_name>
     <x>1165</x>
     <y>500</y>
@@ -4855,7 +5015,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #975</name>
+    <name>text #999</name>
     <text>GetSnapShot</text>
     <x>810</x>
     <y>525</y>
@@ -4871,7 +5031,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #978</name>
+    <name>message button #1002</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_GetSnapShot</pv_name>
@@ -4891,7 +5051,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #981</name>
+    <name>text update #1005</name>
     <pv_name>$(P)$(R)L_GetSnapShot_RBV</pv_name>
     <x>1165</x>
     <y>525</y>
@@ -4913,7 +5073,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #985</name>
+    <name>text #1009</name>
     <text>[0] MeasurementPrecondition</text>
     <x>810</x>
     <y>550</y>
@@ -4925,7 +5085,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #988</name>
+    <name>polyline #1012</name>
     <x>810</x>
     <y>550</y>
     <width>220</width>
@@ -4942,7 +5102,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #992</name>
+    <name>text #1016</name>
     <text>Description</text>
     <x>810</x>
     <y>575</y>
@@ -4958,7 +5118,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #995</name>
+    <name>text entry #1019</name>
     <pv_name>$(P)$(R)L_Description</pv_name>
     <x>1045</x>
     <y>575</y>
@@ -4976,7 +5136,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #999</name>
+    <name>text update #1023</name>
     <pv_name>$(P)$(R)L_Description_RBV</pv_name>
     <x>1165</x>
     <y>575</y>
@@ -4998,7 +5158,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1003</name>
+    <name>text #1027</name>
     <text>Number</text>
     <x>810</x>
     <y>600</y>
@@ -5014,7 +5174,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1006</name>
+    <name>text entry #1030</name>
     <pv_name>$(P)$(R)L_Number</pv_name>
     <x>1045</x>
     <y>600</y>
@@ -5032,7 +5192,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1010</name>
+    <name>text update #1034</name>
     <pv_name>$(P)$(R)L_Number_RBV</pv_name>
     <x>1165</x>
     <y>600</y>
@@ -5054,7 +5214,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1014</name>
+    <name>text #1038</name>
     <text>Solution</text>
     <x>810</x>
     <y>625</y>
@@ -5070,7 +5230,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1017</name>
+    <name>text entry #1041</name>
     <pv_name>$(P)$(R)L_Solution</pv_name>
     <x>1045</x>
     <y>625</y>
@@ -5088,7 +5248,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1021</name>
+    <name>text update #1045</name>
     <pv_name>$(P)$(R)L_Solution_RBV</pv_name>
     <x>1165</x>
     <y>625</y>
@@ -5110,7 +5270,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1025</name>
+    <name>text #1049</name>
     <text>Title</text>
     <x>810</x>
     <y>650</y>
@@ -5126,7 +5286,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1028</name>
+    <name>text entry #1052</name>
     <pv_name>$(P)$(R)L_Title</pv_name>
     <x>1045</x>
     <y>650</y>
@@ -5144,7 +5304,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1032</name>
+    <name>text update #1056</name>
     <pv_name>$(P)$(R)L_Title_RBV</pv_name>
     <x>1165</x>
     <y>650</y>
@@ -5166,7 +5326,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1036</name>
+    <name>text #1060</name>
     <text>[1] MeasurementPrecondition</text>
     <x>810</x>
     <y>675</y>
@@ -5178,7 +5338,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #1039</name>
+    <name>polyline #1063</name>
     <x>810</x>
     <y>675</y>
     <width>220</width>
@@ -5195,7 +5355,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1043</name>
+    <name>text #1067</name>
     <text>Description</text>
     <x>810</x>
     <y>700</y>
@@ -5211,7 +5371,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1046</name>
+    <name>text entry #1070</name>
     <pv_name>$(P)$(R)L_Description_1</pv_name>
     <x>1045</x>
     <y>700</y>
@@ -5229,7 +5389,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1050</name>
+    <name>text update #1074</name>
     <pv_name>$(P)$(R)L_Description_1_RBV</pv_name>
     <x>1165</x>
     <y>700</y>
@@ -5251,7 +5411,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1054</name>
+    <name>text #1078</name>
     <text>Number</text>
     <x>810</x>
     <y>725</y>
@@ -5267,7 +5427,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1057</name>
+    <name>text entry #1081</name>
     <pv_name>$(P)$(R)L_Number_1</pv_name>
     <x>1045</x>
     <y>725</y>
@@ -5285,7 +5445,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1061</name>
+    <name>text update #1085</name>
     <pv_name>$(P)$(R)L_Number_1_RBV</pv_name>
     <x>1165</x>
     <y>725</y>
@@ -5307,7 +5467,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1065</name>
+    <name>text #1089</name>
     <text>Solution</text>
     <x>810</x>
     <y>750</y>
@@ -5323,7 +5483,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1068</name>
+    <name>text entry #1092</name>
     <pv_name>$(P)$(R)L_Solution_1</pv_name>
     <x>1045</x>
     <y>750</y>
@@ -5341,7 +5501,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1072</name>
+    <name>text update #1096</name>
     <pv_name>$(P)$(R)L_Solution_1_RBV</pv_name>
     <x>1165</x>
     <y>750</y>
@@ -5363,7 +5523,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1076</name>
+    <name>text #1100</name>
     <text>Title</text>
     <x>810</x>
     <y>775</y>
@@ -5379,7 +5539,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1079</name>
+    <name>text entry #1103</name>
     <pv_name>$(P)$(R)L_Title_1</pv_name>
     <x>1045</x>
     <y>775</y>
@@ -5397,7 +5557,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1083</name>
+    <name>text update #1107</name>
     <pv_name>$(P)$(R)L_Title_1_RBV</pv_name>
     <x>1165</x>
     <y>775</y>
@@ -5419,7 +5579,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1087</name>
+    <name>text #1111</name>
     <text>[2] MeasurementPrecondition</text>
     <x>810</x>
     <y>800</y>
@@ -5431,7 +5591,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #1090</name>
+    <name>polyline #1114</name>
     <x>810</x>
     <y>800</y>
     <width>220</width>
@@ -5448,7 +5608,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1094</name>
+    <name>text #1118</name>
     <text>Description</text>
     <x>810</x>
     <y>825</y>
@@ -5464,7 +5624,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1097</name>
+    <name>text entry #1121</name>
     <pv_name>$(P)$(R)L_Description_2</pv_name>
     <x>1045</x>
     <y>825</y>
@@ -5482,7 +5642,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1101</name>
+    <name>text update #1125</name>
     <pv_name>$(P)$(R)L_Description_2_RBV</pv_name>
     <x>1165</x>
     <y>825</y>
@@ -5504,7 +5664,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1105</name>
+    <name>text #1129</name>
     <text>Number</text>
     <x>810</x>
     <y>850</y>
@@ -5520,7 +5680,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1108</name>
+    <name>text entry #1132</name>
     <pv_name>$(P)$(R)L_Number_2</pv_name>
     <x>1045</x>
     <y>850</y>
@@ -5538,7 +5698,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1112</name>
+    <name>text update #1136</name>
     <pv_name>$(P)$(R)L_Number_2_RBV</pv_name>
     <x>1165</x>
     <y>850</y>
@@ -5560,7 +5720,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1116</name>
+    <name>text #1140</name>
     <text>Solution</text>
     <x>810</x>
     <y>875</y>
@@ -5576,7 +5736,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1119</name>
+    <name>text entry #1143</name>
     <pv_name>$(P)$(R)L_Solution_2</pv_name>
     <x>1045</x>
     <y>875</y>
@@ -5594,7 +5754,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1123</name>
+    <name>text update #1147</name>
     <pv_name>$(P)$(R)L_Solution_2_RBV</pv_name>
     <x>1165</x>
     <y>875</y>
@@ -5616,7 +5776,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1127</name>
+    <name>text #1151</name>
     <text>Title</text>
     <x>810</x>
     <y>900</y>
@@ -5632,7 +5792,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1130</name>
+    <name>text entry #1154</name>
     <pv_name>$(P)$(R)L_Title_2</pv_name>
     <x>1045</x>
     <y>900</y>
@@ -5650,7 +5810,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1134</name>
+    <name>text update #1158</name>
     <pv_name>$(P)$(R)L_Title_2_RBV</pv_name>
     <x>1165</x>
     <y>900</y>
@@ -5672,7 +5832,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1138</name>
+    <name>text #1162</name>
     <text>[3] MeasurementPrecondition</text>
     <x>810</x>
     <y>925</y>
@@ -5684,7 +5844,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #1141</name>
+    <name>polyline #1165</name>
     <x>810</x>
     <y>925</y>
     <width>220</width>
@@ -5701,7 +5861,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1145</name>
+    <name>text #1169</name>
     <text>Description</text>
     <x>810</x>
     <y>950</y>
@@ -5717,7 +5877,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1148</name>
+    <name>text entry #1172</name>
     <pv_name>$(P)$(R)L_Description_3</pv_name>
     <x>1045</x>
     <y>950</y>
@@ -5735,7 +5895,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1152</name>
+    <name>text update #1176</name>
     <pv_name>$(P)$(R)L_Description_3_RBV</pv_name>
     <x>1165</x>
     <y>950</y>
@@ -5757,7 +5917,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1156</name>
+    <name>text #1180</name>
     <text>Number</text>
     <x>810</x>
     <y>975</y>
@@ -5773,7 +5933,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1159</name>
+    <name>text entry #1183</name>
     <pv_name>$(P)$(R)L_Number_3</pv_name>
     <x>1045</x>
     <y>975</y>
@@ -5791,7 +5951,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1163</name>
+    <name>text update #1187</name>
     <pv_name>$(P)$(R)L_Number_3_RBV</pv_name>
     <x>1165</x>
     <y>975</y>
@@ -5813,7 +5973,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1167</name>
+    <name>text #1191</name>
     <text>Solution</text>
     <x>810</x>
     <y>1000</y>
@@ -5829,7 +5989,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1170</name>
+    <name>text entry #1194</name>
     <pv_name>$(P)$(R)L_Solution_3</pv_name>
     <x>1045</x>
     <y>1000</y>
@@ -5847,7 +6007,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1174</name>
+    <name>text update #1198</name>
     <pv_name>$(P)$(R)L_Solution_3_RBV</pv_name>
     <x>1165</x>
     <y>1000</y>
@@ -5869,7 +6029,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1178</name>
+    <name>text #1202</name>
     <text>Title</text>
     <x>1210</x>
     <y>50</y>
@@ -5885,7 +6045,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1181</name>
+    <name>text entry #1205</name>
     <pv_name>$(P)$(R)L_Title_3</pv_name>
     <x>1445</x>
     <y>50</y>
@@ -5903,7 +6063,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1185</name>
+    <name>text update #1209</name>
     <pv_name>$(P)$(R)L_Title_3_RBV</pv_name>
     <x>1565</x>
     <y>50</y>
@@ -5925,7 +6085,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1189</name>
+    <name>text #1213</name>
     <text>[4] MeasurementPrecondition</text>
     <x>1210</x>
     <y>75</y>
@@ -5937,7 +6097,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #1192</name>
+    <name>polyline #1216</name>
     <x>1210</x>
     <y>75</y>
     <width>220</width>
@@ -5954,7 +6114,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1196</name>
+    <name>text #1220</name>
     <text>Description</text>
     <x>1210</x>
     <y>100</y>
@@ -5970,7 +6130,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1199</name>
+    <name>text entry #1223</name>
     <pv_name>$(P)$(R)L_Description_4</pv_name>
     <x>1445</x>
     <y>100</y>
@@ -5988,7 +6148,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1203</name>
+    <name>text update #1227</name>
     <pv_name>$(P)$(R)L_Description_4_RBV</pv_name>
     <x>1565</x>
     <y>100</y>
@@ -6010,7 +6170,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1207</name>
+    <name>text #1231</name>
     <text>Number</text>
     <x>1210</x>
     <y>125</y>
@@ -6026,7 +6186,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1210</name>
+    <name>text entry #1234</name>
     <pv_name>$(P)$(R)L_Number_4</pv_name>
     <x>1445</x>
     <y>125</y>
@@ -6044,7 +6204,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1214</name>
+    <name>text update #1238</name>
     <pv_name>$(P)$(R)L_Number_4_RBV</pv_name>
     <x>1565</x>
     <y>125</y>
@@ -6066,7 +6226,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1218</name>
+    <name>text #1242</name>
     <text>Solution</text>
     <x>1210</x>
     <y>150</y>
@@ -6082,7 +6242,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1221</name>
+    <name>text entry #1245</name>
     <pv_name>$(P)$(R)L_Solution_4</pv_name>
     <x>1445</x>
     <y>150</y>
@@ -6100,7 +6260,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1225</name>
+    <name>text update #1249</name>
     <pv_name>$(P)$(R)L_Solution_4_RBV</pv_name>
     <x>1565</x>
     <y>150</y>
@@ -6122,7 +6282,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1229</name>
+    <name>text #1253</name>
     <text>Title</text>
     <x>1210</x>
     <y>175</y>
@@ -6138,7 +6298,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1232</name>
+    <name>text entry #1256</name>
     <pv_name>$(P)$(R)L_Title_4</pv_name>
     <x>1445</x>
     <y>175</y>
@@ -6156,7 +6316,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1236</name>
+    <name>text update #1260</name>
     <pv_name>$(P)$(R)L_Title_4_RBV</pv_name>
     <x>1565</x>
     <y>175</y>
@@ -6178,7 +6338,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1240</name>
+    <name>text #1264</name>
     <text>ReturnValue</text>
     <x>1210</x>
     <y>200</y>
@@ -6190,7 +6350,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #1243</name>
+    <name>polyline #1267</name>
     <x>1210</x>
     <y>200</y>
     <width>220</width>
@@ -6207,7 +6367,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1247</name>
+    <name>text #1271</name>
     <text>IsFixedSize</text>
     <x>1210</x>
     <y>225</y>
@@ -6222,8 +6382,48 @@
     </foreground_color>
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #1274</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_IsFixedSize</pv_name>
+        <value>0</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_IsFixedSize</pv_name>
+    <text>False</text>
+    <x>1445</x>
+    <y>225</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #1277</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_IsFixedSize</pv_name>
+        <value>1</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_IsFixedSize</pv_name>
+    <text>True</text>
+    <x>1505</x>
+    <y>225</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1250</name>
+    <name>text update #1280</name>
     <pv_name>$(P)$(R)L_IsFixedSize_RBV</pv_name>
     <x>1565</x>
     <y>225</y>
@@ -6245,7 +6445,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1254</name>
+    <name>text #1284</name>
     <text>IsReadOnly</text>
     <x>1210</x>
     <y>250</y>
@@ -6260,8 +6460,48 @@
     </foreground_color>
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #1287</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_IsReadOnly</pv_name>
+        <value>0</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_IsReadOnly</pv_name>
+    <text>False</text>
+    <x>1445</x>
+    <y>250</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #1290</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_IsReadOnly</pv_name>
+        <value>1</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_IsReadOnly</pv_name>
+    <text>True</text>
+    <x>1505</x>
+    <y>250</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1257</name>
+    <name>text update #1293</name>
     <pv_name>$(P)$(R)L_IsReadOnly_RBV</pv_name>
     <x>1565</x>
     <y>250</y>
@@ -6283,7 +6523,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1261</name>
+    <name>text #1297</name>
     <text>IsSynchronized</text>
     <x>1210</x>
     <y>275</y>
@@ -6298,8 +6538,48 @@
     </foreground_color>
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #1300</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_IsSynchronized</pv_name>
+        <value>0</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_IsSynchronized</pv_name>
+    <text>False</text>
+    <x>1445</x>
+    <y>275</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #1303</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_IsSynchronized</pv_name>
+        <value>1</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_IsSynchronized</pv_name>
+    <text>True</text>
+    <x>1505</x>
+    <y>275</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1264</name>
+    <name>text update #1306</name>
     <pv_name>$(P)$(R)L_IsSynchronized_RBV</pv_name>
     <x>1565</x>
     <y>275</y>
@@ -6321,7 +6601,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1268</name>
+    <name>text #1310</name>
     <text>Length</text>
     <x>1210</x>
     <y>300</y>
@@ -6337,7 +6617,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1271</name>
+    <name>text entry #1313</name>
     <pv_name>$(P)$(R)L_Length</pv_name>
     <x>1445</x>
     <y>300</y>
@@ -6355,7 +6635,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1275</name>
+    <name>text update #1317</name>
     <pv_name>$(P)$(R)L_Length_RBV</pv_name>
     <x>1565</x>
     <y>300</y>
@@ -6377,7 +6657,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1279</name>
+    <name>text #1321</name>
     <text>LongLength</text>
     <x>1210</x>
     <y>325</y>
@@ -6393,7 +6673,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1282</name>
+    <name>text entry #1324</name>
     <pv_name>$(P)$(R)L_LongLength</pv_name>
     <x>1445</x>
     <y>325</y>
@@ -6411,7 +6691,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1286</name>
+    <name>text update #1328</name>
     <pv_name>$(P)$(R)L_LongLength_RBV</pv_name>
     <x>1565</x>
     <y>325</y>
@@ -6433,7 +6713,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1290</name>
+    <name>text #1332</name>
     <text>Rank</text>
     <x>1210</x>
     <y>350</y>
@@ -6449,7 +6729,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1293</name>
+    <name>text entry #1335</name>
     <pv_name>$(P)$(R)L_Rank</pv_name>
     <x>1445</x>
     <y>350</y>
@@ -6467,7 +6747,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1297</name>
+    <name>text update #1339</name>
     <pv_name>$(P)$(R)L_Rank_RBV</pv_name>
     <x>1565</x>
     <y>350</y>
@@ -6489,7 +6769,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1301</name>
+    <name>text #1343</name>
     <text>GoAndMeasureStationary</text>
     <x>1210</x>
     <y>400</y>
@@ -6505,7 +6785,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #1304</name>
+    <name>message button #1346</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_GoAndMeasureStationary</pv_name>
@@ -6525,7 +6805,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1307</name>
+    <name>text update #1349</name>
     <pv_name>$(P)$(R)L_GoAndMeasureStationary_RBV</pv_name>
     <x>1565</x>
     <y>400</y>
@@ -6547,7 +6827,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1311</name>
+    <name>text #1353</name>
     <text>Parameter</text>
     <x>1210</x>
     <y>425</y>
@@ -6559,7 +6839,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #1314</name>
+    <name>polyline #1356</name>
     <x>1210</x>
     <y>425</y>
     <width>220</width>
@@ -6576,7 +6856,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1318</name>
+    <name>text #1360</name>
     <text>lockOnTokenName</text>
     <x>1210</x>
     <y>450</y>
@@ -6592,7 +6872,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1321</name>
+    <name>text entry #1363</name>
     <pv_name>$(P)$(R)L_lockOnTokenName</pv_name>
     <x>1445</x>
     <y>450</y>
@@ -6610,7 +6890,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1325</name>
+    <name>text update #1367</name>
     <pv_name>$(P)$(R)L_lockOnTokenName_RBV</pv_name>
     <x>1565</x>
     <y>450</y>
@@ -6632,7 +6912,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1329</name>
+    <name>text #1371</name>
     <text>IsRelative</text>
     <x>1210</x>
     <y>475</y>
@@ -6647,8 +6927,48 @@
     </foreground_color>
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #1374</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_IsRelative</pv_name>
+        <value>0</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_IsRelative</pv_name>
+    <text>False</text>
+    <x>1445</x>
+    <y>475</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #1377</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_IsRelative</pv_name>
+        <value>1</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_IsRelative</pv_name>
+    <text>True</text>
+    <x>1505</x>
+    <y>475</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1332</name>
+    <name>text update #1380</name>
     <pv_name>$(P)$(R)L_IsRelative_RBV</pv_name>
     <x>1565</x>
     <y>475</y>
@@ -6670,7 +6990,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1336</name>
+    <name>text #1384</name>
     <text>pos1</text>
     <x>1210</x>
     <y>500</y>
@@ -6686,7 +7006,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1339</name>
+    <name>text entry #1387</name>
     <pv_name>$(P)$(R)L_pos1</pv_name>
     <x>1445</x>
     <y>500</y>
@@ -6704,7 +7024,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1343</name>
+    <name>text update #1391</name>
     <pv_name>$(P)$(R)L_pos1_RBV</pv_name>
     <x>1565</x>
     <y>500</y>
@@ -6726,7 +7046,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1347</name>
+    <name>text #1395</name>
     <text>pos2</text>
     <x>1210</x>
     <y>525</y>
@@ -6742,7 +7062,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1350</name>
+    <name>text entry #1398</name>
     <pv_name>$(P)$(R)L_pos2</pv_name>
     <x>1445</x>
     <y>525</y>
@@ -6760,7 +7080,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1354</name>
+    <name>text update #1402</name>
     <pv_name>$(P)$(R)L_pos2_RBV</pv_name>
     <x>1565</x>
     <y>525</y>
@@ -6782,7 +7102,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1358</name>
+    <name>text #1406</name>
     <text>pos3</text>
     <x>1210</x>
     <y>550</y>
@@ -6798,7 +7118,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1361</name>
+    <name>text entry #1409</name>
     <pv_name>$(P)$(R)L_pos3</pv_name>
     <x>1445</x>
     <y>550</y>
@@ -6816,7 +7136,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1365</name>
+    <name>text update #1413</name>
     <pv_name>$(P)$(R)L_pos3_RBV</pv_name>
     <x>1565</x>
     <y>550</y>
@@ -6838,7 +7158,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1369</name>
+    <name>text #1417</name>
     <text>GoAndMeasureStationaryAsync</text>
     <x>1210</x>
     <y>600</y>
@@ -6854,7 +7174,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #1372</name>
+    <name>message button #1420</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_GoAndMeasureStationaryAsync</pv_name>
@@ -6874,7 +7194,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1375</name>
+    <name>text update #1423</name>
     <pv_name>$(P)$(R)L_GoAndMeasureStationaryAsync_RBV</pv_name>
     <x>1565</x>
     <y>600</y>
@@ -6896,7 +7216,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1379</name>
+    <name>text #1427</name>
     <text>Parameter</text>
     <x>1210</x>
     <y>625</y>
@@ -6908,7 +7228,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="polyline" version="2.0.0">
-    <name>polyline #1382</name>
+    <name>polyline #1430</name>
     <x>1210</x>
     <y>625</y>
     <width>220</width>
@@ -6925,7 +7245,7 @@
     </line_color>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1386</name>
+    <name>text #1434</name>
     <text>lockOnTokenName</text>
     <x>1210</x>
     <y>650</y>
@@ -6941,7 +7261,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1389</name>
+    <name>text entry #1437</name>
     <pv_name>$(P)$(R)L_lockOnTokenName_1</pv_name>
     <x>1445</x>
     <y>650</y>
@@ -6959,7 +7279,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1393</name>
+    <name>text update #1441</name>
     <pv_name>$(P)$(R)L_lockOnTokenName_1_RBV</pv_name>
     <x>1565</x>
     <y>650</y>
@@ -6981,7 +7301,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1397</name>
+    <name>text #1445</name>
     <text>IsRelative</text>
     <x>1210</x>
     <y>675</y>
@@ -6996,8 +7316,48 @@
     </foreground_color>
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #1448</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_IsRelative_1</pv_name>
+        <value>0</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_IsRelative_1</pv_name>
+    <text>False</text>
+    <x>1445</x>
+    <y>675</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>message button #1451</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(P)$(R)L_IsRelative_1</pv_name>
+        <value>1</value>
+        <description>Write</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_IsRelative_1</pv_name>
+    <text>True</text>
+    <x>1505</x>
+    <y>675</y>
+    <width>60</width>
+    <height>20</height>
+    <background_color>
+      <color red="115" green="223" blue="255">
+      </color>
+    </background_color>
+  </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1400</name>
+    <name>text update #1454</name>
     <pv_name>$(P)$(R)L_IsRelative_1_RBV</pv_name>
     <x>1565</x>
     <y>675</y>
@@ -7019,7 +7379,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1404</name>
+    <name>text #1458</name>
     <text>pos1</text>
     <x>1210</x>
     <y>700</y>
@@ -7035,7 +7395,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1407</name>
+    <name>text entry #1461</name>
     <pv_name>$(P)$(R)L_pos1_1</pv_name>
     <x>1445</x>
     <y>700</y>
@@ -7053,7 +7413,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1411</name>
+    <name>text update #1465</name>
     <pv_name>$(P)$(R)L_pos1_1_RBV</pv_name>
     <x>1565</x>
     <y>700</y>
@@ -7075,7 +7435,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1415</name>
+    <name>text #1469</name>
     <text>pos2</text>
     <x>1210</x>
     <y>725</y>
@@ -7091,7 +7451,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1418</name>
+    <name>text entry #1472</name>
     <pv_name>$(P)$(R)L_pos2_1</pv_name>
     <x>1445</x>
     <y>725</y>
@@ -7109,7 +7469,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1422</name>
+    <name>text update #1476</name>
     <pv_name>$(P)$(R)L_pos2_1_RBV</pv_name>
     <x>1565</x>
     <y>725</y>
@@ -7131,7 +7491,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1426</name>
+    <name>text #1480</name>
     <text>pos3</text>
     <x>1210</x>
     <y>750</y>
@@ -7147,7 +7507,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="textentry" version="3.0.0">
-    <name>text entry #1429</name>
+    <name>text entry #1483</name>
     <pv_name>$(P)$(R)L_pos3_1</pv_name>
     <x>1445</x>
     <y>750</y>
@@ -7165,7 +7525,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1433</name>
+    <name>text update #1487</name>
     <pv_name>$(P)$(R)L_pos3_1_RBV</pv_name>
     <x>1565</x>
     <y>750</y>
@@ -7187,7 +7547,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1437</name>
+    <name>text #1491</name>
     <text>MeasureStationary</text>
     <x>1210</x>
     <y>800</y>
@@ -7203,7 +7563,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #1440</name>
+    <name>message button #1494</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_MeasureStationary</pv_name>
@@ -7223,7 +7583,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1443</name>
+    <name>text update #1497</name>
     <pv_name>$(P)$(R)L_MeasureStationary_RBV</pv_name>
     <x>1565</x>
     <y>800</y>
@@ -7245,7 +7605,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1447</name>
+    <name>text #1501</name>
     <text>StartMeasurement</text>
     <x>1210</x>
     <y>825</y>
@@ -7261,7 +7621,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #1450</name>
+    <name>message button #1504</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_StartMeasurement</pv_name>
@@ -7281,7 +7641,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1453</name>
+    <name>text update #1507</name>
     <pv_name>$(P)$(R)L_StartMeasurement_RBV</pv_name>
     <x>1565</x>
     <y>825</y>
@@ -7303,7 +7663,7 @@
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #1457</name>
+    <name>text #1511</name>
     <text>StopMeasurement</text>
     <x>1210</x>
     <y>850</y>
@@ -7319,7 +7679,7 @@
     <horizontal_alignment>2</horizontal_alignment>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #1460</name>
+    <name>message button #1514</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_StopMeasurement</pv_name>
@@ -7339,7 +7699,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #1463</name>
+    <name>text update #1517</name>
     <pv_name>$(P)$(R)L_StopMeasurement_RBV</pv_name>
     <x>1565</x>
     <y>850</y>

@@ -314,6 +314,36 @@ text {
     textix="Value"
 	align="horiz. right"
 }
+"message button" {
+   object {
+      x=245
+      y=175
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_1"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=305
+      y=175
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_1"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
+}
 "text update" {
    object {
       x=365
@@ -528,6 +558,36 @@ text {
     }
     textix="Value"
 	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=325
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_2"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=305
+      y=325
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_2"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
 }
 "text update" {
    object {
@@ -1677,6 +1737,36 @@ text {
     textix="Value"
 	align="horiz. right"
 }
+"message button" {
+   object {
+      x=645
+      y=50
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_7"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=705
+      y=50
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_7"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
+}
 "text update" {
    object {
       x=765
@@ -1776,6 +1866,36 @@ text {
     }
     textix="Value"
 	align="horiz. right"
+}
+"message button" {
+   object {
+      x=645
+      y=125
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_8"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=705
+      y=125
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_8"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
 }
 "text update" {
    object {
