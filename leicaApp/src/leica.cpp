@@ -749,6 +749,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	setDoubleParam(L_verticalAngle, dir1->VerticalAngle->Value);
 	setStringParam(L_angleUnits, (decode)(dir1->VerticalAngle->UnitString));
 
+	std::cout << std::endl;
 
 	// quick and dirty trun on orient to gravity
 
@@ -1710,8 +1711,7 @@ void leica::OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleR
 void leica::OnIncChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
 {
 	//	throw gcnew System::NotImplementedException();
-	std::cout << "OnIncChanged" << std::endl;
-	std::cout << TFS[paramNewValue] << std::endl;
+	std::cout << "OnIncChanged: " << TFS[paramNewValue] << std::endl;
 }
 
 
