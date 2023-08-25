@@ -696,7 +696,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	epicsSnprintf(versionString, sizeof(versionString), "%d.%d.%d",
 		DRIVER_VERSION, DRIVER_REVISION, DRIVER_MODIFICATION);
 	setStringParam(NDDriverVersion, versionString);
-	setStringParam(ADSDKVersion, "1.9.1.11");
+	setStringParam(ADSDKVersion, "1.10.0.372");
 
 	setIntegerParam(ADMaxSizeX, 2560);
 	setIntegerParam(ADMaxSizeY, 1920);
@@ -721,7 +721,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	setStringParam(L_ipAddress, (decode)(IP));
 
 	Boolean CompatFirmware = GlobalObjects::LMFTracker->IsCompatibleWithInstalledFirmware;
-	cout << "Is Compatible With Installed Firmware: " << CompatFirmware << "\n";
+	cout << "Is Compatible With Installed Firmware: " << TFS[CompatFirmware] << "\n";
 	setIntegerParam(L_IsCompatible, CompatFirmware);
 
 	String^ Name = GlobalObjects::LMFTracker->Name;

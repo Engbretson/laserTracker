@@ -8,7 +8,7 @@
 #pragma managed(pop)
 
 #define DRIVER_VERSION      2
-#define DRIVER_REVISION     0
+#define DRIVER_REVISION     1
 #define DRIVER_MODIFICATION 0
 
 #define MIN_DELAY 1e-5

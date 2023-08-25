@@ -294,6 +294,7 @@ int mainLT()
 
 	CALL_AND_HANDLE(LMFTracker->PositionTo(true, false, 546, 3059, 690));
 //	LMFTracker->GetPrismPosition();
+    Sleep(1000);
 	CALL_AND_HANDLE(LMFTracker->GetPrismPosition());
 
 //	LMFTracker->PositionTo(true, false, 546, 3059, 690);
