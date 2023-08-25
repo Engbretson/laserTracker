@@ -32,15 +32,15 @@
 #include "leica.h"
 
 
-//
-// Some of the callback just WON"T allow me to stick the function defination within the class header file
-// But work fine here. Why waste time argueing with the compiler or TypeLibrary
-//
+ //
+ // Some of the callback just WON"T allow me to stick the function defination within the class header file
+ // But work fine here. Why waste time argueing with the compiler or TypeLibrary
+ //
 
-//void OnWarnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
-//void OOnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+ //void OnWarnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+ //void OOnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 
-static const char *driverName = "leica";
+static const char* driverName = "leica";
 
 //
 // Laser Tracker Related helper functions
@@ -160,7 +160,7 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	/* Fetch the parameter string name for possible use in debugging */
 	getParamName(function, &paramName);
 
-		printf("in writeInt32 . . . function %d  %s value %d\n", function, whoami, value);
+	printf("in writeInt32 . . . function %d  %s value %d\n", function, whoami, value);
 
 	if ((function == L_GotoXY) || (function == L_YY)) {
 		try
@@ -311,7 +311,7 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	else if ((function == L_Change) || (function == L_isFace1)) {
 		GlobalObjects::LMFTracker->Face->Change();
 	}
-// Top Level commands
+	// Top Level commands
 	else if (function == L_GoHomePosition) {
 		GlobalObjects::LMFTracker->GoHomePosition();
 	}
@@ -321,11 +321,11 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	else if (function == L_PositionTo) {
 		double tempx, tempy, tempz;
 		int tempi, tempj;
-		getDoubleParam(L_Pos1, &tempx);
-		getDoubleParam(L_Pos2, &tempy);
-		getDoubleParam(L_Pos3, &tempz);
+		getDoubleParam(L_Pos1_2, &tempx);
+		getDoubleParam(L_Pos2_2, &tempy);
+		getDoubleParam(L_Pos3_2, &tempz);
 		getIntegerParam(L_searchTarget, &tempi);
-		getIntegerParam(L_isRelative, &tempj);
+		getIntegerParam(L_isRelative_2, &tempj);
 		GlobalObjects::LMFTracker->PositionTo(tempi, tempj, tempx, tempy, tempz);
 
 	}
@@ -404,20 +404,20 @@ asynStatus leica::readInt32(asynUser* pasynUser, epicsInt32* value)
   * \param[in] fp File pointed passed by caller where the output is written to.
   * \param[in] details If >0 then driver details are printed.
   */
-void leica::report(FILE *fp, int details)
+void leica::report(FILE* fp, int details)
 {
 
-    fprintf(fp, "Simulation detector %s\n", this->portName);
-    if (details > 0) {
-        int nx, ny, dataType;
-        getIntegerParam(ADSizeX, &nx);
-        getIntegerParam(ADSizeY, &ny);
-        getIntegerParam(NDDataType, &dataType);
-        fprintf(fp, "  NX, NY:            %d  %d\n", nx, ny);
-        fprintf(fp, "  Data type:         %d\n", dataType);
-    }
-    /* Invoke the base class method */
-    ADDriver::report(fp, details);
+	fprintf(fp, "Simulation detector %s\n", this->portName);
+	if (details > 0) {
+		int nx, ny, dataType;
+		getIntegerParam(ADSizeX, &nx);
+		getIntegerParam(ADSizeY, &ny);
+		getIntegerParam(NDDataType, &dataType);
+		fprintf(fp, "  NX, NY:            %d  %d\n", nx, ny);
+		fprintf(fp, "  Data type:         %d\n", dataType);
+	}
+	/* Invoke the base class method */
+	ADDriver::report(fp, details);
 }
 
 asynStatus leica::writeOctet(asynUser* pasynUser, const char* value, size_t nChars, size_t* nActual)
@@ -458,28 +458,28 @@ asynStatus leica::writeOctet(asynUser* pasynUser, const char* value, size_t nCha
 
 void leica::Do_Face(void)
 {
-    std::cout << std::endl;
-    std::cout << "Face \n";    
+	std::cout << std::endl;
+	std::cout << "Face \n";
 
 	GlobalObjects::LMFTracker->Face->Changed += gcnew LMF::Tracker::Face::ChangedHandler(&OnFaceChanged);
 
 	GlobalObjects::LMFTracker->Face->ChangeFinished += gcnew LMF::Tracker::Face::ChangeFinishedHandler(&OnFaceChangeFinished);
 
 
-    std::cout << "Face: isface1: " << TFS[GlobalObjects::LMFTracker->Face->IsFace1] << std::endl;
-    std::cout << "Face: Value: " << EFaceStrings[(int)GlobalObjects::LMFTracker->Face->Value] << std::endl;
+	std::cout << "Face: isface1: " << TFS[GlobalObjects::LMFTracker->Face->IsFace1] << std::endl;
+	std::cout << "Face: Value: " << EFaceStrings[(int)GlobalObjects::LMFTracker->Face->Value] << std::endl;
 
-    // Just doing the follow as a value check here just to see if it works
+	// Just doing the follow as a value check here just to see if it works
 
-        /*
-        std::cout << "Face: Flip \n";
-        LMFTracker->Face->Change();
-        std::cout << "Face: isface1: " << LMFTracker->Face->IsFace1 << std::endl;
-        std::cout << "Face: Value: " << (int)LMFTracker->Face->Value << std::endl;
-        std::cout << "Face: UnFlip \n\n";
-        LMFTracker->Face->Change();
-    */
-    std::cout << std::endl;
+		/*
+		std::cout << "Face: Flip \n";
+		LMFTracker->Face->Change();
+		std::cout << "Face: isface1: " << LMFTracker->Face->IsFace1 << std::endl;
+		std::cout << "Face: Value: " << (int)LMFTracker->Face->Value << std::endl;
+		std::cout << "Face: UnFlip \n\n";
+		LMFTracker->Face->Change();
+	*/
+	std::cout << std::endl;
 }
 
 void leica::Do_Laser(void)
@@ -490,10 +490,10 @@ void leica::Do_Laser(void)
 	DateTime^ dt;
 
 	GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnLaserChanged);
-		
+
 
 	GlobalObjects::LMFTracker->Laser->IsOn->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnLaserChanged);
- 		
+
 
 	dt = GlobalObjects::LMFTracker->Laser->WakeUpTime;
 
@@ -581,15 +581,15 @@ void leica::Do_Settings(void)
 	LMF::Tracker::Alignment^ orient = GlobalObjects::LMFTracker->Settings->GetOrientation();
 
 	std::cout << "  CoordinateType : " << coordtypeNames[(int)orient->CoordinateType] << std::endl;
-	leica_->setStringParam(leica_->L_CoordinateType, coordtypeNames[(int)orient->CoordinateType]);	
-	
+	leica_->setStringParam(leica_->L_CoordinateType, coordtypeNames[(int)orient->CoordinateType]);
+
 	std::cout << "  RotationType : " << rottypeNames[(int)orient->RotationType] << std::endl;
 	leica_->setStringParam(leica_->L_RotationType, rottypeNames[(int)orient->RotationType]);
 
-//
-//     The issue at this point is that as-is, none of these actually contain any actually values, and while it is trivial to print out the values
-// 	   that I get back from the hardware, slightly messier to do the epics aspects, so using a macro
-//
+	//
+	//     The issue at this point is that as-is, none of these actually contain any actually values, and while it is trivial to print out the values
+	// 	   that I get back from the hardware, slightly messier to do the epics aspects, so using a macro
+	//
 
 #define PV_IT(a,b,c,thing) \
 leica_->setStringParam(leica_->L_Label_##a, (decode)(##thing->Label)); \
@@ -659,26 +659,26 @@ leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits
   * \param[in] priority The thread priority for the asyn port driver thread if ASYN_CANBLOCK is set in asynFlags.
   * \param[in] stackSize The stack size for the asyn port driver thread if ASYN_CANBLOCK is set in asynFlags.
   */
-leica::leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t dataType,
-                         int maxBuffers, size_t maxMemory, int priority, int stackSize)
+leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t dataType,
+	int maxBuffers, size_t maxMemory, int priority, int stackSize)
 
-    : ADDriver(portName, 1, 0, maxBuffers, maxMemory,
-               0, 0, /* No interfaces beyond those set in ADDriver.cpp */
-               0, 1, /* ASYN_CANBLOCK=0, ASYN_MULTIDEVICE=0, autoConnect=1 */
-               priority, stackSize)
+	: ADDriver(portName, 1, 0, maxBuffers, maxMemory,
+		0, 0, /* No interfaces beyond those set in ADDriver.cpp */
+		0, 1, /* ASYN_CANBLOCK=0, ASYN_MULTIDEVICE=0, autoConnect=1 */
+		priority, stackSize)
 
 {
-    int status = asynSuccess;
-    char versionString[20];
-    const char *functionName = "leica";
+	int status = asynSuccess;
+	char versionString[20];
+	const char* functionName = "leica";
 
 	leica_ = this;
 
-    createParam(L_noopString, asynParamInt32, &L_noop);
+	createParam(L_noopString, asynParamInt32, &L_noop);
 
 #include "leica.cpp.inc"
 
-    createParam(L_noop2String, asynParamInt32, &L_noop2);
+	createParam(L_noop2String, asynParamInt32, &L_noop2);
 
 
 	initializeHardware(portName);
@@ -691,8 +691,8 @@ leica::leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	Do_Laser();
 	Do_Settings();
 
-// Global top level parameters	
-	
+	// Global top level parameters	
+
 	epicsSnprintf(versionString, sizeof(versionString), "%d.%d.%d",
 		DRIVER_VERSION, DRIVER_REVISION, DRIVER_MODIFICATION);
 	setStringParam(NDDriverVersion, versionString);
@@ -748,6 +748,29 @@ leica::leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	setDoubleParam(L_horizontalAngle, dir1->HorizontalAngle->Value);
 	setDoubleParam(L_verticalAngle, dir1->VerticalAngle->Value);
 	setStringParam(L_angleUnits, (decode)(dir1->VerticalAngle->UnitString));
+
+
+	// quick and dirty trun on orient to gravity
+
+	std::cout << "Performing Inclination to Gravity . . . Please wait . . ." << std::endl;
+
+	GlobalObjects::LMFTracker->InclinationSensor->GetInclinationToGravityFinished += gcnew LMF::Tracker::Inclination::InclinationSensor::GetInclinationToGravityFinishedHandler(&OnGetInclinationToGravityFinished);
+	GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->BubbleReadoutArrived += gcnew LMF::Tracker::Inclination::InclinationBubbleReadout::BubbleReadoutArrivedHandler(&OnBubbleReadoutArrived);
+	GlobalObjects::LMFTracker->InclinationSensor->InclinedToGravity->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnIncChanged);
+	GlobalObjects::LMFTracker->InclinationSensor->Monitoring->InclinationChanged += gcnew LMF::Tracker::Inclination::InclinationMonitoring::InclinationChangedHandler(&OnInclinationChanged);
+
+
+	try {
+		GlobalObjects::LMFTracker->InclinationSensor->GetInclinationToGravity();
+		GlobalObjects::LMFTracker->InclinationSensor->InclinedToGravity->Value = true;
+		GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->StartBubbleReadoutStream();
+	}
+	catch (...)
+	{
+		std::cout << "Failed!" << std::endl;
+	}
+
+
 
 
 	// this code you can't actually do unless a tracker actually exists
@@ -942,14 +965,14 @@ leica::leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 	epicsAtExit(exitHandler, this);
 
-// which works . . . . assuming that the system sees a target
+	// which works . . . . assuming that the system sees a target
 
 	GlobalObjects::LMFTracker->OverviewCamera->Stop();
 	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Medium);
 	GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
 
 
-//	GlobalObjects::LMFTracker->OpenTrackerScope();
+	//	GlobalObjects::LMFTracker->OpenTrackerScope();
 }
 
 
@@ -984,22 +1007,22 @@ void leica::initializeHardware(const char* portName)
 	GlobalObjects::LMFTracker->WarningArrived += gcnew LMF::Tracker::Tracker::WarningArrivedHandler(&OnWarningArrived);
 
 
-//	Now Handled by Do_laser()
-/*
-	// laser status 
+	//	Now Handled by Do_laser()
+	/*
+		// laser status
 
-	GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnLaserChanged);
-	GlobalObjects::LMFTracker->Laser->IsOn->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnLaserChanged);
+		GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnLaserChanged);
+		GlobalObjects::LMFTracker->Laser->IsOn->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnLaserChanged);
 
-	std::cout << "Is Laser Warmed Up: Label: " << (decode)(GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Label) << " Value: " << TFS[GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Value] << std::endl;
-	std::cout << "Is Laser on: " << (decode)(GlobalObjects::LMFTracker->Laser->IsOn->Label) << " Value : " << TFS[GlobalObjects::LMFTracker->Laser->IsOn->Value] << std::endl;
+		std::cout << "Is Laser Warmed Up: Label: " << (decode)(GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Label) << " Value: " << TFS[GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Value] << std::endl;
+		std::cout << "Is Laser on: " << (decode)(GlobalObjects::LMFTracker->Laser->IsOn->Label) << " Value : " << TFS[GlobalObjects::LMFTracker->Laser->IsOn->Value] << std::endl;
 
-	setIntegerParam(L_IsOnValue, (int)GlobalObjects::LMFTracker->Laser->IsOn->Value);
-//	setIntegerParam(L_laseronoff_command, (int)GlobalObjects::LMFTracker->Laser->IsOn->Value);
-	setIntegerParam(L_IsWarmValue, (int)GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Value);
+		setIntegerParam(L_IsOnValue, (int)GlobalObjects::LMFTracker->Laser->IsOn->Value);
+	//	setIntegerParam(L_laseronoff_command, (int)GlobalObjects::LMFTracker->Laser->IsOn->Value);
+		setIntegerParam(L_IsWarmValue, (int)GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Value);
 
-	callParamCallbacks();
-*/
+		callParamCallbacks();
+	*/
 	int check = 1;
 	while (check) {
 		try {
@@ -1043,55 +1066,55 @@ void leica::initializeHardware(const char* portName)
 leica::~leica(void)
 {
 
-//	GlobalObjects::LMFTracker->OverviewCamera->Stop();
+	//	GlobalObjects::LMFTracker->OverviewCamera->Stop();
 
 	iocshCmd("stopPVAServer() > nul");
 
 }
 /** Configuration command, called directly or from iocsh */
-extern "C" int leicaConfig(const char *portName, int maxSizeX, int maxSizeY, int dataType,
-                                 int maxBuffers, int maxMemory, int priority, int stackSize)
+extern "C" int leicaConfig(const char* portName, int maxSizeX, int maxSizeY, int dataType,
+	int maxBuffers, int maxMemory, int priority, int stackSize)
 {
-    new leica(portName, maxSizeX, maxSizeY, (NDDataType_t)dataType,
-                    (maxBuffers < 0) ? 0 : maxBuffers,
-                    (maxMemory < 0) ? 0 : maxMemory,
-                    priority, stackSize);
-    return(asynSuccess);
+	new leica(portName, maxSizeX, maxSizeY, (NDDataType_t)dataType,
+		(maxBuffers < 0) ? 0 : maxBuffers,
+		(maxMemory < 0) ? 0 : maxMemory,
+		priority, stackSize);
+	return(asynSuccess);
 }
 
 /** Code for iocsh registration */
-static const iocshArg leicaConfigArg0 = {"Port name", iocshArgString};
-static const iocshArg leicaConfigArg1 = {"Max X size", iocshArgInt};
-static const iocshArg leicaConfigArg2 = {"Max Y size", iocshArgInt};
-static const iocshArg leicaConfigArg3 = {"Data type", iocshArgInt};
-static const iocshArg leicaConfigArg4 = {"maxBuffers", iocshArgInt};
-static const iocshArg leicaConfigArg5 = {"maxMemory", iocshArgInt};
-static const iocshArg leicaConfigArg6 = {"priority", iocshArgInt};
-static const iocshArg leicaConfigArg7 = {"stackSize", iocshArgInt};
-static const iocshArg * const leicaConfigArgs[] =  {&leicaConfigArg0,
-                                                          &leicaConfigArg1,
-                                                          &leicaConfigArg2,
-                                                          &leicaConfigArg3,
-                                                          &leicaConfigArg4,
-                                                          &leicaConfigArg5,
-                                                          &leicaConfigArg6,
-                                                          &leicaConfigArg7};
-static const iocshFuncDef configleica = {"leicaConfig", 8, leicaConfigArgs};
-static void configleicaCallFunc(const iocshArgBuf *args)
+static const iocshArg leicaConfigArg0 = { "Port name", iocshArgString };
+static const iocshArg leicaConfigArg1 = { "Max X size", iocshArgInt };
+static const iocshArg leicaConfigArg2 = { "Max Y size", iocshArgInt };
+static const iocshArg leicaConfigArg3 = { "Data type", iocshArgInt };
+static const iocshArg leicaConfigArg4 = { "maxBuffers", iocshArgInt };
+static const iocshArg leicaConfigArg5 = { "maxMemory", iocshArgInt };
+static const iocshArg leicaConfigArg6 = { "priority", iocshArgInt };
+static const iocshArg leicaConfigArg7 = { "stackSize", iocshArgInt };
+static const iocshArg* const leicaConfigArgs[] = { &leicaConfigArg0,
+														  &leicaConfigArg1,
+														  &leicaConfigArg2,
+														  &leicaConfigArg3,
+														  &leicaConfigArg4,
+														  &leicaConfigArg5,
+														  &leicaConfigArg6,
+														  &leicaConfigArg7 };
+static const iocshFuncDef configleica = { "leicaConfig", 8, leicaConfigArgs };
+static void configleicaCallFunc(const iocshArgBuf* args)
 {
-    leicaConfig(args[0].sval, args[1].ival, args[2].ival, args[3].ival,
-                      args[4].ival, args[5].ival, args[6].ival, args[7].ival);
+	leicaConfig(args[0].sval, args[1].ival, args[2].ival, args[3].ival,
+		args[4].ival, args[5].ival, args[6].ival, args[7].ival);
 }
 
 
 static void leicaRegister(void)
 {
 
-    iocshRegister(&configleica, configleicaCallFunc);
+	iocshRegister(&configleica, configleicaCallFunc);
 }
 
 extern "C" {
-epicsExportRegistrar(leicaRegister);
+	epicsExportRegistrar(leicaRegister);
 }
 
 //
@@ -1231,32 +1254,32 @@ int filenamenumber = 0;
 
 void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
 {
-//		filenamenumber++;
+	//		filenamenumber++;
 
 
 
-		// throw gcnew System::NotImplementedException();
-		// 
-		// 
-	//	std::cout << blue << on_white;
-//	std::cout << "Callback OnWPFBitmapImageArrived . . . ";
-//	std::cout << atrCoordinates->Count << " Targets seen in Image.";
-//			<< std::endl;
-	//	std::cout << reset;
-	//std::cout << ".";
+			// throw gcnew System::NotImplementedException();
+			// 
+			// 
+		//	std::cout << blue << on_white;
+	//	std::cout << "Callback OnWPFBitmapImageArrived . . . ";
+	//	std::cout << atrCoordinates->Count << " Targets seen in Image.";
+	//			<< std::endl;
+		//	std::cout << reset;
+		//std::cout << ".";
 
-//	std::cout << image->Height << " " <<image->Width << std::endl;
+	//	std::cout << image->Height << " " <<image->Width << std::endl;
 
 
-// WARNNGS: while the resolution of the overviewCameras can be set to low, medium, and high, the position in image commands
-// all assume that you are using medium
+	// WARNNGS: while the resolution of the overviewCameras can be set to low, medium, and high, the position in image commands
+	// all assume that you are using medium
 
 	leica_->setIntegerParam(leica_->L_Count_3, atrCoordinates->Count);
 
 
 	LMF::Tracker::OVC::ATRCoordinateCollection^ gettargetdirections = atrCoordinates;
 
-// this will get over written by real values, if any . . . 
+	// this will get over written by real values, if any . . . 
 
 	leica_->setIntegerParam(leica_->L_x1, 0);
 	leica_->setIntegerParam(leica_->L_y1, 0);
@@ -1274,28 +1297,28 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 	// And this is a heck of a lot easier to get the coordinates of the trckers in the camera
 	for (int i = 0; i < gettargetdirections->Count; i++)
 	{
-//		std::cout << std::endl;
+		//		std::cout << std::endl;
 
 		LMF::Tracker::OVC::ATRCoordinate^ thing = gettargetdirections[i];
 
-// don't print, just do
-/*		Do_SimpleDoubleValue("AngleHz", thing->AngleHz);
-		Do_SimpleDoubleValue("AngleVt", thing->AngleVt);
+		// don't print, just do
+		/*		Do_SimpleDoubleValue("AngleHz", thing->AngleHz);
+				Do_SimpleDoubleValue("AngleVt", thing->AngleVt);
 
-		Do_SimpleDoubleValue("PixelX", thing->PixelX);
-		Do_SimpleDoubleValue("PixelY", thing->PixelY);
+				Do_SimpleDoubleValue("PixelX", thing->PixelX);
+				Do_SimpleDoubleValue("PixelY", thing->PixelY);
 
-*/
+		*/
 
 		if (i == 0)
 		{
-			leica_->setIntegerParam(leica_->L_x1, int(thing->PixelX->Value / 2 ));
-			leica_->setIntegerParam(leica_->L_y1, int(thing->PixelY->Value / 2 ));
+			leica_->setIntegerParam(leica_->L_x1, int(thing->PixelX->Value / 2));
+			leica_->setIntegerParam(leica_->L_y1, int(thing->PixelY->Value / 2));
 		}
 		if (i == 1)
 		{
-			leica_->setIntegerParam(leica_->L_x2, int(thing->PixelX->Value / 2 ));
-			leica_->setIntegerParam(leica_->L_y2, int(thing->PixelY->Value / 2 ));
+			leica_->setIntegerParam(leica_->L_x2, int(thing->PixelX->Value / 2));
+			leica_->setIntegerParam(leica_->L_y2, int(thing->PixelY->Value / 2));
 		}
 		if (i == 2)
 		{
@@ -1304,17 +1327,17 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 		}
 		if (i == 3)
 		{
-			leica_->setIntegerParam(leica_->L_x4, int(thing->PixelX->Value / 2 ));
+			leica_->setIntegerParam(leica_->L_x4, int(thing->PixelX->Value / 2));
 			leica_->setIntegerParam(leica_->L_y4, int(thing->PixelY->Value / 2));
 		}
 		if (i == 4)
 		{
-			leica_->setIntegerParam(leica_->L_x5, int(thing->PixelX->Value / 2 ));
+			leica_->setIntegerParam(leica_->L_x5, int(thing->PixelX->Value / 2));
 			leica_->setIntegerParam(leica_->L_y5, int(thing->PixelY->Value / 2));
 		}
 		if (i == 5)
 		{
-			leica_->setIntegerParam(leica_->L_x6, int(thing->PixelX->Value / 2 ));
+			leica_->setIntegerParam(leica_->L_x6, int(thing->PixelX->Value / 2));
 			leica_->setIntegerParam(leica_->L_y6, int(thing->PixelY->Value / 2));
 		}
 
@@ -1322,113 +1345,113 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 
 
 
-// this is an attempt to get the raw bitmap values and get it into a byte stream that Area Detector expects
-// which is a pain in the . . . 
+	// this is an attempt to get the raw bitmap values and get it into a byte stream that Area Detector expects
+	// which is a pain in the . . . 
 
 
 
-//	try
-//	{
-		BitmapImage^ bitmapImage = image;
-		WriteableBitmap^ writeableBitmap = gcnew WriteableBitmap(bitmapImage);
+	//	try
+	//	{
+	BitmapImage^ bitmapImage = image;
+	WriteableBitmap^ writeableBitmap = gcnew WriteableBitmap(bitmapImage);
 
-		cli::array<unsigned char>^ pixelData = gcnew cli::array<unsigned char>(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight * 4);
-		writeableBitmap->CopyPixels(pixelData, writeableBitmap->BackBufferStride, 0);
+	cli::array<unsigned char>^ pixelData = gcnew cli::array<unsigned char>(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight * 4);
+	writeableBitmap->CopyPixels(pixelData, writeableBitmap->BackBufferStride, 0);
 
-		// This starts to flip this to greyscale - caqtdm minimal image display only understand (at the instant) greyscale
-		// It seems as if Phoebus also hates it, and the image mode *has* to be set at design time . . . . reallY?
+	// This starts to flip this to greyscale - caqtdm minimal image display only understand (at the instant) greyscale
+	// It seems as if Phoebus also hates it, and the image mode *has* to be set at design time . . . . reallY?
 
 #ifdef BW
-		std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight);
-		for (int i = 0; i < pixelData->Length; i += 4) {
-			float red = static_cast<float>(pixelData[i]);
-			float green = static_cast<float>(pixelData[i + 1]);
-			float blue = static_cast<float>(pixelData[i + 2]);
+	std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight);
+	for (int i = 0; i < pixelData->Length; i += 4) {
+		float red = static_cast<float>(pixelData[i]);
+		float green = static_cast<float>(pixelData[i + 1]);
+		float blue = static_cast<float>(pixelData[i + 2]);
 
-			grayscaleData[i / 4] = static_cast<uint8_t>(0.299 * red + 0.587 * green + 0.114 * blue);
-		}
-		int ndims = 2;
+		grayscaleData[i / 4] = static_cast<uint8_t>(0.299 * red + 0.587 * green + 0.114 * blue);
+}
+	int ndims = 2;
 #else
-		std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight * 4);
-		for (int i = 0; i < pixelData->Length; i += 4) {
-//
-// The image using the *expected* values is horribly blue - if I flip R and B colors are about right.
-//
-			grayscaleData[(i / 4) * 3 + 2] = pixelData[i + 0]; // Red component
-			grayscaleData[(i / 4) * 3 + 1] = pixelData[i + 1]; // Green component
-			grayscaleData[(i / 4) * 3 + 0] = pixelData[i + 2]; // Blue component
-			grayscaleData[(i / 4) * 3 + 3] = pixelData[i + 3]; // Alpha component
+	std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight * 4);
+	for (int i = 0; i < pixelData->Length; i += 4) {
+		//
+		// The image using the *expected* values is horribly blue - if I flip R and B colors are about right.
+		//
+		grayscaleData[(i / 4) * 3 + 2] = pixelData[i + 0]; // Red component
+		grayscaleData[(i / 4) * 3 + 1] = pixelData[i + 1]; // Green component
+		grayscaleData[(i / 4) * 3 + 0] = pixelData[i + 2]; // Blue component
+		grayscaleData[(i / 4) * 3 + 3] = pixelData[i + 3]; // Alpha component
 
-		}
-		int ndims = 3;
+	}
+	int ndims = 3;
 #endif
 
 
-		const char* 	nullTerminatedData = reinterpret_cast<const char*>(grayscaleData.data());
+	const char* nullTerminatedData = reinterpret_cast<const char*>(grayscaleData.data());
 
-		size_t imageDims[3]; 
+	size_t imageDims[3];
 
-		NDDataType_t  imageDataType;
+	NDDataType_t  imageDataType;
 
-		NDArrayInfo arrayInfo;
-		epicsTimeStamp currentTime;
+	NDArrayInfo arrayInfo;
+	epicsTimeStamp currentTime;
 
 #ifdef BW
-		imageDims[0] = image->PixelWidth;
-		imageDims[1] = image->PixelHeight;
+	imageDims[0] = image->PixelWidth;
+	imageDims[1] = image->PixelHeight;
 
 #else
-		imageDims[1] = image->PixelWidth;
-		imageDims[2] = image->PixelHeight;
-		imageDims[0] = 3;
+	imageDims[1] = image->PixelWidth;
+	imageDims[2] = image->PixelHeight;
+	imageDims[0] = 3;
 #endif
 
-		imageDataType = NDUInt8;
-		leica_->setIntegerParam(leica_->NDDataType, NDUInt8);
+	imageDataType = NDUInt8;
+	leica_->setIntegerParam(leica_->NDDataType, NDUInt8);
 
-		/* Update the image */
-		/* First release the copy that we held onto last time */
-		if (leica_->pArrays[0]) {
-			leica_->pArrays[0]->release();
-		}
+	/* Update the image */
+	/* First release the copy that we held onto last time */
+	if (leica_->pArrays[0]) {
+		leica_->pArrays[0]->release();
+	}
 
 
 
-		/* Allocate a new array */
-		leica_->pArrays[0] = leica_->pNDArrayPool->alloc(ndims, imageDims, imageDataType, 0, NULL);
-		if (leica_->pArrays[0] != NULL) {
-			leica_->pImage = leica_->pArrays[0];
-			leica_->pImage->getInfo(&arrayInfo);
-			// Copy data from the input to the output, correct 
+	/* Allocate a new array */
+	leica_->pArrays[0] = leica_->pNDArrayPool->alloc(ndims, imageDims, imageDataType, 0, NULL);
+	if (leica_->pArrays[0] != NULL) {
+		leica_->pImage = leica_->pArrays[0];
+		leica_->pImage->getInfo(&arrayInfo);
+		// Copy data from the input to the output, correct 
 //			printf("%d %d %d %d\n", imageDims[0], imageDims[1], grayscaleData.size());
 //			printf("%d %d %d %d\n", arrayInfo.);
-			
+
 #ifdef BW
-			memcpy(leica_->pImage->pData, nullTerminatedData, grayscaleData.size());
+		memcpy(leica_->pImage->pData, nullTerminatedData, grayscaleData.size());
 #else
-			memcpy(leica_->pImage->pData, nullTerminatedData, imageDims[1]*imageDims[2]*imageDims[0]);
-			NDColorMode_t colorMode = NDColorModeRGB1;
+		memcpy(leica_->pImage->pData, nullTerminatedData, imageDims[1] * imageDims[2] * imageDims[0]);
+		NDColorMode_t colorMode = NDColorModeRGB1;
 
 #endif
 
-			epicsTimeGetCurrent(&currentTime);
-			leica_->pImage->timeStamp = currentTime.secPastEpoch + currentTime.nsec / 1.e9;
+		epicsTimeGetCurrent(&currentTime);
+		leica_->pImage->timeStamp = currentTime.secPastEpoch + currentTime.nsec / 1.e9;
 
-			leica_->pImage->uniqueId = filenamenumber++;
+		leica_->pImage->uniqueId = filenamenumber++;
 
-			leica_->updateTimeStamp(&leica_->pImage->epicsTS);
+		leica_->updateTimeStamp(&leica_->pImage->epicsTS);
 
-			/* Get attributes that have been defined for this driver */
-			leica_->getAttributes(leica_->pImage->pAttributeList);
+		/* Get attributes that have been defined for this driver */
+		leica_->getAttributes(leica_->pImage->pAttributeList);
 #ifdef BW
 #else
-			leica_->pAttributeList->add("ColorMode", "Color mode", NDAttrInt32, &colorMode);
+		leica_->pAttributeList->add("ColorMode", "Color mode", NDAttrInt32, &colorMode);
 #endif
 
 
-			leica_->doCallbacksGenericPointer(leica_->pImage, leica_->NDArrayData, 0);
-		}
-		leica_->callParamCallbacks();
+		leica_->doCallbacksGenericPointer(leica_->pImage, leica_->NDArrayData, 0);
+	}
+	leica_->callParamCallbacks();
 
 
 }
@@ -1614,7 +1637,7 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 
 void leica::OnFaceChanged(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue)
 {
-//	std::cout << "InOnFaceChanged" << std::endl;
+	//	std::cout << "InOnFaceChanged" << std::endl;
 
 	leica_->setIntegerParam(leica_->L_isFace1, int(paramNewValue));
 	leica_->setIntegerParam(leica_->L_Value, int(paramNewValue));
@@ -1624,7 +1647,7 @@ void leica::OnFaceChanged(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace
 
 void leica::OnFaceChangeFinished(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue, LMF::Tracker::ErrorHandling::LmfException^ ex)
 {
-//	std::cout << "InOnFaceChangedFinished" << std::endl;
+	//	std::cout << "InOnFaceChangedFinished" << std::endl;
 	leica_->setIntegerParam(leica_->L_isFace1, int(paramNewValue));
 	leica_->setIntegerParam(leica_->L_Value, int(paramNewValue));
 	leica_->callParamCallbacks();
@@ -1653,3 +1676,48 @@ void OnOnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender,
 */
 
 
+
+
+void leica::OnGetInclinationToGravityFinished(LMF::Tracker::Inclination::InclinationSensor^ sender, LMF::Tracker::Inclination::InclinationToGravity^ paramInclinationToGravity, LMF::Tracker::ErrorHandling::LmfException^ ex)
+{
+	//	throw gcnew System::NotImplementedException();
+	std::cout << "OnGetInclinationToGravityFinished" << std::endl;
+
+}
+
+
+void leica::OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleReadout^ sender, LMF::Tracker::Inclination::BubbleReadoutArrivedEventArgs^ paramBubbleReadout)
+{
+	//	throw gcnew System::NotImplementedException();
+	return;
+
+	DateTime^ dt;
+	dt = paramBubbleReadout->TimeStamp;
+	// for some reason, callback values seem to be in UTC, so need to correct it back to local time
+	dt = dt->ToLocalTime();
+
+	std::cout << "OnBubbleReadoutArrived" << std::endl;
+	std::cout << "InclinationL: " << paramBubbleReadout->InclinationL <<
+		" InclinationT: " << paramBubbleReadout->InclinationT <<
+		" InValidRange: " << TFS[paramBubbleReadout->InValidRange] <<
+		" InWorkingRange: " << TFS[paramBubbleReadout->InWorkingRange] <<
+		" TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) <<
+		std::endl;
+
+}
+
+
+void leica::OnIncChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
+{
+	//	throw gcnew System::NotImplementedException();
+	std::cout << "OnIncChanged" << std::endl;
+	std::cout << TFS[paramNewValue] << std::endl;
+}
+
+
+void leica::OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitoring^ sender)
+{
+	//	throw gcnew System::NotImplementedException();
+	std::cout << "OnInclinationChanged" << std::endl;
+
+}

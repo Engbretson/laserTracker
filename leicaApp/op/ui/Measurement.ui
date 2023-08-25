@@ -17299,7 +17299,7 @@ border-radius: 2px;
                 </color>
             </property>
             <property name="text">
-                <string>pos1</string>
+                <string>Pos1</string>
             </property>
             <property name="fontScaleMode">
                 <enum>ESimpleLabel::WidthAndHeight</enum>
@@ -17329,7 +17329,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos1</string>
+                <string>$(P)$(R)L_Pos1</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -17380,7 +17380,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos1_RBV</string>
+                <string>$(P)$(R)L_Pos1_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -17440,7 +17440,7 @@ border-radius: 2px;
                 </color>
             </property>
             <property name="text">
-                <string>pos2</string>
+                <string>Pos2</string>
             </property>
             <property name="fontScaleMode">
                 <enum>ESimpleLabel::WidthAndHeight</enum>
@@ -17470,7 +17470,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos2</string>
+                <string>$(P)$(R)L_Pos2</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -17521,7 +17521,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos2_RBV</string>
+                <string>$(P)$(R)L_Pos2_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -17581,7 +17581,7 @@ border-radius: 2px;
                 </color>
             </property>
             <property name="text">
-                <string>pos3</string>
+                <string>Pos3</string>
             </property>
             <property name="fontScaleMode">
                 <enum>ESimpleLabel::WidthAndHeight</enum>
@@ -17611,7 +17611,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos3</string>
+                <string>$(P)$(R)L_Pos3</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -17662,7 +17662,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos3_RBV</string>
+                <string>$(P)$(R)L_Pos3_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -18232,7 +18232,7 @@ border-radius: 2px;
                 </color>
             </property>
             <property name="text">
-                <string>pos1</string>
+                <string>Pos1</string>
             </property>
             <property name="fontScaleMode">
                 <enum>ESimpleLabel::WidthAndHeight</enum>
@@ -18262,7 +18262,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos1_1</string>
+                <string>$(P)$(R)L_Pos1_1</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -18313,7 +18313,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos1_1_RBV</string>
+                <string>$(P)$(R)L_Pos1_1_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -18373,7 +18373,7 @@ border-radius: 2px;
                 </color>
             </property>
             <property name="text">
-                <string>pos2</string>
+                <string>Pos2</string>
             </property>
             <property name="fontScaleMode">
                 <enum>ESimpleLabel::WidthAndHeight</enum>
@@ -18403,7 +18403,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos2_1</string>
+                <string>$(P)$(R)L_Pos2_1</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -18454,7 +18454,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos2_1_RBV</string>
+                <string>$(P)$(R)L_Pos2_1_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -18514,7 +18514,7 @@ border-radius: 2px;
                 </color>
             </property>
             <property name="text">
-                <string>pos3</string>
+                <string>Pos3</string>
             </property>
             <property name="fontScaleMode">
                 <enum>ESimpleLabel::WidthAndHeight</enum>
@@ -18544,7 +18544,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos3_1</string>
+                <string>$(P)$(R)L_Pos3_1</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -18595,7 +18595,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_pos3_1_RBV</string>
+                <string>$(P)$(R)L_Pos3_1_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">

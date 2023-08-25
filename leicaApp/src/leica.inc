@@ -368,24 +368,24 @@ int L_lockOnTokenName;
 #define L_lockOnTokenNameString "L_lockOnTokenName"
 int L_IsRelative;
 #define L_IsRelativeString "L_IsRelative"
-int L_pos1;
-#define L_pos1String "L_pos1"
-int L_pos2;
-#define L_pos2String "L_pos2"
-int L_pos3;
-#define L_pos3String "L_pos3"
+int L_Pos1;
+#define L_Pos1String "L_Pos1"
+int L_Pos2;
+#define L_Pos2String "L_Pos2"
+int L_Pos3;
+#define L_Pos3String "L_Pos3"
 int L_GoAndMeasureStationaryAsync;
 #define L_GoAndMeasureStationaryAsyncString "L_GoAndMeasureStationaryAsync"
 int L_lockOnTokenName_1;
 #define L_lockOnTokenName_1String "L_lockOnTokenName_1"
 int L_IsRelative_1;
 #define L_IsRelative_1String "L_IsRelative_1"
-int L_pos1_1;
-#define L_pos1_1String "L_pos1_1"
-int L_pos2_1;
-#define L_pos2_1String "L_pos2_1"
-int L_pos3_1;
-#define L_pos3_1String "L_pos3_1"
+int L_Pos1_1;
+#define L_Pos1_1String "L_Pos1_1"
+int L_Pos2_1;
+#define L_Pos2_1String "L_Pos2_1"
+int L_Pos3_1;
+#define L_Pos3_1String "L_Pos3_1"
 int L_MeasureStationary;
 #define L_MeasureStationaryString "L_MeasureStationary"
 int L_StartMeasurement;
@@ -1284,26 +1284,26 @@ int L_PositionTo;
 #define L_PositionToString "L_PositionTo"
 int L_searchTarget;
 #define L_searchTargetString "L_searchTarget"
-int L_isRelative;
-#define L_isRelativeString "L_isRelative"
-int L_Pos1;
-#define L_Pos1String "L_Pos1"
-int L_Pos2;
-#define L_Pos2String "L_Pos2"
-int L_Pos3;
-#define L_Pos3String "L_Pos3"
+int L_isRelative_2;
+#define L_isRelative_2String "L_isRelative_2"
+int L_Pos1_2;
+#define L_Pos1_2String "L_Pos1_2"
+int L_Pos2_2;
+#define L_Pos2_2String "L_Pos2_2"
+int L_Pos3_2;
+#define L_Pos3_2String "L_Pos3_2"
 int L_PositionToTarget;
 #define L_PositionToTargetString "L_PositionToTarget"
 int L_lockOnTokenName_2;
 #define L_lockOnTokenName_2String "L_lockOnTokenName_2"
-int L_isRelative_1;
-#define L_isRelative_1String "L_isRelative_1"
-int L_Pos1_1;
-#define L_Pos1_1String "L_Pos1_1"
-int L_Pos2_1;
-#define L_Pos2_1String "L_Pos2_1"
-int L_Pos3_1;
-#define L_Pos3_1String "L_Pos3_1"
+int L_isRelative_3;
+#define L_isRelative_3String "L_isRelative_3"
+int L_Pos1_3;
+#define L_Pos1_3String "L_Pos1_3"
+int L_Pos2_3;
+#define L_Pos2_3String "L_Pos2_3"
+int L_Pos3_3;
+#define L_Pos3_3String "L_Pos3_3"
 int L_Restart;
 #define L_RestartString "L_Restart"
 int L_ShutDown;

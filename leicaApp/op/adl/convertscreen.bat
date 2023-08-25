@@ -13,4 +13,9 @@ c:
 move /Y *.bob ../bob
 move /Y *.ui ../ui
 
+cd ../bob
+call doit.bat
+
+
+
 

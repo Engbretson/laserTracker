@@ -11983,7 +11983,7 @@ border-radius: 2px;
                 <enum>EPushButton::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_isRelative</string>
+                <string>$(P)$(R)L_isRelative_2</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -12022,7 +12022,7 @@ border-radius: 2px;
                 <enum>EPushButton::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_isRelative</string>
+                <string>$(P)$(R)L_isRelative_2</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -12061,7 +12061,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_isRelative_RBV</string>
+                <string>$(P)$(R)L_isRelative_2_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -12151,7 +12151,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos1</string>
+                <string>$(P)$(R)L_Pos1_2</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -12202,7 +12202,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos1_RBV</string>
+                <string>$(P)$(R)L_Pos1_2_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -12292,7 +12292,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos2</string>
+                <string>$(P)$(R)L_Pos2_2</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -12343,7 +12343,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos2_RBV</string>
+                <string>$(P)$(R)L_Pos2_2_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -12433,7 +12433,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos3</string>
+                <string>$(P)$(R)L_Pos3_2</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -12484,7 +12484,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos3_RBV</string>
+                <string>$(P)$(R)L_Pos3_2_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -12844,7 +12844,7 @@ border-radius: 2px;
                 <enum>EPushButton::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_isRelative_1</string>
+                <string>$(P)$(R)L_isRelative_3</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -12883,7 +12883,7 @@ border-radius: 2px;
                 <enum>EPushButton::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_isRelative_1</string>
+                <string>$(P)$(R)L_isRelative_3</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -12922,7 +12922,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_isRelative_1_RBV</string>
+                <string>$(P)$(R)L_isRelative_3_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -13012,7 +13012,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos1_1</string>
+                <string>$(P)$(R)L_Pos1_3</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -13063,7 +13063,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos1_1_RBV</string>
+                <string>$(P)$(R)L_Pos1_3_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -13153,7 +13153,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos2_1</string>
+                <string>$(P)$(R)L_Pos2_3</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -13204,7 +13204,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos2_1_RBV</string>
+                <string>$(P)$(R)L_Pos2_3_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -13294,7 +13294,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos3_1</string>
+                <string>$(P)$(R)L_Pos3_3</string>
             </property>
             <property name="foreground">
                 <color alpha="255">
@@ -13345,7 +13345,7 @@ border-radius: 2px;
                 <enum>caLineEdit::WidthAndHeight</enum>
             </property>
             <property name="channel">
-                <string>$(P)$(R)L_Pos3_1_RBV</string>
+                <string>$(P)$(R)L_Pos3_3_RBV</string>
             </property>
             <property name="foreground">
                 <color alpha="255">

@@ -5620,7 +5620,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="pos1"
+    textix="Pos1"
 	align="horiz. right"
 }
 "text entry" {
@@ -5631,7 +5631,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_pos1"
+     chan="$(P)$(R)L_Pos1"
      clr=14
      bclr=51
    }
@@ -5646,7 +5646,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_pos1_RBV"
+     chan="$(P)$(R)L_Pos1_RBV"
      clr=54
      bclr=4
    }
@@ -5663,7 +5663,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="pos2"
+    textix="Pos2"
 	align="horiz. right"
 }
 "text entry" {
@@ -5674,7 +5674,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_pos2"
+     chan="$(P)$(R)L_Pos2"
      clr=14
      bclr=51
    }
@@ -5689,7 +5689,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_pos2_RBV"
+     chan="$(P)$(R)L_Pos2_RBV"
      clr=54
      bclr=4
    }
@@ -5706,7 +5706,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="pos3"
+    textix="Pos3"
 	align="horiz. right"
 }
 "text entry" {
@@ -5717,7 +5717,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_pos3"
+     chan="$(P)$(R)L_Pos3"
      clr=14
      bclr=51
    }
@@ -5732,7 +5732,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_pos3_RBV"
+     chan="$(P)$(R)L_Pos3_RBV"
      clr=54
      bclr=4
    }
@@ -5922,7 +5922,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="pos1"
+    textix="Pos1"
 	align="horiz. right"
 }
 "text entry" {
@@ -5933,7 +5933,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_pos1_1"
+     chan="$(P)$(R)L_Pos1_1"
      clr=14
      bclr=51
    }
@@ -5948,7 +5948,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_pos1_1_RBV"
+     chan="$(P)$(R)L_Pos1_1_RBV"
      clr=54
      bclr=4
    }
@@ -5965,7 +5965,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="pos2"
+    textix="Pos2"
 	align="horiz. right"
 }
 "text entry" {
@@ -5976,7 +5976,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_pos2_1"
+     chan="$(P)$(R)L_Pos2_1"
      clr=14
      bclr=51
    }
@@ -5991,7 +5991,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_pos2_1_RBV"
+     chan="$(P)$(R)L_Pos2_1_RBV"
      clr=54
      bclr=4
    }
@@ -6008,7 +6008,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="pos3"
+    textix="Pos3"
 	align="horiz. right"
 }
 "text entry" {
@@ -6019,7 +6019,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_pos3_1"
+     chan="$(P)$(R)L_Pos3_1"
      clr=14
      bclr=51
    }
@@ -6034,7 +6034,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_pos3_1_RBV"
+     chan="$(P)$(R)L_Pos3_1_RBV"
      clr=54
      bclr=4
    }

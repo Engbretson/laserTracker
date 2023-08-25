@@ -80,73 +80,77 @@ using namespace LMF::Tracker::BasicTypes;
 /** Simulation detector driver; demonstrates most of the features that areaDetector drivers can support. */
 class /*epicsShareClass*/ leica : public ADDriver {
 public:
-    leica(const char *portName, int maxSizeX, int maxSizeY, NDDataType_t dataType,
-                int maxBuffers, size_t maxMemory,
-                int priority, int stackSize);
+	leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t dataType,
+		int maxBuffers, size_t maxMemory,
+		int priority, int stackSize);
 	~leica(void);
-	
-    /* These are the methods that we override from ADDriver */
- 	virtual asynStatus readInt32(asynUser* pasynUser, epicsInt32* value);
+
+	/* These are the methods that we override from ADDriver */
+	virtual asynStatus readInt32(asynUser* pasynUser, epicsInt32* value);
 	virtual asynStatus writeInt32(asynUser* pasynUser, epicsInt32 value);
 	virtual asynStatus writeOctet(asynUser* pasynUser, const char* value,
-			size_t maxChars, size_t* nActual);
+		size_t maxChars, size_t* nActual);
 
 
-    virtual void report(FILE *fp, int details);
- //   void simTask(); /**< Should be private, but gets called from C, so must be public */
- 	void initializeHardware(const char* portName);
-    void Do_Face();
-    void Do_Laser();
-    void Do_Settings();
+	virtual void report(FILE* fp, int details);
+	//   void simTask(); /**< Should be private, but gets called from C, so must be public */
+	void initializeHardware(const char* portName);
+	void Do_Face();
+	void Do_Laser();
+	void Do_Settings();
 
-    int L_noop;
+	int L_noop;
 #define L_noopString "L_noop"  
 #define FIRST_LEICA_PARAM L_noop
 
 #include "leica.inc"
 
-    int L_noop2;
+	int L_noop2;
 #define L_noop2String "L_noop2" 
 #define LAST_LEICA_PARAM L_noop2;
 #define NUM_PARAMS (&LAST_LEICA_PARAM - &FIRST_LEICA_PARAM + 1) 	
 
 protected:
- 
+
 private:
-    /* These are the methods that are new to this class */
+	/* These are the methods that are new to this class */
 //    int computeImage();
 
-    /* Our data */
-    epicsEventId startEventId_;
-    epicsEventId stopEventId_;
-    NDArray *pRaw_;
-    NDArray *pBackground_;
-    bool useBackground_;
-    NDArray *pRamp_;
-    NDArray *pPeak_;
-    NDArrayInfo arrayInfo_;
-    NDArray* pImage;
-	
-    // laser tracker related callbacks
+	/* Our data */
+	epicsEventId startEventId_;
+	epicsEventId stopEventId_;
+	NDArray* pRaw_;
+	NDArray* pBackground_;
+	bool useBackground_;
+	NDArray* pRamp_;
+	NDArray* pPeak_;
+	NDArrayInfo arrayInfo_;
+	NDArray* pImage;
 
-    static void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
-    static void OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ sender, double paramTemperature, double paramHumidity, double paramPressure);
-    static void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error);
-    static void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo);
-    static void OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfWarning^ warning);
-    static void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
-    static void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
-    static void OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
-    static void OnLaserChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
-    static void OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
-    static void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, LMF::Tracker::Enums::EMeasurementStatus paramNewValue);
+	// laser tracker related callbacks
 
-    static void OnFaceChanged(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue);
-    static void OnFaceChangeFinished(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue, LMF::Tracker::ErrorHandling::LmfException^ ex);
+	static void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
+	static void OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ sender, double paramTemperature, double paramHumidity, double paramPressure);
+	static void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error);
+	static void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo);
+	static void OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfWarning^ warning);
+	static void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
+	static void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+	static void OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+	static void OnLaserChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+	static void OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+	static void OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ sender, LMF::Tracker::Enums::EMeasurementStatus paramNewValue);
 
-    static void OnWarmChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
-    static void OnOnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
-//    static void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+	static void OnFaceChanged(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue);
+	static void OnFaceChangeFinished(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue, LMF::Tracker::ErrorHandling::LmfException^ ex);
+
+	static void OnWarmChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+	static void OnOnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+	//    static void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+	static void OnGetInclinationToGravityFinished(LMF::Tracker::Inclination::InclinationSensor^ sender, LMF::Tracker::Inclination::InclinationToGravity^ paramInclinationToGravity, LMF::Tracker::ErrorHandling::LmfException^ ex);
+	static void OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleReadout^ sender, LMF::Tracker::Inclination::BubbleReadoutArrivedEventArgs^ paramBubbleReadout);
+	static void OnIncChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+	static void OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitoring^ sender);
 };
 
 static leica* leica_;
@@ -154,8 +158,8 @@ static leica* leica_;
 
 ref class GlobalObjects {
 public:
-    static LMF::Tracker::Tracker^ LMFTracker;
-    static Connection^ con = gcnew Connection();
+	static LMF::Tracker::Tracker^ LMFTracker;
+	static Connection^ con = gcnew Connection();
 };
 
 const char* EDisplayUnitSystemStrings[] = { "Metric","Imperial" }; //ok
