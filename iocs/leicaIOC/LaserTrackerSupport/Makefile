@@ -13,10 +13,10 @@ BIN_INSTALLS    += ../LMF.Tracker.Connection.dll
 BIN_INSTALLS    += ../TrackerScope.exe
 
 # ProcServ Related
-BIN_INSTALLS    += ../msys-2.0.dll
-BIN_INSTALLS    += ../msys-gcc_s-seh-1.dll
-BIN_INSTALLS    += ../msys-stdc++-6.dll
-BIN_INSTALLS    += ../procServ.exe
+#BIN_INSTALLS    += ../msys-2.0.dll
+#BIN_INSTALLS    += ../msys-gcc_s-seh-1.dll
+#BIN_INSTALLS    += ../msys-stdc++-6.dll
+#BIN_INSTALLS    += ../procServ.exe
 
 
 #
@@ -25,8 +25,7 @@ BIN_INSTALLS    += ../procServ.exe
 #that some of those actually use/call. Maybe run time resolution??
 #
 
-
-# BUT . . .  we are not currently using an xx derived softIOC
+# BUT . . .  at the instant, not using an xxx derived softioc
  
 #BIN_INSTALLS    += ../cbw64.dll
 #BIN_INSTALLS    += ../libusb-1.0.dll

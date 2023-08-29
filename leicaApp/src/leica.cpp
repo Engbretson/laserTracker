@@ -342,6 +342,35 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 		GlobalObjects::LMFTracker->PositionTo(tempi, tempj, tempx, tempy, tempz);
 
 	}
+// OverviewCamera related stuff
+	else if (function == L_StartAsync) {
+		GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
+	}
+	else if (function == L_Stop) {
+		GlobalObjects::LMFTracker->OverviewCamera->Stop();
+	}
+
+// This info comes from a callback, and could be many targets seen . . . so which one?
+// Use the existing top level screen image thing, for now
+//	GlobalObjects::LMFTracker->OverviewCamera->MoveToPixel(x,y,width,height)
+
+	else if (function == L_Close) {
+		GlobalObjects::LMFTracker->OverviewCamera->Dialog->Close();
+	}
+	else if (function == L_Show) {
+		GlobalObjects::LMFTracker->OverviewCamera->Dialog->Show();
+	}
+	else if (function == L_ShowDialog) {
+	GlobalObjects::LMFTracker->OverviewCamera->Dialog->ShowDialog();
+	}
+// needs a process id?
+//	else if (function == L_ShowOnProcess) {
+//	GlobalObjects::LMFTracker->OverviewCamera->Dialog->ShowOnProcess(id);
+//	}
+	else if (function == L_ShowTopmost) {
+	GlobalObjects::LMFTracker->OverviewCamera->Dialog->ShowTopmost();
+	}
+
 	else {
 		/* All other parameters just get set in parameter list, no need to
 		 * act on them here */
@@ -479,8 +508,8 @@ void leica::Do_Face(void)
 	GlobalObjects::LMFTracker->Face->ChangeFinished += gcnew LMF::Tracker::Face::ChangeFinishedHandler(&OnFaceChangeFinished);
 
 
-	std::cout << "Face: isface1: " << TFS[GlobalObjects::LMFTracker->Face->IsFace1] << std::endl;
-	std::cout << "Face: Value: " << EFaceStrings[(int)GlobalObjects::LMFTracker->Face->Value] << std::endl;
+	std::cout << " Face: isface1: " << TFS[GlobalObjects::LMFTracker->Face->IsFace1] << std::endl;
+	std::cout << " Face: Value: " << EFaceStrings[(int)GlobalObjects::LMFTracker->Face->Value] << std::endl;
 
 	// Just doing the follow as a value check here just to see if it works
 
@@ -510,14 +539,14 @@ void leica::Do_Laser(void)
 
 	dt = GlobalObjects::LMFTracker->Laser->WakeUpTime;
 
-	std::cout << "Wakeup Time: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+	std::cout << " Wakeup Time: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 	leica_->setStringParam(leica_->L_WakeUpTime, (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")));
 
-	std::cout << "Is Laser Warmed Up: Label: " << (decode)(GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Label) << " Value: " << TFS[GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Value] << std::endl;
+	std::cout << " Is Laser Warmed Up: Label: " << (decode)(GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Label) << " Value: " << TFS[GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Value] << std::endl;
 	leica_->setStringParam(leica_->L_Label_8, (decode)(GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Label));
 	leica_->setIntegerParam(leica_->L_IsWarmValue, GlobalObjects::LMFTracker->Laser->IsLaserWarmedUp->Value);
 
-	std::cout << "Is on: " << (decode)(GlobalObjects::LMFTracker->Laser->IsOn->Label) << " Value : " << TFS[GlobalObjects::LMFTracker->Laser->IsOn->Value] << std::endl;
+	std::cout << " Is on: " << (decode)(GlobalObjects::LMFTracker->Laser->IsOn->Label) << " Value : " << TFS[GlobalObjects::LMFTracker->Laser->IsOn->Value] << std::endl;
 	leica_->setStringParam(leica_->L_Label_9, (decode)(GlobalObjects::LMFTracker->Laser->IsOn->Label));
 	leica_->setIntegerParam(leica_->L_IsOnValue, GlobalObjects::LMFTracker->Laser->IsOn->Value);
 
@@ -659,15 +688,15 @@ leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits
 }
 
 
-void Do_OverviewCamera(void)
+void leica::Do_OverviewCamera(void)
 {
 	std::cout << std::endl;
 	std::cout << "OverviewCamera\n";
 
+	// this comes back as a poubter to a type that I can not reasonable access from within epics 
 //	GlobalObjects::LMFTracker->OverviewCamera->ImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::ImageArrivedHandler(&OnImageArrived);
 
-
-//	GlobalObjects::LMFTracker->OverviewCamera->WPFBitmapImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::WPFBitmapImageArrivedHandler(&OnWPFBitmapImageArrived);
+	GlobalObjects::LMFTracker->OverviewCamera->WPFBitmapImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::WPFBitmapImageArrivedHandler(&OnWPFBitmapImageArrived);
 
 	// METHODS
 
@@ -675,21 +704,35 @@ void Do_OverviewCamera(void)
 	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Medium);
 	//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Low);
 
+// code here if I actually wanted to do something like test some looking for images and then saving them instead of NDArraying them
 	//	LMFTracker->OverviewCamera->MoveToPixel
 	//	LMFTracker->OverviewCamera->StartAsync();
 //	GlobalObjects::LMFTracker->OverviewCamera->Stop();
 
-	GlobalObjects::LMFTracker->OverviewCamera->Brightness->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+	GlobalObjects::LMFTracker->OverviewCamera->Brightness->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnBrightnessChanged);
 
 
-	Do_DoubleValueWithRange("Brightness", GlobalObjects::LMFTracker->OverviewCamera->Brightness);
-	Do_DoubleValueWithRange("Constrast", GlobalObjects::LMFTracker->OverviewCamera->Contrast);
+	Do_DoubleValueWithRange(" Brightness", GlobalObjects::LMFTracker->OverviewCamera->Brightness);
+	Do_DoubleValueWithRange(" Constrast", GlobalObjects::LMFTracker->OverviewCamera->Contrast);
+
+#define PV_IT_2(a,b,c,d,thing) \
+leica_->setStringParam(leica_->L_Label_##a, (decode)(##thing->Label)); \
+leica_->setDoubleParam(leica_->L_MaxValue_##b, ##thing->MaxValue); \
+leica_->setDoubleParam(leica_->L_MaxValueInBaseUnits_##b, ##thing->MaxValueInBaseUnits); \
+leica_->setDoubleParam(leica_->L_MinValue_##b, ##thing->MinValue); \
+leica_->setDoubleParam(leica_->L_MinValueInBaseUnits_##b, ##thing->MinValueInBaseUnits); \
+leica_->setStringParam(leica_->L_UnitString_##c, (decode)(##thing->UnitString)); \
+leica_->setStringParam(leica_->L_UnitType_##c, EUnitTypeStrings[(int)##thing->UnitType]); \
+leica_->setDoubleParam(leica_->L_Value_##d, ##thing->Value); \
+leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##c, ##thing->ValueInBaseUnits); 
+
+
+	PV_IT_2(36, 8, 16, 28, GlobalObjects::LMFTracker->OverviewCamera->Brightness);
+	PV_IT_2(37, 9, 17, 29, GlobalObjects::LMFTracker->OverviewCamera->Contrast);
 
 	// more Methods
 
-	GlobalObjects::LMFTracker->OverviewCamera->Dialog->Closed += gcnew LMF::Tracker::OVC::Dialog::ClosedHandler(&OnClosed);
-			//+= gcnew LMF::Tracker::OVC::Dialog::ClosedHandler(&OnClosed);
-
+	GlobalObjects::LMFTracker->OverviewCamera->Dialog->Closed += gcnew LMF::Tracker::OVC::Dialog::ClosedHandler(&OnDialogClosed);
 
 	//	LMFTracker->OverviewCamera->Dialog->Close();
 	//	LMFTracker->OverviewCamera->Dialog->Show();
@@ -697,9 +740,100 @@ void Do_OverviewCamera(void)
 	//	LMFTracker->OverviewCamera->Dialog->ShowOnProcess();
 	//	LMFTracker->OverviewCamera->Dialog->ShowTopmost();
 
+	std::cout << std::endl;
+	leica_->callParamCallbacks();
+}
 
+void leica::Do_QuickRelease(void)
+{
+	std::cout << std::endl;
+	std::cout << "QuickRelease\n";
+
+	GlobalObjects::LMFTracker->QuickRelease->Changed+= gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnQuickChanged);
+
+	std::cout << " QuickRelease: Label: " << (decode)(GlobalObjects::LMFTracker->QuickRelease->Label) << " Value: " << TFS[GlobalObjects::LMFTracker->QuickRelease->Value] << std::endl;
+	leica_->setStringParam(leica_->L_Label_41, (decode)(GlobalObjects::LMFTracker->QuickRelease->Label));
+	leica_->setIntegerParam(leica_->L_Value_33, GlobalObjects::LMFTracker->QuickRelease->Value);
 
 	std::cout << std::endl;
+	leica_->callParamCallbacks();
+}
+
+void leica::Do_PowerSource(void)
+{
+	std::cout << std::endl;
+	std::cout << "PowerSource\n";
+
+	// does not seem to exist (at run time!) and a try block doesn't correct trap it Maybe only valid on Battery operated units
+
+	/*
+		try {
+			LMFTracker->PowerSource->SensorPowerStatus->Level->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+			std::cout << "Sensor Power Status: Label: " << (decode)(LMFTracker->PowerSource->SensorPowerStatus->Level->Label) << " Value: " << LMFTracker->PowerSource->SensorPowerStatus->Level->Value << std::endl;
+		}
+		catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+		{
+			std::cout << "Sensor Power Status Error Code: " << e->Number << " " << (decode)(e->Description) << std::endl;
+		}
+	*/
+
+	GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Changed += gcnew LMF::Tracker::BasicTypes::EnumTypes::ReadOnlyPowerSourceValue::ChangedEventHandler(&OnPowerChanged);
+
+	Do_ReadOnlyDoubleValue("SensorPowerStatus", GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->Level);
+
+//	This has no useful information so not going to even trouble to populate PVs
+	
+
+	std::cout << "RunsOn: Label: " << (decode)(GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Label) <<
+		" Value: " << EPowerSourceStrings[(int)GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Value] <<
+		//		" Value: " << (int)LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Value <<
+		std::endl;
+	leica_->setStringParam(leica_->L_Label_40, (decode)(GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Label));
+	leica_->setStringParam(leica_->L_Value_32, EPowerSourceStrings[(int)GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Value]);
+
+	std::cout << std::endl;
+	leica_->callParamCallbacks();
+
+}
+
+
+
+void leica::Do_PowerLock(void)
+{
+	std::cout << std::endl;
+	std::cout << "PowerLock\n";
+	GlobalObjects::LMFTracker->PowerLock->UsePowerLock->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnPowerLockChanged);
+
+	std::cout << " Use Power Lock: Label: " << (decode)(GlobalObjects::LMFTracker->PowerLock->UsePowerLock->Label) << " Value: " << TFS[GlobalObjects::LMFTracker->PowerLock->UsePowerLock->Value] << std::endl;
+
+	leica_->setStringParam(leica_->L_Label_38, (decode)(GlobalObjects::LMFTracker->PowerLock->UsePowerLock->Label));
+	leica_->setIntegerParam(leica_->L_Value_30, (int)GlobalObjects::LMFTracker->PowerLock->UsePowerLock->Value);
+
+	LMF::Tracker::OVC::ATRCoordinateCollection^ gettargetdirections = GlobalObjects::LMFTracker->PowerLock->GetTargetDirections();
+
+	std::cout << " Get Target Directions Count: " << gettargetdirections->Count << std::endl;
+	//???
+	leica_->setIntegerParam(leica_->L_GetTargetDirections, gettargetdirections->Count);
+
+	// And this is a heck of a lot easier to get the coordinates of the trckers in the camera
+	for (int i = 0; i < gettargetdirections->Count; i++)
+	{
+		std::cout << std::endl;
+
+		LMF::Tracker::OVC::ATRCoordinate^ thing = gettargetdirections[i];
+
+		Do_SimpleDoubleValue("  AngleHz", thing->AngleHz);
+		Do_SimpleDoubleValue("  AngleVt", thing->AngleVt);
+		Do_SimpleDoubleValue("  PixelX", thing->PixelX);
+		Do_SimpleDoubleValue("  PixelY", thing->PixelY);
+		//		std::cout << std::endl;
+
+// I did not actually make elements to decode anything here - again, this info typically back in a timely manner via a callback
+	}
+
+	std::cout << std::endl;
+	leica_->callParamCallbacks();
+
 }
 
 /** Constructor for leica; most parameters are simply passed to ADDriver::ADDriver.
@@ -748,6 +882,9 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	Do_Laser();
 	Do_Settings();
 	Do_OverviewCamera();
+	Do_PowerLock();
+	Do_PowerSource();
+	Do_QuickRelease();
 
 	// Global top level parameters	
 
@@ -760,6 +897,8 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	setIntegerParam(ADMaxSizeY, 1920);
 
 	setStringParam(ADManufacturer, "Leica");
+
+	std::cout << "Top Level Information" << std::endl;
 
 	String^ Comment = GlobalObjects::LMFTracker->Comment;
 	cout << "Comment: " << (decode)(Comment) << "\n";
@@ -837,6 +976,10 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	// if you don't pick mediuam, you get a mix of mostlu medium res images and maybe 2 fps of the larger or smaller ones.
 
 // now done in the overviewCamera call, if done at all
+
+//	GlobalObjects::LMFTracker->OverviewCamera->WPFBitmapImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::WPFBitmapImageArrivedHandler(&OnWPFBitmapImageArrived);
+//	GlobalObjects::LMFTracker->OverviewCamera->WPFBitmapImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::WPFBitmapImageArrivedHandler(&OnWPFBitmapImageArrived);
+
 /*
 
 //	GlobalObjects::LMFTracker->OverviewCamera->ImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::ImageArrivedHandler(&OnImageArrived);
@@ -1781,4 +1924,52 @@ void leica::OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitorin
 	//	throw gcnew System::NotImplementedException();
 	std::cout << "OnInclinationChanged" << std::endl;
 
+}
+
+void leica::OnBrightnessChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
+{
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnBrightnessChanged: " << 
+	 paramNewValue << std::endl;
+
+}
+
+
+void leica::OnDialogClosed(LMF::Tracker::OVC::Dialog^ sender)
+{
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnDialogClosed" << std::endl;
+
+}
+
+
+void leica::OnQuickChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
+{
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnQuickReleaseChanged: " << 
+		TFS[paramNewValue] << 
+		std::endl;
+}
+
+
+void leica::OnPowerChanged(LMF::Tracker::BasicTypes::EnumTypes::ReadOnlyPowerSourceValue^ sender, LMF::Tracker::Enums::EPowerSource paramNewValue)
+{
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnPowerChanged: " <<
+		EPowerSourceStrings[int(paramNewValue)] <<
+		std::endl;
+}
+
+
+void leica::OnSourceChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
+{
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnPowerSourceChanged " << std::endl;
+}
+
+
+void leica::OnPowerLockChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
+{
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnPowerLockChanged " << std::endl;
 }

@@ -99,6 +99,10 @@ public:
 	void Do_Laser();
 	void Do_Settings();
 	void Do_OverviewCamera();
+	void Do_PowerLock();
+	void Do_PowerSource();
+	void Do_QuickRelease();
+
 
 	int L_noop;
 #define L_noopString "L_noop"  
@@ -152,6 +156,15 @@ private:
 	static void OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleReadout^ sender, LMF::Tracker::Inclination::BubbleReadoutArrivedEventArgs^ paramBubbleReadout);
 	static void OnIncChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 	static void OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitoring^ sender);
+	static void OnChanged1(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue);
+// can't do this from within epics
+//	static void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+	static void OnBrightnessChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
+	static void OnDialogClosed(LMF::Tracker::OVC::Dialog^ sender);
+	static void OnQuickChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+	static void OnPowerChanged(LMF::Tracker::BasicTypes::EnumTypes::ReadOnlyPowerSourceValue^ sender, LMF::Tracker::Enums::EPowerSource paramNewValue);
+	static void OnSourceChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
+	static void OnPowerLockChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 };
 
 static leica* leica_;
