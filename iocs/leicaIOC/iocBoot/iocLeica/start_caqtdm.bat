@@ -1,5 +1,5 @@
 
-set CAQTDM_DISPLAY_PATH=C:\epics\areaDetector-R3-12-1\LaserTracker-R2-0\leicaApp\op\ui;C:\epics\areaDetector-R3-12-1\ADCore-R3-12-1\ADApp\op\ui\autoconvert;C:\epics\autosave-R5-10-2\asApp\op\ui\autoconvert
+set CAQTDM_DISPLAY_PATH=C:\epics\areaDetector-R3-12-1\LaserTracker-R2-1\leicaApp\op\ui;C:\epics\areaDetector-R3-12-1\ADCore-R3-12-1\ADApp\op\ui\autoconvert;C:\epics\autosave-R5-10-2\asApp\op\ui\autoconvert
 
 set EPICS_CA_AUTO_ADDR_LIST=NO
 set EPICS_CA_ADDR_LIST=164.54.104.22

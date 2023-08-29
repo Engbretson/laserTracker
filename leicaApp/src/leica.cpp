@@ -318,6 +318,19 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	else if (function == L_OpenTrackerScope) {
 		GlobalObjects::LMFTracker->OpenTrackerScope();
 	}
+	else if (function == L_ShutDown) {
+		GlobalObjects::LMFTracker->ShutDown();
+	}
+// no longer exist in latest sdk ???
+//	else if (function == L_Restart) {
+//		GlobalObjects::LMFTracker->Restart();
+//	}
+	else if (function == L_StopMove) {
+		GlobalObjects::LMFTracker->StopMove();
+	}
+	else if (function == L_Initialize) {
+		GlobalObjects::LMFTracker->Initialize();
+	}
 	else if (function == L_PositionTo) {
 		double tempx, tempy, tempz;
 		int tempi, tempj;
@@ -645,6 +658,50 @@ leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits
 	leica_->callParamCallbacks();
 }
 
+
+void Do_OverviewCamera(void)
+{
+	std::cout << std::endl;
+	std::cout << "OverviewCamera\n";
+
+//	GlobalObjects::LMFTracker->OverviewCamera->ImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::ImageArrivedHandler(&OnImageArrived);
+
+
+//	GlobalObjects::LMFTracker->OverviewCamera->WPFBitmapImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::WPFBitmapImageArrivedHandler(&OnWPFBitmapImageArrived);
+
+	// METHODS
+
+	//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::High);
+	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Medium);
+	//	GlobalObjects::LMFTracker->OverviewCamera->GetStillImage(LMF::Tracker::Enums::EStillImageMode::Low);
+
+	//	LMFTracker->OverviewCamera->MoveToPixel
+	//	LMFTracker->OverviewCamera->StartAsync();
+//	GlobalObjects::LMFTracker->OverviewCamera->Stop();
+
+	GlobalObjects::LMFTracker->OverviewCamera->Brightness->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+
+
+	Do_DoubleValueWithRange("Brightness", GlobalObjects::LMFTracker->OverviewCamera->Brightness);
+	Do_DoubleValueWithRange("Constrast", GlobalObjects::LMFTracker->OverviewCamera->Contrast);
+
+	// more Methods
+
+	GlobalObjects::LMFTracker->OverviewCamera->Dialog->Closed += gcnew LMF::Tracker::OVC::Dialog::ClosedHandler(&OnClosed);
+			//+= gcnew LMF::Tracker::OVC::Dialog::ClosedHandler(&OnClosed);
+
+
+	//	LMFTracker->OverviewCamera->Dialog->Close();
+	//	LMFTracker->OverviewCamera->Dialog->Show();
+	//	LMFTracker->OverviewCamera->Dialog->ShowDialog();
+	//	LMFTracker->OverviewCamera->Dialog->ShowOnProcess();
+	//	LMFTracker->OverviewCamera->Dialog->ShowTopmost();
+
+
+
+	std::cout << std::endl;
+}
+
 /** Constructor for leica; most parameters are simply passed to ADDriver::ADDriver.
   * After calling the base class constructor this method creates a thread to compute the simulated detector data,
   * and sets reasonable default values for parameters defined in this class, asynNDArrayDriver and ADDriver.
@@ -690,6 +747,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	Do_Face();
 	Do_Laser();
 	Do_Settings();
+	Do_OverviewCamera();
 
 	// Global top level parameters	
 
@@ -778,7 +836,8 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 	// if you don't pick mediuam, you get a mix of mostlu medium res images and maybe 2 fps of the larger or smaller ones.
 
-
+// now done in the overviewCamera call, if done at all
+/*
 
 //	GlobalObjects::LMFTracker->OverviewCamera->ImageArrived += gcnew LMF::Tracker::OVC::OverviewCamera::ImageArrivedHandler(&OnImageArrived);
 
@@ -794,6 +853,8 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
 	Sleep(1000);
 	GlobalObjects::LMFTracker->OverviewCamera->Stop();
+*/
+
 
 	GlobalObjects::LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
 	// also not very helpful

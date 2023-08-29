@@ -1,7 +1,7 @@
 
 
 rem set EPICS_DISPLAY_PATH=D:\epics\LaserTracker-R1-2\xxxApp\op\adl;D:\epics\areaDetector\ADCore\ADApp\op\adl
-set EPICS_DISPLAY_PATH=C:\epics\areaDetector-R3-12-1\LaserTracker-R2-0\leicaApp\op\adl;C:\epics\areaDetector-R3-12-1\ADCore-R3-12-1\ADApp\op\adl;C:\epics\asyn-R4-44-2\opi\medm;C:\epics\autosave-R5-10-2\asApp\op\adl;C:\epics\iocStats-3-1-16\op\adl
+set EPICS_DISPLAY_PATH=C:\epics\areaDetector-R3-12-1\LaserTracker-R2-1\leicaApp\op\adl;C:\epics\areaDetector-R3-12-1\ADCore-R3-12-1\ADApp\op\adl;C:\epics\asyn-R4-44-2\opi\medm;C:\epics\autosave-R5-10-2\asApp\op\adl;C:\epics\iocStats-3-1-16\op\adl
 rem set EPICS_CA_AUTO_ADDR_LIST=NOC:\epics\areaDetector-R3-12-1\ADCore-R3-12-1\ADApp\op\adl
 rem set EPICS_CA_ADDR_LIST=192.168.0.53
 

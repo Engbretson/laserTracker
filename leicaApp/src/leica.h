@@ -98,6 +98,7 @@ public:
 	void Do_Face();
 	void Do_Laser();
 	void Do_Settings();
+	void Do_OverviewCamera();
 
 	int L_noop;
 #define L_noopString "L_noop"  
