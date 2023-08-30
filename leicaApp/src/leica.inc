@@ -72,6 +72,16 @@ int L_StartBubbleReadoutStream;
 #define L_StartBubbleReadoutStreamString "L_StartBubbleReadoutStream"
 int L_StopBubbleReadoutStream;
 #define L_StopBubbleReadoutStreamString "L_StopBubbleReadoutStream"
+int L_InclinationL;
+#define L_InclinationLString "L_InclinationL"
+int L_InclinationT;
+#define L_InclinationTString "L_InclinationT"
+int L_InclinationInValidRange;
+#define L_InclinationInValidRangeString "L_InclinationInValidRange"
+int L_InclinationInWorkingRange;
+#define L_InclinationInWorkingRangeString "L_InclinationInWorkingRange"
+int L_BubbleReadoutTimeStamp;
+#define L_BubbleReadoutTimeStampString "L_BubbleReadoutTimeStamp"
 int L_Label;
 #define L_LabelString "L_Label"
 int L_Value_1;

@@ -5,7 +5,7 @@ set OLDDIR=%CD%
 cd E:\phoebus-4.7.3
 e:
 
-for  %%a in (C:\epics\areaDetector-R3-12-1\LaserTracker-R2-0\leicaApp\op\adl\*.adl) do call phoebus -main org.csstudio.display.converter.medm.Converter -force  "%%a" 
+for  %%a in (C:\epics\areaDetector-R3-12-1\LaserTracker-R2-1\leicaApp\op\adl\*.adl) do call phoebus -main org.csstudio.display.converter.medm.Converter -force  "%%a" 
 
 cd %OLDDIR%
 c:

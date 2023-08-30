@@ -102,6 +102,7 @@ public:
 	void Do_PowerLock();
 	void Do_PowerSource();
 	void Do_QuickRelease();
+	void Do_InclinationSensor();
 
 
 	int L_noop;
@@ -157,8 +158,8 @@ private:
 	static void OnIncChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 	static void OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitoring^ sender);
 	static void OnChanged1(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue);
-// can't do this from within epics
-//	static void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+	// can't do this from within epics
+	//	static void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
 	static void OnBrightnessChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
 	static void OnDialogClosed(LMF::Tracker::OVC::Dialog^ sender);
 	static void OnQuickChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);

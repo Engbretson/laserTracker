@@ -321,10 +321,10 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	else if (function == L_ShutDown) {
 		GlobalObjects::LMFTracker->ShutDown();
 	}
-// no longer exist in latest sdk ???
-//	else if (function == L_Restart) {
-//		GlobalObjects::LMFTracker->Restart();
-//	}
+	// no longer exist in latest sdk ???
+	//	else if (function == L_Restart) {
+	//		GlobalObjects::LMFTracker->Restart();
+	//	}
 	else if (function == L_StopMove) {
 		GlobalObjects::LMFTracker->StopMove();
 	}
@@ -342,7 +342,7 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 		GlobalObjects::LMFTracker->PositionTo(tempi, tempj, tempx, tempy, tempz);
 
 	}
-// OverviewCamera related stuff
+	// OverviewCamera related stuff
 	else if (function == L_StartAsync) {
 		GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
 	}
@@ -350,9 +350,9 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 		GlobalObjects::LMFTracker->OverviewCamera->Stop();
 	}
 
-// This info comes from a callback, and could be many targets seen . . . so which one?
-// Use the existing top level screen image thing, for now
-//	GlobalObjects::LMFTracker->OverviewCamera->MoveToPixel(x,y,width,height)
+	// This info comes from a callback, and could be many targets seen . . . so which one?
+	// Use the existing top level screen image thing, for now
+	//	GlobalObjects::LMFTracker->OverviewCamera->MoveToPixel(x,y,width,height)
 
 	else if (function == L_Close) {
 		GlobalObjects::LMFTracker->OverviewCamera->Dialog->Close();
@@ -361,14 +361,14 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 		GlobalObjects::LMFTracker->OverviewCamera->Dialog->Show();
 	}
 	else if (function == L_ShowDialog) {
-	GlobalObjects::LMFTracker->OverviewCamera->Dialog->ShowDialog();
+		GlobalObjects::LMFTracker->OverviewCamera->Dialog->ShowDialog();
 	}
-// needs a process id?
-//	else if (function == L_ShowOnProcess) {
-//	GlobalObjects::LMFTracker->OverviewCamera->Dialog->ShowOnProcess(id);
-//	}
+	// needs a process id?
+	//	else if (function == L_ShowOnProcess) {
+	//	GlobalObjects::LMFTracker->OverviewCamera->Dialog->ShowOnProcess(id);
+	//	}
 	else if (function == L_ShowTopmost) {
-	GlobalObjects::LMFTracker->OverviewCamera->Dialog->ShowTopmost();
+		GlobalObjects::LMFTracker->OverviewCamera->Dialog->ShowTopmost();
 	}
 
 	else {
@@ -749,7 +749,7 @@ void leica::Do_QuickRelease(void)
 	std::cout << std::endl;
 	std::cout << "QuickRelease\n";
 
-	GlobalObjects::LMFTracker->QuickRelease->Changed+= gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnQuickChanged);
+	GlobalObjects::LMFTracker->QuickRelease->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnQuickChanged);
 
 	std::cout << " QuickRelease: Label: " << (decode)(GlobalObjects::LMFTracker->QuickRelease->Label) << " Value: " << TFS[GlobalObjects::LMFTracker->QuickRelease->Value] << std::endl;
 	leica_->setStringParam(leica_->L_Label_41, (decode)(GlobalObjects::LMFTracker->QuickRelease->Label));
@@ -781,8 +781,8 @@ void leica::Do_PowerSource(void)
 
 	Do_ReadOnlyDoubleValue("SensorPowerStatus", GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->Level);
 
-//	This has no useful information so not going to even trouble to populate PVs
-	
+	//	This has no useful information so not going to even trouble to populate PVs
+
 
 	std::cout << "RunsOn: Label: " << (decode)(GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Label) <<
 		" Value: " << EPowerSourceStrings[(int)GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Value] <<
@@ -812,10 +812,12 @@ void leica::Do_PowerLock(void)
 	LMF::Tracker::OVC::ATRCoordinateCollection^ gettargetdirections = GlobalObjects::LMFTracker->PowerLock->GetTargetDirections();
 
 	std::cout << " Get Target Directions Count: " << gettargetdirections->Count << std::endl;
-	//???
-	leica_->setIntegerParam(leica_->L_GetTargetDirections, gettargetdirections->Count);
 
-	// And this is a heck of a lot easier to get the coordinates of the trckers in the camera
+	// This is all handled elsewhere via callback
+	// I have limited use to what you can do with just 2 angles and pixel locations without knowing the image size 
+		// And it is a heck of a lot easier to get the coordinates of the trackers in the camera callbacks
+	// NOTHING uses this as parameters. The number are *twice* the values  as returned by the image callbacks
+	// so printing them here, and not wiring *anything* else related unless and until someone has an actual use case
 	for (int i = 0; i < gettargetdirections->Count; i++)
 	{
 		std::cout << std::endl;
@@ -835,6 +837,113 @@ void leica::Do_PowerLock(void)
 	leica_->callParamCallbacks();
 
 }
+
+void leica::Do_InclinationSensor(void)
+{
+	std::cout << std::endl;
+	std::cout << "InclinationSensor\n";
+
+	std::cout << "Checking Inclination to Gravity . . . " << std::endl;
+
+	GlobalObjects::LMFTracker->InclinationSensor->GetInclinationToGravityFinished += gcnew LMF::Tracker::Inclination::InclinationSensor::GetInclinationToGravityFinishedHandler(&OnGetInclinationToGravityFinished);
+	GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->BubbleReadoutArrived += gcnew LMF::Tracker::Inclination::InclinationBubbleReadout::BubbleReadoutArrivedHandler(&OnBubbleReadoutArrived);
+	GlobalObjects::LMFTracker->InclinationSensor->InclinedToGravity->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnIncChanged);
+	GlobalObjects::LMFTracker->InclinationSensor->Monitoring->InclinationChanged += gcnew LMF::Tracker::Inclination::InclinationMonitoring::InclinationChangedHandler(&OnInclinationChanged);
+
+//	if (GlobalObjects::LMFTracker->InclinationSensor->InclinedToGravity->Value == false)
+// always do it, seems to be a heck of a lot less noisy with the callbacks 	
+	if (1)
+	{
+		std::cout << "Performing InclinationToGravity . . . Please Wait . . .  " << std::endl;
+
+		try {
+			GlobalObjects::LMFTracker->InclinationSensor->GetInclinationToGravity();
+			GlobalObjects::LMFTracker->InclinationSensor->InclinedToGravity->Value = true;
+			GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->StartBubbleReadoutStream();
+		}
+		catch (...)
+		{
+			std::cout << "Failed!" << std::endl;
+		}
+
+	} 
+	else
+		std::cout << "Already Inclined . . . Using last values . . . " << std::endl;
+
+	// methods
+	/*
+		LMFTracker->InclinationSensor->GetInclinationToGravity();
+		LMFTracker->InclinationSensor->GetInclinationToGravityAsync();
+		LMFTracker->InclinationSensor->Measure();
+	*/
+
+
+	GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Active->Value = true;
+
+	std::cout << "Attemping StartBubbleReadoutStream . . . " << std::endl;
+
+	// This might be about 1/2 event, just doing this to try to capture the event.
+
+//	GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->StartBubbleReadoutStream();
+//	Sleep(20);
+//	Sleep(11000);
+//	GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->StopBubbleReadoutStream();
+
+	// and may as well turn on, if we can, so that we don't have to try block it at the instant
+
+	try {
+		GlobalObjects::LMFTracker->InclinationSensor->Measure();
+	}
+	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
+	{
+		std::cout << "Error exception " << e->Number << " " << (decode)(e->Description) << std::endl;;
+		//		std::cout << "Hit an exception trying to decode Check For Errors  \n";
+	}
+
+	DateTime^ dt;
+	dt = GlobalObjects::LMFTracker->InclinationSensor->CurrentInclinationToGravity->TimeStamp;
+	std::cout << "CurrentInclinationToGravity: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+
+	Do_SimpleDoubleValue("InclinationRotX", GlobalObjects::LMFTracker->InclinationSensor->CurrentInclinationToGravity->InclinationRotX);
+	Do_SimpleDoubleValue("InclinationRotY", GlobalObjects::LMFTracker->InclinationSensor->CurrentInclinationToGravity->InclinationRotY);
+	Do_BoolValue("", GlobalObjects::LMFTracker->InclinationSensor->InclinedToGravity);
+
+//	GlobalObjects::LMFTracker->InclinationSensor->Monitoring->InclinationChanged += gcnew LMF::Tracker::Inclination::InclinationMonitoring::InclinationChangedHandler(&OnInclinationChanged);
+
+	dt = GlobalObjects::LMFTracker->InclinationSensor->Monitoring->ThresholdExceededTime;
+	std::cout << "ThresholdExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+
+	dt = GlobalObjects::LMFTracker->InclinationSensor->Monitoring->WorkingRangeExceededTime;
+	std::cout << "WorkingRangeExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+
+	Do_BoolValue("", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Active);
+
+	dt = GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Current->TimeStamp;
+	std::cout << "Current: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+
+	Do_SimpleDoubleValue("X", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Current->X);
+	Do_SimpleDoubleValue("Y", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Current->Y);
+
+	Do_ReadOnlyDoubleValue("Interval", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Interval);
+	Do_ReadOnlyDoubleValue("Theshold", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Threshold);
+	Do_BoolValue("", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->ThresholdExceeded);
+	Do_BoolValue("", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->WorkingRangeExceeded);
+
+	//	LMFTracker->InclinationSensor->Monitoring->Reset();
+
+		// This might be about 1/2 event, just doing this to try to capture the event, again
+
+//	GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->StartBubbleReadoutStream();
+//	Sleep(20);
+//	Sleep(11000);
+//	GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->StopBubbleReadoutStream();
+
+
+
+	std::cout << std::endl;
+
+}
+
 
 /** Constructor for leica; most parameters are simply passed to ADDriver::ADDriver.
   * After calling the base class constructor this method creates a thread to compute the simulated detector data,
@@ -885,6 +994,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	Do_PowerLock();
 	Do_PowerSource();
 	Do_QuickRelease();
+	Do_InclinationSensor();
 
 	// Global top level parameters	
 
@@ -948,6 +1058,8 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 
 	std::cout << std::endl;
 
+// This is now all down in the Do_inclination call . . .  
+/*
 	// quick and dirty trun on orient to gravity
 
 	std::cout << "Performing Inclination to Gravity . . . Please wait . . ." << std::endl;
@@ -969,6 +1081,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	}
 
 
+*/
 
 
 	// this code you can't actually do unless a tracker actually exists
@@ -1574,7 +1687,7 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 		float blue = static_cast<float>(pixelData[i + 2]);
 
 		grayscaleData[i / 4] = static_cast<uint8_t>(0.299 * red + 0.587 * green + 0.114 * blue);
-}
+	}
 	int ndims = 2;
 #else
 	std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight * 4);
@@ -1890,11 +2003,17 @@ void leica::OnGetInclinationToGravityFinished(LMF::Tracker::Inclination::Inclina
 
 }
 
+int callbackcount = 0;
 
 void leica::OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleReadout^ sender, LMF::Tracker::Inclination::BubbleReadoutArrivedEventArgs^ paramBubbleReadout)
 {
 	//	throw gcnew System::NotImplementedException();
-	return;
+	callbackcount++;
+	if (callbackcount < 100)
+		return;
+	callbackcount = 0;
+
+// 50 events, is about 2.5 seconds, so try this as 10  seconds, with a special case on startup so I get a test backback during initialization
 
 	DateTime^ dt;
 	dt = paramBubbleReadout->TimeStamp;
@@ -1909,6 +2028,7 @@ void leica::OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleR
 		" TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) <<
 		std::endl;
 
+
 }
 
 
@@ -1922,39 +2042,80 @@ void leica::OnIncChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^
 void leica::OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitoring^ sender)
 {
 	//	throw gcnew System::NotImplementedException();
-	std::cout << "OnInclinationChanged" << std::endl;
+	std::cout << "OnInclinationChanged: " <<
+
+		// there is *ALOT* of things that are returned here
+// Active,Current, Interval, Theshold, Threshold Exceeded, WorkingRangeExceeded, WorkingRangeExceededTime	
+
+
+	 " X = " << sender->Current->X->Value << " Y = " << sender->Current->Y->Value << std::endl;
+//	std::cout << sender->Interval->Value << std::endl;
+//	std::cout << sender->Threshold->Value << std::endl;
+
+//	std::cout << std::endl;
+
+
+// there is *ALOT* of things that are returned here
+// Active, Current, Interval, Theshold, Threshold Exceeded, WorkingRangeExceeded, WorkingRangeExceededTime	
+
+	Do_BoolValue("", sender->Active);	
+	
+	DateTime^ dt;
+	dt = sender->Current->TimeStamp;
+	dt = dt->ToLocalTime();
+	std::cout << "Current: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+
+	Do_SimpleDoubleValue("X", sender->Current->X);
+	Do_SimpleDoubleValue("Y", sender->Current->Y);
+
+	Do_ReadOnlyDoubleValue("Interval", sender->Interval);
+	
+	Do_ReadOnlyDoubleValue("Theshold", sender->Threshold);
+	Do_BoolValue("", sender->ThresholdExceeded);
+	dt = sender->ThresholdExceededTime;
+	dt = dt->ToLocalTime();
+	std::cout << "ThresholdExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+
+	Do_BoolValue("", sender->WorkingRangeExceeded);
+
+	dt = sender->WorkingRangeExceededTime;
+	dt = dt->ToLocalTime();
+	std::cout << "WorkingRangeExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+
+	std::cout << std::endl;
+
+
+
 
 }
 
 void leica::OnBrightnessChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
 {
-//	throw gcnew System::NotImplementedException();
-	std::cout << "OnBrightnessChanged: " << 
-	 paramNewValue << std::endl;
+	//	throw gcnew System::NotImplementedException();
+	std::cout << "OnBrightnessChanged: " <<
+		paramNewValue << std::endl;
 
 }
 
 
 void leica::OnDialogClosed(LMF::Tracker::OVC::Dialog^ sender)
 {
-//	throw gcnew System::NotImplementedException();
+	//	throw gcnew System::NotImplementedException();
 	std::cout << "OnDialogClosed" << std::endl;
-
 }
-
 
 void leica::OnQuickChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
 {
-//	throw gcnew System::NotImplementedException();
-	std::cout << "OnQuickReleaseChanged: " << 
-		TFS[paramNewValue] << 
+	//	throw gcnew System::NotImplementedException();
+	std::cout << "OnQuickReleaseChanged: " <<
+		TFS[paramNewValue] <<
 		std::endl;
 }
 
 
 void leica::OnPowerChanged(LMF::Tracker::BasicTypes::EnumTypes::ReadOnlyPowerSourceValue^ sender, LMF::Tracker::Enums::EPowerSource paramNewValue)
 {
-//	throw gcnew System::NotImplementedException();
+	//	throw gcnew System::NotImplementedException();
 	std::cout << "OnPowerChanged: " <<
 		EPowerSourceStrings[int(paramNewValue)] <<
 		std::endl;
@@ -1963,13 +2124,13 @@ void leica::OnPowerChanged(LMF::Tracker::BasicTypes::EnumTypes::ReadOnlyPowerSou
 
 void leica::OnSourceChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
 {
-//	throw gcnew System::NotImplementedException();
+	//	throw gcnew System::NotImplementedException();
 	std::cout << "OnPowerSourceChanged " << std::endl;
 }
 
 
 void leica::OnPowerLockChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
 {
-//	throw gcnew System::NotImplementedException();
+	//	throw gcnew System::NotImplementedException();
 	std::cout << "OnPowerLockChanged " << std::endl;
 }

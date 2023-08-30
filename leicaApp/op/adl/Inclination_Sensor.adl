@@ -237,6 +237,251 @@ text {
       height=20
     }
    "basic attribute" {
+       clr=54
+    }
+    textix="InclinationL"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=125
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_InclinationL"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=125
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_InclinationL_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=150
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="InclinationT"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=150
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_InclinationT"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=150
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_InclinationT_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=175
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="InclinationInValidRange"
+	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=175
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_InclinationInValidRange"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=305
+      y=175
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_InclinationInValidRange"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
+}
+"text update" {
+   object {
+      x=365
+      y=175
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_InclinationInValidRange_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=200
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="InclinationInWorkingRange"
+	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=200
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_InclinationInWorkingRange"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=305
+      y=200
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_InclinationInWorkingRange"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
+}
+"text update" {
+   object {
+      x=365
+      y=200
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_InclinationInWorkingRange_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=225
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="BubbleReadoutTimeStamp"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=225
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_BubbleReadoutTimeStamp"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=225
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_BubbleReadoutTimeStamp_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=250
+      width=220
+      height=20
+    }
+   "basic attribute" {
        clr=14
     }
     textix="InclinnedToGravity"
@@ -245,7 +490,7 @@ text {
 polyline {
   object {
       x=10
-      y=125
+      y=250
       width=220
       height=20
     }
@@ -254,14 +499,14 @@ polyline {
        width=1
     }
 points {
-  (10,145)
-  (230,145)
+  (10,270)
+  (230,270)
 }
 }
 text {
    object {
       x=10
-      y=150
+      y=275
       width=220
       height=20
     }
@@ -274,7 +519,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=150
+      y=275
       width=120
       height=20
     }
@@ -289,7 +534,7 @@ text {
 "text update" {
    object {
       x=365
-      y=150
+      y=275
       width=120
       height=20
     }
@@ -304,7 +549,7 @@ text {
 text {
    object {
       x=10
-      y=175
+      y=300
       width=220
       height=20
     }
@@ -317,7 +562,7 @@ text {
 "message button" {
    object {
       x=245
-      y=175
+      y=300
       width=60
       height=20
     }
@@ -332,7 +577,7 @@ text {
 "message button" {
    object {
       x=305
-      y=175
+      y=300
       width=60
       height=20
     }
@@ -347,7 +592,7 @@ text {
 "text update" {
    object {
       x=365
-      y=175
+      y=300
       width=120
       height=20
     }
@@ -362,7 +607,7 @@ text {
 text {
    object {
       x=10
-      y=200
+      y=325
       width=220
       height=20
     }
@@ -375,7 +620,7 @@ text {
 polyline {
   object {
       x=10
-      y=200
+      y=325
       width=220
       height=20
     }
@@ -384,14 +629,14 @@ polyline {
        width=1
     }
 points {
-  (10,220)
-  (230,220)
+  (10,345)
+  (230,345)
 }
 }
 text {
    object {
       x=10
-      y=225
+      y=350
       width=220
       height=20
     }
@@ -404,7 +649,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=225
+      y=350
       width=120
       height=20
     }
@@ -419,7 +664,7 @@ text {
 "text update" {
    object {
       x=365
-      y=225
+      y=350
       width=120
       height=20
     }
@@ -434,7 +679,7 @@ text {
 text {
    object {
       x=10
-      y=250
+      y=375
       width=220
       height=20
     }
@@ -447,7 +692,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=250
+      y=375
       width=120
       height=20
     }
@@ -462,214 +707,12 @@ text {
 "text update" {
    object {
       x=365
-      y=250
+      y=375
       width=120
       height=20
     }
    monitor {
      chan="$(P)$(R)L_WorkingRangeExceededTime_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=275
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="Active"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=10
-      y=275
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (10,295)
-  (230,295)
-}
-}
-text {
-   object {
-      x=10
-      y=300
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Label"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=300
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Label_1"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=300
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Label_1_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=325
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Value"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=245
-      y=325
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Value_2"
-     clr=14
-     bclr=51
-   }
-   label="False"
-   press_msg="0"
-}
-"message button" {
-   object {
-      x=305
-      y=325
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Value_2"
-     clr=14
-     bclr=51
-   }
-   label="True"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=365
-      y=325
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Value_2_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=350
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="Current"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=10
-      y=350
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (10,370)
-  (230,370)
-}
-}
-text {
-   object {
-      x=10
-      y=375
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="TimeStamp"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=375
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_TimeStamp_6"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=375
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_TimeStamp_6_RBV"
      clr=54
      bclr=4
    }
@@ -686,7 +729,7 @@ text {
    "basic attribute" {
        clr=14
     }
-    textix="X"
+    textix="Active"
 	align="horiz. right"
 }
 polyline {
@@ -726,7 +769,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_2"
+     chan="$(P)$(R)L_Label_1"
      clr=14
      bclr=51
    }
@@ -741,7 +784,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_2_RBV"
+     chan="$(P)$(R)L_Label_1_RBV"
      clr=54
      bclr=4
    }
@@ -758,13 +801,215 @@ text {
    "basic attribute" {
        clr=54
     }
+    textix="Value"
+	align="horiz. right"
+}
+"message button" {
+   object {
+      x=245
+      y=450
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_2"
+     clr=14
+     bclr=51
+   }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=305
+      y=450
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_2"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
+}
+"text update" {
+   object {
+      x=365
+      y=450
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Value_2_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=475
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=14
+    }
+    textix="Current"
+	align="horiz. right"
+}
+polyline {
+  object {
+      x=10
+      y=475
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=20
+       width=1
+    }
+points {
+  (10,495)
+  (230,495)
+}
+}
+text {
+   object {
+      x=10
+      y=500
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="TimeStamp"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=500
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_TimeStamp_6"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=500
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_TimeStamp_6_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=525
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=14
+    }
+    textix="X"
+	align="horiz. right"
+}
+polyline {
+  object {
+      x=10
+      y=525
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=20
+       width=1
+    }
+points {
+  (10,545)
+  (230,545)
+}
+}
+text {
+   object {
+      x=10
+      y=550
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="Label"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=550
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Label_2"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=550
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Label_2_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=575
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
     textix="UnitString"
 	align="horiz. right"
 }
 "text entry" {
    object {
       x=245
-      y=450
+      y=575
       width=120
       height=20
     }
@@ -779,7 +1024,7 @@ text {
 "text update" {
    object {
       x=365
-      y=450
+      y=575
       width=120
       height=20
     }
@@ -794,7 +1039,7 @@ text {
 text {
    object {
       x=10
-      y=475
+      y=600
       width=220
       height=20
     }
@@ -807,7 +1052,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=475
+      y=600
       width=120
       height=20
     }
@@ -822,7 +1067,7 @@ text {
 "text update" {
    object {
       x=365
-      y=475
+      y=600
       width=120
       height=20
     }
@@ -837,7 +1082,7 @@ text {
 text {
    object {
       x=10
-      y=500
+      y=625
       width=220
       height=20
     }
@@ -850,7 +1095,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=500
+      y=625
       width=120
       height=20
     }
@@ -865,7 +1110,7 @@ text {
 "text update" {
    object {
       x=365
-      y=500
+      y=625
       width=120
       height=20
     }
@@ -880,7 +1125,7 @@ text {
 text {
    object {
       x=10
-      y=525
+      y=650
       width=220
       height=20
     }
@@ -893,7 +1138,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=525
+      y=650
       width=120
       height=20
     }
@@ -908,7 +1153,7 @@ text {
 "text update" {
    object {
       x=365
-      y=525
+      y=650
       width=120
       height=20
     }
@@ -923,7 +1168,7 @@ text {
 text {
    object {
       x=10
-      y=550
+      y=675
       width=220
       height=20
     }
@@ -936,7 +1181,7 @@ text {
 polyline {
   object {
       x=10
-      y=550
+      y=675
       width=220
       height=20
     }
@@ -945,14 +1190,14 @@ polyline {
        width=1
     }
 points {
-  (10,570)
-  (230,570)
+  (10,695)
+  (230,695)
 }
 }
 text {
    object {
       x=10
-      y=575
+      y=700
       width=220
       height=20
     }
@@ -965,7 +1210,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=575
+      y=700
       width=120
       height=20
     }
@@ -980,7 +1225,7 @@ text {
 "text update" {
    object {
       x=365
-      y=575
+      y=700
       width=120
       height=20
     }
@@ -995,7 +1240,7 @@ text {
 text {
    object {
       x=10
-      y=600
+      y=725
       width=220
       height=20
     }
@@ -1008,7 +1253,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=600
+      y=725
       width=120
       height=20
     }
@@ -1023,7 +1268,7 @@ text {
 "text update" {
    object {
       x=365
-      y=600
+      y=725
       width=120
       height=20
     }
@@ -1038,7 +1283,7 @@ text {
 text {
    object {
       x=10
-      y=625
+      y=750
       width=220
       height=20
     }
@@ -1051,7 +1296,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=625
+      y=750
       width=120
       height=20
     }
@@ -1066,7 +1311,7 @@ text {
 "text update" {
    object {
       x=365
-      y=625
+      y=750
       width=120
       height=20
     }
@@ -1081,7 +1326,7 @@ text {
 text {
    object {
       x=10
-      y=650
+      y=775
       width=220
       height=20
     }
@@ -1094,7 +1339,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=650
+      y=775
       width=120
       height=20
     }
@@ -1109,7 +1354,7 @@ text {
 "text update" {
    object {
       x=365
-      y=650
+      y=775
       width=120
       height=20
     }
@@ -1124,7 +1369,7 @@ text {
 text {
    object {
       x=10
-      y=675
+      y=800
       width=220
       height=20
     }
@@ -1137,7 +1382,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=675
+      y=800
       width=120
       height=20
     }
@@ -1152,7 +1397,7 @@ text {
 "text update" {
    object {
       x=365
-      y=675
+      y=800
       width=120
       height=20
     }
@@ -1167,7 +1412,7 @@ text {
 text {
    object {
       x=10
-      y=700
+      y=825
       width=220
       height=20
     }
@@ -1180,7 +1425,7 @@ text {
 polyline {
   object {
       x=10
-      y=700
+      y=825
       width=220
       height=20
     }
@@ -1189,14 +1434,14 @@ polyline {
        width=1
     }
 points {
-  (10,720)
-  (230,720)
+  (10,845)
+  (230,845)
 }
 }
 text {
    object {
       x=10
-      y=725
+      y=850
       width=220
       height=20
     }
@@ -1209,7 +1454,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=725
+      y=850
       width=120
       height=20
     }
@@ -1224,7 +1469,7 @@ text {
 "text update" {
    object {
       x=365
-      y=725
+      y=850
       width=120
       height=20
     }
@@ -1239,7 +1484,7 @@ text {
 text {
    object {
       x=10
-      y=750
+      y=875
       width=220
       height=20
     }
@@ -1252,7 +1497,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=750
+      y=875
       width=120
       height=20
     }
@@ -1267,7 +1512,7 @@ text {
 "text update" {
    object {
       x=365
-      y=750
+      y=875
       width=120
       height=20
     }
@@ -1282,7 +1527,7 @@ text {
 text {
    object {
       x=10
-      y=775
+      y=900
       width=220
       height=20
     }
@@ -1295,7 +1540,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=775
+      y=900
       width=120
       height=20
     }
@@ -1310,7 +1555,7 @@ text {
 "text update" {
    object {
       x=365
-      y=775
+      y=900
       width=120
       height=20
     }
@@ -1325,7 +1570,7 @@ text {
 text {
    object {
       x=10
-      y=800
+      y=925
       width=220
       height=20
     }
@@ -1338,7 +1583,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=800
+      y=925
       width=120
       height=20
     }
@@ -1353,7 +1598,7 @@ text {
 "text update" {
    object {
       x=365
-      y=800
+      y=925
       width=120
       height=20
     }
@@ -1368,7 +1613,7 @@ text {
 text {
    object {
       x=10
-      y=825
+      y=950
       width=220
       height=20
     }
@@ -1381,7 +1626,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=825
+      y=950
       width=120
       height=20
     }
@@ -1396,7 +1641,7 @@ text {
 "text update" {
    object {
       x=365
-      y=825
+      y=950
       width=120
       height=20
     }
@@ -1411,7 +1656,7 @@ text {
 text {
    object {
       x=10
-      y=850
+      y=975
       width=220
       height=20
     }
@@ -1424,7 +1669,7 @@ text {
 polyline {
   object {
       x=10
-      y=850
+      y=975
       width=220
       height=20
     }
@@ -1433,14 +1678,14 @@ polyline {
        width=1
     }
 points {
-  (10,870)
-  (230,870)
+  (10,995)
+  (230,995)
 }
 }
 text {
    object {
       x=10
-      y=875
+      y=1000
       width=220
       height=20
     }
@@ -1453,7 +1698,7 @@ text {
 "text entry" {
    object {
       x=245
-      y=875
+      y=1000
       width=120
       height=20
     }
@@ -1468,7 +1713,7 @@ text {
 "text update" {
    object {
       x=365
-      y=875
+      y=1000
       width=120
       height=20
     }
@@ -1482,8 +1727,8 @@ text {
 }
 text {
    object {
-      x=10
-      y=900
+      x=410
+      y=50
       width=220
       height=20
     }
@@ -1495,8 +1740,8 @@ text {
 }
 "text entry" {
    object {
-      x=245
-      y=900
+      x=645
+      y=50
       width=120
       height=20
     }
@@ -1510,8 +1755,8 @@ text {
 }
 "text update" {
    object {
-      x=365
-      y=900
+      x=765
+      y=50
       width=120
       height=20
     }
@@ -1525,8 +1770,8 @@ text {
 }
 text {
    object {
-      x=10
-      y=925
+      x=410
+      y=75
       width=220
       height=20
     }
@@ -1538,8 +1783,8 @@ text {
 }
 "text entry" {
    object {
-      x=245
-      y=925
+      x=645
+      y=75
       width=120
       height=20
     }
@@ -1553,8 +1798,8 @@ text {
 }
 "text update" {
    object {
-      x=365
-      y=925
+      x=765
+      y=75
       width=120
       height=20
     }
@@ -1568,8 +1813,8 @@ text {
 }
 text {
    object {
-      x=10
-      y=950
+      x=410
+      y=100
       width=220
       height=20
     }
@@ -1581,8 +1826,8 @@ text {
 }
 "text entry" {
    object {
-      x=245
-      y=950
+      x=645
+      y=100
       width=120
       height=20
     }
@@ -1596,8 +1841,8 @@ text {
 }
 "text update" {
    object {
-      x=365
-      y=950
+      x=765
+      y=100
       width=120
       height=20
     }
@@ -1611,8 +1856,8 @@ text {
 }
 text {
    object {
-      x=10
-      y=975
+      x=410
+      y=125
       width=220
       height=20
     }
@@ -1624,8 +1869,8 @@ text {
 }
 "text entry" {
    object {
-      x=245
-      y=975
+      x=645
+      y=125
       width=120
       height=20
     }
@@ -1639,8 +1884,8 @@ text {
 }
 "text update" {
    object {
-      x=365
-      y=975
+      x=765
+      y=125
       width=120
       height=20
     }
@@ -1654,8 +1899,8 @@ text {
 }
 text {
    object {
-      x=10
-      y=1000
+      x=410
+      y=150
       width=220
       height=20
     }
@@ -1667,8 +1912,8 @@ text {
 }
 polyline {
   object {
-      x=10
-      y=1000
+      x=410
+      y=150
       width=220
       height=20
     }
@@ -1677,14 +1922,14 @@ polyline {
        width=1
     }
 points {
-  (10,1020)
-  (230,1020)
+  (410,170)
+  (630,170)
 }
 }
 text {
    object {
-      x=10
-      y=1025
+      x=410
+      y=175
       width=220
       height=20
     }
@@ -1696,8 +1941,8 @@ text {
 }
 "text entry" {
    object {
-      x=245
-      y=1025
+      x=645
+      y=175
       width=120
       height=20
     }
@@ -1711,8 +1956,8 @@ text {
 }
 "text update" {
    object {
-      x=365
-      y=1025
+      x=765
+      y=175
       width=120
       height=20
     }
@@ -1727,7 +1972,7 @@ text {
 text {
    object {
       x=410
-      y=50
+      y=200
       width=220
       height=20
     }
@@ -1740,7 +1985,7 @@ text {
 "message button" {
    object {
       x=645
-      y=50
+      y=200
       width=60
       height=20
     }
@@ -1755,7 +2000,7 @@ text {
 "message button" {
    object {
       x=705
-      y=50
+      y=200
       width=60
       height=20
     }
@@ -1770,7 +2015,7 @@ text {
 "text update" {
    object {
       x=765
-      y=50
+      y=200
       width=120
       height=20
     }
@@ -1785,7 +2030,7 @@ text {
 text {
    object {
       x=410
-      y=75
+      y=225
       width=220
       height=20
     }
@@ -1798,7 +2043,7 @@ text {
 polyline {
   object {
       x=410
-      y=75
+      y=225
       width=220
       height=20
     }
@@ -1807,14 +2052,14 @@ polyline {
        width=1
     }
 points {
-  (410,95)
-  (630,95)
+  (410,245)
+  (630,245)
 }
 }
 text {
    object {
       x=410
-      y=100
+      y=250
       width=220
       height=20
     }
@@ -1827,7 +2072,7 @@ text {
 "text entry" {
    object {
       x=645
-      y=100
+      y=250
       width=120
       height=20
     }
@@ -1842,7 +2087,7 @@ text {
 "text update" {
    object {
       x=765
-      y=100
+      y=250
       width=120
       height=20
     }
@@ -1857,7 +2102,7 @@ text {
 text {
    object {
       x=410
-      y=125
+      y=275
       width=220
       height=20
     }
@@ -1870,7 +2115,7 @@ text {
 "message button" {
    object {
       x=645
-      y=125
+      y=275
       width=60
       height=20
     }
@@ -1885,7 +2130,7 @@ text {
 "message button" {
    object {
       x=705
-      y=125
+      y=275
       width=60
       height=20
     }
@@ -1900,7 +2145,7 @@ text {
 "text update" {
    object {
       x=765
-      y=125
+      y=275
       width=120
       height=20
     }
@@ -1915,7 +2160,7 @@ text {
 text {
    object {
       x=410
-      y=150
+      y=300
       width=220
       height=20
     }
@@ -1928,7 +2173,7 @@ text {
 "message button" {
    object {
       x=645
-      y=150
+      y=300
       width=120
       height=20
     }
@@ -1943,7 +2188,7 @@ text {
 "text update" {
    object {
       x=765
-      y=150
+      y=300
       width=120
       height=20
     }
@@ -1958,7 +2203,7 @@ text {
 text {
    object {
       x=410
-      y=200
+      y=350
       width=220
       height=20
     }
@@ -1971,7 +2216,7 @@ text {
 "message button" {
    object {
       x=645
-      y=200
+      y=350
       width=120
       height=20
     }
@@ -1986,7 +2231,7 @@ text {
 "text update" {
    object {
       x=765
-      y=200
+      y=350
       width=120
       height=20
     }
@@ -2001,7 +2246,7 @@ text {
 text {
    object {
       x=410
-      y=225
+      y=375
       width=220
       height=20
     }
@@ -2014,7 +2259,7 @@ text {
 "message button" {
    object {
       x=645
-      y=225
+      y=375
       width=120
       height=20
     }
@@ -2029,7 +2274,7 @@ text {
 "text update" {
    object {
       x=765
-      y=225
+      y=375
       width=120
       height=20
     }
@@ -2044,7 +2289,7 @@ text {
 text {
    object {
       x=410
-      y=250
+      y=400
       width=220
       height=20
     }
@@ -2057,7 +2302,7 @@ text {
 "message button" {
    object {
       x=645
-      y=250
+      y=400
       width=120
       height=20
     }
@@ -2072,7 +2317,7 @@ text {
 "text update" {
    object {
       x=765
-      y=250
+      y=400
       width=120
       height=20
     }
