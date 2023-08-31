@@ -75,6 +75,7 @@ void Do_ReadOnlyDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue
 		" Value: " << thing->Value <<
 		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
 		std::endl;
+
 }
 
 void Do_SimpleDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::SimpleDoubleValue^ thing)
@@ -86,7 +87,14 @@ void Do_SimpleDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::
 		" UnitType: " << EUnitTypeStrings[(int)thing->UnitType] <<
 		" Value: " << thing->Value <<
 		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
-		std::endl;
+		std::endl;	
+
+	// something is printing out -0 sporatically, but no format string ever actually explains it
+	//FWIIW, since this happens on code that just called attempting to do a 'getorientation', the speculation is that the internal math
+	// does a divide by negative infinity, or some other nonsence, so it hits the negative representation of zero and not the positive one
+	// https://en.wikipedia.org/wiki/Signed_zero
+
+//	printf("+++ %e +++", thing->ValueInBaseUnits); // or g
 }
 
 void Do_SimpleDoubleValueWithAccuracy(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::SimpleDoubleValueWithAccuracy^ thing)
@@ -369,6 +377,26 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	//	}
 	else if (function == L_ShowTopmost) {
 		GlobalObjects::LMFTracker->OverviewCamera->Dialog->ShowTopmost();
+	}
+// InclinationSensor commands
+
+	else if (function == L_StartBubbleReadoutStream) {
+		GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->StartBubbleReadoutStream();
+	}
+	else if (function == L_StopBubbleReadoutStream) {
+	GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->StopBubbleReadoutStream();
+	}
+	else if (function == L_GetInclinationToGravity) {
+	GlobalObjects::LMFTracker->InclinationSensor->GetInclinationToGravity();
+	}
+	else if (function == L_GetInclinationToGravityAsync) {
+	GlobalObjects::LMFTracker->InclinationSensor->GetInclinationToGravityAsync();
+	}
+	else if (function == L_Value_1) {
+	GlobalObjects::LMFTracker->InclinationSensor->InclinedToGravity->Value = value;
+	}
+	else if (function == L_Value_2) {
+		GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Active->Value = value;
 	}
 
 	else {
@@ -779,12 +807,12 @@ void leica::Do_PowerSource(void)
 
 	GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Changed += gcnew LMF::Tracker::BasicTypes::EnumTypes::ReadOnlyPowerSourceValue::ChangedEventHandler(&OnPowerChanged);
 
-	Do_ReadOnlyDoubleValue("SensorPowerStatus", GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->Level);
+	Do_ReadOnlyDoubleValue(" SensorPowerStatus", GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->Level);
 
 	//	This has no useful information so not going to even trouble to populate PVs
 
 
-	std::cout << "RunsOn: Label: " << (decode)(GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Label) <<
+	std::cout << " RunsOn: Label: " << (decode)(GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Label) <<
 		" Value: " << EPowerSourceStrings[(int)GlobalObjects::LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Value] <<
 		//		" Value: " << (int)LMFTracker->PowerSource->ControllerPowerStatus->RunsOn->Value <<
 		std::endl;
@@ -843,7 +871,8 @@ void leica::Do_InclinationSensor(void)
 	std::cout << std::endl;
 	std::cout << "InclinationSensor\n";
 
-	std::cout << "Checking Inclination to Gravity . . . " << std::endl;
+	std::cout << " Checking Inclination to Gravity . . . " << std::endl;
+	
 
 	GlobalObjects::LMFTracker->InclinationSensor->GetInclinationToGravityFinished += gcnew LMF::Tracker::Inclination::InclinationSensor::GetInclinationToGravityFinishedHandler(&OnGetInclinationToGravityFinished);
 	GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->BubbleReadoutArrived += gcnew LMF::Tracker::Inclination::InclinationBubbleReadout::BubbleReadoutArrivedHandler(&OnBubbleReadoutArrived);
@@ -854,21 +883,27 @@ void leica::Do_InclinationSensor(void)
 // always do it, seems to be a heck of a lot less noisy with the callbacks 	
 	if (1)
 	{
-		std::cout << "Performing InclinationToGravity . . . Please Wait . . .  " << std::endl;
+		std::cout << " Performing InclinationToGravity . . . Please Wait . . .  " << std::endl;
 
+// If waiting, you can do everything linearly, if async, you might have to restart everything in the on finished callback 
 		try {
 			GlobalObjects::LMFTracker->InclinationSensor->GetInclinationToGravity();
+//			GlobalObjects::LMFTracker->InclinationSensor->GetInclinationToGravityAsync();
 			GlobalObjects::LMFTracker->InclinationSensor->InclinedToGravity->Value = true;
+			GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Active->Value = true;
+			leica_->setIntegerParam(leica_->L_Value_1, 1);
+			leica_->setIntegerParam(leica_->L_Value_2, 1);
+			
 			GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->StartBubbleReadoutStream();
 		}
 		catch (...)
 		{
-			std::cout << "Failed!" << std::endl;
+			std::cout << " Failed!" << std::endl;
 		}
 
 	} 
 	else
-		std::cout << "Already Inclined . . . Using last values . . . " << std::endl;
+		std::cout << " Already Inclined . . . Using last values . . . " << std::endl;
 
 	// methods
 	/*
@@ -880,7 +915,7 @@ void leica::Do_InclinationSensor(void)
 
 	GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Active->Value = true;
 
-	std::cout << "Attemping StartBubbleReadoutStream . . . " << std::endl;
+	std::cout << " Attemping StartBubbleReadoutStream . . . " << std::endl;
 
 	// This might be about 1/2 event, just doing this to try to capture the event.
 
@@ -896,37 +931,37 @@ void leica::Do_InclinationSensor(void)
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
 	{
-		std::cout << "Error exception " << e->Number << " " << (decode)(e->Description) << std::endl;;
+		std::cout << " Error exception " << e->Number << " " << (decode)(e->Description) << std::endl;;
 		//		std::cout << "Hit an exception trying to decode Check For Errors  \n";
 	}
 
 	DateTime^ dt;
 	dt = GlobalObjects::LMFTracker->InclinationSensor->CurrentInclinationToGravity->TimeStamp;
-	std::cout << "CurrentInclinationToGravity: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+	std::cout << " CurrentInclinationToGravity: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
-	Do_SimpleDoubleValue("InclinationRotX", GlobalObjects::LMFTracker->InclinationSensor->CurrentInclinationToGravity->InclinationRotX);
-	Do_SimpleDoubleValue("InclinationRotY", GlobalObjects::LMFTracker->InclinationSensor->CurrentInclinationToGravity->InclinationRotY);
-	Do_BoolValue("", GlobalObjects::LMFTracker->InclinationSensor->InclinedToGravity);
+	Do_SimpleDoubleValue(" InclinationRotX", GlobalObjects::LMFTracker->InclinationSensor->CurrentInclinationToGravity->InclinationRotX);
+	Do_SimpleDoubleValue(" InclinationRotY", GlobalObjects::LMFTracker->InclinationSensor->CurrentInclinationToGravity->InclinationRotY);
+	Do_BoolValue(" ", GlobalObjects::LMFTracker->InclinationSensor->InclinedToGravity);
 
 //	GlobalObjects::LMFTracker->InclinationSensor->Monitoring->InclinationChanged += gcnew LMF::Tracker::Inclination::InclinationMonitoring::InclinationChangedHandler(&OnInclinationChanged);
 
 	dt = GlobalObjects::LMFTracker->InclinationSensor->Monitoring->ThresholdExceededTime;
-	std::cout << "ThresholdExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+	std::cout << " ThresholdExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
 	dt = GlobalObjects::LMFTracker->InclinationSensor->Monitoring->WorkingRangeExceededTime;
-	std::cout << "WorkingRangeExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+	std::cout << " WorkingRangeExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
-	Do_BoolValue("", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Active);
+	Do_BoolValue( "", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Active);
 
 	dt = GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Current->TimeStamp;
-	std::cout << "Current: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+	std::cout << " Current: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
-	Do_SimpleDoubleValue("X", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Current->X);
-	Do_SimpleDoubleValue("Y", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Current->Y);
+	Do_SimpleDoubleValue(" X", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Current->X);
+	Do_SimpleDoubleValue( "Y", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Current->Y);
 
-	Do_ReadOnlyDoubleValue("Interval", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Interval);
-	Do_ReadOnlyDoubleValue("Theshold", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Threshold);
-	Do_BoolValue("", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->ThresholdExceeded);
+	Do_ReadOnlyDoubleValue(" Interval", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Interval);
+	Do_ReadOnlyDoubleValue(" Theshold", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Threshold);
+	Do_BoolValue(" ", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->ThresholdExceeded);
 	Do_BoolValue("", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->WorkingRangeExceeded);
 
 	//	LMFTracker->InclinationSensor->Monitoring->Reset();
@@ -2001,6 +2036,13 @@ void leica::OnGetInclinationToGravityFinished(LMF::Tracker::Inclination::Inclina
 	//	throw gcnew System::NotImplementedException();
 	std::cout << "OnGetInclinationToGravityFinished" << std::endl;
 
+	GlobalObjects::LMFTracker->InclinationSensor->InclinedToGravity->Value = true;
+	leica_->setIntegerParam(leica_->L_Value_1, 1);
+	GlobalObjects::LMFTracker->InclinationSensor->BubbleReadout->StartBubbleReadoutStream();
+	GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Active->Value = true;
+	leica_->setIntegerParam(leica_->L_Value_2, 1);
+
+	leica_->callParamCallbacks();
 }
 
 int callbackcount = 0;
@@ -2020,6 +2062,7 @@ void leica::OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleR
 	// for some reason, callback values seem to be in UTC, so need to correct it back to local time
 	dt = dt->ToLocalTime();
 
+	/*
 	std::cout << "OnBubbleReadoutArrived" << std::endl;
 	std::cout << "InclinationL: " << paramBubbleReadout->InclinationL <<
 		" InclinationT: " << paramBubbleReadout->InclinationT <<
@@ -2027,7 +2070,14 @@ void leica::OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleR
 		" InWorkingRange: " << TFS[paramBubbleReadout->InWorkingRange] <<
 		" TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) <<
 		std::endl;
+*/
 
+	leica_->setDoubleParam(leica_->L_InclinationL, paramBubbleReadout->InclinationL);
+	leica_->setDoubleParam(leica_->L_InclinationT, paramBubbleReadout->InclinationT);
+	leica_->setIntegerParam(leica_->L_InclinationInValidRange, (int)paramBubbleReadout->InValidRange);
+	leica_->setIntegerParam(leica_->L_InclinationInWorkingRange, (int) paramBubbleReadout->InWorkingRange);
+	leica_->setStringParam(leica_->L_BubbleReadoutTimeStamp, (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")));
+	leica_->callParamCallbacks();
 
 }
 
@@ -2035,20 +2085,28 @@ void leica::OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleR
 void leica::OnIncChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
 {
 	//	throw gcnew System::NotImplementedException();
-	std::cout << "OnIncChanged: " << TFS[paramNewValue] << std::endl;
+	
+	std::cout << "OnIncChanged: " << (decode) (sender->Label) << " " << TFS[paramNewValue] << std::endl;
 }
 
 
 void leica::OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitoring^ sender)
 {
 	//	throw gcnew System::NotImplementedException();
-	std::cout << "OnInclinationChanged: " <<
+	std::cout << "OnInclinationChanged: "  << std::endl;
 
 		// there is *ALOT* of things that are returned here
 // Active,Current, Interval, Theshold, Threshold Exceeded, WorkingRangeExceeded, WorkingRangeExceededTime	
+// most of the time, we probably only worry about X and Y, BUT while I was watching these values when people were walking
+// around the lab, their stomping was enough to trigger an Out Of Threshold message, which technically means that we have to
+// redo the inclination to gravity again . . .  which is a *long* process, that typically messes up EPICS - all the callbacks . . .
+// stop calling back, and the commands also don't process even though the trace code says that it is being hit.
+
+// If this has to be redone, not sure if it can be done in another thread, or if I realistically need to call my startup
+// "do_calls" again and redo my callbacks or if effectively need to exit and restart . Nothing is thrown as errors anywhere.
 
 
-	 " X = " << sender->Current->X->Value << " Y = " << sender->Current->Y->Value << std::endl;
+//	std::cout << " X = " << sender->Current->X->Value << " Y = " << sender->Current->Y->Value << std::endl;
 //	std::cout << sender->Interval->Value << std::endl;
 //	std::cout << sender->Threshold->Value << std::endl;
 
@@ -2058,33 +2116,66 @@ void leica::OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitorin
 // there is *ALOT* of things that are returned here
 // Active, Current, Interval, Theshold, Threshold Exceeded, WorkingRangeExceeded, WorkingRangeExceededTime	
 
-	Do_BoolValue("", sender->Active);	
+//do boolValue is just a label and a value
+#define PV_IT_3(a,b,thing) \
+leica_->setStringParam(leica_->L_Label_##a, (decode)(##thing->Label)); \
+leica_->setIntegerParam(leica_->L_Value_##b, ##thing->Value); 
+
+
+#define PV_IT_A(a,b,thing) \
+leica_->setStringParam(leica_->L_Label_##a, (decode)(##thing->Label)); \
+leica_->setStringParam(leica_->L_UnitString, (decode)(##thing->UnitString)); \
+leica_->setStringParam(leica_->L_UnitType, EUnitTypeStrings[(int)##thing->UnitType]); \
+leica_->setDoubleParam(leica_->L_Value_##b, ##thing->Value); \
+leica_->setDoubleParam(leica_->L_ValueInBaseUnits, ##thing->ValueInBaseUnits);
+
+
+//	Do_BoolValue("", sender->Active);	
+	PV_IT_3(1, 2, sender->Active)
 	
 	DateTime^ dt;
 	dt = sender->Current->TimeStamp;
 	dt = dt->ToLocalTime();
-	std::cout << "Current: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+//	std::cout << "Current: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+	leica_->setStringParam(leica_->L_TimeStamp_6, (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")));
 
-	Do_SimpleDoubleValue("X", sender->Current->X);
-	Do_SimpleDoubleValue("Y", sender->Current->Y);
+//	Do_SimpleDoubleValue("X", sender->Current->X);
+//	Do_SimpleDoubleValue("Y", sender->Current->Y);
 
-	Do_ReadOnlyDoubleValue("Interval", sender->Interval);
-	
-	Do_ReadOnlyDoubleValue("Theshold", sender->Threshold);
-	Do_BoolValue("", sender->ThresholdExceeded);
+	// should be this, but first use of  unitstring, unittype and valueinbaseunits so pattern is off
+	//	PV_IT(a, b, c, sender->Current->X)
+
+	PV_IT_A(2, 3, sender->Current->X)
+	PV_IT(3, 1, 4, sender->Current->Y)
+
+
+//	Do_ReadOnlyDoubleValue("Interval", sender->Interval);	
+//	Do_ReadOnlyDoubleValue("Theshold", sender->Threshold);
+
+	PV_IT(4, 2, 5, sender->Interval)
+	PV_IT(5, 3, 6, sender->Threshold)
+
+//	Do_BoolValue("", sender->ThresholdExceeded);
+
+	PV_IT_3(6, 7, sender->ThresholdExceeded)
+
 	dt = sender->ThresholdExceededTime;
 	dt = dt->ToLocalTime();
-	std::cout << "ThresholdExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+//	std::cout << "ThresholdExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+	leica_->setStringParam(leica_->L_ThresholdExceededTimel, (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")));
 
-	Do_BoolValue("", sender->WorkingRangeExceeded);
+//	Do_BoolValue("", sender->WorkingRangeExceeded);
+	PV_IT_3(7, 8, sender->WorkingRangeExceeded)
 
 	dt = sender->WorkingRangeExceededTime;
 	dt = dt->ToLocalTime();
-	std::cout << "WorkingRangeExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
+//	std::cout << "WorkingRangeExceededTime: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
-	std::cout << std::endl;
+	leica_->setStringParam(leica_->L_WorkingRangeExceededTime, (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")));
 
+//	std::cout << std::endl;
 
+	leica_->callParamCallbacks();
 
 
 }

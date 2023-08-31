@@ -129,7 +129,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -187,7 +186,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -221,7 +219,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -243,7 +240,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -277,7 +273,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -299,7 +294,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -377,7 +371,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -455,7 +448,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -489,7 +481,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -511,7 +502,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -574,7 +564,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -596,7 +585,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -674,7 +662,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -737,7 +724,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -759,7 +745,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -793,7 +778,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -815,7 +799,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -878,7 +861,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -900,7 +882,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -978,7 +959,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1041,7 +1021,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1063,7 +1042,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1126,7 +1104,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1148,7 +1125,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1182,7 +1158,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1204,7 +1179,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1238,7 +1212,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1260,7 +1233,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1294,7 +1266,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1316,7 +1287,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1350,7 +1320,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1372,7 +1341,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1435,7 +1403,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1457,7 +1424,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1491,7 +1457,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1513,7 +1478,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1547,7 +1511,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1569,7 +1532,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1603,7 +1565,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1625,7 +1586,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1659,7 +1619,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1681,7 +1640,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1744,7 +1702,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1766,7 +1723,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1800,7 +1756,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1822,7 +1777,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1856,7 +1810,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1878,7 +1831,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1912,7 +1864,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1934,7 +1885,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1968,7 +1918,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -1990,7 +1939,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2053,7 +2001,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2075,7 +2022,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2109,7 +2055,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2131,7 +2076,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2165,7 +2109,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2187,7 +2130,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2221,7 +2163,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2243,7 +2184,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2277,7 +2217,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2299,7 +2238,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2362,7 +2300,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2384,7 +2321,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2462,7 +2398,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2525,7 +2460,6 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2547,7 +2481,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2625,7 +2558,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2683,7 +2615,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2741,7 +2672,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2799,7 +2729,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -2857,7 +2786,6 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
-    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
