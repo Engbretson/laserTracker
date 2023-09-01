@@ -97,6 +97,42 @@ void Do_SimpleDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::
 //	printf("+++ %e +++", thing->ValueInBaseUnits); // or g
 }
 
+void Do_EnvironmentalSensor(String^ Title, LMF::Tracker::Meteo::EnvironmentalSensor^ thing)
+{
+	std::cout << (decode)(Title) << std::endl <<
+	    " Label: " << (decode)(thing->Label) <<
+		" SerialNumber: " << (decode)(thing->SerialNumber) <<
+		" UnitString: " << (decode)(thing->UnitString) <<
+		" UnitType: " << EUnitTypeStrings[(int)thing->UnitType] <<
+		" Value: " << thing->Value <<
+		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
+		" Available: " <<
+		" Label: " << (decode)(thing->Available->Label) <<
+		" Value: " << TFS[(int)thing->Available->Value] <<
+//		" Value: " << thing->Available->Value <<
+		std::endl;
+}
+
+void Do_ManualEnvironmentalSensor(String^ Title, LMF::Tracker::Meteo::ManualEnvironmentalSensor^ thing)
+{
+	std::cout << (decode)(Title) << std::endl <<
+		" Label: " << (decode)(thing->Label) <<
+		" MaxValue: " << thing->MaxValue <<
+		" MaxValueInBaseUnits: " << thing->MaxValueInBaseUnits <<
+		" MinValue: " << thing->MinValue <<
+		" MinValueInBaseUnits: " << thing->MinValueInBaseUnits <<
+		" SerialNumber: " << (decode)(thing->SerialNumber) <<
+		" UnitString: " << (decode)(thing->UnitString) <<
+		" UnitType: " << EUnitTypeStrings[(int)thing->UnitType] <<
+		" Value: " << thing->Value <<
+		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
+		" Available: " <<
+		" Label: " << (decode)(thing->Available->Label) <<
+		" Value: " << TFS[(int)thing->Available->Value] <<
+//		" Value: " << thing->Available->Value <<
+		std::endl;
+}
+
 void Do_SimpleDoubleValueWithAccuracy(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::SimpleDoubleValueWithAccuracy^ thing)
 {
 	std::cout << (decode)(Title) << std::endl <<
@@ -596,6 +632,287 @@ void leica::Do_Laser(void)
 }
 
 
+void leica::Do_MeteoStation(void)
+{
+	std::cout << std::endl;
+	std::cout << "MeteoStation\n";
+
+	GlobalObjects::LMFTracker->MeteoStation->EnvironmentalValuesChanged += gcnew LMF::Tracker::Meteo::MeteoStation::EnvironmentalValuesChangedEventHandler(&OnEnvironmentalValuesChanged);
+
+	GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnMeteoChanged);
+
+	GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnMeteoChanged);
+	GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnMeteoChanged);
+	GlobalObjects::LMFTracker->MeteoStation->IsAirSensorConnected->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnMeteoChanged);
+
+	GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnMeteoChanged);
+	GlobalObjects::LMFTracker->MeteoStation->ManualPressure->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnMeteoChanged);
+	GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnMeteoChanged);
+	GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnMeteoChanged);
+	GlobalObjects::LMFTracker->MeteoStation->Source->Changed += gcnew LMF::Tracker::Meteo::MeteoSource::ChangedEventHandler(&OnMeteoChanged);
+
+/*	std::cout << "HardwareHumidity: Label: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->Label) <<
+		" SerialNumber: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->SerialNumber) <<
+		" UnitString: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->UnitString) <<
+		" UnitType: " << EUnitTypeStrings[(int)GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->UnitType] <<
+		" Value: " << GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->Value <<
+		" ValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->ValueInBaseUnits <<
+		std::endl;
+*/
+
+//Can not do these in the macro since not all serialNumbers have a _##
+// value is actually a named variable, since this code was done before I generalized how names would be generated
+// changing these now would cause all #'s to shift, and not doing that 2 'sections' from being done
+// so do the ones that I can, and just manually do the 2 lines afterwards as required
+
+//leica_->setStringParam(leica_->L_SerialNumber_##a, (decode)(##thing->Label)); 
+//leica_->setDoubleParam(leica_->L_Value_##d, ##thing->Value); 
+
+#define PV_IT_4(a,b,c,d,thing) \
+leica_->setStringParam(leica_->L_Label_##a, (decode)(##thing->Label)); \
+leica_->setStringParam(leica_->L_UnitString_##b, (decode)(##thing->UnitString)); \
+leica_->setStringParam(leica_->L_UnitType_##b, EUnitTypeStrings[(int)##thing->UnitType]); \
+leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits); \
+leica_->setStringParam(leica_->L_Label_##c, (decode)(##thing->Available->Label)); \
+leica_->setIntegerParam(leica_->L_Value_##d, ##thing->Available->Value); 
+
+
+	Do_EnvironmentalSensor(" HardwareHumidity", GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity);
+
+	PV_IT_4(23,9,24,22, GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity)
+
+	leica_->setStringParam(leica_->L_SerialNumber, (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->SerialNumber));
+	leica_->setDoubleParam(leica_->L_HumidityValue, GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->Value);
+
+
+	GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnMeteoChanged);
+
+/*	std::cout << "Available: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->Available->Label) <<
+		" Value: " << TFS[(int)GlobalObjects::LMFTracker->MeteoStation->HardwareHumidity->Available->Value] <<
+		std::endl;
+*/
+
+/*	std::cout << "HardwarePressure: Label: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->Label) <<
+		" SerialNumber: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->SerialNumber) <<
+		" UnitString: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->UnitString) <<
+		" UnitType: " << EUnitTypeStrings[(int)GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->UnitType] <<
+		" Value: " << GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->Value <<
+		" ValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->ValueInBaseUnits <<
+		std::endl;
+*/
+
+	Do_EnvironmentalSensor(" HardwarePressure", GlobalObjects::LMFTracker->MeteoStation->HardwarePressure);
+
+	PV_IT_4(25, 10, 26, 23, GlobalObjects::LMFTracker->MeteoStation->HardwarePressure)
+
+		leica_->setStringParam(leica_->L_SerialNumber_1, (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->SerialNumber));
+	leica_->setDoubleParam(leica_->L_PressureValue, GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->Value);
+
+
+	GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnMeteoChanged);
+/*
+	std::cout << "Available: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->Available->Label) <<
+		" Value: " << TFS[(int)GlobalObjects::LMFTracker->MeteoStation->HardwarePressure->Available->Value] <<
+		std::endl;
+*/
+
+	/*
+	std::cout << "HardwareTemperature: Label: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->Label) <<
+		" SerialNumber: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->SerialNumber) <<
+		// The degree symbol from this device is something wierd, so pop it off and replace it with something correct.
+		" UnitString: " << '\370' << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->UnitString->Substring(1)) <<
+		" UnitType: " << EUnitTypeStrings[(int)GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->UnitType] <<
+		" Value: " << GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->Value <<
+		" ValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->ValueInBaseUnits <<
+		std::endl;
+*/
+	Do_EnvironmentalSensor(" HardwareTemperature", GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature);
+
+	PV_IT_4(27, 11, 28, 24, GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature)
+
+	leica_->setStringParam(leica_->L_SerialNumber_2, (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->SerialNumber));
+	leica_->setDoubleParam(leica_->L_TemperatureValue, GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->Value);
+// note the degree symbol is incorrect, manually patch it, caqtdm and phoebus 'see' different symbols
+
+	leica_->setStringParam(leica_->L_UnitString_11, (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->UnitString->Substring(1)));
+
+	GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnMeteoChanged);
+
+	/*
+	std::cout << "Available: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->Available->Label) <<
+		" Value: " << TFS[(int)GlobalObjects::LMFTracker->MeteoStation->HardwareTemperature->Available->Value] <<
+		std::endl;
+*/
+
+/*
+	GlobalObjects::LMFTracker->MeteoStation->IsAirSensorConnected->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnMeteoChanged);
+	std::cout << "IsAirSensorConnected: Label: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->IsAirSensorConnected->Label) <<
+		" Value: " << TFS[(int)GlobalObjects::LMFTracker->MeteoStation->IsAirSensorConnected->Value] <<
+		std::endl;
+*/
+
+	Do_BoolValue(" IsAirSensorConnected", GlobalObjects::LMFTracker->MeteoStation->IsAirSensorConnected);
+	leica_->setStringParam(leica_->L_Label_29, (decode) (GlobalObjects::LMFTracker->MeteoStation->IsAirSensorConnected->Label));
+	leica_->setIntegerParam(leica_->L_Value_25, (int)GlobalObjects::LMFTracker->MeteoStation->IsAirSensorConnected->Value);
+
+	//
+/*
+	std::cout << "ManualHumidity: Label: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->Label) <<
+
+		// extra fields on manual readouts
+
+		" MaxValue: " << GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->MaxValue <<
+		" MaxValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->MaxValueInBaseUnits <<
+		" MinValue: " << GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->MinValue <<
+		" MinValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->MinValueInBaseUnits <<
+
+
+		" SerialNumber: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->SerialNumber) <<
+		" UnitString: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->UnitString) <<
+		" UnitType: " << EUnitTypeStrings[(int)GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->UnitType] <<
+		" Value: " << GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->Value <<
+		" ValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->ValueInBaseUnits <<
+		std::endl;
+*/
+
+#define PV_IT_5(a,b,c,d,thing) \
+leica_->setStringParam(leica_->L_Label_##a, (decode)(##thing->Label)); \
+leica_->setDoubleParam(leica_->L_MaxValue_##b, ##thing->MaxValue); \
+leica_->setDoubleParam(leica_->L_MaxValueInBaseUnits_##b, ##thing->MaxValueInBaseUnits); \
+leica_->setDoubleParam(leica_->L_MinValue_##b, ##thing->MinValue); \
+leica_->setDoubleParam(leica_->L_MinValueInBaseUnits_##b, ##thing->MinValueInBaseUnits); \
+leica_->setStringParam(leica_->L_SerialNumber_##3, (decode)(##thing->SerialNumber)); \
+leica_->setStringParam(leica_->L_UnitString_##d, (decode)(##thing->UnitString)); \
+leica_->setStringParam(leica_->L_UnitType_##d, EUnitTypeStrings[(int)##thing->UnitType]); \
+leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##d, ##thing->ValueInBaseUnits); \
+
+
+	Do_ManualEnvironmentalSensor(" ManualHumidity", GlobalObjects::LMFTracker->MeteoStation->ManualHumidity);
+
+	PV_IT_5(30,5,3,12, GlobalObjects::LMFTracker->MeteoStation->ManualHumidity)
+		leica_->setDoubleParam(leica_->L_MHumidityValue, GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->Value);
+
+GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnMeteoChanged);
+
+/*
+std::cout << "Available: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->Available->Label) <<
+		" Value: " << TFS[(int)GlobalObjects::LMFTracker->MeteoStation->ManualHumidity->Available->Value] <<
+		std::endl;
+*/
+
+/*
+	std::cout << "ManualPressure: Label: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualPressure->Label) <<
+
+		// extra fields on manual readouts
+
+		" MaxValue: " << GlobalObjects::LMFTracker->MeteoStation->ManualPressure->MaxValue <<
+		" MaxValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->ManualPressure->MaxValueInBaseUnits <<
+		" MinValue: " << GlobalObjects::LMFTracker->MeteoStation->ManualPressure->MinValue <<
+		" MinValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->ManualPressure->MinValueInBaseUnits <<
+
+		" SerialNumber: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualPressure->SerialNumber) <<
+		" UnitString: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualPressure->UnitString) <<
+		" UnitType: " << EUnitTypeStrings[(int)GlobalObjects::LMFTracker->MeteoStation->ManualPressure->UnitType] <<
+		" Value: " << GlobalObjects::LMFTracker->MeteoStation->ManualPressure->Value <<
+		" ValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->ManualPressure->ValueInBaseUnits <<
+		std::endl;
+*/
+
+	Do_ManualEnvironmentalSensor(" ManualPressure", GlobalObjects::LMFTracker->MeteoStation->ManualPressure);
+
+	PV_IT_5(31, 6, 4, 13, GlobalObjects::LMFTracker->MeteoStation->ManualPressure)
+
+		leica_->setDoubleParam(leica_->L_MPressureValue, GlobalObjects::LMFTracker->MeteoStation->ManualPressure->Value);
+
+/*
+GlobalObjects::LMFTracker->MeteoStation->ManualPressure->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnMeteoChanged);
+
+	std::cout << "Available: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualPressure->Available->Label) <<
+		" Value: " << TFS[(int)GlobalObjects::LMFTracker->MeteoStation->ManualPressure->Available->Value] <<
+		std::endl;
+*/
+/*
+	std::cout << "ManualTemperature: Label: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->Label) <<
+
+		// extra fields on manual readouts
+
+		" MaxValue: " << GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->MaxValue <<
+		" MaxValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->MaxValueInBaseUnits <<
+		" MinValue: " << GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->MinValue <<
+		" MinValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->MinValueInBaseUnits <<
+
+
+		" SerialNumber: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->SerialNumber) <<
+		// The degree symbol from this device is something wierd, so pop it off and replace it with something correct.
+		" UnitString: " << '\370' << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->UnitString->Substring(1)) <<
+		//		" UnitString: " << (decode)(LMFTracker->MeteoStation->ManualTemperature->UnitString) <<
+		" UnitType: " << EUnitTypeStrings[(int)GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->UnitType] <<
+		" Value: " << GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->Value <<
+		" ValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->ValueInBaseUnits <<
+		std::endl;
+*/
+
+	Do_ManualEnvironmentalSensor(" ManualTemperature", GlobalObjects::LMFTracker->MeteoStation->ManualTemperature);
+
+	PV_IT_5(32, 7, 5, 14, GlobalObjects::LMFTracker->MeteoStation->ManualTemperature)
+	leica_->setStringParam(leica_->L_UnitString_14, (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->UnitString->Substring(1)));
+	leica_->setDoubleParam(leica_->L_MTemperatureValue, GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->Value);
+
+GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnMeteoChanged);
+
+/*
+	std::cout << "Available: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->Available->Label) <<
+		" Value: " << TFS[(int)GlobalObjects::LMFTracker->MeteoStation->ManualTemperature->Available->Value] <<
+		std::endl;
+*/
+
+/*
+	std::cout << "ObjectTemperature: Label: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->Label) <<
+		" SerialNumber: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->SerialNumber) <<
+		// The degree symbol from this device is something wierd, so pop it off and replace it with something correct.
+		" UnitString: " << '\370' << (decode)(GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->UnitString->Substring(1)) <<
+		//		" UnitString: " << (decode)(LMFTracker->MeteoStation->ObjectTemperature->UnitString) <<
+		" UnitType: " << EUnitTypeStrings[(int)GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->UnitType] <<
+		" Value: " << GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->Value <<
+		" ValueInBaseUnits: " << GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->ValueInBaseUnits <<
+		std::endl;
+*/
+
+	Do_EnvironmentalSensor(" ObjectTemperature", GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature);
+
+	PV_IT_4(33, 15, 34, 26, GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature)
+
+	leica_->setStringParam(leica_->L_SerialNumber_6, (decode)(GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->SerialNumber));
+	leica_->setDoubleParam(leica_->L_OTemperatureValue, GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->Value);
+	leica_->setStringParam(leica_->L_UnitString_15, (decode)(GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->UnitString->Substring(1)));
+
+
+
+GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->Available->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnMeteoChanged);
+
+/*
+std::cout << "Available: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->Available->Label) <<
+		" Value: " << TFS[(int)GlobalObjects::LMFTracker->MeteoStation->ObjectTemperature->Available->Value] <<
+		std::endl;
+*/
+
+GlobalObjects::LMFTracker->MeteoStation->Source->Changed += gcnew LMF::Tracker::Meteo::MeteoSource::ChangedEventHandler(&OnMeteoChanged);
+
+std::cout << " Source: Label: " << (decode)(GlobalObjects::LMFTracker->MeteoStation->Source->Label) <<
+		" Value: " << EMeteoSourceStrings[(int)GlobalObjects::LMFTracker->MeteoStation->Source->Value] <<
+		std::endl;
+
+
+leica_->setStringParam(leica_->L_Label_35, (decode)(GlobalObjects::LMFTracker->MeteoStation->Source->Label));
+leica_->setIntegerParam(leica_->L_Value_27, (int)GlobalObjects::LMFTracker->MeteoStation->Source->Value);
+// This is actually a 2 state sting and not just true/false or 0/1
+
+	std::cout << std::endl;
+
+	leica_->callParamCallbacks();
+
+}
+
 void leica::Do_Settings(void)
 {
 	std::cout << std::endl;
@@ -957,12 +1274,12 @@ void leica::Do_InclinationSensor(void)
 	std::cout << " Current: TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << std::endl;
 
 	Do_SimpleDoubleValue(" X", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Current->X);
-	Do_SimpleDoubleValue( "Y", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Current->Y);
+	Do_SimpleDoubleValue( " Y", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Current->Y);
 
 	Do_ReadOnlyDoubleValue(" Interval", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Interval);
 	Do_ReadOnlyDoubleValue(" Theshold", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Threshold);
 	Do_BoolValue(" ", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->ThresholdExceeded);
-	Do_BoolValue("", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->WorkingRangeExceeded);
+	Do_BoolValue(" ", GlobalObjects::LMFTracker->InclinationSensor->Monitoring->WorkingRangeExceeded);
 
 	//	LMFTracker->InclinationSensor->Monitoring->Reset();
 
@@ -1030,6 +1347,7 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	Do_PowerSource();
 	Do_QuickRelease();
 	Do_InclinationSensor();
+	Do_MeteoStation();
 
 	// Global top level parameters	
 
@@ -2093,7 +2411,7 @@ void leica::OnIncChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^
 void leica::OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitoring^ sender)
 {
 	//	throw gcnew System::NotImplementedException();
-	std::cout << "OnInclinationChanged: "  << std::endl;
+//	std::cout << "OnInclinationChanged: "  << std::endl;
 
 		// there is *ALOT* of things that are returned here
 // Active,Current, Interval, Theshold, Threshold Exceeded, WorkingRangeExceeded, WorkingRangeExceededTime	
@@ -2224,4 +2542,45 @@ void leica::OnPowerLockChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBool
 {
 	//	throw gcnew System::NotImplementedException();
 	std::cout << "OnPowerLockChanged " << std::endl;
+}
+
+
+// These changes are also better reflected somewhere else, it isn't as if these values are flipping non stop, so no great savings
+void leica::OnMeteoChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue)
+{
+//	throw gcnew System::NotImplementedException();
+//	std::cout << "OnMeteoChanged (Double) " << 	(decode)(sender->Label) << " " << paramNewValue << std::endl;
+}
+
+// No idea what might trigger this - changing the units shows those changes in trackerscope, and the number callbacks reflect the new value
+void leica::OnMeteoChanged(LMF::Tracker::Meteo::MeteoSource^ sender, LMF::Tracker::Enums::EMeteoSource paramNewValue)
+{
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnMeteoChanged (Enum) " << (decode)(sender->Label) << " " << (int) paramNewValue << std::endl;
+}
+
+
+// No idea what might trigger this - changing the units shows those changes in trackerscope, and the number callbacks reflect the new value
+void leica::OnMeteoChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue)
+{
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnMeteoChanged (Boolean) " <<	(decode)(sender->Label) << " " << paramNewValue << std::endl;
+}
+
+// Realistically, when any of the 3 values change, this triggers, so this is the one to be updating PV's
+void leica::OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ sender, double paramTemperature, double paramHumidity, double paramPressure)
+{
+//	throw gcnew System::NotImplementedException();
+
+//	std::cout << "OnEnvironmentalValuesChanged" << 
+//	" Temperature: " << paramTemperature <<  
+//	" Humidity: " << paramHumidity << 
+//	" Pressure: " << paramPressure << 
+//	std::endl;
+
+	leica_->setDoubleParam(leica_->L_TemperatureValue, paramTemperature);
+	leica_->setDoubleParam(leica_->L_HumidityValue, paramHumidity);
+	leica_->setDoubleParam(leica_->L_PressureValue, paramPressure);
+
+	leica_->callParamCallbacks();
 }
