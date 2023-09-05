@@ -1386,17 +1386,14 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_2">
+        <widget class="caMenu" name="caMenu_0">
             <property name="geometry">
                 <rect>
                     <x>245</x>
                     <y>300</y>
-                    <width>60</width>
+                    <width>120</width>
                     <height>20</height>
                 </rect>
-            </property>
-            <property name="fontScaleMode">
-                <enum>EPushButton::WidthAndHeight</enum>
             </property>
             <property name="channel">
                 <string>$(P)$(R)L_Value_10</string>
@@ -1415,53 +1412,8 @@ border-radius: 2px;
                     <blue>255</blue>
                 </color>
             </property>
-            <property name="label">
-                <string>False</string>
-            </property>
-            <property name="pressMessage">
-                <string>0</string>
-            </property>
             <property name="colorMode">
-                <enum>caMessageButton::Static</enum>
-            </property>
-        </widget>
-        <widget class="caMessageButton" name="caMessageButton_3">
-            <property name="geometry">
-                <rect>
-                    <x>305</x>
-                    <y>300</y>
-                    <width>60</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="fontScaleMode">
-                <enum>EPushButton::WidthAndHeight</enum>
-            </property>
-            <property name="channel">
-                <string>$(P)$(R)L_Value_10</string>
-            </property>
-            <property name="foreground">
-                <color alpha="255">
-                    <red>0</red>
-                    <green>0</green>
-                    <blue>0</blue>
-                </color>
-            </property>
-            <property name="background">
-                <color alpha="255">
-                    <red>115</red>
-                    <green>223</green>
-                    <blue>255</blue>
-                </color>
-            </property>
-            <property name="label">
-                <string>True</string>
-            </property>
-            <property name="pressMessage">
-                <string>1</string>
-            </property>
-            <property name="colorMode">
-                <enum>caMessageButton::Static</enum>
+                <enum>caMenu::Static</enum>
             </property>
         </widget>
         <widget class="caLineEdit" name="caLineEdit_6">
@@ -1767,7 +1719,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_4">
+        <widget class="caMessageButton" name="caMessageButton_2">
             <property name="geometry">
                 <rect>
                     <x>245</x>
@@ -1806,7 +1758,7 @@ border-radius: 2px;
                 <enum>caMessageButton::Static</enum>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_5">
+        <widget class="caMessageButton" name="caMessageButton_3">
             <property name="geometry">
                 <rect>
                     <x>305</x>
@@ -1935,7 +1887,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_6">
+        <widget class="caMessageButton" name="caMessageButton_4">
             <property name="geometry">
                 <rect>
                     <x>245</x>
@@ -5100,7 +5052,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_7">
+        <widget class="caMessageButton" name="caMessageButton_5">
             <property name="geometry">
                 <rect>
                     <x>245</x>
@@ -6924,7 +6876,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_8">
+        <widget class="caMessageButton" name="caMessageButton_6">
             <property name="geometry">
                 <rect>
                     <x>645</x>
@@ -7620,7 +7572,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMenu" name="caMenu_0">
+        <widget class="caMenu" name="caMenu_1">
             <property name="geometry">
                 <rect>
                     <x>645</x>
@@ -7953,7 +7905,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMenu" name="caMenu_1">
+        <widget class="caMenu" name="caMenu_2">
             <property name="geometry">
                 <rect>
                     <x>645</x>
@@ -10968,7 +10920,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMenu" name="caMenu_2">
+        <widget class="caMenu" name="caMenu_3">
             <property name="geometry">
                 <rect>
                     <x>1045</x>
@@ -11301,7 +11253,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMenu" name="caMenu_3">
+        <widget class="caMenu" name="caMenu_4">
             <property name="geometry">
                 <rect>
                     <x>1045</x>
@@ -11421,7 +11373,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_9">
+        <widget class="caMessageButton" name="caMessageButton_7">
             <property name="geometry">
                 <rect>
                     <x>1045</x>
@@ -12117,7 +12069,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_10">
+        <widget class="caMessageButton" name="caMessageButton_8">
             <property name="geometry">
                 <rect>
                     <x>1045</x>
@@ -12156,7 +12108,7 @@ border-radius: 2px;
                 <enum>caMessageButton::Static</enum>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_11">
+        <widget class="caMessageButton" name="caMessageButton_9">
             <property name="geometry">
                 <rect>
                     <x>1105</x>
@@ -12498,7 +12450,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_12">
+        <widget class="caMessageButton" name="caMessageButton_10">
             <property name="geometry">
                 <rect>
                     <x>1045</x>
@@ -15879,7 +15831,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_13">
+        <widget class="caMessageButton" name="caMessageButton_11">
             <property name="geometry">
                 <rect>
                     <x>1445</x>
@@ -15918,7 +15870,7 @@ border-radius: 2px;
                 <enum>caMessageButton::Static</enum>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_14">
+        <widget class="caMessageButton" name="caMessageButton_12">
             <property name="geometry">
                 <rect>
                     <x>1505</x>
@@ -16047,7 +15999,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_15">
+        <widget class="caMessageButton" name="caMessageButton_13">
             <property name="geometry">
                 <rect>
                     <x>1445</x>
@@ -16086,7 +16038,7 @@ border-radius: 2px;
                 <enum>caMessageButton::Static</enum>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_16">
+        <widget class="caMessageButton" name="caMessageButton_14">
             <property name="geometry">
                 <rect>
                     <x>1505</x>
@@ -16215,7 +16167,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_17">
+        <widget class="caMessageButton" name="caMessageButton_15">
             <property name="geometry">
                 <rect>
                     <x>1445</x>
@@ -16254,7 +16206,7 @@ border-radius: 2px;
                 <enum>caMessageButton::Static</enum>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_18">
+        <widget class="caMessageButton" name="caMessageButton_16">
             <property name="geometry">
                 <rect>
                     <x>1505</x>
@@ -16806,7 +16758,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_19">
+        <widget class="caMessageButton" name="caMessageButton_17">
             <property name="geometry">
                 <rect>
                     <x>1445</x>
@@ -17148,7 +17100,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_20">
+        <widget class="caMessageButton" name="caMessageButton_18">
             <property name="geometry">
                 <rect>
                     <x>1445</x>
@@ -17187,7 +17139,7 @@ border-radius: 2px;
                 <enum>caMessageButton::Static</enum>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_21">
+        <widget class="caMessageButton" name="caMessageButton_19">
             <property name="geometry">
                 <rect>
                     <x>1505</x>
@@ -17739,7 +17691,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_22">
+        <widget class="caMessageButton" name="caMessageButton_20">
             <property name="geometry">
                 <rect>
                     <x>1445</x>
@@ -18081,7 +18033,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_23">
+        <widget class="caMessageButton" name="caMessageButton_21">
             <property name="geometry">
                 <rect>
                     <x>1445</x>
@@ -18120,7 +18072,7 @@ border-radius: 2px;
                 <enum>caMessageButton::Static</enum>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_24">
+        <widget class="caMessageButton" name="caMessageButton_22">
             <property name="geometry">
                 <rect>
                     <x>1505</x>
@@ -18672,7 +18624,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_25">
+        <widget class="caMessageButton" name="caMessageButton_23">
             <property name="geometry">
                 <rect>
                     <x>1445</x>
@@ -18801,7 +18753,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_26">
+        <widget class="caMessageButton" name="caMessageButton_24">
             <property name="geometry">
                 <rect>
                     <x>1445</x>
@@ -18930,7 +18882,7 @@ border-radius: 2px;
                 </rect>
             </property>
         </widget>
-        <widget class="caMessageButton" name="caMessageButton_27">
+        <widget class="caMessageButton" name="caMessageButton_25">
             <property name="geometry">
                 <rect>
                     <x>1445</x>
@@ -19213,15 +19165,14 @@ border-radius: 2px;
         <zorder>caLineEdit_4</zorder>
         <zorder>caTextEntry_4</zorder>
         <zorder>caLineEdit_5</zorder>
-        <zorder>caMessageButton_2</zorder>
-        <zorder>caMessageButton_3</zorder>
+        <zorder>caMenu_0</zorder>
         <zorder>caLineEdit_6</zorder>
         <zorder>caTextEntry_5</zorder>
         <zorder>caLineEdit_7</zorder>
-        <zorder>caMessageButton_4</zorder>
-        <zorder>caMessageButton_5</zorder>
+        <zorder>caMessageButton_2</zorder>
+        <zorder>caMessageButton_3</zorder>
         <zorder>caLineEdit_8</zorder>
-        <zorder>caMessageButton_6</zorder>
+        <zorder>caMessageButton_4</zorder>
         <zorder>caLineEdit_9</zorder>
         <zorder>caTextEntry_6</zorder>
         <zorder>caLineEdit_10</zorder>
@@ -19263,7 +19214,7 @@ border-radius: 2px;
         <zorder>caLineEdit_28</zorder>
         <zorder>caTextEntry_25</zorder>
         <zorder>caLineEdit_29</zorder>
-        <zorder>caMessageButton_7</zorder>
+        <zorder>caMessageButton_5</zorder>
         <zorder>caLineEdit_30</zorder>
         <zorder>caTextEntry_26</zorder>
         <zorder>caLineEdit_31</zorder>
@@ -19287,7 +19238,7 @@ border-radius: 2px;
         <zorder>caLineEdit_40</zorder>
         <zorder>caTextEntry_36</zorder>
         <zorder>caLineEdit_41</zorder>
-        <zorder>caMessageButton_8</zorder>
+        <zorder>caMessageButton_6</zorder>
         <zorder>caLineEdit_42</zorder>
         <zorder>caTextEntry_37</zorder>
         <zorder>caLineEdit_43</zorder>
@@ -19295,11 +19246,11 @@ border-radius: 2px;
         <zorder>caLineEdit_44</zorder>
         <zorder>caTextEntry_39</zorder>
         <zorder>caLineEdit_45</zorder>
-        <zorder>caMenu_0</zorder>
+        <zorder>caMenu_1</zorder>
         <zorder>caLineEdit_46</zorder>
         <zorder>caTextEntry_40</zorder>
         <zorder>caLineEdit_47</zorder>
-        <zorder>caMenu_1</zorder>
+        <zorder>caMenu_2</zorder>
         <zorder>caLineEdit_48</zorder>
         <zorder>caTextEntry_41</zorder>
         <zorder>caLineEdit_49</zorder>
@@ -19339,13 +19290,13 @@ border-radius: 2px;
         <zorder>caLineEdit_66</zorder>
         <zorder>caTextEntry_59</zorder>
         <zorder>caLineEdit_67</zorder>
-        <zorder>caMenu_2</zorder>
+        <zorder>caMenu_3</zorder>
         <zorder>caLineEdit_68</zorder>
         <zorder>caTextEntry_60</zorder>
         <zorder>caLineEdit_69</zorder>
-        <zorder>caMenu_3</zorder>
+        <zorder>caMenu_4</zorder>
         <zorder>caLineEdit_70</zorder>
-        <zorder>caMessageButton_9</zorder>
+        <zorder>caMessageButton_7</zorder>
         <zorder>caLineEdit_71</zorder>
         <zorder>caTextEntry_61</zorder>
         <zorder>caLineEdit_72</zorder>
@@ -19353,12 +19304,12 @@ border-radius: 2px;
         <zorder>caLineEdit_73</zorder>
         <zorder>caTextEntry_63</zorder>
         <zorder>caLineEdit_74</zorder>
-        <zorder>caMessageButton_10</zorder>
-        <zorder>caMessageButton_11</zorder>
+        <zorder>caMessageButton_8</zorder>
+        <zorder>caMessageButton_9</zorder>
         <zorder>caLineEdit_75</zorder>
         <zorder>caTextEntry_64</zorder>
         <zorder>caLineEdit_76</zorder>
-        <zorder>caMessageButton_12</zorder>
+        <zorder>caMessageButton_10</zorder>
         <zorder>caLineEdit_77</zorder>
         <zorder>caTextEntry_65</zorder>
         <zorder>caLineEdit_78</zorder>
@@ -19400,14 +19351,14 @@ border-radius: 2px;
         <zorder>caLineEdit_96</zorder>
         <zorder>caTextEntry_84</zorder>
         <zorder>caLineEdit_97</zorder>
+        <zorder>caMessageButton_11</zorder>
+        <zorder>caMessageButton_12</zorder>
+        <zorder>caLineEdit_98</zorder>
         <zorder>caMessageButton_13</zorder>
         <zorder>caMessageButton_14</zorder>
-        <zorder>caLineEdit_98</zorder>
+        <zorder>caLineEdit_99</zorder>
         <zorder>caMessageButton_15</zorder>
         <zorder>caMessageButton_16</zorder>
-        <zorder>caLineEdit_99</zorder>
-        <zorder>caMessageButton_17</zorder>
-        <zorder>caMessageButton_18</zorder>
         <zorder>caLineEdit_100</zorder>
         <zorder>caTextEntry_85</zorder>
         <zorder>caLineEdit_101</zorder>
@@ -19415,12 +19366,12 @@ border-radius: 2px;
         <zorder>caLineEdit_102</zorder>
         <zorder>caTextEntry_87</zorder>
         <zorder>caLineEdit_103</zorder>
-        <zorder>caMessageButton_19</zorder>
+        <zorder>caMessageButton_17</zorder>
         <zorder>caLineEdit_104</zorder>
         <zorder>caTextEntry_88</zorder>
         <zorder>caLineEdit_105</zorder>
-        <zorder>caMessageButton_20</zorder>
-        <zorder>caMessageButton_21</zorder>
+        <zorder>caMessageButton_18</zorder>
+        <zorder>caMessageButton_19</zorder>
         <zorder>caLineEdit_106</zorder>
         <zorder>caTextEntry_89</zorder>
         <zorder>caLineEdit_107</zorder>
@@ -19428,12 +19379,12 @@ border-radius: 2px;
         <zorder>caLineEdit_108</zorder>
         <zorder>caTextEntry_91</zorder>
         <zorder>caLineEdit_109</zorder>
-        <zorder>caMessageButton_22</zorder>
+        <zorder>caMessageButton_20</zorder>
         <zorder>caLineEdit_110</zorder>
         <zorder>caTextEntry_92</zorder>
         <zorder>caLineEdit_111</zorder>
-        <zorder>caMessageButton_23</zorder>
-        <zorder>caMessageButton_24</zorder>
+        <zorder>caMessageButton_21</zorder>
+        <zorder>caMessageButton_22</zorder>
         <zorder>caLineEdit_112</zorder>
         <zorder>caTextEntry_93</zorder>
         <zorder>caLineEdit_113</zorder>
@@ -19441,11 +19392,11 @@ border-radius: 2px;
         <zorder>caLineEdit_114</zorder>
         <zorder>caTextEntry_95</zorder>
         <zorder>caLineEdit_115</zorder>
-        <zorder>caMessageButton_25</zorder>
+        <zorder>caMessageButton_23</zorder>
         <zorder>caLineEdit_116</zorder>
-        <zorder>caMessageButton_26</zorder>
+        <zorder>caMessageButton_24</zorder>
         <zorder>caLineEdit_117</zorder>
-        <zorder>caMessageButton_27</zorder>
+        <zorder>caMessageButton_25</zorder>
         <zorder>caLineEdit_118</zorder>
     </widget>
 </widget>
