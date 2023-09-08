@@ -8,7 +8,7 @@ display {
 	object {
 		x=50
 		y=50
-		width=1700
+		width=1300
 		height=1060
 	}
 	clr=14
@@ -111,7 +111,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Measurement"
+    textix="Measurement_Readouts"
 	align="horiz. centered"
 }
 text {
@@ -124,7 +124,7 @@ text {
    "basic attribute" {
        clr=14
     }
-    textix="MeasuremenInProgress"
+    textix="StationaryMeasurement3d"
 	align="horiz. right"
 }
 polyline {
@@ -153,7 +153,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Label"
+    textix="MeasurementProfile"
 	align="horiz. right"
 }
 "text entry" {
@@ -164,7 +164,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_10"
+     chan="$(P)$(R)L_MeasurementProfile_1"
      clr=14
      bclr=51
    }
@@ -179,7 +179,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_10_RBV"
+     chan="$(P)$(R)L_MeasurementProfile_1_RBV"
      clr=54
      bclr=4
    }
@@ -196,38 +196,23 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Value"
+    textix="TimeStamp"
 	align="horiz. right"
 }
-"message button" {
+"text entry" {
    object {
       x=245
       y=100
-      width=60
+      width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_9"
+     chan="$(P)$(R)L_TimeStamp_12"
      clr=14
      bclr=51
    }
-   label="False"
-   press_msg="0"
-}
-"message button" {
-   object {
-      x=305
-      y=100
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Value_9"
-     clr=14
-     bclr=51
+   limits {
    }
-   label="True"
-   press_msg="1"
 }
 "text update" {
    object {
@@ -237,7 +222,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_9_RBV"
+     chan="$(P)$(R)L_TimeStamp_12_RBV"
      clr=54
      bclr=4
    }
@@ -252,49 +237,20 @@ text {
       height=20
     }
    "basic attribute" {
-       clr=14
+       clr=54
     }
-    textix="Profiles"
+    textix="TimeStampExternal"
 	align="horiz. right"
 }
-polyline {
-  object {
-      x=10
+"text entry" {
+   object {
+      x=245
       y=125
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (10,145)
-  (230,145)
-}
-}
-text {
-   object {
-      x=10
-      y=150
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Count"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=150
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Count_1"
+     chan="$(P)$(R)L_TimeStampExternal"
      clr=14
      bclr=51
    }
@@ -304,12 +260,12 @@ text {
 "text update" {
    object {
       x=365
-      y=150
+      y=125
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Count_1_RBV"
+     chan="$(P)$(R)L_TimeStampExternal_RBV"
      clr=54
      bclr=4
    }
@@ -319,151 +275,36 @@ text {
 text {
    object {
       x=10
-      y=175
+      y=150
       width=220
       height=20
     }
    "basic attribute" {
        clr=14
     }
-    textix="[0]_StationaryMeasurementProfile"
+    textix="Humidity"
 	align="horiz. right"
 }
 polyline {
   object {
+      x=10
+      y=150
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=20
+       width=1
+    }
+points {
+  (10,170)
+  (230,170)
+}
+}
+text {
+   object {
       x=10
       y=175
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (10,195)
-  (230,195)
-}
-}
-text {
-   object {
-      x=10
-      y=200
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="GUID"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=200
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_GUID_6"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=200
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_GUID_6_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=225
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Name"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=225
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Name_6"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=225
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Name_6_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=250
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="Accuracy"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=10
-      y=250
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (10,270)
-  (230,270)
-}
-}
-text {
-   object {
-      x=10
-      y=275
       width=220
       height=20
     }
@@ -476,12 +317,12 @@ text {
 "text entry" {
    object {
       x=245
-      y=275
+      y=175
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_11"
+     chan="$(P)$(R)L_Label_77"
      clr=14
      bclr=51
    }
@@ -491,12 +332,12 @@ text {
 "text update" {
    object {
       x=365
-      y=275
+      y=175
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_11_RBV"
+     chan="$(P)$(R)L_Label_77_RBV"
      clr=54
      bclr=4
    }
@@ -506,7 +347,93 @@ text {
 text {
    object {
       x=10
-      y=300
+      y=200
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="UnitString"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=200
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_UnitString_53"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=200
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_UnitString_53_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=225
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="UnitType"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=225
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_UnitType_53"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=225
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_UnitType_53_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=250
       width=220
       height=20
     }
@@ -516,28 +443,30 @@ text {
     textix="Value"
 	align="horiz. right"
 }
-menu {
+"text entry" {
    object {
       x=245
-      y=300
+      y=250
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_10"
+     chan="$(P)$(R)L_Value_69"
      clr=14
      bclr=51
+   }
+   limits {
    }
 }
 "text update" {
    object {
       x=365
-      y=300
+      y=250
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_10_RBV"
+     chan="$(P)$(R)L_Value_69_RBV"
      clr=54
      bclr=4
    }
@@ -547,20 +476,63 @@ menu {
 text {
    object {
       x=10
-      y=325
+      y=275
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="ValueInBaseUnits"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=275
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_ValueInBaseUnits_53"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=275
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_ValueInBaseUnits_53_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=300
       width=220
       height=20
     }
    "basic attribute" {
        clr=14
     }
-    textix="TwoFace"
+    textix="Pressure"
 	align="horiz. right"
 }
 polyline {
   object {
       x=10
-      y=325
+      y=300
       width=220
       height=20
     }
@@ -569,14 +541,14 @@ polyline {
        width=1
     }
 points {
-  (10,345)
-  (230,345)
+  (10,320)
+  (230,320)
 }
 }
 text {
    object {
       x=10
-      y=350
+      y=325
       width=220
       height=20
     }
@@ -589,12 +561,55 @@ text {
 "text entry" {
    object {
       x=245
+      y=325
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Label_78"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=325
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Label_78_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=350
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="UnitString"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
       y=350
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_12"
+     chan="$(P)$(R)L_UnitString_54"
      clr=14
      bclr=51
    }
@@ -609,7 +624,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_12_RBV"
+     chan="$(P)$(R)L_UnitString_54_RBV"
      clr=54
      bclr=4
    }
@@ -626,18 +641,420 @@ text {
    "basic attribute" {
        clr=54
     }
+    textix="UnitType"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=375
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_UnitType_54"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=375
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_UnitType_54_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=400
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
     textix="Value"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=400
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_70"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=400
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Value_70_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=425
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="ValueInBaseUnits"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=425
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_ValueInBaseUnits_54"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=425
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_ValueInBaseUnits_54_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=450
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=14
+    }
+    textix="Temperature"
+	align="horiz. right"
+}
+polyline {
+  object {
+      x=10
+      y=450
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=20
+       width=1
+    }
+points {
+  (10,470)
+  (230,470)
+}
+}
+text {
+   object {
+      x=10
+      y=475
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="Label"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=475
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Label_79"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=475
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Label_79_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=500
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="UnitString"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=500
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_UnitString_55"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=500
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_UnitString_55_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=525
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="UnitType"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=525
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_UnitType_55"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=525
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_UnitType_55_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=550
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="Value"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=550
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_71"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=550
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Value_71_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=575
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="ValueInBaseUnits"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=245
+      y=575
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_ValueInBaseUnits_55"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=365
+      y=575
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_ValueInBaseUnits_55_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=10
+      y=600
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=14
+    }
+    textix="Info"
+	align="horiz. right"
+}
+polyline {
+  object {
+      x=10
+      y=600
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=20
+       width=1
+    }
+points {
+  (10,620)
+  (230,620)
+}
+}
+text {
+   object {
+      x=10
+      y=625
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="FirstMeasAfterStartSignal"
 	align="horiz. right"
 }
 "message button" {
    object {
       x=245
-      y=375
+      y=625
       width=60
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_11"
+     chan="$(P)$(R)L_FirstMeasAfterStartSignal"
      clr=14
      bclr=51
    }
@@ -647,12 +1064,12 @@ text {
 "message button" {
    object {
       x=305
-      y=375
+      y=625
       width=60
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_11"
+     chan="$(P)$(R)L_FirstMeasAfterStartSignal"
      clr=14
      bclr=51
    }
@@ -662,12 +1079,12 @@ text {
 "text update" {
    object {
       x=365
-      y=375
+      y=625
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_11_RBV"
+     chan="$(P)$(R)L_FirstMeasAfterStartSignal_RBV"
      clr=54
      bclr=4
    }
@@ -677,40 +1094,40 @@ text {
 text {
    object {
       x=10
-      y=400
+      y=650
       width=220
       height=20
     }
    "basic attribute" {
        clr=54
     }
-    textix="Select"
+    textix="Flags"
 	align="horiz. right"
 }
-"message button" {
+"text entry" {
    object {
       x=245
-      y=400
+      y=650
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Select_6"
+     chan="$(P)$(R)L_Flags"
      clr=14
      bclr=51
    }
-   label="Select"
-   press_msg="1"
+   limits {
+   }
 }
 "text update" {
    object {
       x=365
-      y=400
+      y=650
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Select_6_RBV"
+     chan="$(P)$(R)L_Flags_RBV"
      clr=54
      bclr=4
    }
@@ -720,36 +1137,50 @@ text {
 text {
    object {
       x=10
-      y=425
+      y=675
       width=220
       height=20
     }
    "basic attribute" {
-       clr=14
+       clr=54
     }
-    textix="[1]_ContinuousTimeProfile"
+    textix="FlagsWithWarnings"
 	align="horiz. right"
 }
-polyline {
-  object {
-      x=10
-      y=425
-      width=220
+"text entry" {
+   object {
+      x=245
+      y=675
+      width=120
       height=20
     }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (10,445)
-  (230,445)
+   control {
+     chan="$(P)$(R)L_FlagsWithWarnings"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
 }
+"text update" {
+   object {
+      x=365
+      y=675
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_FlagsWithWarnings_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
 }
 text {
    object {
       x=10
-      y=450
+      y=700
       width=220
       height=20
     }
@@ -762,428 +1193,12 @@ text {
 "text entry" {
    object {
       x=245
-      y=450
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_GUID_7"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=450
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_GUID_7_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=475
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Name"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=475
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Name_7"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=475
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Name_7_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=500
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="PacketRate"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=10
-      y=500
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (10,520)
-  (230,520)
-}
-}
-text {
-   object {
-      x=10
-      y=525
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Label"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=525
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Label_13"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=525
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Label_13_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=550
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MaxValue"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=550
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MaxValue"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=550
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MaxValue_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=575
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MaxValueInBaseUnits"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=575
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MaxValueInBaseUnits"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=575
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MaxValueInBaseUnits_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=600
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MinValue"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=600
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MinValue"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=600
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MinValue_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=625
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MinValueInBaseUnits"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=625
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MinValueInBaseUnits"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=625
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MinValueInBaseUnits_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=650
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="UnitString"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=650
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_UnitString_4"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=650
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_UnitString_4_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=675
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="UnitType"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
-      y=675
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_UnitType_4"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=365
-      y=675
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_UnitType_4_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=10
-      y=700
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Value"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=245
       y=700
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_12"
+     chan="$(P)$(R)L_GUID_15"
      clr=14
      bclr=51
    }
@@ -1198,7 +1213,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_12_RBV"
+     chan="$(P)$(R)L_GUID_15_RBV"
      clr=54
      bclr=4
    }
@@ -1215,7 +1230,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="ValueInBaseUnits"
+    textix="GUIDInfo"
 	align="horiz. right"
 }
 "text entry" {
@@ -1226,7 +1241,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_4"
+     chan="$(P)$(R)L_GUIDInfo"
      clr=14
      bclr=51
    }
@@ -1241,7 +1256,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_4_RBV"
+     chan="$(P)$(R)L_GUIDInfo_RBV"
      clr=54
      bclr=4
    }
@@ -1256,26 +1271,40 @@ text {
       height=20
     }
    "basic attribute" {
-       clr=14
+       clr=54
     }
-    textix="TimeSeparation"
+    textix="LineIndex"
 	align="horiz. right"
 }
-polyline {
-  object {
-      x=10
+"text entry" {
+   object {
+      x=245
       y=750
-      width=220
+      width=120
       height=20
     }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (10,770)
-  (230,770)
+   control {
+     chan="$(P)$(R)L_LineIndex"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
 }
+"text update" {
+   object {
+      x=365
+      y=750
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_LineIndex_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
 }
 text {
    object {
@@ -1287,7 +1316,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Label"
+    textix="Mode"
 	align="horiz. right"
 }
 "text entry" {
@@ -1298,7 +1327,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_14"
+     chan="$(P)$(R)L_Mode"
      clr=14
      bclr=51
    }
@@ -1313,7 +1342,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_14_RBV"
+     chan="$(P)$(R)L_Mode_RBV"
      clr=54
      bclr=4
    }
@@ -1330,7 +1359,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="MaxValue"
+    textix="MountNr"
 	align="horiz. right"
 }
 "text entry" {
@@ -1341,7 +1370,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_MaxValue_1"
+     chan="$(P)$(R)L_MountNr"
      clr=14
      bclr=51
    }
@@ -1356,7 +1385,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_MaxValue_1_RBV"
+     chan="$(P)$(R)L_MountNr_RBV"
      clr=54
      bclr=4
    }
@@ -1373,7 +1402,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="MaxValueInBaseUnits"
+    textix="NumberOfLEDsUsed"
 	align="horiz. right"
 }
 "text entry" {
@@ -1384,7 +1413,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_MaxValueInBaseUnits_1"
+     chan="$(P)$(R)L_NumberOfLEDsUsed"
      clr=14
      bclr=51
    }
@@ -1399,7 +1428,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_MaxValueInBaseUnits_1_RBV"
+     chan="$(P)$(R)L_NumberOfLEDsUsed_RBV"
      clr=54
      bclr=4
    }
@@ -1416,7 +1445,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="MinValue"
+    textix="NumberOfLEDsVisible"
 	align="horiz. right"
 }
 "text entry" {
@@ -1427,7 +1456,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_MinValue_1"
+     chan="$(P)$(R)L_NumberOfLEDsVisible"
      clr=14
      bclr=51
    }
@@ -1442,7 +1471,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_MinValue_1_RBV"
+     chan="$(P)$(R)L_NumberOfLEDsVisible_RBV"
      clr=54
      bclr=4
    }
@@ -1459,7 +1488,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="MinValueInBaseUnits"
+    textix="PointIndex"
 	align="horiz. right"
 }
 "text entry" {
@@ -1470,7 +1499,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_MinValueInBaseUnits_1"
+     chan="$(P)$(R)L_PointIndex"
      clr=14
      bclr=51
    }
@@ -1485,7 +1514,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_MinValueInBaseUnits_1_RBV"
+     chan="$(P)$(R)L_PointIndex_RBV"
      clr=54
      bclr=4
    }
@@ -1502,7 +1531,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="UnitString"
+    textix="ProbeFace"
 	align="horiz. right"
 }
 "text entry" {
@@ -1513,7 +1542,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_5"
+     chan="$(P)$(R)L_ProbeFace"
      clr=14
      bclr=51
    }
@@ -1528,7 +1557,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_5_RBV"
+     chan="$(P)$(R)L_ProbeFace_RBV"
      clr=54
      bclr=4
    }
@@ -1545,7 +1574,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="UnitType"
+    textix="ProbeSerialNumber"
 	align="horiz. right"
 }
 "text entry" {
@@ -1556,7 +1585,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_5"
+     chan="$(P)$(R)L_ProbeSerialNumber"
      clr=14
      bclr=51
    }
@@ -1571,7 +1600,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_5_RBV"
+     chan="$(P)$(R)L_ProbeSerialNumber_RBV"
      clr=54
      bclr=4
    }
@@ -1588,7 +1617,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Value"
+    textix="RegionIndex"
 	align="horiz. right"
 }
 "text entry" {
@@ -1599,7 +1628,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_13"
+     chan="$(P)$(R)L_RegionIndex"
      clr=14
      bclr=51
    }
@@ -1614,7 +1643,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_13_RBV"
+     chan="$(P)$(R)L_RegionIndex_RBV"
      clr=54
      bclr=4
    }
@@ -1631,7 +1660,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="ValueInBaseUnits"
+    textix="TrackerStatusWord"
 	align="horiz. right"
 }
 "text entry" {
@@ -1642,7 +1671,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_5"
+     chan="$(P)$(R)L_TrackerStatusWord"
      clr=14
      bclr=51
    }
@@ -1657,7 +1686,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_5_RBV"
+     chan="$(P)$(R)L_TrackerStatusWord_RBV"
      clr=54
      bclr=4
    }
@@ -1674,10 +1703,10 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Select"
+    textix="Type"
 	align="horiz. right"
 }
-"message button" {
+"text entry" {
    object {
       x=245
       y=1000
@@ -1685,12 +1714,12 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Select_7"
+     chan="$(P)$(R)L_Type"
      clr=14
      bclr=51
    }
-   label="Select"
-   press_msg="1"
+   limits {
+   }
 }
 "text update" {
    object {
@@ -1700,7 +1729,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Select_7_RBV"
+     chan="$(P)$(R)L_Type_RBV"
      clr=54
      bclr=4
    }
@@ -1717,7 +1746,7 @@ text {
    "basic attribute" {
        clr=14
     }
-    textix="[2]_ContinuousDistanceProfile"
+    textix="DistanceBroadening"
 	align="horiz. right"
 }
 polyline {
@@ -1746,133 +1775,18 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="GUID"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=75
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_GUID_8"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=75
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_GUID_8_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=100
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Name"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=100
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Name_8"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=100
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Name_8_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=125
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="DistanceSeparation"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=410
-      y=125
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (410,145)
-  (630,145)
-}
-}
-text {
-   object {
-      x=410
-      y=150
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
     textix="Label"
 	align="horiz. right"
 }
 "text entry" {
    object {
       x=645
-      y=150
+      y=75
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_15"
+     chan="$(P)$(R)L_Label_80"
      clr=14
      bclr=51
    }
@@ -1882,12 +1796,12 @@ text {
 "text update" {
    object {
       x=765
-      y=150
+      y=75
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_15_RBV"
+     chan="$(P)$(R)L_Label_80_RBV"
      clr=54
      bclr=4
    }
@@ -1897,7 +1811,7 @@ text {
 text {
    object {
       x=410
-      y=175
+      y=100
       width=220
       height=20
     }
@@ -1910,12 +1824,12 @@ text {
 "text entry" {
    object {
       x=645
-      y=175
+      y=100
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_MaxValue_2"
+     chan="$(P)$(R)L_MaxValue_15"
      clr=14
      bclr=51
    }
@@ -1925,12 +1839,12 @@ text {
 "text update" {
    object {
       x=765
-      y=175
+      y=100
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_MaxValue_2_RBV"
+     chan="$(P)$(R)L_MaxValue_15_RBV"
      clr=54
      bclr=4
    }
@@ -1940,7 +1854,7 @@ text {
 text {
    object {
       x=410
-      y=200
+      y=125
       width=220
       height=20
     }
@@ -1953,12 +1867,12 @@ text {
 "text entry" {
    object {
       x=645
-      y=200
+      y=125
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_MaxValueInBaseUnits_2"
+     chan="$(P)$(R)L_MaxValueInBaseUnits_15"
      clr=14
      bclr=51
    }
@@ -1968,12 +1882,12 @@ text {
 "text update" {
    object {
       x=765
-      y=200
+      y=125
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_MaxValueInBaseUnits_2_RBV"
+     chan="$(P)$(R)L_MaxValueInBaseUnits_15_RBV"
      clr=54
      bclr=4
    }
@@ -1983,7 +1897,7 @@ text {
 text {
    object {
       x=410
-      y=225
+      y=150
       width=220
       height=20
     }
@@ -1996,12 +1910,12 @@ text {
 "text entry" {
    object {
       x=645
-      y=225
+      y=150
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_MinValue_2"
+     chan="$(P)$(R)L_MinValue_15"
      clr=14
      bclr=51
    }
@@ -2011,12 +1925,12 @@ text {
 "text update" {
    object {
       x=765
-      y=225
+      y=150
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_MinValue_2_RBV"
+     chan="$(P)$(R)L_MinValue_15_RBV"
      clr=54
      bclr=4
    }
@@ -2026,7 +1940,7 @@ text {
 text {
    object {
       x=410
-      y=250
+      y=175
       width=220
       height=20
     }
@@ -2039,12 +1953,12 @@ text {
 "text entry" {
    object {
       x=645
-      y=250
+      y=175
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_MinValueInBaseUnits_2"
+     chan="$(P)$(R)L_MinValueInBaseUnits_15"
      clr=14
      bclr=51
    }
@@ -2054,12 +1968,12 @@ text {
 "text update" {
    object {
       x=765
-      y=250
+      y=175
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_MinValueInBaseUnits_2_RBV"
+     chan="$(P)$(R)L_MinValueInBaseUnits_15_RBV"
      clr=54
      bclr=4
    }
@@ -2069,7 +1983,7 @@ text {
 text {
    object {
       x=410
-      y=275
+      y=200
       width=220
       height=20
     }
@@ -2082,12 +1996,12 @@ text {
 "text entry" {
    object {
       x=645
-      y=275
+      y=200
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_6"
+     chan="$(P)$(R)L_UnitString_56"
      clr=14
      bclr=51
    }
@@ -2097,12 +2011,12 @@ text {
 "text update" {
    object {
       x=765
-      y=275
+      y=200
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_6_RBV"
+     chan="$(P)$(R)L_UnitString_56_RBV"
      clr=54
      bclr=4
    }
@@ -2112,7 +2026,7 @@ text {
 text {
    object {
       x=410
-      y=300
+      y=225
       width=220
       height=20
     }
@@ -2125,12 +2039,12 @@ text {
 "text entry" {
    object {
       x=645
-      y=300
+      y=225
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_6"
+     chan="$(P)$(R)L_UnitType_56"
      clr=14
      bclr=51
    }
@@ -2140,12 +2054,12 @@ text {
 "text update" {
    object {
       x=765
-      y=300
+      y=225
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_6_RBV"
+     chan="$(P)$(R)L_UnitType_56_RBV"
      clr=54
      bclr=4
    }
@@ -2155,7 +2069,7 @@ text {
 text {
    object {
       x=410
-      y=325
+      y=250
       width=220
       height=20
     }
@@ -2168,12 +2082,12 @@ text {
 "text entry" {
    object {
       x=645
-      y=325
+      y=250
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_14"
+     chan="$(P)$(R)L_Value_72"
      clr=14
      bclr=51
    }
@@ -2183,12 +2097,12 @@ text {
 "text update" {
    object {
       x=765
-      y=325
+      y=250
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_14_RBV"
+     chan="$(P)$(R)L_Value_72_RBV"
      clr=54
      bclr=4
    }
@@ -2198,7 +2112,7 @@ text {
 text {
    object {
       x=410
-      y=350
+      y=275
       width=220
       height=20
     }
@@ -2211,12 +2125,12 @@ text {
 "text entry" {
    object {
       x=645
-      y=350
+      y=275
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_6"
+     chan="$(P)$(R)L_ValueInBaseUnits_56"
      clr=14
      bclr=51
    }
@@ -2226,12 +2140,12 @@ text {
 "text update" {
    object {
       x=765
-      y=350
+      y=275
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_6_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_56_RBV"
      clr=54
      bclr=4
    }
@@ -2241,63 +2155,20 @@ text {
 text {
    object {
       x=410
-      y=375
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Select"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=645
-      y=375
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Select_8"
-     clr=14
-     bclr=51
-   }
-   label="Select"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=765
-      y=375
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Select_8_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=400
+      y=300
       width=220
       height=20
     }
    "basic attribute" {
        clr=14
     }
-    textix="[3]_CustomTriggerProfileProfile"
+    textix="Intensity"
 	align="horiz. right"
 }
 polyline {
   object {
       x=410
-      y=400
+      y=300
       width=220
       height=20
     }
@@ -2306,129 +2177,14 @@ polyline {
        width=1
     }
 points {
-  (410,420)
-  (630,420)
+  (410,320)
+  (630,320)
 }
 }
 text {
    object {
       x=410
-      y=425
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="GUID"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=425
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_GUID_9"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=425
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_GUID_9_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=450
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Name"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=450
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Name_9"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=450
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Name_9_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=475
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="ClockSource"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=410
-      y=475
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (410,495)
-  (630,495)
-}
-}
-text {
-   object {
-      x=410
-      y=500
+      y=325
       width=220
       height=20
     }
@@ -2441,12 +2197,313 @@ text {
 "text entry" {
    object {
       x=645
+      y=325
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Label_81"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=325
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Label_81_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=350
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="MaxValue"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=350
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_MaxValue_16"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=350
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_MaxValue_16_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=375
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="MaxValueInBaseUnits"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=375
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_MaxValueInBaseUnits_16"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=375
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_MaxValueInBaseUnits_16_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=400
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="MinValue"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=400
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_MinValue_16"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=400
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_MinValue_16_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=425
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="MinValueInBaseUnits"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=425
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_MinValueInBaseUnits_16"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=425
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_MinValueInBaseUnits_16_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=450
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="UnitString"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=450
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_UnitString_57"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=450
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_UnitString_57_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=475
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="UnitType"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=475
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_UnitType_57"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=475
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_UnitType_57_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=500
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="Value"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
       y=500
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_16"
+     chan="$(P)$(R)L_Value_73"
      clr=14
      bclr=51
    }
@@ -2461,7 +2518,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_16_RBV"
+     chan="$(P)$(R)L_Value_73_RBV"
      clr=54
      bclr=4
    }
@@ -2478,10 +2535,10 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Value"
+    textix="ValueInBaseUnits"
 	align="horiz. right"
 }
-menu {
+"text entry" {
    object {
       x=645
       y=525
@@ -2489,9 +2546,11 @@ menu {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_15"
+     chan="$(P)$(R)L_ValueInBaseUnits_57"
      clr=14
      bclr=51
+   }
+   limits {
    }
 }
 "text update" {
@@ -2502,7 +2561,7 @@ menu {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_15_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_57_RBV"
      clr=54
      bclr=4
    }
@@ -2519,7 +2578,7 @@ text {
    "basic attribute" {
        clr=14
     }
-    textix="ClockTransmission"
+    textix="Position"
 	align="horiz. right"
 }
 polyline {
@@ -2548,7 +2607,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Label"
+    textix="CoordinateType"
 	align="horiz. right"
 }
 "text entry" {
@@ -2559,7 +2618,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_17"
+     chan="$(P)$(R)L_CoordinateType_4"
      clr=14
      bclr=51
    }
@@ -2574,7 +2633,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_17_RBV"
+     chan="$(P)$(R)L_CoordinateType_4_RBV"
      clr=54
      bclr=4
    }
@@ -2591,21 +2650,38 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Value"
+    textix="IsFace2"
 	align="horiz. right"
 }
-menu {
+"message button" {
    object {
       x=645
       y=600
-      width=120
+      width=60
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_16"
+     chan="$(P)$(R)L_IsFace2_1"
      clr=14
      bclr=51
    }
+   label="False"
+   press_msg="0"
+}
+"message button" {
+   object {
+      x=705
+      y=600
+      width=60
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_IsFace2_1"
+     clr=14
+     bclr=51
+   }
+   label="True"
+   press_msg="1"
 }
 "text update" {
    object {
@@ -2615,7 +2691,7 @@ menu {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_16_RBV"
+     chan="$(P)$(R)L_IsFace2_1_RBV"
      clr=54
      bclr=4
    }
@@ -2632,7 +2708,7 @@ text {
    "basic attribute" {
        clr=14
     }
-    textix="MinimalTimeDelay"
+    textix="Coordinate1"
 	align="horiz. right"
 }
 polyline {
@@ -2672,7 +2748,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_18"
+     chan="$(P)$(R)L_Label_82"
      clr=14
      bclr=51
    }
@@ -2687,7 +2763,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_18_RBV"
+     chan="$(P)$(R)L_Label_82_RBV"
      clr=54
      bclr=4
    }
@@ -2698,178 +2774,6 @@ text {
    object {
       x=410
       y=675
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MaxValue"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=675
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MaxValue_3"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=675
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MaxValue_3_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=700
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MaxValueInBaseUnits"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=700
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MaxValueInBaseUnits_3"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=700
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MaxValueInBaseUnits_3_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=725
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MinValue"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=725
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MinValue_3"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=725
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MinValue_3_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=750
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MinValueInBaseUnits"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=750
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MinValueInBaseUnits_3"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=750
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MinValueInBaseUnits_3_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=775
       width=220
       height=20
     }
@@ -2882,12 +2786,12 @@ text {
 "text entry" {
    object {
       x=645
-      y=775
+      y=675
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_7"
+     chan="$(P)$(R)L_UnitString_58"
      clr=14
      bclr=51
    }
@@ -2897,12 +2801,12 @@ text {
 "text update" {
    object {
       x=765
-      y=775
+      y=675
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_7_RBV"
+     chan="$(P)$(R)L_UnitString_58_RBV"
      clr=54
      bclr=4
    }
@@ -2912,7 +2816,7 @@ text {
 text {
    object {
       x=410
-      y=800
+      y=700
       width=220
       height=20
     }
@@ -2925,12 +2829,12 @@ text {
 "text entry" {
    object {
       x=645
-      y=800
+      y=700
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_7"
+     chan="$(P)$(R)L_UnitType_58"
      clr=14
      bclr=51
    }
@@ -2940,12 +2844,12 @@ text {
 "text update" {
    object {
       x=765
-      y=800
+      y=700
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_7_RBV"
+     chan="$(P)$(R)L_UnitType_58_RBV"
      clr=54
      bclr=4
    }
@@ -2955,7 +2859,7 @@ text {
 text {
    object {
       x=410
-      y=825
+      y=725
       width=220
       height=20
     }
@@ -2968,12 +2872,170 @@ text {
 "text entry" {
    object {
       x=645
+      y=725
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_74"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=725
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Value_74_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=750
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="ValueInBaseUnits"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=750
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_ValueInBaseUnits_58"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=750
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_ValueInBaseUnits_58_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=775
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=14
+    }
+    textix="Precision"
+	align="horiz. right"
+}
+polyline {
+  object {
+      x=410
+      y=775
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=20
+       width=1
+    }
+points {
+  (410,795)
+  (630,795)
+}
+}
+text {
+   object {
+      x=410
+      y=800
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="Label"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=800
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Label_83"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=800
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Label_83_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=825
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="UnitString"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
       y=825
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_17"
+     chan="$(P)$(R)L_UnitString_59"
      clr=14
      bclr=51
    }
@@ -2988,7 +3050,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_17_RBV"
+     chan="$(P)$(R)L_UnitString_59_RBV"
      clr=54
      bclr=4
    }
@@ -3005,7 +3067,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="ValueInBaseUnits"
+    textix="UnitType"
 	align="horiz. right"
 }
 "text entry" {
@@ -3016,7 +3078,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_7"
+     chan="$(P)$(R)L_UnitType_59"
      clr=14
      bclr=51
    }
@@ -3031,7 +3093,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_7_RBV"
+     chan="$(P)$(R)L_UnitType_59_RBV"
      clr=54
      bclr=4
    }
@@ -3046,15 +3108,101 @@ text {
       height=20
     }
    "basic attribute" {
+       clr=54
+    }
+    textix="Value"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=875
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_Value_75"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=875
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_Value_75_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=900
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="ValueInBaseUnits"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=645
+      y=900
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_ValueInBaseUnits_59"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=765
+      y=900
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_ValueInBaseUnits_59_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=410
+      y=925
+      width=220
+      height=20
+    }
+   "basic attribute" {
        clr=14
     }
-    textix="PacketRate"
+    textix="Coordinate2"
 	align="horiz. right"
 }
 polyline {
   object {
       x=410
-      y=875
+      y=925
       width=220
       height=20
     }
@@ -3063,14 +3211,14 @@ polyline {
        width=1
     }
 points {
-  (410,895)
-  (630,895)
+  (410,945)
+  (630,945)
 }
 }
 text {
    object {
       x=410
-      y=900
+      y=950
       width=220
       height=20
     }
@@ -3083,98 +3231,12 @@ text {
 "text entry" {
    object {
       x=645
-      y=900
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Label_19"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=900
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Label_19_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=925
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MaxValue"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=925
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MaxValue_4"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=925
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MaxValue_4_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=950
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MaxValueInBaseUnits"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
       y=950
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_MaxValueInBaseUnits_4"
+     chan="$(P)$(R)L_Label_84"
      clr=14
      bclr=51
    }
@@ -3189,7 +3251,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_MaxValueInBaseUnits_4_RBV"
+     chan="$(P)$(R)L_Label_84_RBV"
      clr=54
      bclr=4
    }
@@ -3200,92 +3262,6 @@ text {
    object {
       x=410
       y=975
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MinValue"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=975
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MinValue_4"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=975
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MinValue_4_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=410
-      y=1000
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MinValueInBaseUnits"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=645
-      y=1000
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MinValueInBaseUnits_4"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=765
-      y=1000
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MinValueInBaseUnits_4_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=50
       width=220
       height=20
     }
@@ -3297,13 +3273,13 @@ text {
 }
 "text entry" {
    object {
-      x=1045
-      y=50
+      x=645
+      y=975
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitString_8"
+     chan="$(P)$(R)L_UnitString_60"
      clr=14
      bclr=51
    }
@@ -3312,13 +3288,13 @@ text {
 }
 "text update" {
    object {
-      x=1165
-      y=50
+      x=765
+      y=975
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitString_8_RBV"
+     chan="$(P)$(R)L_UnitString_60_RBV"
      clr=54
      bclr=4
    }
@@ -3327,8 +3303,8 @@ text {
 }
 text {
    object {
-      x=810
-      y=75
+      x=410
+      y=1000
       width=220
       height=20
     }
@@ -3340,13 +3316,13 @@ text {
 }
 "text entry" {
    object {
-      x=1045
-      y=75
+      x=645
+      y=1000
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_UnitType_8"
+     chan="$(P)$(R)L_UnitType_60"
      clr=14
      bclr=51
    }
@@ -3355,13 +3331,13 @@ text {
 }
 "text update" {
    object {
-      x=1165
-      y=75
+      x=765
+      y=1000
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_UnitType_8_RBV"
+     chan="$(P)$(R)L_UnitType_60_RBV"
      clr=54
      bclr=4
    }
@@ -3371,7 +3347,7 @@ text {
 text {
    object {
       x=810
-      y=100
+      y=50
       width=220
       height=20
     }
@@ -3384,12 +3360,12 @@ text {
 "text entry" {
    object {
       x=1045
-      y=100
+      y=50
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_18"
+     chan="$(P)$(R)L_Value_76"
      clr=14
      bclr=51
    }
@@ -3399,12 +3375,12 @@ text {
 "text update" {
    object {
       x=1165
-      y=100
+      y=50
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_18_RBV"
+     chan="$(P)$(R)L_Value_76_RBV"
      clr=54
      bclr=4
    }
@@ -3414,7 +3390,7 @@ text {
 text {
    object {
       x=810
-      y=125
+      y=75
       width=220
       height=20
     }
@@ -3427,12 +3403,84 @@ text {
 "text entry" {
    object {
       x=1045
+      y=75
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_ValueInBaseUnits_60"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=1165
+      y=75
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_ValueInBaseUnits_60_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=810
+      y=100
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=14
+    }
+    textix="Precision"
+	align="horiz. right"
+}
+polyline {
+  object {
+      x=810
+      y=100
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=20
+       width=1
+    }
+points {
+  (810,120)
+  (1030,120)
+}
+}
+text {
+   object {
+      x=810
+      y=125
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="Label"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=1045
       y=125
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_ValueInBaseUnits_8"
+     chan="$(P)$(R)L_Label_85"
      clr=14
      bclr=51
    }
@@ -3447,7 +3495,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_ValueInBaseUnits_8_RBV"
+     chan="$(P)$(R)L_Label_85_RBV"
      clr=54
      bclr=4
    }
@@ -3462,26 +3510,40 @@ text {
       height=20
     }
    "basic attribute" {
-       clr=14
+       clr=54
     }
-    textix="StartStopActiveLevel"
+    textix="UnitString"
 	align="horiz. right"
 }
-polyline {
-  object {
-      x=810
+"text entry" {
+   object {
+      x=1045
       y=150
-      width=220
+      width=120
       height=20
     }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (810,170)
-  (1030,170)
+   control {
+     chan="$(P)$(R)L_UnitString_61"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
 }
+"text update" {
+   object {
+      x=1165
+      y=150
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_UnitString_61_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
 }
 text {
    object {
@@ -3493,7 +3555,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Label"
+    textix="UnitType"
 	align="horiz. right"
 }
 "text entry" {
@@ -3504,7 +3566,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_20"
+     chan="$(P)$(R)L_UnitType_61"
      clr=14
      bclr=51
    }
@@ -3519,7 +3581,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_20_RBV"
+     chan="$(P)$(R)L_UnitType_61_RBV"
      clr=54
      bclr=4
    }
@@ -3539,7 +3601,7 @@ text {
     textix="Value"
 	align="horiz. right"
 }
-menu {
+"text entry" {
    object {
       x=1045
       y=200
@@ -3547,9 +3609,11 @@ menu {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_19"
+     chan="$(P)$(R)L_Value_77"
      clr=14
      bclr=51
+   }
+   limits {
    }
 }
 "text update" {
@@ -3560,7 +3624,7 @@ menu {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_19_RBV"
+     chan="$(P)$(R)L_Value_77_RBV"
      clr=54
      bclr=4
    }
@@ -3575,15 +3639,58 @@ text {
       height=20
     }
    "basic attribute" {
+       clr=54
+    }
+    textix="ValueInBaseUnits"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=1045
+      y=225
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_ValueInBaseUnits_61"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=1165
+      y=225
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_ValueInBaseUnits_61_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=810
+      y=250
+      width=220
+      height=20
+    }
+   "basic attribute" {
        clr=14
     }
-    textix="StartStopSource"
+    textix="Coordinate3"
 	align="horiz. right"
 }
 polyline {
   object {
       x=810
-      y=225
+      y=250
       width=220
       height=20
     }
@@ -3592,14 +3699,14 @@ polyline {
        width=1
     }
 points {
-  (810,245)
-  (1030,245)
+  (810,270)
+  (1030,270)
 }
 }
 text {
    object {
       x=810
-      y=250
+      y=275
       width=220
       height=20
     }
@@ -3612,12 +3719,12 @@ text {
 "text entry" {
    object {
       x=1045
-      y=250
+      y=275
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_21"
+     chan="$(P)$(R)L_Label_86"
      clr=14
      bclr=51
    }
@@ -3627,12 +3734,12 @@ text {
 "text update" {
    object {
       x=1165
-      y=250
+      y=275
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_21_RBV"
+     chan="$(P)$(R)L_Label_86_RBV"
      clr=54
      bclr=4
    }
@@ -3642,7 +3749,93 @@ text {
 text {
    object {
       x=810
-      y=275
+      y=300
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="UnitString"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=1045
+      y=300
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_UnitString_62"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=1165
+      y=300
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_UnitString_62_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=810
+      y=325
+      width=220
+      height=20
+    }
+   "basic attribute" {
+       clr=54
+    }
+    textix="UnitType"
+	align="horiz. right"
+}
+"text entry" {
+   object {
+      x=1045
+      y=325
+      width=120
+      height=20
+    }
+   control {
+     chan="$(P)$(R)L_UnitType_62"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
+}
+"text update" {
+   object {
+      x=1165
+      y=325
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_UnitType_62_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
+}
+text {
+   object {
+      x=810
+      y=350
       width=220
       height=20
     }
@@ -3652,119 +3845,6 @@ text {
     textix="Value"
 	align="horiz. right"
 }
-menu {
-   object {
-      x=1045
-      y=275
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Value_20"
-     clr=14
-     bclr=51
-   }
-}
-"text update" {
-   object {
-      x=1165
-      y=275
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Value_20_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=300
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Select"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=1045
-      y=300
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Select_9"
-     clr=14
-     bclr=51
-   }
-   label="Select"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=1165
-      y=300
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Select_9_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=325
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="Selected"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=810
-      y=325
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (810,345)
-  (1030,345)
-}
-}
-text {
-   object {
-      x=810
-      y=350
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="GUID"
-	align="horiz. right"
-}
 "text entry" {
    object {
       x=1045
@@ -3773,7 +3853,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_GUID_10"
+     chan="$(P)$(R)L_Value_78"
      clr=14
      bclr=51
    }
@@ -3788,7 +3868,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_GUID_10_RBV"
+     chan="$(P)$(R)L_Value_78_RBV"
      clr=54
      bclr=4
    }
@@ -3805,7 +3885,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Name"
+    textix="ValueInBaseUnits"
 	align="horiz. right"
 }
 "text entry" {
@@ -3816,7 +3896,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Name_10"
+     chan="$(P)$(R)L_ValueInBaseUnits_62"
      clr=14
      bclr=51
    }
@@ -3831,7 +3911,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Name_10_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_62_RBV"
      clr=54
      bclr=4
    }
@@ -3848,7 +3928,7 @@ text {
    "basic attribute" {
        clr=14
     }
-    textix="Status"
+    textix="Precision"
 	align="horiz. right"
 }
 polyline {
@@ -3888,7 +3968,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Label_22"
+     chan="$(P)$(R)L_Label_87"
      clr=14
      bclr=51
    }
@@ -3903,7 +3983,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Label_22_RBV"
+     chan="$(P)$(R)L_Label_87_RBV"
      clr=54
      bclr=4
    }
@@ -3920,38 +4000,23 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Value"
+    textix="UnitString"
 	align="horiz. right"
 }
-"message button" {
+"text entry" {
    object {
       x=1045
       y=450
-      width=60
+      width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Value_21"
+     chan="$(P)$(R)L_UnitString_63"
      clr=14
      bclr=51
    }
-   label="False"
-   press_msg="0"
-}
-"message button" {
-   object {
-      x=1105
-      y=450
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Value_21"
-     clr=14
-     bclr=51
+   limits {
    }
-   label="True"
-   press_msg="1"
 }
 "text update" {
    object {
@@ -3961,7 +4026,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Value_21_RBV"
+     chan="$(P)$(R)L_UnitString_63_RBV"
      clr=54
      bclr=4
    }
@@ -3976,26 +4041,40 @@ text {
       height=20
     }
    "basic attribute" {
-       clr=14
+       clr=54
     }
-    textix="Preconditions"
+    textix="UnitType"
 	align="horiz. right"
 }
-polyline {
-  object {
-      x=810
+"text entry" {
+   object {
+      x=1045
       y=475
-      width=220
+      width=120
       height=20
     }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (810,495)
-  (1030,495)
+   control {
+     chan="$(P)$(R)L_UnitType_63"
+     clr=14
+     bclr=51
+   }
+   limits {
+   }
 }
+"text update" {
+   object {
+      x=1165
+      y=475
+      width=120
+      height=20
+    }
+   monitor {
+     chan="$(P)$(R)L_UnitType_63_RBV"
+     clr=54
+     bclr=4
+   }
+   limits {
+   }
 }
 text {
    object {
@@ -4007,7 +4086,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Count"
+    textix="Value"
 	align="horiz. right"
 }
 "text entry" {
@@ -4018,7 +4097,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Count_2"
+     chan="$(P)$(R)L_Value_79"
      clr=14
      bclr=51
    }
@@ -4033,7 +4112,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Count_2_RBV"
+     chan="$(P)$(R)L_Value_79_RBV"
      clr=54
      bclr=4
    }
@@ -4050,10 +4129,10 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="GetSnapShot"
+    textix="ValueInBaseUnits"
 	align="horiz. right"
 }
-"message button" {
+"text entry" {
    object {
       x=1045
       y=525
@@ -4061,12 +4140,12 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_GetSnapShot"
+     chan="$(P)$(R)L_ValueInBaseUnits_63"
      clr=14
      bclr=51
    }
-   label="GetSnapShot"
-   press_msg="1"
+   limits {
+   }
 }
 "text update" {
    object {
@@ -4076,7 +4155,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_GetSnapShot_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_63_RBV"
      clr=54
      bclr=4
    }
@@ -4093,7 +4172,7 @@ text {
    "basic attribute" {
        clr=14
     }
-    textix="[0]_MeasurementPrecondition"
+    textix="Precision"
 	align="horiz. right"
 }
 polyline {
@@ -4122,7 +4201,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Description"
+    textix="Label"
 	align="horiz. right"
 }
 "text entry" {
@@ -4133,7 +4212,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Description"
+     chan="$(P)$(R)L_Label_88"
      clr=14
      bclr=51
    }
@@ -4148,7 +4227,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Description_RBV"
+     chan="$(P)$(R)L_Label_88_RBV"
      clr=54
      bclr=4
    }
@@ -4165,7 +4244,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Number"
+    textix="UnitString"
 	align="horiz. right"
 }
 "text entry" {
@@ -4176,7 +4255,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Number"
+     chan="$(P)$(R)L_UnitString_64"
      clr=14
      bclr=51
    }
@@ -4191,7 +4270,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Number_RBV"
+     chan="$(P)$(R)L_UnitString_64_RBV"
      clr=54
      bclr=4
    }
@@ -4208,7 +4287,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Solution"
+    textix="UnitType"
 	align="horiz. right"
 }
 "text entry" {
@@ -4219,7 +4298,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Solution"
+     chan="$(P)$(R)L_UnitType_64"
      clr=14
      bclr=51
    }
@@ -4234,7 +4313,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Solution_RBV"
+     chan="$(P)$(R)L_UnitType_64_RBV"
      clr=54
      bclr=4
    }
@@ -4251,7 +4330,7 @@ text {
    "basic attribute" {
        clr=54
     }
-    textix="Title"
+    textix="Value"
 	align="horiz. right"
 }
 "text entry" {
@@ -4262,7 +4341,7 @@ text {
       height=20
     }
    control {
-     chan="$(P)$(R)L_Title"
+     chan="$(P)$(R)L_Value_80"
      clr=14
      bclr=51
    }
@@ -4277,7 +4356,7 @@ text {
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_Title_RBV"
+     chan="$(P)$(R)L_Value_80_RBV"
      clr=54
      bclr=4
    }
@@ -4292,49 +4371,20 @@ text {
       height=20
     }
    "basic attribute" {
-       clr=14
+       clr=54
     }
-    textix="[1]_MeasurementPrecondition"
+    textix="ValueInBaseUnits"
 	align="horiz. right"
 }
-polyline {
-  object {
-      x=810
+"text entry" {
+   object {
+      x=1045
       y=675
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (810,695)
-  (1030,695)
-}
-}
-text {
-   object {
-      x=810
-      y=700
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Description"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1045
-      y=700
       width=120
       height=20
     }
    control {
-     chan="$(P)$(R)L_Description_1"
+     chan="$(P)$(R)L_ValueInBaseUnits_64"
      clr=14
      bclr=51
    }
@@ -4344,1809 +4394,12 @@ text {
 "text update" {
    object {
       x=1165
-      y=700
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Description_1_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=725
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Number"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1045
-      y=725
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Number_1"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1165
-      y=725
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Number_1_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=750
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Solution"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1045
-      y=750
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Solution_1"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1165
-      y=750
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Solution_1_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=775
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Title"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1045
-      y=775
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Title_1"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1165
-      y=775
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Title_1_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=800
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="[2]_MeasurementPrecondition"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=810
-      y=800
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (810,820)
-  (1030,820)
-}
-}
-text {
-   object {
-      x=810
-      y=825
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Description"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1045
-      y=825
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Description_2"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1165
-      y=825
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Description_2_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=850
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Number"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1045
-      y=850
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Number_2"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1165
-      y=850
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Number_2_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=875
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Solution"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1045
-      y=875
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Solution_2"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1165
-      y=875
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Solution_2_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=900
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Title"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1045
-      y=900
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Title_2"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1165
-      y=900
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Title_2_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=925
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="[3]_MeasurementPrecondition"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=810
-      y=925
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (810,945)
-  (1030,945)
-}
-}
-text {
-   object {
-      x=810
-      y=950
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Description"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1045
-      y=950
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Description_3"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1165
-      y=950
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Description_3_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=975
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Number"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1045
-      y=975
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Number_3"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1165
-      y=975
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Number_3_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=810
-      y=1000
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Solution"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1045
-      y=1000
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Solution_3"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1165
-      y=1000
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Solution_3_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=50
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Title"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=50
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Title_3"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=50
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Title_3_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=75
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="[4]_MeasurementPrecondition"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=1210
-      y=75
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (1210,95)
-  (1430,95)
-}
-}
-text {
-   object {
-      x=1210
-      y=100
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Description"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=100
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Description_4"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=100
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Description_4_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=125
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Number"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=125
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Number_4"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=125
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Number_4_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=150
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Solution"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=150
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Solution_4"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=150
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Solution_4_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=175
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Title"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=175
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Title_4"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=175
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Title_4_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=200
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="ReturnValue"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=1210
-      y=200
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (1210,220)
-  (1430,220)
-}
-}
-text {
-   object {
-      x=1210
-      y=225
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="IsFixedSize"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=1445
-      y=225
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_IsFixedSize"
-     clr=14
-     bclr=51
-   }
-   label="False"
-   press_msg="0"
-}
-"message button" {
-   object {
-      x=1505
-      y=225
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_IsFixedSize"
-     clr=14
-     bclr=51
-   }
-   label="True"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=1565
-      y=225
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_IsFixedSize_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=250
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="IsReadOnly"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=1445
-      y=250
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_IsReadOnly"
-     clr=14
-     bclr=51
-   }
-   label="False"
-   press_msg="0"
-}
-"message button" {
-   object {
-      x=1505
-      y=250
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_IsReadOnly"
-     clr=14
-     bclr=51
-   }
-   label="True"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=1565
-      y=250
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_IsReadOnly_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=275
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="IsSynchronized"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=1445
-      y=275
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_IsSynchronized"
-     clr=14
-     bclr=51
-   }
-   label="False"
-   press_msg="0"
-}
-"message button" {
-   object {
-      x=1505
-      y=275
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_IsSynchronized"
-     clr=14
-     bclr=51
-   }
-   label="True"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=1565
-      y=275
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_IsSynchronized_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=300
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Length"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=300
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Length"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=300
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Length_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=325
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="LongLength"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=325
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_LongLength"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=325
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_LongLength_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=350
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Rank"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=350
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Rank"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=350
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Rank_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=400
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="GoAndMeasureStationary"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=1445
-      y=400
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_GoAndMeasureStationary"
-     clr=14
-     bclr=51
-   }
-   label="GoAndMeasureStationary"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=1565
-      y=400
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_GoAndMeasureStationary_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=425
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="Parameter"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=1210
-      y=425
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (1210,445)
-  (1430,445)
-}
-}
-text {
-   object {
-      x=1210
-      y=450
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="lockOnTokenName"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=450
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_lockOnTokenName"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=450
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_lockOnTokenName_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=475
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="IsRelative"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=1445
-      y=475
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_IsRelative"
-     clr=14
-     bclr=51
-   }
-   label="False"
-   press_msg="0"
-}
-"message button" {
-   object {
-      x=1505
-      y=475
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_IsRelative"
-     clr=14
-     bclr=51
-   }
-   label="True"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=1565
-      y=475
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_IsRelative_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=500
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Pos1"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=500
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Pos1"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=500
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Pos1_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=525
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Pos2"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=525
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Pos2"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=525
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Pos2_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=550
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Pos3"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=550
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Pos3"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=550
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Pos3_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=600
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="GoAndMeasureStationaryAsync"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=1445
-      y=600
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_GoAndMeasureStationaryAsync"
-     clr=14
-     bclr=51
-   }
-   label="GoAndMeasureStationaryAsync"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=1565
-      y=600
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_GoAndMeasureStationaryAsync_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=625
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=14
-    }
-    textix="Parameter"
-	align="horiz. right"
-}
-polyline {
-  object {
-      x=1210
-      y=625
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=20
-       width=1
-    }
-points {
-  (1210,645)
-  (1430,645)
-}
-}
-text {
-   object {
-      x=1210
-      y=650
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="lockOnTokenName"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=650
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_lockOnTokenName_1"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=650
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_lockOnTokenName_1_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=675
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="IsRelative"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=1445
-      y=675
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_IsRelative_1"
-     clr=14
-     bclr=51
-   }
-   label="False"
-   press_msg="0"
-}
-"message button" {
-   object {
-      x=1505
-      y=675
-      width=60
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_IsRelative_1"
-     clr=14
-     bclr=51
-   }
-   label="True"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=1565
       y=675
       width=120
       height=20
     }
    monitor {
-     chan="$(P)$(R)L_IsRelative_1_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=700
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Pos1"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=700
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Pos1_1"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=700
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Pos1_1_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=725
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Pos2"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=725
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Pos2_1"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=725
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Pos2_1_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=750
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="Pos3"
-	align="horiz. right"
-}
-"text entry" {
-   object {
-      x=1445
-      y=750
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_Pos3_1"
-     clr=14
-     bclr=51
-   }
-   limits {
-   }
-}
-"text update" {
-   object {
-      x=1565
-      y=750
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_Pos3_1_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=800
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="MeasureStationary"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=1445
-      y=800
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_MeasureStationary"
-     clr=14
-     bclr=51
-   }
-   label="MeasureStationary"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=1565
-      y=800
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_MeasureStationary_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=825
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="StartMeasurement"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=1445
-      y=825
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_StartMeasurement"
-     clr=14
-     bclr=51
-   }
-   label="StartMeasurement"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=1565
-      y=825
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_StartMeasurement_RBV"
-     clr=54
-     bclr=4
-   }
-   limits {
-   }
-}
-text {
-   object {
-      x=1210
-      y=850
-      width=220
-      height=20
-    }
-   "basic attribute" {
-       clr=54
-    }
-    textix="StopMeasurement"
-	align="horiz. right"
-}
-"message button" {
-   object {
-      x=1445
-      y=850
-      width=120
-      height=20
-    }
-   control {
-     chan="$(P)$(R)L_StopMeasurement"
-     clr=14
-     bclr=51
-   }
-   label="StopMeasurement"
-   press_msg="1"
-}
-"text update" {
-   object {
-      x=1565
-      y=850
-      width=120
-      height=20
-    }
-   monitor {
-     chan="$(P)$(R)L_StopMeasurement_RBV"
+     chan="$(P)$(R)L_ValueInBaseUnits_64_RBV"
      clr=54
      bclr=4
    }

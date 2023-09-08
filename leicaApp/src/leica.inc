@@ -1320,44 +1320,222 @@ int L_ShutDown;
 #define L_ShutDownString "L_ShutDown"
 int L_StopMove;
 #define L_StopMoveString "L_StopMove"
+int L_MeasurementProfile_1;
+#define L_MeasurementProfile_1String "L_MeasurementProfile_1"
+int L_TimeStamp_12;
+#define L_TimeStamp_12String "L_TimeStamp_12"
+int L_TimeStampExternal;
+#define L_TimeStampExternalString "L_TimeStampExternal"
+int L_Label_77;
+#define L_Label_77String "L_Label_77"
+int L_UnitString_53;
+#define L_UnitString_53String "L_UnitString_53"
+int L_UnitType_53;
+#define L_UnitType_53String "L_UnitType_53"
+int L_Value_69;
+#define L_Value_69String "L_Value_69"
+int L_ValueInBaseUnits_53;
+#define L_ValueInBaseUnits_53String "L_ValueInBaseUnits_53"
+int L_Label_78;
+#define L_Label_78String "L_Label_78"
+int L_UnitString_54;
+#define L_UnitString_54String "L_UnitString_54"
+int L_UnitType_54;
+#define L_UnitType_54String "L_UnitType_54"
+int L_Value_70;
+#define L_Value_70String "L_Value_70"
+int L_ValueInBaseUnits_54;
+#define L_ValueInBaseUnits_54String "L_ValueInBaseUnits_54"
+int L_Label_79;
+#define L_Label_79String "L_Label_79"
+int L_UnitString_55;
+#define L_UnitString_55String "L_UnitString_55"
+int L_UnitType_55;
+#define L_UnitType_55String "L_UnitType_55"
+int L_Value_71;
+#define L_Value_71String "L_Value_71"
+int L_ValueInBaseUnits_55;
+#define L_ValueInBaseUnits_55String "L_ValueInBaseUnits_55"
+int L_FirstMeasAfterStartSignal;
+#define L_FirstMeasAfterStartSignalString "L_FirstMeasAfterStartSignal"
+int L_Flags;
+#define L_FlagsString "L_Flags"
+int L_FlagsWithWarnings;
+#define L_FlagsWithWarningsString "L_FlagsWithWarnings"
+int L_GUID_15;
+#define L_GUID_15String "L_GUID_15"
+int L_GUIDInfo;
+#define L_GUIDInfoString "L_GUIDInfo"
+int L_LineIndex;
+#define L_LineIndexString "L_LineIndex"
+int L_Mode;
+#define L_ModeString "L_Mode"
+int L_MountNr;
+#define L_MountNrString "L_MountNr"
+int L_NumberOfLEDsUsed;
+#define L_NumberOfLEDsUsedString "L_NumberOfLEDsUsed"
+int L_NumberOfLEDsVisible;
+#define L_NumberOfLEDsVisibleString "L_NumberOfLEDsVisible"
+int L_PointIndex;
+#define L_PointIndexString "L_PointIndex"
+int L_ProbeFace;
+#define L_ProbeFaceString "L_ProbeFace"
+int L_ProbeSerialNumber;
+#define L_ProbeSerialNumberString "L_ProbeSerialNumber"
+int L_RegionIndex;
+#define L_RegionIndexString "L_RegionIndex"
+int L_TrackerStatusWord;
+#define L_TrackerStatusWordString "L_TrackerStatusWord"
+int L_Type;
+#define L_TypeString "L_Type"
+int L_Label_80;
+#define L_Label_80String "L_Label_80"
+int L_MaxValue_15;
+#define L_MaxValue_15String "L_MaxValue_15"
+int L_MaxValueInBaseUnits_15;
+#define L_MaxValueInBaseUnits_15String "L_MaxValueInBaseUnits_15"
+int L_MinValue_15;
+#define L_MinValue_15String "L_MinValue_15"
+int L_MinValueInBaseUnits_15;
+#define L_MinValueInBaseUnits_15String "L_MinValueInBaseUnits_15"
+int L_UnitString_56;
+#define L_UnitString_56String "L_UnitString_56"
+int L_UnitType_56;
+#define L_UnitType_56String "L_UnitType_56"
+int L_Value_72;
+#define L_Value_72String "L_Value_72"
+int L_ValueInBaseUnits_56;
+#define L_ValueInBaseUnits_56String "L_ValueInBaseUnits_56"
+int L_Label_81;
+#define L_Label_81String "L_Label_81"
+int L_MaxValue_16;
+#define L_MaxValue_16String "L_MaxValue_16"
+int L_MaxValueInBaseUnits_16;
+#define L_MaxValueInBaseUnits_16String "L_MaxValueInBaseUnits_16"
+int L_MinValue_16;
+#define L_MinValue_16String "L_MinValue_16"
+int L_MinValueInBaseUnits_16;
+#define L_MinValueInBaseUnits_16String "L_MinValueInBaseUnits_16"
+int L_UnitString_57;
+#define L_UnitString_57String "L_UnitString_57"
+int L_UnitType_57;
+#define L_UnitType_57String "L_UnitType_57"
+int L_Value_73;
+#define L_Value_73String "L_Value_73"
+int L_ValueInBaseUnits_57;
+#define L_ValueInBaseUnits_57String "L_ValueInBaseUnits_57"
+int L_CoordinateType_4;
+#define L_CoordinateType_4String "L_CoordinateType_4"
+int L_IsFace2_1;
+#define L_IsFace2_1String "L_IsFace2_1"
+int L_Label_82;
+#define L_Label_82String "L_Label_82"
+int L_UnitString_58;
+#define L_UnitString_58String "L_UnitString_58"
+int L_UnitType_58;
+#define L_UnitType_58String "L_UnitType_58"
+int L_Value_74;
+#define L_Value_74String "L_Value_74"
+int L_ValueInBaseUnits_58;
+#define L_ValueInBaseUnits_58String "L_ValueInBaseUnits_58"
+int L_Label_83;
+#define L_Label_83String "L_Label_83"
+int L_UnitString_59;
+#define L_UnitString_59String "L_UnitString_59"
+int L_UnitType_59;
+#define L_UnitType_59String "L_UnitType_59"
+int L_Value_75;
+#define L_Value_75String "L_Value_75"
+int L_ValueInBaseUnits_59;
+#define L_ValueInBaseUnits_59String "L_ValueInBaseUnits_59"
+int L_Label_84;
+#define L_Label_84String "L_Label_84"
+int L_UnitString_60;
+#define L_UnitString_60String "L_UnitString_60"
+int L_UnitType_60;
+#define L_UnitType_60String "L_UnitType_60"
+int L_Value_76;
+#define L_Value_76String "L_Value_76"
+int L_ValueInBaseUnits_60;
+#define L_ValueInBaseUnits_60String "L_ValueInBaseUnits_60"
+int L_Label_85;
+#define L_Label_85String "L_Label_85"
+int L_UnitString_61;
+#define L_UnitString_61String "L_UnitString_61"
+int L_UnitType_61;
+#define L_UnitType_61String "L_UnitType_61"
+int L_Value_77;
+#define L_Value_77String "L_Value_77"
+int L_ValueInBaseUnits_61;
+#define L_ValueInBaseUnits_61String "L_ValueInBaseUnits_61"
+int L_Label_86;
+#define L_Label_86String "L_Label_86"
+int L_UnitString_62;
+#define L_UnitString_62String "L_UnitString_62"
+int L_UnitType_62;
+#define L_UnitType_62String "L_UnitType_62"
+int L_Value_78;
+#define L_Value_78String "L_Value_78"
+int L_ValueInBaseUnits_62;
+#define L_ValueInBaseUnits_62String "L_ValueInBaseUnits_62"
+int L_Label_87;
+#define L_Label_87String "L_Label_87"
+int L_UnitString_63;
+#define L_UnitString_63String "L_UnitString_63"
+int L_UnitType_63;
+#define L_UnitType_63String "L_UnitType_63"
+int L_Value_79;
+#define L_Value_79String "L_Value_79"
+int L_ValueInBaseUnits_63;
+#define L_ValueInBaseUnits_63String "L_ValueInBaseUnits_63"
+int L_Label_88;
+#define L_Label_88String "L_Label_88"
+int L_UnitString_64;
+#define L_UnitString_64String "L_UnitString_64"
+int L_UnitType_64;
+#define L_UnitType_64String "L_UnitType_64"
+int L_Value_80;
+#define L_Value_80String "L_Value_80"
+int L_ValueInBaseUnits_64;
+#define L_ValueInBaseUnits_64String "L_ValueInBaseUnits_64"
 int L_AddPoint;
 #define L_AddPointString "L_AddPoint"
 int L_AddPointFromMeasurement;
 #define L_AddPointFromMeasurementString "L_AddPointFromMeasurement"
 int L_SetRotaionX;
 #define L_SetRotaionXString "L_SetRotaionX"
-int L_ValueInBaseUnits_53;
-#define L_ValueInBaseUnits_53String "L_ValueInBaseUnits_53"
+int L_ValueInBaseUnits_65;
+#define L_ValueInBaseUnits_65String "L_ValueInBaseUnits_65"
 int L_AccuracyInBaseUnits;
 #define L_AccuracyInBaseUnitsString "L_AccuracyInBaseUnits"
 int L_SetRotaionY;
 #define L_SetRotaionYString "L_SetRotaionY"
-int L_ValueInBaseUnits_54;
-#define L_ValueInBaseUnits_54String "L_ValueInBaseUnits_54"
+int L_ValueInBaseUnits_66;
+#define L_ValueInBaseUnits_66String "L_ValueInBaseUnits_66"
 int L_AccuracyInBaseUnits_1;
 #define L_AccuracyInBaseUnits_1String "L_AccuracyInBaseUnits_1"
 int L_SetRotaionZ;
 #define L_SetRotaionZString "L_SetRotaionZ"
-int L_ValueInBaseUnits_55;
-#define L_ValueInBaseUnits_55String "L_ValueInBaseUnits_55"
+int L_ValueInBaseUnits_67;
+#define L_ValueInBaseUnits_67String "L_ValueInBaseUnits_67"
 int L_AccuracyInBaseUnits_2;
 #define L_AccuracyInBaseUnits_2String "L_AccuracyInBaseUnits_2"
 int L_SetTranslationX;
 #define L_SetTranslationXString "L_SetTranslationX"
-int L_ValueInBaseUnits_56;
-#define L_ValueInBaseUnits_56String "L_ValueInBaseUnits_56"
+int L_ValueInBaseUnits_68;
+#define L_ValueInBaseUnits_68String "L_ValueInBaseUnits_68"
 int L_AccuracyInBaseUnits_3;
 #define L_AccuracyInBaseUnits_3String "L_AccuracyInBaseUnits_3"
 int L_SetTranslationY;
 #define L_SetTranslationYString "L_SetTranslationY"
-int L_ValueInBaseUnits_57;
-#define L_ValueInBaseUnits_57String "L_ValueInBaseUnits_57"
+int L_ValueInBaseUnits_69;
+#define L_ValueInBaseUnits_69String "L_ValueInBaseUnits_69"
 int L_AccuracyInBaseUnits_4;
 #define L_AccuracyInBaseUnits_4String "L_AccuracyInBaseUnits_4"
 int L_SetTranslationZ;
 #define L_SetTranslationZString "L_SetTranslationZ"
-int L_ValueInBaseUnits_58;
-#define L_ValueInBaseUnits_58String "L_ValueInBaseUnits_58"
+int L_ValueInBaseUnits_70;
+#define L_ValueInBaseUnits_70String "L_ValueInBaseUnits_70"
 int L_AccuracyInBaseUnits_5;
 #define L_AccuracyInBaseUnits_5String "L_AccuracyInBaseUnits_5"
 int L_CalculateOrientation;

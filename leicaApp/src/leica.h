@@ -93,6 +93,30 @@ leica_->setDoubleParam(leica_->L_Value_##d, ##thing->Value); \
 leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##c, ##thing->ValueInBaseUnits);
 
 
+#define PV_IT_5(a,b,c,d,thing) \
+leica_->setStringParam(leica_->L_Label_##a, (decode)(##thing->Label)); \
+leica_->setDoubleParam(leica_->L_MaxValue_##b, ##thing->MaxValue); \
+leica_->setDoubleParam(leica_->L_MaxValueInBaseUnits_##b, ##thing->MaxValueInBaseUnits); \
+leica_->setDoubleParam(leica_->L_MinValue_##b, ##thing->MinValue); \
+leica_->setDoubleParam(leica_->L_MinValueInBaseUnits_##b, ##thing->MinValueInBaseUnits); \
+leica_->setStringParam(leica_->L_SerialNumber_##c, (decode)(##thing->SerialNumber)); \
+leica_->setStringParam(leica_->L_UnitString_##d, (decode)(##thing->UnitString)); \
+leica_->setStringParam(leica_->L_UnitType_##d, EUnitTypeStrings[(int)##thing->UnitType]); \
+leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##d, ##thing->ValueInBaseUnits); \
+
+#define PV_IT_5a(a,b,c,d,thing) \
+leica_->setStringParam(leica_->L_Label_##a, (decode)(##thing->Label)); \
+leica_->setDoubleParam(leica_->L_MaxValue_##b, ##thing->MaxValue); \
+leica_->setDoubleParam(leica_->L_MaxValueInBaseUnits_##b, ##thing->MaxValueInBaseUnits); \
+leica_->setDoubleParam(leica_->L_MinValue_##b, ##thing->MinValue); \
+leica_->setDoubleParam(leica_->L_MinValueInBaseUnits_##b, ##thing->MinValueInBaseUnits); \
+leica_->setStringParam(leica_->L_UnitString_##c, (decode)(##thing->UnitString)); \
+leica_->setStringParam(leica_->L_UnitType_##c, EUnitTypeStrings[(int)##thing->UnitType]); \
+leica_->setDoubleParam(leica_->L_Value_##d, ##thing->Value); \
+leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##c, ##thing->ValueInBaseUnits); \
+
+
+
 /////
 
 
@@ -158,11 +182,11 @@ private:
 	// laser tracker related callbacks
 
 	static void OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings^ sender, LMF::Tracker::MeasurementResults::MeasurementCollection^ paramMeasurements, LMF::Tracker::ErrorHandling::LmfException^ paramException);
-//	static void OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ sender, double paramTemperature, double paramHumidity, double paramPressure);
+	//	static void OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ sender, double paramTemperature, double paramHumidity, double paramPressure);
 	static void OnErrorArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfError^ error);
 	static void OnInformationArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfInformation^ paramInfo);
 	static void OnWarningArrived(LMF::Tracker::Tracker^ sender, LMF::Tracker::ErrorHandling::LmfWarning^ warning);
-//	static void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
+	//	static void OnChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
 	static void OnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 	static void OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 	static void OnLaserChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
@@ -172,16 +196,16 @@ private:
 	static void OnFaceChanged(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue);
 	static void OnFaceChangeFinished(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue, LMF::Tracker::ErrorHandling::LmfException^ ex);
 
-//	static void OnWarmChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
-//	static void OnOnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
-	//    static void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+	//	static void OnWarmChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+	//	static void OnOnChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
+		//    static void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
 	static void OnGetInclinationToGravityFinished(LMF::Tracker::Inclination::InclinationSensor^ sender, LMF::Tracker::Inclination::InclinationToGravity^ paramInclinationToGravity, LMF::Tracker::ErrorHandling::LmfException^ ex);
 	static void OnBubbleReadoutArrived(LMF::Tracker::Inclination::InclinationBubbleReadout^ sender, LMF::Tracker::Inclination::BubbleReadoutArrivedEventArgs^ paramBubbleReadout);
 	static void OnIncChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
 	static void OnInclinationChanged(LMF::Tracker::Inclination::InclinationMonitoring^ sender);
-//	static void OnChanged1(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue);
-	// can't do this from within epics
-	//	static void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
+	//	static void OnChanged1(LMF::Tracker::Face^ sender, LMF::Tracker::Enums::EFace paramNewValue);
+		// can't do this from within epics
+		//	static void OnImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, array<unsigned char, 1>^% image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates);
 	static void OnBrightnessChanged(LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue^ sender, double paramNewValue);
 	static void OnDialogClosed(LMF::Tracker::OVC::Dialog^ sender);
 	static void OnQuickChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue^ sender, bool paramNewValue);
@@ -199,11 +223,11 @@ private:
 	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::ClockTransmissionValue^ sender, LMF::Tracker::Enums::EClockTransmission paramNewValue);
 	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::StartStopActiveLevelValue^ sender, LMF::Tracker::Enums::EStartStopActiveLevel paramNewValue);
 	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::StartStopSourceValue^ sender, LMF::Tracker::Enums::EStartStopSource paramNewValue);
-//	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::AccuracyValue^ sender, LMF::Tracker::Enums::EAccuracy paramNewValue);
-//	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::ClockSourceValue^ sender, LMF::Tracker::Enums::EClockSource paramNewValue);
-//	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::ClockTransmissionValue^ sender, LMF::Tracker::Enums::EClockTransmission paramNewValue);
-//	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::StartStopActiveLevelValue^ sender, LMF::Tracker::Enums::EStartStopActiveLevel paramNewValue);
-//	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::StartStopSourceValue^ sender, LMF::Tracker::Enums::EStartStopSource paramNewValue);
+	//	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::AccuracyValue^ sender, LMF::Tracker::Enums::EAccuracy paramNewValue);
+	//	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::ClockSourceValue^ sender, LMF::Tracker::Enums::EClockSource paramNewValue);
+	//	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::ClockTransmissionValue^ sender, LMF::Tracker::Enums::EClockTransmission paramNewValue);
+	//	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::StartStopActiveLevelValue^ sender, LMF::Tracker::Enums::EStartStopActiveLevel paramNewValue);
+	//	static void OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::StartStopSourceValue^ sender, LMF::Tracker::Enums::EStartStopSource paramNewValue);
 };
 
 static leica* leica_;

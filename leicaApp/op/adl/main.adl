@@ -195,6 +195,12 @@ display {
 		name="WrtlBoxes.adl"
 		args="P=$(P),R=$(R)"
 	}
+	display[2] {
+		label="Measurement_Readouts"
+		name="Measurement_Readouts.adl"
+		args="P=$(P),R=$(R)"
+	}
+
 	clr=14
 	bclr=4
 	label="Laser Tracker Functional Screens #2"

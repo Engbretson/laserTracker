@@ -188,16 +188,16 @@ border-radius: 2px;
                 <enum>Menu</enum>
             </property>
             <property name="labels">
-                <string>QuickRelease;WrtlBoxes</string>
+                <string>QuickRelease;WrtlBoxes;Measurement_Readouts</string>
             </property>
             <property name="files">
-                <string>QuickRelease.ui ;WrtlBoxes.ui </string>
+                <string>QuickRelease.ui ;WrtlBoxes.ui ;Measurement_Readouts.ui </string>
             </property>
             <property name="args">
-                <string>P=$(P),R=$(R);P=$(P),R=$(R)</string>
+                <string>P=$(P),R=$(R);P=$(P),R=$(R);P=$(P),R=$(R)</string>
             </property>
             <property name="removeParent">
-                <string>false;false</string>
+                <string>false;false;false</string>
             </property>
         </widget>
         <zorder>caRelatedDisplay_0</zorder>

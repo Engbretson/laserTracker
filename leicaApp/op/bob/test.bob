@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-08-25 11:17:27 by mengbret-->
+<!--Saved on 2023-09-08 12:26:47 by mengbret-->
 <display version="2.0.0">
   <name>Display</name>
   <widget type="image" version="2.0.0">
@@ -404,5 +404,43 @@
     <x>760</x>
     <y>320</y>
     <width>40</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_7</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>WritePV</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_StartMeasurement</pv_name>
+    <text>Start</text>
+    <x>485</x>
+    <y>610</y>
+    <width>67</width>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>Action Button_8</name>
+    <actions>
+      <action type="write_pv">
+        <pv_name>$(pv_name)</pv_name>
+        <value>1</value>
+        <description>WritePV</description>
+      </action>
+    </actions>
+    <pv_name>$(P)$(R)L_StopMeasurement</pv_name>
+    <text>Stop</text>
+    <x>570</x>
+    <y>610</y>
+    <width>67</width>
+  </widget>
+  <widget type="textupdate" version="2.0.0">
+    <name>Text Update_17</name>
+    <pv_name>$(P)$(R)L_Label_10_RBV</pv_name>
+    <x>650</x>
+    <y>610</y>
+    <width>240</width>
+    <height>30</height>
   </widget>
 </display>
