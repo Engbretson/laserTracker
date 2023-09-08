@@ -82,6 +82,8 @@ void Do_SimpleDoubleValue(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::
 {
 	//	thing->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
 
+
+
 	std::cout << (decode)(Title) << ": Label: " << (decode)(thing->Label) <<
 		" UnitString: " << (decode)(thing->UnitString) <<
 		" UnitType: " << EUnitTypeStrings[(int)thing->UnitType] <<
@@ -162,6 +164,22 @@ void Do_DoubleValueWithRange(String^ Title, LMF::Tracker::BasicTypes::DoubleValu
 		std::endl;
 }
 
+void Do_SimpleDoubleValueWithRange(String^ Title, LMF::Tracker::BasicTypes::DoubleValue::SimpleDoubleValueWithRange^ thing)
+{
+	//	thing->Changed += gcnew LMF::Tracker::BasicTypes::DoubleValue::ReadOnlyDoubleValue::ChangedEventHandler(&OnChanged);
+
+	std::cout << (decode)(Title) << ": Label: " << (decode)(thing->Label) <<
+		" MaxValue: " << thing->MaxValue <<
+		" MaxValueInBaseUnits: " << thing->MaxValueInBaseUnits <<
+		" MinValue: " << thing->MinValue <<
+		" MinValueInBaseUnits: " << thing->MinValueInBaseUnits <<
+		" UnitString: " << (decode)(thing->UnitString) <<
+		" UnitType: " << EUnitTypeStrings[(int)thing->UnitType] <<
+		" Value: " << thing->Value <<
+		" ValueInBaseUnits: " << thing->ValueInBaseUnits <<
+		std::endl;
+}
+
 void Do_IntValueWithRange(String^ Title, LMF::Tracker::BasicTypes::IntValue::IntValueWithRange^ thing)
 {
 	//	thing->Changed += gcnew LMF::Tracker::BasicTypes::IntValue::ReadOnlyIntValue::ChangedEventHandler(&OnChanged);
@@ -178,6 +196,33 @@ void Do_IntValueWithRange(String^ Title, LMF::Tracker::BasicTypes::IntValue::Int
 		std::endl;
 }
 
+void Do_MeasurmentInfo(String^ Title, LMF::Tracker::MeasurementResults::MeasurementInfo^ thing)
+{
+
+	std::cout << (decode)(Title) << ": Label: " << std::endl;
+
+	std::cout << " FirstMeasAfterStartSignal: " << TFS[(int)thing->FirstMeasAfterStartSignal] <<std::endl;
+// note: Flags are a *long* list whose bits are added to get the final thing, not really epicy
+	std::cout << " Flags: " << (int)thing->Flags << std::endl;
+	std::cout << " FlagsWithWarnings: " << (int)thing->FlagsWithWarnings << std::endl;
+	std::cout << " GUID: " << (decode)(thing->GUID) << std::endl;
+	std::cout << " GUIDInfo: " << (decode)(thing->GUIDInfo) << std::endl;
+	std::cout << " LineIndex: " << thing->LineIndex << std::endl;
+	std::cout << " Mode: " << (int)thing->Mode << std::endl;
+	std::cout << " MountNr: " << thing->MountNr << std::endl;
+	std::cout << " NumberOfLEDSUsed: " << thing->NumberOfLEDsUsed << std::endl;
+	std::cout << " NumberofLEDsVisible: " << thing->NumberOfLEDsVisible << std::endl;
+	std::cout << " PointIndex: " << thing->PointIndex << std::endl;
+	std::cout << " ProbeFace: " << thing->ProbeFace << std::endl;
+	std::cout << " ProbeSerialNumber: " << (decode)(thing->ProbeSerialNumber) << std::endl;
+	std::cout << " RegionIndex: " << thing->RegionIndex << std::endl;
+	std::cout << " TrackerStatusWord: " << (int)thing->Flags << std::endl;
+	std::cout << " Type: " << (int)thing->Flags << std::endl;
+
+	Do_SimpleDoubleValueWithRange("DistanceBroadening", thing->DistanceBroadening);
+	Do_SimpleDoubleValueWithRange("Intensity", thing->Intensity);
+	std::cout << (decode)(thing->ToStringWithWarnings()) << std::endl;
+}
 
 static void exitHandler(void* drvPvt) {
 
@@ -346,12 +391,21 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	else if (function == L_IsOnValue) {
 		GlobalObjects::LMFTracker->Laser->IsOn->Value = value;
 	}
+//	else if (function == L_StartMeasurement) {
+//		if (value == 1) {
+//			GlobalObjects::LMFTracker->Measurement->StartMeasurement();
+//		}
+//		if (value == 0) {
+//			GlobalObjects::LMFTracker->Measurement->StopMeasurement();
+//		}
+//	}
 	else if (function == L_StartMeasurement) {
-		if (value == 1)
 			GlobalObjects::LMFTracker->Measurement->StartMeasurement();
-		if (value == 0)
-			GlobalObjects::LMFTracker->Measurement->StopMeasurement();
+		}
+	else if (function == L_StopMeasurement) {
+		GlobalObjects::LMFTracker->Measurement->StopMeasurement();
 	}
+
 	else if ((function == L_Change) || (function == L_isFace1)) {
 		GlobalObjects::LMFTracker->Face->Change();
 	}
@@ -433,6 +487,27 @@ asynStatus leica::writeInt32(asynUser* pasynUser, epicsInt32 value)
 	}
 	else if (function == L_Value_2) {
 		GlobalObjects::LMFTracker->InclinationSensor->Monitoring->Active->Value = value;
+	}
+// Change Measurement profiles
+	else if (function == L_Select_6) { //stationary, high res
+	GlobalObjects::LMFTracker->Measurement->StopMeasurement();
+	LMF::Tracker::Measurements::MeasurementProfile^ profile = GlobalObjects::LMFTracker->Measurement->Profiles[0];
+	profile->Select();
+	}
+	else if (function == L_Select_7) { //continious time profile
+	GlobalObjects::LMFTracker->Measurement->StopMeasurement();
+	LMF::Tracker::Measurements::MeasurementProfile^ profile = GlobalObjects::LMFTracker->Measurement->Profiles[1];
+	profile->Select();
+	}
+	else if (function == L_Select_8) { //continious distance profile
+	GlobalObjects::LMFTracker->Measurement->StopMeasurement();
+	LMF::Tracker::Measurements::MeasurementProfile^ profile = GlobalObjects::LMFTracker->Measurement->Profiles[2];
+	profile->Select();
+	}
+	else if (function == L_Select_9) { //custom trigger profile
+	GlobalObjects::LMFTracker->Measurement->StopMeasurement();
+	LMF::Tracker::Measurements::MeasurementProfile^ profile = GlobalObjects::LMFTracker->Measurement->Profiles[3];
+	profile->Select();
 	}
 
 	else {
@@ -970,6 +1045,8 @@ void leica::Do_Measurement(void)
 
 			const char* EAccuracyStrings[] = { "Precise", "Standard", "Fast" }; //ok
 
+			thisProfile->Accuracy->Value = LMF::Tracker::Enums::EAccuracy::Precise;
+
 			std::cout << "Accuracy: Label: " << (decode)(thisProfile->Accuracy->Label) <<
 				" Value: " << EAccuracyStrings[(int)thisProfile->Accuracy->Value] <<
 				std::endl;
@@ -985,6 +1062,7 @@ void leica::Do_Measurement(void)
 
 			//methods
 			//	thisProfile->Select();
+			thisProfile->Select();
 		}
 		else if (LMF::Tracker::Measurements::Profiles::ContinuousTimeProfile^ thisProfile = dynamic_cast<LMF::Tracker::Measurements::Profiles::ContinuousTimeProfile^>(profile))
 		{
@@ -1002,7 +1080,7 @@ void leica::Do_Measurement(void)
 			thisProfile->TimeSeparation->ValueInBaseUnits = 1000;
 
 			//methods
-			thisProfile->Select();
+//			thisProfile->Select();
 
 			Do_IntValueWithRange("PacketRate", thisProfile->PacketRate);
 
@@ -1016,15 +1094,15 @@ leica_->setIntegerParam(leica_->L_MinValue, ##thing->MinValue); \
 leica_->setIntegerParam(leica_->L_MinValueInBaseUnits, ##thing->MinValueInBaseUnits); \
 leica_->setStringParam(leica_->L_UnitString_##b, (decode)(##thing->UnitString)); \
 leica_->setStringParam(leica_->L_UnitType_##b, EUnitTypeStrings[(int)##thing->UnitType]); \
-leica_->setDoubleParam(leica_->L_Value_##c, ##thing->Value); \
-leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits); \
+leica_->setIntegerParam(leica_->L_Value_##c, ##thing->Value); \
+leica_->setIntegerParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits); \
 
 			PV_IT_6a(13, 4, 12, thisProfile->PacketRate)
 			
 
 			Do_DoubleValueWithRange("TimeSeparation", thisProfile->TimeSeparation);
 
-			PV_IT_2(14, 1, 7, 13, thisProfile->TimeSeparation)
+			PV_IT_2(14, 1, 5, 13, thisProfile->TimeSeparation)
 
 			//methods
 					//	thisProfile->Select();
@@ -1035,7 +1113,15 @@ leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits
 			std::cout << "GUID: " << (decode)(profile->GUID) << std::endl;
 			std::cout << "Name: " << (decode)(profile->Name) << std::endl;
 
+			leica_->setStringParam(leica_->L_GUID_8, (decode)(profile->GUID));
+			leica_->setStringParam(leica_->L_Name_8, (decode)(profile->Name));
+
+
+
 			Do_DoubleValueWithRange("DistanceSeparation", thisProfile->DistanceSeparation);
+
+			PV_IT_2(15, 2, 6, 14, thisProfile->DistanceSeparation)
+
 		}
 		else if (LMF::Tracker::Measurements::Profiles::CustomTriggerProfile^ thisProfile = dynamic_cast<LMF::Tracker::Measurements::Profiles::CustomTriggerProfile^>(profile))
 		{
@@ -1055,32 +1141,67 @@ leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits
 			std::cout << "GUID: " << (decode)(profile->GUID) << std::endl;
 			std::cout << "Name: " << (decode)(profile->Name) << std::endl;
 
+			leica_->setStringParam(leica_->L_GUID_9, (decode)(profile->GUID));
+			leica_->setStringParam(leica_->L_Name_9, (decode)(profile->Name));
+
+
 			const char* EClockSourceStrings[] = { "Internal", "External" }; //ok
 
 			std::cout << "ClockSource: Label: " << (decode)(thisProfile->ClockSource->Label) <<
 				" Value: " << EClockSourceStrings[(int)thisProfile->ClockSource->Value] <<
 				std::endl;
 
+			leica_->setStringParam(leica_->L_Label_16, (decode)(thisProfile->ClockSource->Label));
+			leica_->setIntegerParam(leica_->L_Value_15, (int)thisProfile->ClockSource->Value);
+
+
 			const char* EClockTransmissionStrings[] = { "Negative", "Positve" }; //ok
 			std::cout << "ClockTransmission: Label: " << (decode)(thisProfile->ClockTransmission->Label) <<
 				" Value: " << EClockTransmissionStrings[(int)thisProfile->ClockTransmission->Value] <<
 				std::endl;
 
+			leica_->setStringParam(leica_->L_Label_17, (decode)(thisProfile->ClockTransmission->Label));
+			leica_->setIntegerParam(leica_->L_Value_16, (int)thisProfile->ClockTransmission->Value);
+
 			Do_DoubleValueWithRange("MinimalTimeDelay", thisProfile->MinimalTimeDelay);
 			Do_IntValueWithRange("PacketRate", thisProfile->PacketRate);
+
+			PV_IT_2(18, 3, 7, 17, thisProfile->MinimalTimeDelay)
+
+
+#define PV_IT_6(a,b,c,d,thing) \
+leica_->setStringParam(leica_->L_Label_##a, (decode)(##thing->Label)); \
+leica_->setIntegerParam(leica_->L_MaxValue_##b, ##thing->MaxValue); \
+leica_->setIntegerParam(leica_->L_MaxValueInBaseUnits_##b, ##thing->MaxValueInBaseUnits); \
+leica_->setIntegerParam(leica_->L_MinValue_##b, ##thing->MinValue); \
+leica_->setIntegerParam(leica_->L_MinValueInBaseUnits_##b, ##thing->MinValueInBaseUnits); \
+leica_->setStringParam(leica_->L_UnitString_##c, (decode)(##thing->UnitString)); \
+leica_->setStringParam(leica_->L_UnitType_##c, EUnitTypeStrings[(int)##thing->UnitType]); \
+leica_->setIntegerParam(leica_->L_Value_##d, ##thing->Value); \
+leica_->setIntegerParam(leica_->L_ValueInBaseUnits_##c, ##thing->ValueInBaseUnits); 
+
+
+			PV_IT_6(19, 4, 8, 18, thisProfile->PacketRate)
 
 			const char* EStartStopActiveLevelStrings[] = { "Low", "High" }; //ok
 			std::cout << "StartStopActiveLevel: Label: " << (decode)(thisProfile->StartStopActiveLevel->Label) <<
 				" Value: " << EStartStopActiveLevelStrings[(int)thisProfile->StartStopActiveLevel->Value] <<
 				std::endl;
+
+			leica_->setStringParam(leica_->L_Label_20, (decode)(thisProfile->StartStopActiveLevel->Label));
+			leica_->setIntegerParam(leica_->L_Value_19, (int)thisProfile->StartStopActiveLevel->Value);
+
 			const char* EStartStopSourceStrings[] = { "Ignored", "Active" }; //ok
 			std::cout << "StartStopSource: Label: " << (decode)(thisProfile->StartStopSource->Label) <<
 				" Value: " << EStartStopSourceStrings[(int)thisProfile->StartStopSource->Value] <<
 				std::endl;
 
+			leica_->setStringParam(leica_->L_Label_21, (decode)(thisProfile->StartStopSource->Label));
+			leica_->setIntegerParam(leica_->L_Value_20, (int)thisProfile->StartStopSource->Value);
 
 			//methods
 					 //	thisProfile->Select();
+//			leica_->setIntegerParam(leica_->L_Select_9, 1);
 		}
 	}
 	// and the same thing for whatever the selected thing actually is
@@ -1090,6 +1211,9 @@ leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits
 	std::cout << "GUID: " << (decode)(GlobalObjects::LMFTracker->Measurement->Profiles->Selected->GUID) << std::endl;
 	std::cout << "Name: " << (decode)(GlobalObjects::LMFTracker->Measurement->Profiles->Selected->Name) << std::endl;
 
+	leica_->setStringParam(leica_->L_GUID_10, (decode)(GlobalObjects::LMFTracker->Measurement->Profiles->Selected->GUID));
+	leica_->setStringParam(leica_->L_Name_10, (decode)(GlobalObjects::LMFTracker->Measurement->Profiles->Selected->Name));
+
 	// and again, I have a listed callback that I can not actually reach via normal methods
 			// TODO
 			// Research how this might work in the current context
@@ -1098,6 +1222,9 @@ leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits
 	//		LMF::Tracker::Measurements::MeasurementProfileCollection^ here = dynamic_cast<LMF::Tracker::Measurements::MeasurementProfileCollection^>(LMFTracker->Measurement->Profiles);
 	//		here->
 
+//////////////////////// This repeats whatever you actually selected . . .  but really could just be stipped totally
+
+#ifdef VERBOSE
 
 	if (LMF::Tracker::Measurements::Profiles::StationaryMeasurementProfile^ thisProfile = dynamic_cast<LMF::Tracker::Measurements::Profiles::StationaryMeasurementProfile^>(GlobalObjects::LMFTracker->Measurement->Profiles->Selected))
 	{
@@ -1171,21 +1298,74 @@ leica_->setDoubleParam(leica_->L_ValueInBaseUnits_##b, ##thing->ValueInBaseUnits
 				 //	thisProfile->Select();
 	}
 
+#endif
+
+	std::cout << std::endl;
 	std::cout << "Status" << std::endl;
 	GlobalObjects::LMFTracker->Measurement->Status->Changed += gcnew LMF::Tracker::MeasurementStatus::MeasurementStatusValue::ChangedEventHandler(&OnChanged);
 
 	std::cout << "Label: " << (decode)(GlobalObjects::LMFTracker->Measurement->Status->Label) << std::endl;
 	const char* EMeasurementStatusString[] = { "ReadyToMeasure", "MeasurementInProgress","NotReady","Invalid" };
 	std::cout << "Value: " << EMeasurementStatusString[(int)(GlobalObjects::LMFTracker->Measurement->Status->Value)] << std::endl;
+
+	leica_->setStringParam(leica_->L_Label_22, (decode)(GlobalObjects::LMFTracker->Measurement->Status->Label));
+	leica_->setIntegerParam(leica_->L_Value_21, (int)(GlobalObjects::LMFTracker->Measurement->Status->Value));
+
+
 	std::cout << "Preconditions: Count: " << GlobalObjects::LMFTracker->Measurement->Status->Preconditions->Count << std::endl;
+
+	leica_->setIntegerParam(leica_->L_Count_2, GlobalObjects::LMFTracker->Measurement->Status->Preconditions->Count);
 
 	for (int i = 0; i < GlobalObjects::LMFTracker->Measurement->Status->Preconditions->Count; i++)
 	{
 		LMF::Tracker::MeasurementStatus::MeasurementPrecondition^ preconditions = GlobalObjects::LMFTracker->Measurement->Status->Preconditions[i];
+
 		std::cout << "Descriptions: " << (decode)(preconditions->Description) << std::endl;
 		std::cout << "Number: " << preconditions->Number << std::endl;
 		std::cout << "Solution: " << (decode)(preconditions->Solution) << std::endl;
 		std::cout << "Title: " << (decode)(preconditions->Title) << std::endl;
+
+		if (i = 0)
+		{
+			leica_->setStringParam(leica_->L_Description, (decode)(preconditions->Description));
+			leica_->setIntegerParam(leica_->L_Number, preconditions->Number);
+			leica_->setStringParam(leica_->L_Solution, (decode)(preconditions->Solution));
+			leica_->setStringParam(leica_->L_Title, (decode)(preconditions->Title));
+
+		}
+		if (i = 1)
+		{
+			leica_->setStringParam(leica_->L_Description_1, (decode)(preconditions->Description));
+			leica_->setIntegerParam(leica_->L_Number_1, preconditions->Number);
+			leica_->setStringParam(leica_->L_Solution_1, (decode)(preconditions->Solution));
+			leica_->setStringParam(leica_->L_Title_1, (decode)(preconditions->Title));
+
+		}
+		if (i = 2)
+		{
+			leica_->setStringParam(leica_->L_Description_2, (decode)(preconditions->Description));
+			leica_->setIntegerParam(leica_->L_Number_2, preconditions->Number);
+			leica_->setStringParam(leica_->L_Solution_2, (decode)(preconditions->Solution));
+			leica_->setStringParam(leica_->L_Title_2, (decode)(preconditions->Title));
+
+		}
+		if (i = 3)
+		{
+			leica_->setStringParam(leica_->L_Description_3, (decode)(preconditions->Description));
+			leica_->setIntegerParam(leica_->L_Number_3, preconditions->Number);
+			leica_->setStringParam(leica_->L_Solution_3, (decode)(preconditions->Solution));
+			leica_->setStringParam(leica_->L_Title_3, (decode)(preconditions->Title));
+
+		}
+		if (i = 4)
+		{
+			leica_->setStringParam(leica_->L_Description_4, (decode)(preconditions->Description));
+			leica_->setIntegerParam(leica_->L_Number_4, preconditions->Number);
+			leica_->setStringParam(leica_->L_Solution_4, (decode)(preconditions->Solution));
+			leica_->setStringParam(leica_->L_Title_4, (decode)(preconditions->Title));
+
+		}
+
 	}
 
 
@@ -1747,14 +1927,15 @@ leica::leica(const char* portName, int maxSizeX, int maxSizeY, NDDataType_t data
 	GlobalObjects::LMFTracker->OverviewCamera->Stop();
 */
 
-
+// These are handled now in do measurement
+/*
 	GlobalObjects::LMFTracker->Measurement->MeasurementArrived += gcnew LMF::Tracker::Measurements::MeasurementSettings::MeasurementArrivedHandler(&OnMeasurementArrived);
 	// also not very helpful
 //	GlobalObjects::LMFTracker->Measurement->Status->Changed += gcnew LMF::Tracker::MeasurementStatus::MeasurementStatusValue::ChangedEventHandler(&OnChanged);
 	GlobalObjects::LMFTracker->Measurement->Status->Changed += gcnew LMF::Tracker::MeasurementStatus::MeasurementStatusValue::ChangedEventHandler(&OnChanged);
 	//almost too generic to be of much use, I.e., not sure that putting this into a PV would be helpful
 	GlobalObjects::LMFTracker->Measurement->MeasurementInProgress->Changed += gcnew LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue::ChangedEventHandler(&OnMeasChanged);
-
+*/
 	// set a profile before actually start counting
 
 
@@ -2169,10 +2350,15 @@ void leica::OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ s
 	leica_->setIntegerParam(leica_->L_Value_9, (int)paramNewValue);
 	leica_->callParamCallbacks();
 
+
+//
+// This now an issue, since starting to measure *when* it can means that it is then impossible to stop it, especially whe n you want to change the acquire mode
+// Turn this off for now, just to see what, if anything, happens
+
 	if (paramNewValue == EMeasurementStatus::ReadyToMeasure)
 	{
 		try {
-			GlobalObjects::LMFTracker->Measurement->StartMeasurement();
+//			GlobalObjects::LMFTracker->Measurement->StartMeasurement();
 		}
 		catch (...)
 		{
@@ -2428,7 +2614,7 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 
 	// throw gcnew System::NotImplementedException();
 //	std::cout << blue << on_white;
-//	std::cout << "callback Got a Measurement Value . . . \n";
+	std::cout << "callback Got a Measurement Value . . . \n";
 
 //	std::cout << "counts :" << paramMeasurements->Count << std::endl;
 
@@ -2445,24 +2631,62 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 				leica_->setDoubleParam(leica_->L_PressureValue, LastMeasurement->Pressure->Value);
 				leica_->setDoubleParam(leica_->L_TemperatureValue, LastMeasurement->Temperature->Value);
 
-
+//
+// This has additional readout fields that I never implemented, since originally I pulled data from the parameters in the LaserTracker classes, and not from method return values
+// or callbacks at all. The current values are in user, so some room to add  in everything, although I might want to store these all as something else, since it can get . . .wordy
+// 
+//
 				if (StationaryMeasurement3D^ stationaryMeas3D = dynamic_cast<StationaryMeasurement3D^>(LastMeasurement))
 				{
-					//										std::cout << "I am a stationary3d measurement \n";
+															std::cout << "I am a stationary3d measurement \n";
 
-										//					std::cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate1->UnitString);
-										//					std::cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
-										//					std::cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate3->UnitString) << std::endl;
+														//	std::cout << " X = " << stationaryMeas3D->Position->Coordinate1->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate1->UnitString);
+														//	std::cout << " Y = " << stationaryMeas3D->Position->Coordinate2->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate2->UnitString);
+														//	std::cout << " Z = " << stationaryMeas3D->Position->Coordinate3->Value << " " << (decode)(stationaryMeas3D->Position->Coordinate3->UnitString) << std::endl;
+														//	std::cout << " Precision = " << stationaryMeas3D->Position->Precision->Value << " " << (decode)(stationaryMeas3D->Position->Precision->UnitString) << std::endl;
+															
+															DateTime^ dt;
+															dt = stationaryMeas3D->TimeStamp;
+															dt = dt->ToLocalTime();
+															DateTime^ dt1;
+															dt1 = stationaryMeas3D->TimeStampExternal;
+															dt1 = dt1->ToLocalTime();
 
+															std::cout << "MeasurementProfile: " << (decode)(stationaryMeas3D->MeasurementProfile) <<
+																" TimeStamp: " << (decode)(dt->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) << 
+																" TimeStampExternal: " << (decode)(dt1->ToString("dddd, dd. MMMM yyyy HH:mm:ss.fff")) <<
+																std::endl;
 
+															Do_SimpleDoubleValue("Humidity", stationaryMeas3D->Humidity);
+															Do_SimpleDoubleValue("Pressure", stationaryMeas3D->Pressure);
+															Do_SimpleDoubleValue("Temperature", stationaryMeas3D->Temperature);
+															
+															std::cout << "Position CoordinateType: " << (int)(stationaryMeas3D->Position->CoordinateType) << " IsFace2: " << (int)stationaryMeas3D->Position->IsFace2 << std::endl;
+															Do_SimpleDoubleValue("Coordinate1", stationaryMeas3D->Position->Coordinate1);
+															Do_SimpleDoubleValue("Coordinate2", stationaryMeas3D->Position->Coordinate2);
+															Do_SimpleDoubleValue("Coordinate3", stationaryMeas3D->Position->Coordinate3);
+															Do_SimpleDoubleValue("Precision", stationaryMeas3D->Position->Precision);
+															Do_MeasurmentInfo("Info", stationaryMeas3D->Info);
+															
+// boost all of these into the correct PV's
+
+//LMF::Tracker::Measurements::MeasurementProfile^ profile = dynamic_cast<LMF::Tracker::Measurements::MeasurementProfile^>(stationaryMeas3D->MeasurementProfile);
+
+//				if (LMF::Tracker::Measurements::Profiles::StationaryMeasurementProfile^ thisProfile = dynamic_cast<LMF::Tracker::Measurements::Profiles::StationaryMeasurementProfile^>(profile))
+//				{
+//					std::cout << "Label: " << (decode)(thisProfile->Accuracy->Label) << " Value: " << (int) thisProfile->Accuracy->Value << std::endl;
+//				}
+//
 
 					//					leica_->setDoubleParam(leica_->L_x, stationaryMeas3D->Position->Coordinate1->Value);
 					//					leica_->setDoubleParam(leica_->L_y, stationaryMeas3D->Position->Coordinate2->Value);
 					//					leica_->setDoubleParam(leica_->L_z, stationaryMeas3D->Position->Coordinate3->Value);
 
 					x = stationaryMeas3D->Position->Coordinate1->Value;
-					y = stationaryMeas3D->Position->Coordinate1->Value;
-					z = stationaryMeas3D->Position->Coordinate1->Value;
+					y = stationaryMeas3D->Position->Coordinate2->Value;
+					z = stationaryMeas3D->Position->Coordinate3->Value;
+
+					
 
 				}
 				else if (StationaryMeasurement6D^ stationaryMeas6D = dynamic_cast<StationaryMeasurement6D^>(LastMeasurement))
@@ -2478,18 +2702,19 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 //					leica_->setDoubleParam(leica_->L_z, stationaryMeas6D->Position->Coordinate3->Value);
 
 					x = stationaryMeas6D->Position->Coordinate1->Value;
-					y = stationaryMeas6D->Position->Coordinate1->Value;
-					z = stationaryMeas6D->Position->Coordinate1->Value;
+					y = stationaryMeas6D->Position->Coordinate2->Value;
+					z = stationaryMeas6D->Position->Coordinate3->Value;
 
 				}
 				else if (SingleShotMeasurement3D^ singleshot3dD = dynamic_cast<SingleShotMeasurement3D^>(LastMeasurement))
 				{
 
-					//						std::cout << "I am a singleshot 3d measurement \n";
+											std::cout << "I am a singleshot 3d measurement \n";
 
-					//						std::cout << " X = " << singleshot3dD->Position->Coordinate1->Value << " " << (decode)(singleshot3dD->Position->Coordinate1->UnitString);
-					//						std::cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << " " << (decode)(singleshot3dD->Position->Coordinate2->UnitString);
-					//						std::cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << " " << (decode)(singleshot3dD->Position->Coordinate3->UnitString) << std::endl;
+											std::cout << " X = " << singleshot3dD->Position->Coordinate1->Value << " " << (decode)(singleshot3dD->Position->Coordinate1->UnitString);
+											std::cout << " Y = " << singleshot3dD->Position->Coordinate2->Value << " " << (decode)(singleshot3dD->Position->Coordinate2->UnitString);
+											std::cout << " Z = " << singleshot3dD->Position->Coordinate3->Value << " " << (decode)(singleshot3dD->Position->Coordinate3->UnitString) << std::endl;
+											
 
 					//					    leica_->setDoubleParam(leica_->L_x, singleshot3dD->Position->Coordinate1->Value);
 					//						leica_->setDoubleParam(leica_->L_y, singleshot3dD->Position->Coordinate2->Value);
@@ -2875,37 +3100,44 @@ void leica::OnEnvironmentalValuesChanged(LMF::Tracker::Meteo::MeteoStation^ send
 
 void leica::OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::AccuracyValue^ sender, LMF::Tracker::Enums::EAccuracy paramNewValue)
 {
-	throw gcnew System::NotImplementedException();
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnMeasChanged Accuracy: " << (decode)(sender->Label) << " " << (int) paramNewValue << std::endl;
 }
 
 
 void leica::OnTriggeredMeasurementsArrived(LMF::Tracker::Measurements::Profiles::CustomTriggerProfile^ sender, LMF::Tracker::MeasurementResults::TriggeredMeasurementCollection^ paramMeasurements)
 {
-	throw gcnew System::NotImplementedException();
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnTriggeredMeasurementsArrived: "  << " " << paramMeasurements->Count << std::endl;
 }
 
 
 void leica::OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::ClockSourceValue^ sender, LMF::Tracker::Enums::EClockSource paramNewValue)
 {
-	throw gcnew System::NotImplementedException();
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnMeasChanged ClockSource: " << (decode)(sender->Label) << " " << (int)paramNewValue << std::endl;
 }
 
 
 void leica::OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::ClockTransmissionValue^ sender, LMF::Tracker::Enums::EClockTransmission paramNewValue)
 {
-	throw gcnew System::NotImplementedException();
+//	throw gcnew System::NotImplementedException();
+
+	std::cout << "OnMeasChanged ClockTransmission: " << (decode)(sender->Label) << " " << (int)paramNewValue << std::endl;
 }
 
 
 void leica::OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::StartStopActiveLevelValue^ sender, LMF::Tracker::Enums::EStartStopActiveLevel paramNewValue)
 {
-	throw gcnew System::NotImplementedException();
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnMeasChanged StartStopActiveLevel: " << (decode)(sender->Label) << " " << (int)paramNewValue << std::endl;
 }
 
 
 void leica::OnMeasChanged(LMF::Tracker::BasicTypes::EnumTypes::StartStopSourceValue^ sender, LMF::Tracker::Enums::EStartStopSource paramNewValue)
 {
-	throw gcnew System::NotImplementedException();
+//	throw gcnew System::NotImplementedException();
+	std::cout << "OnMeasChanged StartStopSource: " << (decode)(sender->Label) << " " << (int)paramNewValue << std::endl;
 }
 
 
