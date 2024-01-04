@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-08-11 14:48:51 by mengbret-->
+<!--Saved on 2024-01-03 16:55:28 by mengbret-->
 <display version="2.0.0">
   <name>Display</name>
   <widget type="image" version="2.0.0">
     <name>Image</name>
-    <pv_name>$(P)image1:ArrayData</pv_name>
+    <pv_name>pva://$(P)Pva1:Image</pv_name>
     <width>640</width>
     <height>480</height>
     <color_map>
@@ -47,11 +47,10 @@
       </scale_font>
     </y_axis>
     <border_alarm_sensitive>false</border_alarm_sensitive>
-    <limits_from_pv>true</limits_from_pv>
     <data_width>1280</data_width>
     <data_height>960</data_height>
     <interpolation>0</interpolation>
-    <color_mode>7</color_mode>
+    <color_mode>0</color_mode>
     <autoscale>false</autoscale>
     <x_pv>$(P)$(R)L_XX</x_pv>
     <y_pv>$(P)$(R)L_YY</y_pv>

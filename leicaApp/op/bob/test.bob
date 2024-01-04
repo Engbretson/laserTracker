@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-09-08 12:26:47 by mengbret-->
+<!--Saved on 2024-01-03 16:41:48 by mengbret-->
 <display version="2.0.0">
   <name>Display</name>
   <widget type="image" version="2.0.0">
     <name>Image</name>
-    <pv_name>$(P)image1:ArrayData</pv_name>
+    <pv_name>pvs://$(P)Pva1:Image</pv_name>
     <x>5</x>
     <y>5</y>
     <width>640</width>
     <height>480</height>
-    <color_map>
-      <name>GRAY</name>
-    </color_map>
     <color_bar>
       <visible>false</visible>
       <bar_size>40</bar_size>
@@ -49,10 +46,10 @@
       </scale_font>
     </y_axis>
     <border_alarm_sensitive>false</border_alarm_sensitive>
+    <limits_from_pv>true</limits_from_pv>
     <data_width>1280</data_width>
     <data_height>960</data_height>
-    <interpolation>0</interpolation>
-    <autoscale>false</autoscale>
+    <color_mode>0</color_mode>
     <x_pv>$(P)$(R)L_XX</x_pv>
     <y_pv>$(P)$(R)L_YY</y_pv>
     <cursor_crosshair>true</cursor_crosshair>
