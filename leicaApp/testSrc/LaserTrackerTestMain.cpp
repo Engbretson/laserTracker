@@ -327,11 +327,13 @@ int main()
 
 //	cout << "Connecting to At403Simulator \n";
 //	cout << "Connecting to At930Simulator \n";
-	cout << "Connecting to 164.54.116.53 \n";
+//	cout << "Connecting to 164.54.116.53 \n";
+		cout << "Connecting to 10.54.116.35 \n";
 
 //	LMFTracker = con->Connect("At403Simulator");
 //	LMFTracker = con->Connect("At930Simulator");
-	LMFTracker = con->Connect("164.54.116.53");
+//	LMFTracker = con->Connect("164.54.116.53");
+		LMFTracker = con->Connect("10.54.116.35");
 	
 
 //    closeWindowByTitle("AT403 Simulator 1.8.0.2250");

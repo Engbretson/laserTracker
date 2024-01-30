@@ -4,14 +4,19 @@ epicsEnvSet("ENGINEER","Engbretson")
 epicsEnvSet("GROUP","8-id-e")
 epicsEnvSet("LOCATION","8-id-e")
 #epicsEnvSet("CAMERA_ID","AT403 394712 164.54.116.53")
-epicsEnvSet("CAMERA_ID","AT930 750529 164.54.116.53")
+epicsEnvSet("CAMERA_ID","AT930 750529 10.54.116.35")
+epicsEnvSet("CAMERA_INFO","AT930 750529 10.54.116.35")
+epicsEnvSet("STARTUP_SCRIPT","$(TOP)/iocBoot/iocLeica/start_epics.bat")
 
-epicsEnvSet("IOC","ioc433LT")
-epicsEnvSet("PREFIX","433LT:")
+#epicsEnvSet("IOC","ioc433LT")
+#epicsEnvSet("PREFIX","433LT:")
+epicsEnvSet("IOC","ioc8idtracker")
+epicsEnvSet("PREFIX","8idtracker:")
 
 #epicsEnvSet("PORT","At403Simulator")
 #epicsEnvSet("PORT","At930Simulator")
-epicsEnvSet("PORT","164.54.116.53")
+#epicsEnvSet("PORT","164.54.116.53")
+epicsEnvSet("PORT","10.54.116.35")
 
 
 epicsEnvSet("XSIZE","2560")

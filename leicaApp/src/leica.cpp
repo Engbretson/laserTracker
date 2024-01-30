@@ -2216,6 +2216,7 @@ void leica::initializeHardware(const char* portName)
 
 //	GlobalObjects::LMFTracker->GoHomePosition();
 
+GlobalObjects::LMFTracker->OverviewCamera->StartAsync();
 
 }
 
@@ -2223,9 +2224,12 @@ void leica::initializeHardware(const char* portName)
 leica::~leica(void)
 {
 
-	//	GlobalObjects::LMFTracker->OverviewCamera->Stop();
+	GlobalObjects::LMFTracker->OverviewCamera->Stop();
+	
+	GlobalObjects::LMFTracker->Disconnect();
 
 	iocshCmd("stopPVAServer() > nul");
+	
 
 }
 /** Configuration command, called directly or from iocsh */
@@ -2377,7 +2381,7 @@ void leica::OnChanged(LMF::Tracker::MeasurementStatus::MeasurementStatusValue^ s
 	if (paramNewValue == EMeasurementStatus::ReadyToMeasure)
 	{
 		try {
-			//			GlobalObjects::LMFTracker->Measurement->StartMeasurement();
+						GlobalObjects::LMFTracker->Measurement->StartMeasurement();
 		}
 		catch (...)
 		{
@@ -2415,6 +2419,8 @@ void leica::OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue
 
 int filenamenumber = 0;
 
+ #define BW 1
+
 void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
 {
 	//		filenamenumber++;
@@ -2425,13 +2431,13 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 			// 
 			// 
 		//	std::cout << blue << on_white;
-	//	std::cout << "Callback OnWPFBitmapImageArrived . . . ";
+//		std::cout << "Callback OnWPFBitmapImageArrived . . . ";
 	//	std::cout << atrCoordinates->Count << " Targets seen in Image.";
 	//			<< std::endl;
 		//	std::cout << reset;
 		//std::cout << ".";
 
-	//	std::cout << image->Height << " " <<image->Width << std::endl;
+//		std::cout << image->Height << " " <<image->Width << std::endl;
 
 
 	// WARNNGS: while the resolution of the overviewCameras can be set to low, medium, and high, the position in image commands
@@ -2552,7 +2558,7 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 
 	const char* nullTerminatedData = reinterpret_cast<const char*>(grayscaleData.data());
 
-	size_t imageDims[3];
+	size_t imageDims[2];
 
 	NDDataType_t  imageDataType;
 
@@ -2596,6 +2602,7 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 		NDColorMode_t colorMode = NDColorModeRGB1;
 
 #endif
+//std::cout << "After copy data" << std::endl;
 
 		epicsTimeGetCurrent(&currentTime);
 		leica_->pImage->timeStamp = currentTime.secPastEpoch + currentTime.nsec / 1.e9;
@@ -2930,12 +2937,21 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 		char buffery[100];
 		char bufferz[100];
 
+//#pragma warning(suppress : 4996)
+//		sprintf(bufferx, "dbpf(""433LT:LT1:L_x00"", ""%d"") >nul", int(x));
+//#pragma warning(suppress : 4996)
+//		sprintf(buffery, "dbpf(""433LT:LT1:L_y00"", ""%d"") >nul", int(y));
+//#pragma warning(suppress : 4996)
+//		sprintf(bufferz, "dbpf(""433LT:LT1:L_z00"", ""%d"") >nul", int(z));
+		
+		
 #pragma warning(suppress : 4996)
-		sprintf(bufferx, "dbpf(""433LT:LT1:x00"", ""%d"") > nul", int(x));
+		sprintf(bufferx, "dbpf(""8idtracker:LT1:L_x00"", ""%d"") >nul", int(x));
 #pragma warning(suppress : 4996)
-		sprintf(buffery, "dbpf(""433LT:LT1:y00"", ""%d"") > nul", int(y));
+		sprintf(buffery, "dbpf(""8idtracker:LT1:L_y00"", ""%d"") >nul", int(y));
 #pragma warning(suppress : 4996)
-		sprintf(bufferz, "dbpf(""433LT:LT1:z00"", ""%d"") > nul", int(z));
+		sprintf(bufferz, "dbpf(""8idtracker:LT1:L_z00"", ""%d"") >nul", int(z));
+
 
 		iocshCmd(bufferx);
 		iocshCmd(buffery);
@@ -2965,6 +2981,8 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 // *AND* should probably check if it is even leagal to restart
 // *AND* having to put this here means that I also can't actually stop it. Unless I check the epics status to see if it shuld be resytarted or not
 
+
+// If I see something, always measure
 
 //	GlobalObjects::LMFTracker->Measurement->StartMeasurement();
 

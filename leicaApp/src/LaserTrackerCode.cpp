@@ -387,11 +387,11 @@ void Do_Measurement(LMF::Tracker::Tracker^ LMFTracker)
 	std::cout << "Profiles: Count: " << LMFTracker->Measurement->Profiles->Count << std::endl;
 
 	std::cout << "Try Quick Measurement . . . " << std::endl;
-
+/*
 	LMFTracker->Measurement->StartMeasurement();
 	Sleep(20);
 	LMFTracker->Measurement->StopMeasurement();
-
+*/
 /* This is actually important,
 
 	The first option is basically a one-shot

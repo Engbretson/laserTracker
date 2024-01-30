@@ -106,8 +106,8 @@ int mainLT()
 // right now, try the real hardware or do the simulator, no other behavior is reasonable
 
 	try {
-		std::cout << "Alwats try Connecting to 164.54.116.53 \n";
-			LMFTracker = con->Connect("164.54.116.53");
+		std::cout << "Alwats try Connecting to 10.54.116.35 \n";
+			LMFTracker = con->Connect("10.54.116.35");
 //		LMFTracker = con->Connect(UseLastTracker);
 	}
 	catch (LMF::Tracker::ErrorHandling::LmfException^ e)
