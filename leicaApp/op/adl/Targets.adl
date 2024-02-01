@@ -44,8 +44,8 @@ display {
 		fd0000,
 		de1309,
 		be190b,
-		a01207,
-		820400,
+		a01227,
+		822400,
 		5893ff,
 		597ee1,
 		4b6ec7,
@@ -83,7 +83,7 @@ display {
 		8b8239,
 		73ff6b,
 		52da3b,
-		3cb420,
+		3cb422,
 		289315,
 		1a7309,
 	}
@@ -118,8 +118,8 @@ text {
    object {
       x=10
       y=50
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -131,8 +131,8 @@ text {
    object {
       x=245
       y=50
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Count_3"
@@ -146,8 +146,8 @@ text {
    object {
       x=365
       y=50
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Count_3_RBV"
@@ -161,8 +161,8 @@ text {
    object {
       x=10
       y=75
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -174,8 +174,8 @@ text {
    object {
       x=245
       y=75
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_CreateLockOnToken"
@@ -189,8 +189,8 @@ text {
    object {
       x=365
       y=75
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_CreateLockOnToken_RBV"
@@ -204,8 +204,8 @@ text {
    object {
       x=10
       y=100
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=14
@@ -217,24 +217,24 @@ polyline {
   object {
       x=10
       y=100
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
-       clr=20
+       clr=22
        width=1
     }
 points {
-  (10,120)
-  (230,120)
+  (10,122)
+  (230,122)
 }
 }
 text {
    object {
       x=10
       y=125
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -246,8 +246,8 @@ text {
    object {
       x=245
       y=125
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_paramTarget"
@@ -261,8 +261,8 @@ text {
    object {
       x=365
       y=125
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_paramTarget_RBV"
@@ -276,8 +276,8 @@ text {
    object {
       x=10
       y=150
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -289,8 +289,8 @@ text {
    object {
       x=245
       y=150
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_faceNumber"
@@ -304,8 +304,8 @@ text {
    object {
       x=365
       y=150
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_faceNumber_RBV"
@@ -319,8 +319,8 @@ text {
    object {
       x=10
       y=175
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=14
@@ -332,11 +332,11 @@ polyline {
   object {
       x=10
       y=175
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
-       clr=20
+       clr=22
        width=1
     }
 points {
@@ -347,9 +347,9 @@ points {
 text {
    object {
       x=10
-      y=200
-      width=220
-      height=20
+      y=220
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -360,9 +360,9 @@ text {
 "text entry" {
    object {
       x=245
-      y=200
-      width=120
-      height=20
+      y=220
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Comment_6"
@@ -375,9 +375,9 @@ text {
 "text update" {
    object {
       x=365
-      y=200
-      width=120
-      height=20
+      y=220
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Comment_6_RBV"
@@ -391,8 +391,8 @@ text {
    object {
       x=10
       y=225
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -404,8 +404,8 @@ text {
    object {
       x=245
       y=225
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_GUID_11"
@@ -419,8 +419,8 @@ text {
    object {
       x=365
       y=225
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_GUID_11_RBV"
@@ -434,8 +434,8 @@ text {
    object {
       x=10
       y=250
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -448,7 +448,7 @@ text {
       x=245
       y=250
       width=60
-      height=20
+      height=22
     }
    control {
      chan="$(P)$(R)L_IsSelectable"
@@ -463,7 +463,7 @@ text {
       x=305
       y=250
       width=60
-      height=20
+      height=22
     }
    control {
      chan="$(P)$(R)L_IsSelectable"
@@ -477,8 +477,8 @@ text {
    object {
       x=365
       y=250
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_IsSelectable_RBV"
@@ -492,8 +492,8 @@ text {
    object {
       x=10
       y=275
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -505,8 +505,8 @@ text {
    object {
       x=245
       y=275
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Name_11"
@@ -520,8 +520,8 @@ text {
    object {
       x=365
       y=275
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Name_11_RBV"
@@ -535,8 +535,8 @@ text {
    object {
       x=10
       y=300
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -548,8 +548,8 @@ text {
    object {
       x=245
       y=300
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_ProductName"
@@ -563,8 +563,8 @@ text {
    object {
       x=365
       y=300
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_ProductName_RBV"
@@ -578,8 +578,8 @@ text {
    object {
       x=10
       y=325
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -591,8 +591,8 @@ text {
    object {
       x=245
       y=325
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_TimeStamp_7"
@@ -606,8 +606,8 @@ text {
    object {
       x=365
       y=325
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_TimeStamp_7_RBV"
@@ -621,8 +621,8 @@ text {
    object {
       x=10
       y=350
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=14
@@ -634,11 +634,11 @@ polyline {
   object {
       x=10
       y=350
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
-       clr=20
+       clr=22
        width=1
     }
 points {
@@ -650,8 +650,8 @@ text {
    object {
       x=10
       y=375
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -663,8 +663,8 @@ text {
    object {
       x=245
       y=375
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Label_57"
@@ -678,8 +678,8 @@ text {
    object {
       x=365
       y=375
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Label_57_RBV"
@@ -693,8 +693,8 @@ text {
    object {
       x=10
       y=400
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -706,8 +706,8 @@ text {
    object {
       x=245
       y=400
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitString_34"
@@ -721,8 +721,8 @@ text {
    object {
       x=365
       y=400
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitString_34_RBV"
@@ -736,8 +736,8 @@ text {
    object {
       x=10
       y=425
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -749,8 +749,8 @@ text {
    object {
       x=245
       y=425
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitType_34"
@@ -764,8 +764,8 @@ text {
    object {
       x=365
       y=425
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitType_34_RBV"
@@ -779,8 +779,8 @@ text {
    object {
       x=10
       y=450
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -792,8 +792,8 @@ text {
    object {
       x=245
       y=450
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Value_49"
@@ -807,8 +807,8 @@ text {
    object {
       x=365
       y=450
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Value_49_RBV"
@@ -822,8 +822,8 @@ text {
    object {
       x=10
       y=475
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -835,8 +835,8 @@ text {
    object {
       x=245
       y=475
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_ValueInBaseUnits_34"
@@ -850,8 +850,8 @@ text {
    object {
       x=365
       y=475
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_ValueInBaseUnits_34_RBV"
@@ -865,8 +865,8 @@ text {
    object {
       x=10
       y=500
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=14
@@ -878,24 +878,24 @@ polyline {
   object {
       x=10
       y=500
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
-       clr=20
+       clr=22
        width=1
     }
 points {
-  (10,520)
-  (230,520)
+  (10,522)
+  (230,522)
 }
 }
 text {
    object {
       x=10
       y=525
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -907,8 +907,8 @@ text {
    object {
       x=245
       y=525
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Label_58"
@@ -922,8 +922,8 @@ text {
    object {
       x=365
       y=525
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Label_58_RBV"
@@ -937,8 +937,8 @@ text {
    object {
       x=10
       y=550
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -950,8 +950,8 @@ text {
    object {
       x=245
       y=550
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitString_35"
@@ -965,8 +965,8 @@ text {
    object {
       x=365
       y=550
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitString_35_RBV"
@@ -980,8 +980,8 @@ text {
    object {
       x=10
       y=575
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -993,8 +993,8 @@ text {
    object {
       x=245
       y=575
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitType_35"
@@ -1008,8 +1008,8 @@ text {
    object {
       x=365
       y=575
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitType_35_RBV"
@@ -1023,8 +1023,8 @@ text {
    object {
       x=10
       y=600
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1036,8 +1036,8 @@ text {
    object {
       x=245
       y=600
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Value_50"
@@ -1051,8 +1051,8 @@ text {
    object {
       x=365
       y=600
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Value_50_RBV"
@@ -1066,8 +1066,8 @@ text {
    object {
       x=10
       y=625
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1079,8 +1079,8 @@ text {
    object {
       x=245
       y=625
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_ValueInBaseUnits_35"
@@ -1094,8 +1094,8 @@ text {
    object {
       x=365
       y=625
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_ValueInBaseUnits_35_RBV"
@@ -1109,8 +1109,8 @@ text {
    object {
       x=10
       y=650
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1122,8 +1122,8 @@ text {
    object {
       x=245
       y=650
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_GetLockOnToken"
@@ -1137,8 +1137,8 @@ text {
    object {
       x=365
       y=650
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_GetLockOnToken_RBV"
@@ -1152,8 +1152,8 @@ text {
    object {
       x=10
       y=675
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1165,8 +1165,8 @@ text {
    object {
       x=245
       y=675
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Select_10"
@@ -1180,8 +1180,8 @@ text {
    object {
       x=365
       y=675
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Select_10_RBV"
@@ -1195,8 +1195,8 @@ text {
    object {
       x=10
       y=700
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=14
@@ -1208,24 +1208,24 @@ polyline {
   object {
       x=10
       y=700
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
-       clr=20
+       clr=22
        width=1
     }
 points {
-  (10,720)
-  (230,720)
+  (10,722)
+  (230,722)
 }
 }
 text {
    object {
       x=10
       y=725
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1237,8 +1237,8 @@ text {
    object {
       x=245
       y=725
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Comment_7"
@@ -1252,8 +1252,8 @@ text {
    object {
       x=365
       y=725
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Comment_7_RBV"
@@ -1267,8 +1267,8 @@ text {
    object {
       x=10
       y=750
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1280,8 +1280,8 @@ text {
    object {
       x=245
       y=750
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_GUID_12"
@@ -1295,8 +1295,8 @@ text {
    object {
       x=365
       y=750
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_GUID_12_RBV"
@@ -1310,8 +1310,8 @@ text {
    object {
       x=10
       y=775
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1324,7 +1324,7 @@ text {
       x=245
       y=775
       width=60
-      height=20
+      height=22
     }
    control {
      chan="$(P)$(R)L_IsSelectable_1"
@@ -1339,7 +1339,7 @@ text {
       x=305
       y=775
       width=60
-      height=20
+      height=22
     }
    control {
      chan="$(P)$(R)L_IsSelectable_1"
@@ -1353,8 +1353,8 @@ text {
    object {
       x=365
       y=775
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_IsSelectable_1_RBV"
@@ -1368,8 +1368,8 @@ text {
    object {
       x=10
       y=800
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1381,8 +1381,8 @@ text {
    object {
       x=245
       y=800
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Name_12"
@@ -1396,8 +1396,8 @@ text {
    object {
       x=365
       y=800
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Name_12_RBV"
@@ -1411,8 +1411,8 @@ text {
    object {
       x=10
       y=825
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1424,8 +1424,8 @@ text {
    object {
       x=245
       y=825
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_ProductName_1"
@@ -1439,8 +1439,8 @@ text {
    object {
       x=365
       y=825
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_ProductName_1_RBV"
@@ -1454,8 +1454,8 @@ text {
    object {
       x=10
       y=850
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1467,8 +1467,8 @@ text {
    object {
       x=245
       y=850
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_TimeStamp_8"
@@ -1482,8 +1482,8 @@ text {
    object {
       x=365
       y=850
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_TimeStamp_8_RBV"
@@ -1497,8 +1497,8 @@ text {
    object {
       x=10
       y=875
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=14
@@ -1510,11 +1510,11 @@ polyline {
   object {
       x=10
       y=875
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
-       clr=20
+       clr=22
        width=1
     }
 points {
@@ -1526,8 +1526,8 @@ text {
    object {
       x=10
       y=900
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1539,8 +1539,8 @@ text {
    object {
       x=245
       y=900
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Label_59"
@@ -1554,8 +1554,8 @@ text {
    object {
       x=365
       y=900
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Label_59_RBV"
@@ -1569,8 +1569,8 @@ text {
    object {
       x=10
       y=925
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1582,8 +1582,8 @@ text {
    object {
       x=245
       y=925
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitString_36"
@@ -1597,8 +1597,8 @@ text {
    object {
       x=365
       y=925
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitString_36_RBV"
@@ -1612,8 +1612,8 @@ text {
    object {
       x=10
       y=950
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1625,8 +1625,8 @@ text {
    object {
       x=245
       y=950
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitType_36"
@@ -1640,8 +1640,8 @@ text {
    object {
       x=365
       y=950
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitType_36_RBV"
@@ -1655,8 +1655,8 @@ text {
    object {
       x=10
       y=975
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1668,8 +1668,8 @@ text {
    object {
       x=245
       y=975
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Value_51"
@@ -1683,8 +1683,8 @@ text {
    object {
       x=365
       y=975
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Value_51_RBV"
@@ -1698,8 +1698,8 @@ text {
    object {
       x=10
       y=1000
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1711,8 +1711,8 @@ text {
    object {
       x=245
       y=1000
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_ValueInBaseUnits_36"
@@ -1726,8 +1726,8 @@ text {
    object {
       x=365
       y=1000
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_ValueInBaseUnits_36_RBV"
@@ -1741,8 +1741,8 @@ text {
    object {
       x=410
       y=50
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=14
@@ -1754,11 +1754,11 @@ polyline {
   object {
       x=410
       y=50
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
-       clr=20
+       clr=22
        width=1
     }
 points {
@@ -1770,8 +1770,8 @@ text {
    object {
       x=410
       y=75
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1783,8 +1783,8 @@ text {
    object {
       x=645
       y=75
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Label_60"
@@ -1798,8 +1798,8 @@ text {
    object {
       x=765
       y=75
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Label_60_RBV"
@@ -1813,8 +1813,8 @@ text {
    object {
       x=410
       y=100
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1826,8 +1826,8 @@ text {
    object {
       x=645
       y=100
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitString_37"
@@ -1841,8 +1841,8 @@ text {
    object {
       x=765
       y=100
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitString_37_RBV"
@@ -1856,8 +1856,8 @@ text {
    object {
       x=410
       y=125
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1869,8 +1869,8 @@ text {
    object {
       x=645
       y=125
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitType_37"
@@ -1884,8 +1884,8 @@ text {
    object {
       x=765
       y=125
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitType_37_RBV"
@@ -1899,8 +1899,8 @@ text {
    object {
       x=410
       y=150
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1912,8 +1912,8 @@ text {
    object {
       x=645
       y=150
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Value_52"
@@ -1927,8 +1927,8 @@ text {
    object {
       x=765
       y=150
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Value_52_RBV"
@@ -1942,8 +1942,8 @@ text {
    object {
       x=410
       y=175
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1955,8 +1955,8 @@ text {
    object {
       x=645
       y=175
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_ValueInBaseUnits_37"
@@ -1970,8 +1970,8 @@ text {
    object {
       x=765
       y=175
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_ValueInBaseUnits_37_RBV"
@@ -1984,9 +1984,9 @@ text {
 text {
    object {
       x=410
-      y=200
-      width=220
-      height=20
+      y=220
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -1997,9 +1997,9 @@ text {
 "message button" {
    object {
       x=645
-      y=200
-      width=120
-      height=20
+      y=220
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_GetLockOnToken_1"
@@ -2012,9 +2012,9 @@ text {
 "text update" {
    object {
       x=765
-      y=200
-      width=120
-      height=20
+      y=220
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_GetLockOnToken_1_RBV"
@@ -2028,8 +2028,8 @@ text {
    object {
       x=410
       y=225
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2041,8 +2041,8 @@ text {
    object {
       x=645
       y=225
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Select_11"
@@ -2056,8 +2056,8 @@ text {
    object {
       x=765
       y=225
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Select_11_RBV"
@@ -2071,8 +2071,8 @@ text {
    object {
       x=410
       y=250
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=14
@@ -2084,11 +2084,11 @@ polyline {
   object {
       x=410
       y=250
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
-       clr=20
+       clr=22
        width=1
     }
 points {
@@ -2100,8 +2100,8 @@ text {
    object {
       x=410
       y=275
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2113,8 +2113,8 @@ text {
    object {
       x=645
       y=275
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Comment_8"
@@ -2128,8 +2128,8 @@ text {
    object {
       x=765
       y=275
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Comment_8_RBV"
@@ -2143,8 +2143,8 @@ text {
    object {
       x=410
       y=300
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2156,8 +2156,8 @@ text {
    object {
       x=645
       y=300
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_GUID_13"
@@ -2171,8 +2171,8 @@ text {
    object {
       x=765
       y=300
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_GUID_13_RBV"
@@ -2186,8 +2186,8 @@ text {
    object {
       x=410
       y=325
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2200,7 +2200,7 @@ text {
       x=645
       y=325
       width=60
-      height=20
+      height=22
     }
    control {
      chan="$(P)$(R)L_IsSelectable_2"
@@ -2215,7 +2215,7 @@ text {
       x=705
       y=325
       width=60
-      height=20
+      height=22
     }
    control {
      chan="$(P)$(R)L_IsSelectable_2"
@@ -2229,8 +2229,8 @@ text {
    object {
       x=765
       y=325
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_IsSelectable_2_RBV"
@@ -2244,8 +2244,8 @@ text {
    object {
       x=410
       y=350
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2257,8 +2257,8 @@ text {
    object {
       x=645
       y=350
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Name_13"
@@ -2272,8 +2272,8 @@ text {
    object {
       x=765
       y=350
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Name_13_RBV"
@@ -2287,8 +2287,8 @@ text {
    object {
       x=410
       y=375
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2300,8 +2300,8 @@ text {
    object {
       x=645
       y=375
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_ProductName_2"
@@ -2315,8 +2315,8 @@ text {
    object {
       x=765
       y=375
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_ProductName_2_RBV"
@@ -2330,8 +2330,8 @@ text {
    object {
       x=410
       y=400
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2343,8 +2343,8 @@ text {
    object {
       x=645
       y=400
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_TimeStamp_9"
@@ -2358,8 +2358,8 @@ text {
    object {
       x=765
       y=400
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_TimeStamp_9_RBV"
@@ -2373,8 +2373,8 @@ text {
    object {
       x=410
       y=425
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=14
@@ -2386,11 +2386,11 @@ polyline {
   object {
       x=410
       y=425
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
-       clr=20
+       clr=22
        width=1
     }
 points {
@@ -2402,8 +2402,8 @@ text {
    object {
       x=410
       y=450
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2415,8 +2415,8 @@ text {
    object {
       x=645
       y=450
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Label_61"
@@ -2430,8 +2430,8 @@ text {
    object {
       x=765
       y=450
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Label_61_RBV"
@@ -2445,8 +2445,8 @@ text {
    object {
       x=410
       y=475
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2458,8 +2458,8 @@ text {
    object {
       x=645
       y=475
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitString_38"
@@ -2473,8 +2473,8 @@ text {
    object {
       x=765
       y=475
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitString_38_RBV"
@@ -2488,8 +2488,8 @@ text {
    object {
       x=410
       y=500
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2501,8 +2501,8 @@ text {
    object {
       x=645
       y=500
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitType_38"
@@ -2516,8 +2516,8 @@ text {
    object {
       x=765
       y=500
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitType_38_RBV"
@@ -2531,8 +2531,8 @@ text {
    object {
       x=410
       y=525
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2544,8 +2544,8 @@ text {
    object {
       x=645
       y=525
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Value_53"
@@ -2559,8 +2559,8 @@ text {
    object {
       x=765
       y=525
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Value_53_RBV"
@@ -2574,8 +2574,8 @@ text {
    object {
       x=410
       y=550
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2587,8 +2587,8 @@ text {
    object {
       x=645
       y=550
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_ValueInBaseUnits_38"
@@ -2602,8 +2602,8 @@ text {
    object {
       x=765
       y=550
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_ValueInBaseUnits_38_RBV"
@@ -2617,8 +2617,8 @@ text {
    object {
       x=410
       y=575
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=14
@@ -2630,11 +2630,11 @@ polyline {
   object {
       x=410
       y=575
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
-       clr=20
+       clr=22
        width=1
     }
 points {
@@ -2646,8 +2646,8 @@ text {
    object {
       x=410
       y=600
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2659,8 +2659,8 @@ text {
    object {
       x=645
       y=600
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Label_62"
@@ -2674,8 +2674,8 @@ text {
    object {
       x=765
       y=600
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Label_62_RBV"
@@ -2689,8 +2689,8 @@ text {
    object {
       x=410
       y=625
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2702,8 +2702,8 @@ text {
    object {
       x=645
       y=625
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitString_39"
@@ -2717,8 +2717,8 @@ text {
    object {
       x=765
       y=625
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitString_39_RBV"
@@ -2732,8 +2732,8 @@ text {
    object {
       x=410
       y=650
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2745,8 +2745,8 @@ text {
    object {
       x=645
       y=650
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_UnitType_39"
@@ -2760,8 +2760,8 @@ text {
    object {
       x=765
       y=650
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_UnitType_39_RBV"
@@ -2775,8 +2775,8 @@ text {
    object {
       x=410
       y=675
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2788,8 +2788,8 @@ text {
    object {
       x=645
       y=675
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Value_54"
@@ -2803,8 +2803,8 @@ text {
    object {
       x=765
       y=675
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Value_54_RBV"
@@ -2818,8 +2818,8 @@ text {
    object {
       x=410
       y=700
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2831,8 +2831,8 @@ text {
    object {
       x=645
       y=700
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_ValueInBaseUnits_39"
@@ -2846,8 +2846,8 @@ text {
    object {
       x=765
       y=700
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_ValueInBaseUnits_39_RBV"
@@ -2861,8 +2861,8 @@ text {
    object {
       x=410
       y=725
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2874,8 +2874,8 @@ text {
    object {
       x=645
       y=725
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_GetLockOnToken_2"
@@ -2889,8 +2889,8 @@ text {
    object {
       x=765
       y=725
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_GetLockOnToken_2_RBV"
@@ -2904,8 +2904,8 @@ text {
    object {
       x=410
       y=750
-      width=220
-      height=20
+      width=222
+      height=22
     }
    "basic attribute" {
        clr=54
@@ -2917,8 +2917,8 @@ text {
    object {
       x=645
       y=750
-      width=120
-      height=20
+      width=122
+      height=22
     }
    control {
      chan="$(P)$(R)L_Select_12"
@@ -2932,8 +2932,8 @@ text {
    object {
       x=765
       y=750
-      width=120
-      height=20
+      width=122
+      height=22
     }
    monitor {
      chan="$(P)$(R)L_Select_12_RBV"

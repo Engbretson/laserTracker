@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2024-01-31 11:44:26 by mengbret-->
+<display version="2.0.0">
+  <name>newDisplay</name>
+  <x>306</x>
+  <y>231</y>
+  <width>1062</width>
+  <height>620</height>
+  <background_color>
+    <color red="187" green="187" blue="187">
+    </color>
+  </background_color>
+  <grid_visible>false</grid_visible>
+  <grid_step_x>5</grid_step_x>
+  <widget type="embedded" version="2.0.0">
+    <name>composite #6</name>
+    <file>image.bob</file>
+    <width>640</width>
+    <height>490</height>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>composite #8</name>
+    <file>targetsseen.bob</file>
+    <x>762</x>
+    <y>14</y>
+    <width>200</width>
+    <height>250</height>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>composite #10</name>
+    <file>main.bob</file>
+    <x>5</x>
+    <y>495</y>
+    <height>114</height>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>composite #12</name>
+    <file>readouts.bob</file>
+    <x>660</x>
+    <y>414</y>
+    <width>351</width>
+    <height>200</height>
+  </widget>
+  <widget type="embedded" version="2.0.0">
+    <name>composite #14</name>
+    <file>goto.bob</file>
+    <x>660</x>
+    <y>288</y>
+    <width>401</width>
+    <height>100</height>
+  </widget>
+</display>

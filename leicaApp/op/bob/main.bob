@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-09-08 11:21:07 by mengbret-->
+<!--Saved on 2024-01-31 11:44:25 by mengbret-->
 <display version="2.0.0">
   <name>main</name>
-  <x>1199</x>
-  <y>211</y>
+  <x>817</x>
+  <y>383</y>
   <width>400</width>
-  <height>139</height>
+  <height>114</height>
   <background_color>
     <color red="187" green="187" blue="187">
     </color>
   </background_color>
   <grid_visible>false</grid_visible>
   <grid_step_x>5</grid_step_x>
+  <widget type="rectangle" version="2.0.0">
+    <name>rectangle #6</name>
+    <width>400</width>
+    <height>114</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="0" green="0" blue="0">
+      </color>
+    </line_color>
+    <background_color>
+      <color red="0" green="0" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+  </widget>
   <widget type="action_button" version="3.0.0">
-    <name>related display #6</name>
+    <name>related display #9</name>
     <actions>
       <action type="open_display">
         <file>Compensations.opi</file>
@@ -100,14 +115,14 @@
     <x>34</x>
     <y>25</y>
     <width>308</width>
-    <height>44</height>
+    <height>25</height>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>related display #24</name>
+    <name>related display #27</name>
     <actions>
       <action type="open_display">
         <file>QuickRelease.opi</file>
@@ -127,9 +142,9 @@
     </actions>
     <text>Laser Tracker Functional Screens #2</text>
     <x>34</x>
-    <y>70</y>
+    <y>58</y>
     <width>308</width>
-    <height>44</height>
+    <height>25</height>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-08-01 14:37:25 by mengbret-->
+<!--Saved on 2024-01-31 11:44:22 by mengbret-->
 <display version="2.0.0">
   <name>configMenu_more</name>
   <x>808</x>
   <y>36</y>
   <width>240</width>
-  <height>650</height>
+  <height>620</height>
   <background_color>
     <color red="200" green="200" blue="200">
     </color>
@@ -16,7 +16,7 @@
     <name>text #6</name>
     <text>config Name</text>
     <x>45</x>
-    <y>107</y>
+    <y>95</y>
     <width>150</width>
     <height>13</height>
     <horizontal_alignment>1</horizontal_alignment>
@@ -27,9 +27,9 @@
       <N>5</N>
     </macros>
     <file>configMenu_more_bare1.bob</file>
-    <y>305</y>
+    <y>290</y>
     <width>238</width>
-    <height>45</height>
+    <height>43</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #11</name>
@@ -37,9 +37,9 @@
       <N>1</N>
     </macros>
     <file>configMenu_more_bare1.bob</file>
-    <y>125</y>
+    <y>110</y>
     <width>238</width>
-    <height>45</height>
+    <height>43</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #13</name>
@@ -47,9 +47,9 @@
       <N>2</N>
     </macros>
     <file>configMenu_more_bare1.bob</file>
-    <y>170</y>
+    <y>155</y>
     <width>238</width>
-    <height>45</height>
+    <height>43</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #15</name>
@@ -57,9 +57,9 @@
       <N>3</N>
     </macros>
     <file>configMenu_more_bare1.bob</file>
-    <y>215</y>
+    <y>200</y>
     <width>238</width>
-    <height>45</height>
+    <height>43</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #17</name>
@@ -67,9 +67,9 @@
       <N>4</N>
     </macros>
     <file>configMenu_more_bare1.bob</file>
-    <y>260</y>
+    <y>245</y>
     <width>238</width>
-    <height>45</height>
+    <height>43</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #19</name>
@@ -77,9 +77,9 @@
       <N>10</N>
     </macros>
     <file>configMenu_more_bare1.bob</file>
-    <y>530</y>
+    <y>515</y>
     <width>238</width>
-    <height>45</height>
+    <height>43</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #21</name>
@@ -87,9 +87,9 @@
       <N>6</N>
     </macros>
     <file>configMenu_more_bare1.bob</file>
-    <y>350</y>
+    <y>335</y>
     <width>238</width>
-    <height>45</height>
+    <height>43</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #23</name>
@@ -97,9 +97,9 @@
       <N>7</N>
     </macros>
     <file>configMenu_more_bare1.bob</file>
-    <y>395</y>
+    <y>380</y>
     <width>238</width>
-    <height>45</height>
+    <height>43</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #25</name>
@@ -107,9 +107,9 @@
       <N>8</N>
     </macros>
     <file>configMenu_more_bare1.bob</file>
-    <y>440</y>
+    <y>425</y>
     <width>238</width>
-    <height>45</height>
+    <height>43</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #27</name>
@@ -117,9 +117,9 @@
       <N>9</N>
     </macros>
     <file>configMenu_more_bare1.bob</file>
-    <y>485</y>
+    <y>470</y>
     <width>238</width>
-    <height>45</height>
+    <height>43</height>
   </widget>
   <widget type="action_button" version="3.0.0">
     <name>related display #29</name>
@@ -132,7 +132,7 @@
     </actions>
     <text>Less</text>
     <x>185</x>
-    <y>629</y>
+    <y>600</y>
     <width>50</width>
     <height>20</height>
     <foreground_color>
@@ -143,22 +143,21 @@
       <color red="51" green="153" blue="0">
       </color>
     </background_color>
-    <tooltip>$(actions)</tooltip>
   </widget>
   <widget type="label" version="2.0.0">
     <name>text #32</name>
     <text>permit save?</text>
     <x>5</x>
-    <y>580</y>
-    <width>81</width>
-    <height>16</height>
+    <y>565</y>
+    <width>80</width>
+    <height>14</height>
     <auto_size>true</auto_size>
   </widget>
   <widget type="combo" version="2.0.0">
     <name>menu #35</name>
     <pv_name>$(P)$(CONFIG)Menu:enableSave</pv_name>
     <x>95</x>
-    <y>575</y>
+    <y>560</y>
     <width>50</width>
     <height>20</height>
     <background_color>
@@ -171,13 +170,13 @@
     <name>composite #38</name>
     <file>configMenuHead_bare.bob</file>
     <width>240</width>
-    <height>100</height>
+    <height>93</height>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>text update #40</name>
     <pv_name>$(P)$(CONFIG)Menu:busy</pv_name>
     <x>5</x>
-    <y>615</y>
+    <y>600</y>
     <height>15</height>
     <font>
       <font family="Liberation Sans" style="REGULAR" size="16.0">
@@ -206,7 +205,7 @@
     <pv_name>$(P)$(CONFIG)Menu:menuName.PROC</pv_name>
     <text>Find config files</text>
     <x>5</x>
-    <y>595</y>
+    <y>580</y>
     <width>130</width>
     <height>20</height>
     <background_color>
@@ -217,76 +216,72 @@
   <widget type="group" version="2.0.0">
     <name>composite #47</name>
     <x>150</x>
-    <y>595</y>
+    <y>580</y>
     <width>85</width>
     <height>20</height>
     <style>3</style>
     <transparent>true</transparent>
-  </widget>
-  <widget type="label" version="2.0.0">
-    <name>text #50</name>
-    <text>Page:</text>
-    <x>150</x>
-    <y>615</y>
-    <width>35</width>
-    <height>14</height>
-    <horizontal_alignment>2</horizontal_alignment>
-  </widget>
-  <widget type="action_button" version="3.0.0">
-    <name>message button #53</name>
-    <actions>
-      <action type="write_pv">
-        <pv_name>$(P)$(CONFIG)Menu:PageDn.PROC</pv_name>
-        <value>1</value>
-        <description>Write</description>
-      </action>
-    </actions>
-    <pv_name>$(P)$(CONFIG)Menu:PageDn.PROC</pv_name>
-    <text>-</text>
-    <x>185</x>
-    <y>610</y>
-    <width>15</width>
-    <height>20</height>
-    <background_color>
-      <color red="115" green="223" blue="255">
-      </color>
-    </background_color>
-  </widget>
-  <widget type="textentry" version="3.0.0">
-    <name>text entry #56</name>
-    <pv_name>$(P)$(CONFIG)Menu:Page</pv_name>
-    <x>200</x>
-    <y>610</y>
-    <width>20</width>
-    <font>
-      <font family="Liberation Sans" style="REGULAR" size="16.0">
+    <widget type="label" version="2.0.0">
+      <name>text #50</name>
+      <text>Page:</text>
+      <y>5</y>
+      <width>35</width>
+      <height>14</height>
+      <horizontal_alignment>2</horizontal_alignment>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>message button #53</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>$(P)$(CONFIG)Menu:PageDn.PROC</pv_name>
+          <value>1</value>
+          <description>Write</description>
+        </action>
+      </actions>
+      <pv_name>$(P)$(CONFIG)Menu:PageDn.PROC</pv_name>
+      <text>-</text>
+      <x>35</x>
+      <width>15</width>
+      <height>20</height>
+      <background_color>
+        <color red="115" green="223" blue="255">
+        </color>
+      </background_color>
+    </widget>
+    <widget type="textentry" version="3.0.0">
+      <name>text entry #56</name>
+      <pv_name>$(P)$(CONFIG)Menu:Page</pv_name>
+      <x>50</x>
+      <width>20</width>
+      <font>
+        <font family="Liberation Sans" style="REGULAR" size="16.0">
+        </font>
       </font>
-    </font>
-    <background_color>
-      <color red="115" green="223" blue="255">
-      </color>
-    </background_color>
-    <show_units>false</show_units>
-    <border_alarm_sensitive>false</border_alarm_sensitive>
-  </widget>
-  <widget type="action_button" version="3.0.0">
-    <name>message button #60</name>
-    <actions>
-      <action type="write_pv">
-        <pv_name>$(P)$(CONFIG)Menu:PageUp.PROC</pv_name>
-        <value>1</value>
-        <description>Write</description>
-      </action>
-    </actions>
-    <pv_name>$(P)$(CONFIG)Menu:PageUp.PROC</pv_name>
-    <text>+</text>
-    <x>220</x>
-    <y>610</y>
-    <width>15</width>
-    <height>20</height>
-    <background_color>
-      <color red="115" green="223" blue="255">
-      </color>
-    </background_color>
+      <background_color>
+        <color red="115" green="223" blue="255">
+        </color>
+      </background_color>
+      <show_units>false</show_units>
+      <border_alarm_sensitive>false</border_alarm_sensitive>
+    </widget>
+    <widget type="action_button" version="3.0.0">
+      <name>message button #60</name>
+      <actions>
+        <action type="write_pv">
+          <pv_name>$(P)$(CONFIG)Menu:PageUp.PROC</pv_name>
+          <value>1</value>
+          <description>Write</description>
+        </action>
+      </actions>
+      <pv_name>$(P)$(CONFIG)Menu:PageUp.PROC</pv_name>
+      <text>+</text>
+      <x>70</x>
+      <width>15</width>
+      <height>20</height>
+      <background_color>
+        <color red="115" green="223" blue="255">
+        </color>
+      </background_color>
+    </widget>
   </widget>
 </display>

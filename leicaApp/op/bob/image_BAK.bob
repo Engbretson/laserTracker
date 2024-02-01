@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2024-01-31 11:44:24 by mengbret-->
+<display version="2.0.0">
+  <name>image_BAK</name>
+  <x>498</x>
+  <y>357</y>
+  <width>584</width>
+  <height>478</height>
+  <background_color>
+    <color red="187" green="187" blue="187">
+    </color>
+  </background_color>
+  <grid_visible>false</grid_visible>
+  <grid_step_x>5</grid_step_x>
+  <widget type="picture" version="2.0.0">
+    <name>image #6</name>
+    <file>default.gif</file>
+    <x>11</x>
+    <y>13</y>
+    <width>466</width>
+    <height>385</height>
+    <stretch_image>true</stretch_image>
+  </widget>
+</display>

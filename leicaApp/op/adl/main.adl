@@ -1,14 +1,14 @@
 
 file {
-	name="C:\epics\areaDetector-R3-12-1\LaserTracker-R2-0\leicaApp\op\adl\main.adl"
-	version=030109
+	name="/net/s100dserv/xorApps/me/LaserTracker-R2-1/leicaApp/op/adl/main.adl"
+	version=030111
 }
 display {
 	object {
-		x=1199
-		y=211
+		x=817
+		y=383
 		width=400
-		height=139
+		height=114
 	}
 	clr=14
 	bclr=4
@@ -87,12 +87,24 @@ display {
 		1a7309,
 	}
 }
+rectangle {
+	object {
+		x=0
+		y=0
+		width=400
+		height=114
+	}
+	"basic attribute" {
+		clr=14
+		fill="outline"
+	}
+}
 "related display" {
 	object {
 		x=34
 		y=25
 		width=308
-		height=44
+		height=25
 	}
 	display[0] {
 		label="Compensations"
@@ -181,9 +193,9 @@ display {
 "related display" {
 	object {
 		x=34
-		y=70
+		y=58
 		width=308
-		height=44
+		height=25
 	}
 	display[0] {
 		label="QuickRelease"
@@ -200,7 +212,6 @@ display {
 		name="Measurement_Readouts.adl"
 		args="P=$(P),R=$(R)"
 	}
-
 	clr=14
 	bclr=4
 	label="Laser Tracker Functional Screens #2"

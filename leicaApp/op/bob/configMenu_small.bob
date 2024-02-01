@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2023-08-01 14:30:03 by mengbret-->
+<!--Saved on 2024-01-31 11:44:22 by mengbret-->
 <display version="2.0.0">
   <name>configMenu_small</name>
   <x>1133</x>
   <y>390</y>
-  <width>260</width>
+  <width>240</width>
   <height>180</height>
   <background_color>
     <color red="200" green="200" blue="200">
@@ -47,7 +47,6 @@
       <color red="51" green="153" blue="0">
       </color>
     </background_color>
-    <tooltip>$(actions)</tooltip>
   </widget>
   <widget type="action_button" version="3.0.0">
     <name>related display #12</name>
@@ -71,19 +70,18 @@
       <color red="51" green="153" blue="0">
       </color>
     </background_color>
-    <tooltip>$(actions)</tooltip>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #15</name>
     <file>configMenuHead_bare.bob</file>
-    <width>260</width>
-    <height>100</height>
+    <width>240</width>
+    <height>93</height>
   </widget>
   <widget type="label" version="2.0.0">
     <name>text #17</name>
     <text>Load config by name:</text>
     <x>5</x>
-    <y>100</y>
+    <y>95</y>
     <width>230</width>
     <font>
       <font family="Liberation Sans" style="REGULAR" size="16.0">

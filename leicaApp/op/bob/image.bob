@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2024-01-31 11:44:24 by mengbret-->
+<display version="2.0.0">
+  <name>image</name>
+  <x>498</x>
+  <y>357</y>
+  <width>640</width>
+  <height>480</height>
+  <background_color>
+    <color red="187" green="187" blue="187">
+    </color>
+  </background_color>
+  <grid_visible>false</grid_visible>
+  <grid_step_x>5</grid_step_x>
+  <widget type="rectangle" version="2.0.0">
+    <name>rectangle #6</name>
+    <width>640</width>
+    <height>480</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="0" green="0" blue="0">
+      </color>
+    </line_color>
+    <background_color>
+      <color red="0" green="0" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+  </widget>
+  <widget type="picture" version="2.0.0">
+    <name>image #9</name>
+    <file>default.gif</file>
+    <y>10</y>
+    <width>640</width>
+    <height>480</height>
+    <stretch_image>true</stretch_image>
+  </widget>
+</display>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2024-01-31 16:11:53 by mengbret-->
+<display version="2.0.0">
+  <name>main</name>
+  <x>817</x>
+  <y>383</y>
+  <width>400</width>
+  <height>114</height>
+  <background_color>
+    <color red="187" green="187" blue="187">
+    </color>
+  </background_color>
+  <grid_visible>false</grid_visible>
+  <grid_step_x>5</grid_step_x>
+  <widget type="rectangle" version="2.0.0">
+    <name>rectangle #6</name>
+    <width>400</width>
+    <height>114</height>
+    <line_width>1</line_width>
+    <line_color>
+      <color red="0" green="0" blue="0">
+      </color>
+    </line_color>
+    <background_color>
+      <color red="0" green="0" blue="0">
+      </color>
+    </background_color>
+    <transparent>true</transparent>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>related display #9</name>
+    <actions>
+      <action type="open_display">
+        <file>Compensations.opi</file>
+        <target>tab</target>
+        <description>Compensations</description>
+      </action>
+      <action type="open_display">
+        <file>Face.opi</file>
+        <target>tab</target>
+        <description>Face</description>
+      </action>
+      <action type="open_display">
+        <file>Inclination_Sensor.opi</file>
+        <target>tab</target>
+        <description>InclinationSensor</description>
+      </action>
+      <action type="open_display">
+        <file>Laser.opi</file>
+        <target>tab</target>
+        <description>Laser</description>
+      </action>
+      <action type="open_display">
+        <file>Measurement.opi</file>
+        <target>tab</target>
+        <description>Measurement</description>
+      </action>
+      <action type="open_display">
+        <file>MeteoStation.opi</file>
+        <target>tab</target>
+        <description>MeteoStation</description>
+      </action>
+      <action type="open_display">
+        <file>OverviewCamera.opi</file>
+        <target>tab</target>
+        <description>OverviewCamera</description>
+      </action>
+      <action type="open_display">
+        <file>PowerLock.opi</file>
+        <target>tab</target>
+        <description>PowerLock</description>
+      </action>
+      <action type="open_display">
+        <file>PowerSource.opi</file>
+        <target>tab</target>
+        <description>PowerSource</description>
+      </action>
+      <action type="open_display">
+        <file>Settings.opi</file>
+        <target>tab</target>
+        <description>Settings</description>
+      </action>
+      <action type="open_display">
+        <file>Targets.opi</file>
+        <target>tab</target>
+        <description>Targets</description>
+      </action>
+      <action type="open_display">
+        <file>TargetSearch.opi</file>
+        <target>tab</target>
+        <description>TargetSearch</description>
+      </action>
+      <action type="open_display">
+        <file>TrackerAlignment.opi</file>
+        <target>tab</target>
+        <description>TrackerAlignment</description>
+      </action>
+      <action type="open_display">
+        <file>Triggers.opi</file>
+        <target>tab</target>
+        <description>Triggers</description>
+      </action>
+      <action type="open_display">
+        <file>User_Parameters.opi</file>
+        <target>tab</target>
+        <description>User_Parameters</description>
+      </action>
+      <action type="open_display">
+        <file>Top_Level.opi</file>
+        <target>tab</target>
+        <description>Top_Level</description>
+      </action>
+    </actions>
+    <text>Laser Tracker Functional Screens</text>
+    <x>34</x>
+    <y>25</y>
+    <width>308</width>
+    <height>25</height>
+    <background_color>
+      <color red="187" green="187" blue="187">
+      </color>
+    </background_color>
+  </widget>
+  <widget type="action_button" version="3.0.0">
+    <name>related display #27</name>
+    <actions>
+      <action type="open_display">
+        <file>QuickRelease.opi</file>
+        <target>tab</target>
+        <description>QuickRelease</description>
+      </action>
+      <action type="open_display">
+        <file>WrtlBoxes.opi</file>
+        <target>tab</target>
+        <description>WrtlBoxes</description>
+      </action>
+      <action type="open_display">
+        <file>Measurement_Readouts.opi</file>
+        <target>tab</target>
+        <description>Measurement_Readouts</description>
+      </action>
+    </actions>
+    <text>Laser Tracker Functional Screens #2</text>
+    <x>34</x>
+    <y>58</y>
+    <width>308</width>
+    <height>25</height>
+    <background_color>
+      <color red="187" green="187" blue="187">
+      </color>
+    </background_color>
+  </widget>
+</display>
