@@ -1,3 +1,4 @@
+
 /* leica.cpp
  *
  * This is a driver for a simulated area detector.
@@ -228,7 +229,14 @@ static void exitHandler(void* drvPvt) {
 
 	//	  printf("\nThis is an exit handler being hit . . . which invoked heavy magic to actually make the destructor get processed.\n"); 
 
+	// lets turn the laser off on shutdown . . . 	
+	GlobalObjects::LMFTracker->Laser->IsOn->Value = 0;
+
 	leica* pleica = (leica*)drvPvt;
+
+
+
+	
 	delete pleica;
 
 }
@@ -2419,7 +2427,7 @@ void leica::OnMeasChanged(LMF::Tracker::BasicTypes::BoolValue::ReadOnlyBoolValue
 
 int filenamenumber = 0;
 
- #define BW 1
+// #define BW 1
 
 void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, System::Windows::Media::Imaging::BitmapImage^ image, LMF::Tracker::OVC::ATRCoordinateCollection^ atrCoordinates)
 {
@@ -2530,7 +2538,11 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 	// This starts to flip this to greyscale - caqtdm minimal image display only understand (at the instant) greyscale
 	// It seems as if Phoebus also hates it, and the image mode *has* to be set at design time . . . . reallY?
 
+int ndims = 0;
+
 #ifdef BW
+//std::cout << "B&W" << std::endl;
+
 	std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight);
 	for (int i = 0; i < pixelData->Length; i += 4) {
 		float red = static_cast<float>(pixelData[i]);
@@ -2539,26 +2551,38 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 
 		grayscaleData[i / 4] = static_cast<uint8_t>(0.299 * red + 0.587 * green + 0.114 * blue);
 	}
-	int ndims = 2;
+	ndims = 2;
 #else
+//	std::cout << "Color" << std::endl;
 	std::vector<uint8_t> grayscaleData(writeableBitmap->PixelWidth * writeableBitmap->PixelHeight * 4);
 	for (int i = 0; i < pixelData->Length; i += 4) {
 		//
 		// The image using the *expected* values is horribly blue - if I flip R and B colors are about right.
 		//
-		grayscaleData[(i / 4) * 3 + 2] = pixelData[i + 0]; // Red component
+//		grayscaleData[(i / 4) * 3 + 2] = pixelData[i + 0]; // Red component
+//		grayscaleData[(i / 4) * 3 + 1] = pixelData[i + 1]; // Green component
+//		grayscaleData[(i / 4) * 3 + 0] = pixelData[i + 2]; // Blue component
+//		grayscaleData[(i / 4) * 3 + 3] = pixelData[i + 3]; // Alpha component
+		
+		grayscaleData[(i / 4) * 3 + 0] = pixelData[i + 0]; // Red component
 		grayscaleData[(i / 4) * 3 + 1] = pixelData[i + 1]; // Green component
-		grayscaleData[(i / 4) * 3 + 0] = pixelData[i + 2]; // Blue component
+		grayscaleData[(i / 4) * 3 + 2] = pixelData[i + 2]; // Blue component
 		grayscaleData[(i / 4) * 3 + 3] = pixelData[i + 3]; // Alpha component
+		
 
 	}
-	int ndims = 3;
-#endif
 
+	ndims = 3;
+#endif
+//			std::cout << "Got this far #1" << std::endl;
 
 	const char* nullTerminatedData = reinterpret_cast<const char*>(grayscaleData.data());
 
+#ifdef BW
 	size_t imageDims[2];
+#else
+		size_t imageDims[3];
+#endif	
 
 	NDDataType_t  imageDataType;
 
@@ -2603,6 +2627,8 @@ void leica::OnWPFBitmapImageArrived(LMF::Tracker::OVC::OverviewCamera^ sender, S
 
 #endif
 //std::cout << "After copy data" << std::endl;
+
+//			std::cout << "Got this far #2" << std::endl;
 
 		epicsTimeGetCurrent(&currentTime);
 		leica_->pImage->timeStamp = currentTime.secPastEpoch + currentTime.nsec / 1.e9;
@@ -2944,13 +2970,13 @@ void leica::OnMeasurementArrived(LMF::Tracker::Measurements::MeasurementSettings
 //#pragma warning(suppress : 4996)
 //		sprintf(bufferz, "dbpf(""433LT:LT1:L_z00"", ""%d"") >nul", int(z));
 		
-		
+//remove the int-ing		
 #pragma warning(suppress : 4996)
-		sprintf(bufferx, "dbpf(""8idtracker:LT1:L_x00"", ""%d"") >nul", int(x));
+		sprintf(bufferx, "dbpf(""8idtracker:LT1:L_x00"", ""%f"") >nul", x);
 #pragma warning(suppress : 4996)
-		sprintf(buffery, "dbpf(""8idtracker:LT1:L_y00"", ""%d"") >nul", int(y));
+		sprintf(buffery, "dbpf(""8idtracker:LT1:L_y00"", ""%f"") >nul", y);
 #pragma warning(suppress : 4996)
-		sprintf(bufferz, "dbpf(""8idtracker:LT1:L_z00"", ""%d"") >nul", int(z));
+		sprintf(bufferz, "dbpf(""8idtracker:LT1:L_z00"", ""%f"") >nul", z);
 
 
 		iocshCmd(bufferx);

@@ -1,34 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-31 11:44:31 by mengbret-->
+<!--Saved on 2024-01-31 09:13:24 by sec8admin-->
 <display version="2.0.0">
   <name>targetsseen_BAK</name>
   <x>911</x>
   <y>236</y>
-  <width>200</width>
-  <height>250</height>
+  <width>194</width>
+  <height>247</height>
   <background_color>
     <color red="187" green="187" blue="187">
     </color>
   </background_color>
   <grid_visible>false</grid_visible>
   <grid_step_x>5</grid_step_x>
-  <widget type="rectangle" version="2.0.0">
-    <name>rectangle #6</name>
-    <width>200</width>
-    <height>250</height>
-    <line_width>1</line_width>
-    <line_color>
-      <color red="0" green="0" blue="0">
-      </color>
-    </line_color>
-    <background_color>
-      <color red="0" green="0" blue="0">
-      </color>
-    </background_color>
-    <transparent>true</transparent>
-  </widget>
   <widget type="label" version="2.0.0">
-    <name>text #9</name>
+    <name>text #6</name>
     <text>Targets</text>
     <y>2</y>
     <width>200</width>
@@ -39,7 +24,7 @@
     <horizontal_alignment>1</horizontal_alignment>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #12</name>
+    <name>text #9</name>
     <text>Targets Seen</text>
     <x>4</x>
     <y>45</y>
@@ -51,7 +36,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #15</name>
+    <name>text update #12</name>
     <pv_name>$(P)$(R)L_Count_3_RBV</pv_name>
     <x>129</x>
     <y>45</y>
@@ -64,11 +49,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #19</name>
+    <name>text update #16</name>
     <pv_name>$(P)$(R)L_x1_RBV</pv_name>
     <x>5</x>
     <y>90</y>
@@ -81,11 +67,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #23</name>
+    <name>text update #20</name>
     <pv_name>$(P)$(R)L_y1_RBV</pv_name>
     <x>70</x>
     <y>90</y>
@@ -98,11 +85,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #27</name>
+    <name>message button #24</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_GotoHere_1</pv_name>
@@ -122,7 +110,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #30</name>
+    <name>text update #27</name>
     <pv_name>$(P)$(R)L_x2_RBV</pv_name>
     <x>5</x>
     <y>123</y>
@@ -135,11 +123,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #34</name>
+    <name>text update #31</name>
     <pv_name>$(P)$(R)L_y2_RBV</pv_name>
     <x>70</x>
     <y>123</y>
@@ -152,11 +141,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #38</name>
+    <name>message button #35</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_GotoHere_2</pv_name>
@@ -176,7 +166,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #41</name>
+    <name>text update #38</name>
     <pv_name>$(P)$(R)L_x3_RBV</pv_name>
     <x>5</x>
     <y>148</y>
@@ -189,11 +179,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #45</name>
+    <name>text update #42</name>
     <pv_name>$(P)$(R)L_y3_RBV</pv_name>
     <x>70</x>
     <y>148</y>
@@ -206,11 +197,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #49</name>
+    <name>message button #46</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_GotoHere_3</pv_name>
@@ -230,7 +222,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #52</name>
+    <name>text update #49</name>
     <pv_name>$(P)$(R)L_x4_RBV</pv_name>
     <x>5</x>
     <y>175</y>
@@ -243,11 +235,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #56</name>
+    <name>text update #53</name>
     <pv_name>$(P)$(R)L_y4_RBV</pv_name>
     <x>70</x>
     <y>175</y>
@@ -260,11 +253,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #60</name>
+    <name>message button #57</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_GotoHere_4</pv_name>
@@ -284,7 +278,7 @@
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #63</name>
+    <name>text update #60</name>
     <pv_name>$(P)$(R)L_x5_RBV</pv_name>
     <x>5</x>
     <y>202</y>
@@ -297,11 +291,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #67</name>
+    <name>text update #64</name>
     <pv_name>$(P)$(R)L_y5_RBV</pv_name>
     <x>70</x>
     <y>202</y>
@@ -314,11 +309,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #71</name>
+    <name>message button #68</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_GotoHere_5</pv_name>

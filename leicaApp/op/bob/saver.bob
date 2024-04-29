@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-31 11:44:30 by mengbret-->
+<!--Saved on 2024-01-31 09:13:00 by sec8admin-->
 <display version="2.0.0">
   <name>saver</name>
   <x>1357</x>
@@ -12,23 +12,8 @@
   </background_color>
   <grid_visible>false</grid_visible>
   <grid_step_x>5</grid_step_x>
-  <widget type="rectangle" version="2.0.0">
-    <name>rectangle #6</name>
-    <width>250</width>
-    <height>450</height>
-    <line_width>1</line_width>
-    <line_color>
-      <color red="0" green="0" blue="0">
-      </color>
-    </line_color>
-    <background_color>
-      <color red="0" green="0" blue="0">
-      </color>
-    </background_color>
-    <transparent>true</transparent>
-  </widget>
   <widget type="embedded" version="2.0.0">
-    <name>composite #9</name>
+    <name>composite #6</name>
     <file>configMenu.bob</file>
     <width>240</width>
     <height>400</height>

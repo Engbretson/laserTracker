@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-31 11:44:20 by mengbret-->
+<!--Saved on 2024-01-31 09:12:02 by sec8admin-->
 <display version="2.0.0">
   <name>configMenu</name>
   <x>1150</x>
@@ -201,6 +201,7 @@
       <color red="200" green="200" blue="200">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -247,6 +248,7 @@
       <color red="115" green="223" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>

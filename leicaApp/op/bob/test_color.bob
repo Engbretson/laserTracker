@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-30 10:31:23 by sec8admin-->
+<!--Saved on 2024-04-29 11:13:56 by mengbret-->
 <display version="2.0.0">
   <name>Display</name>
   <widget type="image" version="2.0.0">
@@ -50,7 +50,7 @@
     <data_width>1280</data_width>
     <data_height>960</data_height>
     <interpolation>0</interpolation>
-    <color_mode>0</color_mode>
+    <color_mode>3</color_mode>
     <autoscale>false</autoscale>
     <x_pv>$(P)$(R)L_XX</x_pv>
     <y_pv>$(P)$(R)L_YY</y_pv>
@@ -204,7 +204,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_7</name>
     <pv_name>$(P)$(R)L_x_RBV</pv_name>
-    <x>696</x>
+    <x>520</x>
     <y>490</y>
     <width>60</width>
     <height>30</height>
@@ -213,7 +213,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_8</name>
     <pv_name>$(P)$(R)L_y_RBV</pv_name>
-    <x>766</x>
+    <x>590</x>
     <y>490</y>
     <width>60</width>
     <height>30</height>
@@ -222,7 +222,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_13</name>
     <pv_name>$(P)$(R)L_z_RBV</pv_name>
-    <x>836</x>
+    <x>660</x>
     <y>490</y>
     <width>60</width>
     <height>30</height>
@@ -231,7 +231,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_14</name>
     <pv_name>$(P)$(R)L_h_RBV</pv_name>
-    <x>695</x>
+    <x>520</x>
     <y>525</y>
     <width>60</width>
     <height>30</height>
@@ -240,7 +240,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_15</name>
     <pv_name>$(P)$(R)L_v_RBV</pv_name>
-    <x>765</x>
+    <x>590</x>
     <y>525</y>
     <width>60</width>
     <height>30</height>
@@ -249,7 +249,7 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_16</name>
     <pv_name>$(P)$(R)L_d_RBV</pv_name>
-    <x>835</x>
+    <x>660</x>
     <y>525</y>
     <width>60</width>
     <height>30</height>
@@ -301,7 +301,7 @@
   <widget type="label" version="2.0.0">
     <name>Label_1</name>
     <text>XYZ</text>
-    <x>661</x>
+    <x>485</x>
     <y>490</y>
     <width>30</width>
     <height>30</height>
@@ -309,7 +309,7 @@
   <widget type="label" version="2.0.0">
     <name>Label_2</name>
     <text>HVD</text>
-    <x>661</x>
+    <x>485</x>
     <y>525</y>
     <width>30</width>
     <height>30</height>
@@ -327,8 +327,7 @@
     <file>main.bob</file>
     <x>40</x>
     <y>500</y>
-    <width>420</width>
-    <height>120</height>
+    <height>175</height>
   </widget>
   <widget type="action_button" version="3.0.0">
     <name>Action Button_2</name>
@@ -408,59 +407,27 @@
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_17</name>
     <pv_name>$(P)$(R)L_YY_RBV</pv_name>
-    <x>540</x>
-    <y>555</y>
+    <x>660</x>
+    <y>565</y>
     <width>60</width>
     <height>30</height>
-    <visible>false</visible>
     <precision>3</precision>
   </widget>
   <widget type="textupdate" version="2.0.0">
     <name>Text Update_18</name>
     <pv_name>$(P)$(R)L_XX_RBV</pv_name>
-    <x>470</x>
-    <y>555</y>
+    <x>590</x>
+    <y>565</y>
     <width>60</width>
     <height>30</height>
-    <visible>false</visible>
     <precision>2</precision>
   </widget>
-  <widget type="action_button" version="3.0.0">
-    <name>Action Button_7</name>
-    <actions>
-      <action type="write_pv">
-        <pv_name>$(pv_name)</pv_name>
-        <value>1</value>
-        <description>WritePV</description>
-      </action>
-    </actions>
-    <pv_name>$(P)$(R)L_StartMeasurement</pv_name>
-    <text>Start</text>
-    <x>659</x>
-    <y>569</y>
-    <width>67</width>
-  </widget>
-  <widget type="action_button" version="3.0.0">
-    <name>Action Button_8</name>
-    <actions>
-      <action type="write_pv">
-        <pv_name>$(pv_name)</pv_name>
-        <value>1</value>
-        <description>WritePV</description>
-      </action>
-    </actions>
-    <pv_name>$(P)$(R)L_StopMeasurement</pv_name>
-    <text>Stop</text>
-    <x>744</x>
-    <y>569</y>
-    <width>67</width>
-  </widget>
-  <widget type="textupdate" version="2.0.0">
-    <name>Text Update_19</name>
-    <pv_name>$(P)$(R)L_Label_10_RBV</pv_name>
-    <x>824</x>
-    <y>569</y>
-    <width>240</width>
+  <widget type="label" version="2.0.0">
+    <name>Label_3</name>
+    <text>Image Click XY</text>
+    <x>470</x>
+    <y>565</y>
+    <width>110</width>
     <height>30</height>
   </widget>
 </display>

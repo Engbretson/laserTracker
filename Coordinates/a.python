@@ -1,0 +1,40 @@
+import numpy as np
+
+# Given the data
+
+E1 = np.array([4008.247, 862.714, 2863.860])
+E12 = np.array([2137.361, 944.795, -2355.180])
+E3 = np.array([1863.359, 908.285, 5221.612])
+
+L1 = np.array([-986.419947, 4462.744183, 824.472809])
+L12 = np.array([-4668.01465, 316.671811, 906.656876])
+L3 = np.array([2111.402938, 3712.446781, 869.932676])
+
+# Compute translation vectors
+
+TE = E1
+TL = L1
+
+# Compute rotation matrix
+
+RE = np.column_stack((E12 - E1, E3 - E1, np.cross(E12 - E1, E3 - E1)))
+RL = np.column_stack((L12 - L1, L3 - L1, np.cross(L12 - L1, L3 - L1)))
+R = np.dot(RL, np.linalg.pinv(RE))
+
+#print("R =", R)
+
+# Compute transformation matrix
+
+M = np.column_stack((R, TL - np.dot(R, TE)))
+
+#print("M =", M)
+
+#E6 = np.array([416.026, 1162.410, 7195.647])
+E6 = np.array([ 1034.918,  1161.631,  -2372.503])
+
+# Apply transformation to E6
+E6_homogeneous = np.append(E6, [1])
+L6_homogeneous = np.dot(M, E6_homogeneous)
+L6 = L6_homogeneous[:3]
+
+print("L6 =", L6)

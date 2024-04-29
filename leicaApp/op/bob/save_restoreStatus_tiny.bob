@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-31 11:44:29 by mengbret-->
+<!--Saved on 2024-01-31 09:13:06 by sec8admin-->
 <display version="2.0.0">
   <name>save_restoreStatus_tiny</name>
   <x>165</x>
@@ -163,6 +163,7 @@
       <color red="255" green="255" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -185,6 +186,7 @@
       <color red="255" green="255" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -207,6 +209,7 @@
       <color red="255" green="255" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>

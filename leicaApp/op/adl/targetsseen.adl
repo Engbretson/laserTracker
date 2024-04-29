@@ -1,7 +1,7 @@
 
 file {
-	name="/net/s8iddserv/xorApps/epics/synApps_6_3/ioc/8idtracker/8idtrackerApp/op/adl/targetsseen.adl"
-	version=030111
+	name="D:\epics\areaDetector-R3-12-1\LaserTracker-R2-1\leicaApp\op\adl\targetsseen.adl"
+	version=030109
 }
 display {
 	object {
@@ -87,18 +87,6 @@ display {
 		1a7309,
 	}
 }
-rectangle {
-	object {
-		x=0
-		y=0
-		width=200
-		height=250
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
 text {
 	object {
 		x=0
@@ -174,7 +162,7 @@ text {
 		x=140
 		y=90
 		width=50
-		height=22
+		height=20
 	}
 	control {
 		chan="$(P)$(R)L_GotoHere_1"
@@ -219,7 +207,7 @@ text {
 		x=140
 		y=123
 		width=50
-		height=22
+		height=20
 	}
 	control {
 		chan="$(P)$(R)L_GotoHere_2"
@@ -264,7 +252,7 @@ text {
 		x=140
 		y=148
 		width=50
-		height=22
+		height=20
 	}
 	control {
 		chan="$(P)$(R)L_GotoHere_3"
@@ -309,7 +297,7 @@ text {
 		x=140
 		y=175
 		width=50
-		height=22
+		height=20
 	}
 	control {
 		chan="$(P)$(R)L_GotoHere_4"
@@ -354,7 +342,7 @@ text {
 		x=140
 		y=202
 		width=50
-		height=22
+		height=20
 	}
 	control {
 		chan="$(P)$(R)L_GotoHere_5"
@@ -363,20 +351,4 @@ text {
 	}
 	label="Go"
 	press_msg="1"
-}
-"related display" {
-	object {
-		x=5
-		y=227
-		width=190
-		height=22
-	}
-	display[0] {
-		label="Saver/Setter"
-		name="configMenu.adl"
-		args="P=$(P),R=$(R),CONFIG=ADAutoSave"
-	}
-	clr=14
-	bclr=4
-	label="Target Saver/Setter"
 }

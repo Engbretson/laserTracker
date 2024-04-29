@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-31 11:44:15 by mengbret-->
+<!--Saved on 2024-01-31 09:13:14 by sec8admin-->
 <display version="2.0.0">
   <name>SR_X_Status</name>
   <x>281</x>
@@ -56,6 +56,7 @@
       <color red="255" green="255" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -76,6 +77,7 @@
       <color red="255" green="255" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -130,6 +132,7 @@
       <color red="255" green="255" blue="255">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -252,6 +255,7 @@
       <color red="218" green="218" blue="218">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -272,6 +276,7 @@
       <color red="200" green="200" blue="200">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -290,6 +295,7 @@
       <color red="200" green="200" blue="200">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -322,6 +328,7 @@
       <color red="200" green="200" blue="200">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>

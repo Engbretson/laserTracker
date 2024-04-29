@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-31 11:44:22 by mengbret-->
+<!--Saved on 2024-01-31 09:12:06 by sec8admin-->
 <display version="2.0.0">
   <name>configMenu_more</name>
   <x>808</x>
@@ -190,6 +190,7 @@
       <color red="200" green="200" blue="200">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
@@ -213,7 +214,7 @@
       </color>
     </background_color>
   </widget>
-  <widget type="group" version="2.0.0">
+  <widget type="group" version="3.0.0">
     <name>composite #47</name>
     <x>150</x>
     <y>580</y>
@@ -261,6 +262,7 @@
         <color red="115" green="223" blue="255">
         </color>
       </background_color>
+      <format>1</format>
       <show_units>false</show_units>
       <border_alarm_sensitive>false</border_alarm_sensitive>
     </widget>

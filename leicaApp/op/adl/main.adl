@@ -1,14 +1,14 @@
 
 file {
-	name="/net/s100dserv/xorApps/me/LaserTracker-R2-1/leicaApp/op/adl/main.adl"
-	version=030111
+	name="C:\epics\areaDetector-R3-13\LaserTracker-R2-1-1\leicaApp\op\adl\main.adl"
+	version=030109
 }
 display {
 	object {
 		x=817
 		y=383
 		width=400
-		height=114
+		height=135
 	}
 	clr=14
 	bclr=4
@@ -85,18 +85,6 @@ display {
 		3cb420,
 		289315,
 		1a7309,
-	}
-}
-rectangle {
-	object {
-		x=0
-		y=0
-		width=400
-		height=114
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
 	}
 }
 "related display" {
@@ -215,4 +203,20 @@ rectangle {
 	clr=14
 	bclr=4
 	label="Laser Tracker Functional Screens #2"
+}
+"related display" {
+	object {
+		x=36
+		y=90
+		width=308
+		height=30
+	}
+	display[0] {
+		label="Common Plugins"
+		name="commonPlugins.adl"
+		args="P=$(P),R=$(R)"
+	}
+	clr=14
+	bclr=4
+	label="Common Plugins"
 }

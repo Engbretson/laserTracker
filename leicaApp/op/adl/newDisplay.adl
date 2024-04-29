@@ -1,14 +1,14 @@
 
 file {
-	name="/net/s8iddserv/xorApps/epics/synApps_6_3/ioc/8idtracker/8idtrackerApp/op/adl/newDisplay.adl"
-	version=030111
+	name="D:\epics\areaDetector-R3-12-1\LaserTracker-R2-1\leicaApp\op\adl\newDisplay.adl"
+	version=030109
 }
 display {
 	object {
-		x=306
-		y=231
+		x=316
+		y=239
 		width=1062
-		height=620
+		height=573
 	}
 	clr=14
 	bclr=4
@@ -92,17 +92,17 @@ composite {
 		x=0
 		y=0
 		width=640
-		height=490
+		height=480
 	}
 	"composite name"=""
 	"composite file"="image.adl"
 }
 composite {
 	object {
-		x=660
+		x=762
 		y=14
 		width=200
-		height=250
+		height=220
 	}
 	"composite name"=""
 	"composite file"="targetsseen.adl"
@@ -110,9 +110,9 @@ composite {
 composite {
 	object {
 		x=5
-		y=495
-		width=400
-		height=114
+		y=497
+		width=308
+		height=58
 	}
 	"composite name"=""
 	"composite file"="main.adl"
@@ -121,8 +121,8 @@ composite {
 	object {
 		x=660
 		y=414
-		width=351
-		height=200
+		width=350
+		height=139
 	}
 	"composite name"=""
 	"composite file"="readouts.adl"
@@ -131,8 +131,8 @@ composite {
 	object {
 		x=660
 		y=288
-		width=401
-		height=100
+		width=410
+		height=65
 	}
 	"composite name"=""
 	"composite file"="goto.adl"

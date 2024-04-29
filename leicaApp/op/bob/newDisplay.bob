@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-31 11:44:26 by mengbret-->
+<!--Saved on 2024-01-31 09:12:47 by sec8admin-->
 <display version="2.0.0">
   <name>newDisplay</name>
-  <x>306</x>
-  <y>231</y>
+  <x>316</x>
+  <y>239</y>
   <width>1062</width>
-  <height>620</height>
+  <height>573</height>
   <background_color>
     <color red="187" green="187" blue="187">
     </color>
@@ -16,7 +16,7 @@
     <name>composite #6</name>
     <file>image.bob</file>
     <width>640</width>
-    <height>490</height>
+    <height>480</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #8</name>
@@ -24,29 +24,30 @@
     <x>762</x>
     <y>14</y>
     <width>200</width>
-    <height>250</height>
+    <height>220</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #10</name>
     <file>main.bob</file>
     <x>5</x>
-    <y>495</y>
-    <height>114</height>
+    <y>497</y>
+    <width>308</width>
+    <height>58</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #12</name>
     <file>readouts.bob</file>
     <x>660</x>
     <y>414</y>
-    <width>351</width>
-    <height>200</height>
+    <width>350</width>
+    <height>139</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #14</name>
     <file>goto.bob</file>
     <x>660</x>
     <y>288</y>
-    <width>401</width>
-    <height>100</height>
+    <width>410</width>
+    <height>65</height>
   </widget>
 </display>

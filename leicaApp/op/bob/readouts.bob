@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-31 11:44:27 by mengbret-->
+<!--Saved on 2024-01-31 09:12:57 by sec8admin-->
 <display version="2.0.0">
   <name>readouts</name>
   <x>1038</x>
@@ -12,23 +12,8 @@
   </background_color>
   <grid_visible>false</grid_visible>
   <grid_step_x>5</grid_step_x>
-  <widget type="rectangle" version="2.0.0">
-    <name>rectangle #6</name>
-    <width>350</width>
-    <height>200</height>
-    <line_width>1</line_width>
-    <line_color>
-      <color red="0" green="0" blue="0">
-      </color>
-    </line_color>
-    <background_color>
-      <color red="0" green="0" blue="0">
-      </color>
-    </background_color>
-    <transparent>true</transparent>
-  </widget>
   <widget type="label" version="2.0.0">
-    <name>text #9</name>
+    <name>text #6</name>
     <text>Readouts</text>
     <x>1</x>
     <y>11</y>
@@ -41,7 +26,7 @@
     <horizontal_alignment>1</horizontal_alignment>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #12</name>
+    <name>text #9</name>
     <text></text>
     <x>1</x>
     <y>6</y>
@@ -54,7 +39,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #15</name>
+    <name>text #12</name>
     <text>XYZ</text>
     <x>10</x>
     <y>50</y>
@@ -66,7 +51,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #18</name>
+    <name>text update #15</name>
     <pv_name>$(P)$(R)L_x_RBV</pv_name>
     <x>55</x>
     <y>50</y>
@@ -79,11 +64,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #22</name>
+    <name>text update #19</name>
     <pv_name>$(P)$(R)L_y_RBV</pv_name>
     <x>150</x>
     <y>50</y>
@@ -96,11 +82,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #26</name>
+    <name>text update #23</name>
     <pv_name>$(P)$(R)L_z_RBV</pv_name>
     <x>245</x>
     <y>50</y>
@@ -113,11 +100,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="label" version="2.0.0">
-    <name>text #30</name>
+    <name>text #27</name>
     <text>HVD</text>
     <x>12</x>
     <y>83</y>
@@ -129,7 +117,7 @@
     <auto_size>true</auto_size>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #33</name>
+    <name>text update #30</name>
     <pv_name>$(P)$(R)L_h_RBV</pv_name>
     <x>57</x>
     <y>83</y>
@@ -142,11 +130,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #37</name>
+    <name>text update #34</name>
     <pv_name>$(P)$(R)L_v_RBV</pv_name>
     <x>152</x>
     <y>83</y>
@@ -159,11 +148,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #41</name>
+    <name>text update #38</name>
     <pv_name>$(P)$(R)L_d_RBV</pv_name>
     <x>247</x>
     <y>83</y>
@@ -176,11 +166,12 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #45</name>
+    <name>message button #42</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_StartMeasurement</pv_name>
@@ -193,14 +184,14 @@
     <x>10</x>
     <y>125</y>
     <width>54</width>
-    <height>22</height>
+    <height>20</height>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
   </widget>
   <widget type="action_button" version="3.0.0">
-    <name>message button #48</name>
+    <name>message button #45</name>
     <actions>
       <action type="write_pv">
         <pv_name>$(P)$(R)L_StopMeasurement</pv_name>
@@ -213,14 +204,14 @@
     <x>68</x>
     <y>125</y>
     <width>54</width>
-    <height>22</height>
+    <height>20</height>
     <background_color>
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
   </widget>
   <widget type="textupdate" version="2.0.0">
-    <name>text update #51</name>
+    <name>text update #48</name>
     <pv_name>$(P)$(R)L_Label_10_RBV</pv_name>
     <x>127</x>
     <y>125</y>
@@ -233,6 +224,7 @@
       <color red="187" green="187" blue="187">
       </color>
     </background_color>
+    <format>1</format>
     <show_units>false</show_units>
     <border_alarm_sensitive>false</border_alarm_sensitive>
   </widget>

@@ -1,14 +1,14 @@
 
 file {
-	name="/net/s8iddserv/xorApps/epics/synApps_6_3/ioc/8idtracker/8idtrackerApp/op/adl/configMenu.adl"
+	name="/home/oxygen/MOONEY/epics/synApps/support/autosave/asApp/op/adl/configMenu.adl"
 	version=030111
 }
 display {
 	object {
-		x=1140
-		y=585
-		width=248
-		height=410
+		x=1150
+		y=593
+		width=240
+		height=400
 	}
 	clr=14
 	bclr=3
@@ -87,18 +87,6 @@ display {
 		1a7309,
 	}
 }
-rectangle {
-	object {
-		x=0
-		y=0
-		width=248
-		height=410
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
 text {
 	object {
 		x=45
@@ -112,599 +100,115 @@ text {
 	textix="config Name"
 	align="horiz. centered"
 }
-rectangle {
+composite {
 	object {
 		x=0
 		y=0
 		width=240
-		height=20
+		height=93
 	}
-	"basic attribute" {
-		clr=0
-	}
+	"composite name"=""
+	"composite file"="configMenuHead_bare.adl;P=$(P),CONFIG=$(CONFIG)"
 }
-text {
+composite {
 	object {
 		x=5
-		y=0
+		y=210
 		width=230
 		height=20
 	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="configMenu: $(CONFIG)"
-	align="horiz. centered"
+	"composite name"=""
+	"composite file"="configMenu_bare1.adl;P=$(P),CONFIG=$(CONFIG),N=5"
 }
-polyline {
-	object {
-		x=0
-		y=20
-		width=240
-		height=3
-	}
-	"basic attribute" {
-		clr=54
-		width=3
-	}
-	points {
-		(1,21)
-		(238,21)
-	}
-}
-"text update" {
-	object {
-		x=50
-		y=25
-		width=185
-		height=20
-	}
-	monitor {
-		chan="$(P)$(CONFIG)Menu:currName"
-		clr=54
-		bclr=3
-	}
-	format="string"
-	limits {
-	}
-}
-"text update" {
-	object {
-		x=50
-		y=50
-		width=185
-		height=15
-	}
-	monitor {
-		chan="$(P)$(CONFIG)Menu:currDesc"
-		clr=54
-		bclr=3
-	}
-	format="string"
-	limits {
-	}
-}
-polyline {
-	object {
-		x=0
-		y=91
-		width=240
-		height=2
-	}
-	"basic attribute" {
-		clr=14
-		width=2
-	}
-	points {
-		(1,92)
-		(239,92)
-	}
-}
-"text update" {
-	object {
-		x=65
-		y=70
-		width=175
-		height=20
-	}
-	monitor {
-		chan="$(P)$(CONFIG)Menu:status"
-		clr=54
-		bclr=3
-	}
-	align="horiz. centered"
-	format="string"
-	limits {
-	}
-}
-text {
-	object {
-		x=5
-		y=30
-		width=40
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="NAME:"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=5
-		y=50
-		width=40
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="DESC:"
-	align="horiz. centered"
-}
-text {
-	object {
-		x=5
-		y=75
-		width=50
-		height=13
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="STATUS:"
-	align="horiz. centered"
-}
-"text entry" {
-	object {
-		x=45
-		y=210
-		width=150
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:name5"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
-	object {
-		x=5
-		y=210
-		width=35
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:loadConfig5.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Load"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=200
-		y=210
-		width=35
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:saveConfig5.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Save"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=45
-		y=110
-		width=150
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:name1"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
+composite {
 	object {
 		x=5
 		y=110
-		width=35
+		width=230
 		height=20
 	}
-	control {
-		chan="$(P)$(CONFIG)Menu:loadConfig1.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Load"
-	press_msg="1"
+	"composite name"=""
+	"composite file"="configMenu_bare1.adl;P=$(P),CONFIG=$(CONFIG),N=1"
 }
-"message button" {
-	object {
-		x=200
-		y=110
-		width=35
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:saveConfig1.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Save"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=45
-		y=135
-		width=150
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:name2"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
+composite {
 	object {
 		x=5
 		y=135
-		width=35
+		width=230
 		height=20
 	}
-	control {
-		chan="$(P)$(CONFIG)Menu:loadConfig2.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Load"
-	press_msg="1"
+	"composite name"=""
+	"composite file"="configMenu_bare1.adl;P=$(P),CONFIG=$(CONFIG),N=2"
 }
-"message button" {
-	object {
-		x=200
-		y=135
-		width=35
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:saveConfig2.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Save"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=45
-		y=160
-		width=150
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:name3"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
+composite {
 	object {
 		x=5
 		y=160
-		width=35
+		width=230
 		height=20
 	}
-	control {
-		chan="$(P)$(CONFIG)Menu:loadConfig3.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Load"
-	press_msg="1"
+	"composite name"=""
+	"composite file"="configMenu_bare1.adl;P=$(P),CONFIG=$(CONFIG),N=3"
 }
-"message button" {
-	object {
-		x=200
-		y=160
-		width=35
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:saveConfig3.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Save"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=45
-		y=185
-		width=150
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:name4"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
+composite {
 	object {
 		x=5
 		y=185
-		width=35
+		width=230
 		height=20
 	}
-	control {
-		chan="$(P)$(CONFIG)Menu:loadConfig4.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Load"
-	press_msg="1"
+	"composite name"=""
+	"composite file"="configMenu_bare1.adl;P=$(P),CONFIG=$(CONFIG),N=4"
 }
-"message button" {
-	object {
-		x=200
-		y=185
-		width=35
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:saveConfig4.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Save"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=45
-		y=335
-		width=150
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:name10"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
+composite {
 	object {
 		x=5
 		y=335
-		width=35
+		width=230
 		height=20
 	}
-	control {
-		chan="$(P)$(CONFIG)Menu:loadConfig10.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Load"
-	press_msg="1"
+	"composite name"=""
+	"composite file"="configMenu_bare1.adl;P=$(P),CONFIG=$(CONFIG),N=10"
 }
-"message button" {
-	object {
-		x=200
-		y=335
-		width=35
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:saveConfig10.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Save"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=45
-		y=235
-		width=150
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:name6"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
+composite {
 	object {
 		x=5
 		y=235
-		width=35
+		width=230
 		height=20
 	}
-	control {
-		chan="$(P)$(CONFIG)Menu:loadConfig6.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Load"
-	press_msg="1"
+	"composite name"=""
+	"composite file"="configMenu_bare1.adl;P=$(P),CONFIG=$(CONFIG),N=6"
 }
-"message button" {
-	object {
-		x=200
-		y=235
-		width=35
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:saveConfig6.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Save"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=45
-		y=260
-		width=150
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:name7"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
+composite {
 	object {
 		x=5
 		y=260
-		width=35
+		width=230
 		height=20
 	}
-	control {
-		chan="$(P)$(CONFIG)Menu:loadConfig7.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Load"
-	press_msg="1"
+	"composite name"=""
+	"composite file"="configMenu_bare1.adl;P=$(P),CONFIG=$(CONFIG),N=7"
 }
-"message button" {
-	object {
-		x=200
-		y=260
-		width=35
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:saveConfig7.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Save"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=45
-		y=285
-		width=150
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:name8"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
+composite {
 	object {
 		x=5
 		y=285
-		width=35
+		width=230
 		height=20
 	}
-	control {
-		chan="$(P)$(CONFIG)Menu:loadConfig8.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Load"
-	press_msg="1"
+	"composite name"=""
+	"composite file"="configMenu_bare1.adl;P=$(P),CONFIG=$(CONFIG),N=8"
 }
-"message button" {
-	object {
-		x=200
-		y=285
-		width=35
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:saveConfig8.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Save"
-	press_msg="1"
-}
-"text entry" {
-	object {
-		x=45
-		y=310
-		width=150
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:name9"
-		clr=14
-		bclr=51
-	}
-	limits {
-	}
-}
-"message button" {
+composite {
 	object {
 		x=5
 		y=310
-		width=35
+		width=230
 		height=20
 	}
-	control {
-		chan="$(P)$(CONFIG)Menu:loadConfig9.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Load"
-	press_msg="1"
-}
-"message button" {
-	object {
-		x=200
-		y=310
-		width=35
-		height=20
-	}
-	control {
-		chan="$(P)$(CONFIG)Menu:saveConfig9.PROC"
-		clr=14
-		bclr=51
-	}
-	label="Save"
-	press_msg="1"
+	"composite name"=""
+	"composite file"="configMenu_bare1.adl;P=$(P),CONFIG=$(CONFIG),N=9"
 }
 "related display" {
 	object {

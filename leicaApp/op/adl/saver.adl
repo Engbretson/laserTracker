@@ -87,18 +87,6 @@ display {
 		1a7309,
 	}
 }
-rectangle {
-	object {
-		x=0
-		y=0
-		width=250
-		height=450
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
 composite {
 	object {
 		x=0

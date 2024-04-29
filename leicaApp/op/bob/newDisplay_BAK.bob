@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-31 11:44:27 by mengbret-->
+<!--Saved on 2024-01-31 09:12:48 by sec8admin-->
 <display version="2.0.0">
   <name>newDisplay_BAK</name>
-  <x>306</x>
-  <y>231</y>
-  <width>1062</width>
-  <height>620</height>
+  <x>316</x>
+  <y>239</y>
+  <width>1036</width>
+  <height>573</height>
   <background_color>
     <color red="187" green="187" blue="187">
     </color>
@@ -24,13 +24,13 @@
     <x>762</x>
     <y>14</y>
     <width>200</width>
-    <height>220</height>
+    <height>250</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #10</name>
     <file>main.bob</file>
     <x>5</x>
-    <y>482</y>
+    <y>497</y>
     <height>114</height>
   </widget>
   <widget type="embedded" version="2.0.0">
@@ -39,13 +39,13 @@
     <x>660</x>
     <y>414</y>
     <width>350</width>
-    <height>139</height>
+    <height>200</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #14</name>
     <file>goto.bob</file>
-    <x>660</x>
+    <x>644</x>
     <y>288</y>
-    <height>65</height>
+    <height>100</height>
   </widget>
 </display>

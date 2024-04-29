@@ -3,6 +3,7 @@
 # top directory each time this file is changed.
 
 ADleica = $(TOP)/../..
+ALIVE=$(SUPPORT)/alive-R1-4-1
 
 -include $(TOP)/../../../configure/RELEASE_PRODS_INCLUDE
 -include $(TOP)/RELEASE.local

@@ -1,7 +1,7 @@
 
 file {
-	name="/net/s8iddserv/xorApps/epics/synApps_6_3/ioc/8idtracker/8idtrackerApp/op/adl/readouts.adl"
-	version=030111
+	name="D:\epics\areaDetector-R3-12-1\LaserTracker-R2-1\leicaApp\op\adl\readouts.adl"
+	version=030109
 }
 display {
 	object {
@@ -85,18 +85,6 @@ display {
 		3cb420,
 		289315,
 		1a7309,
-	}
-}
-rectangle {
-	object {
-		x=0
-		y=0
-		width=350
-		height=200
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
 	}
 }
 text {
@@ -242,7 +230,7 @@ text {
 		x=10
 		y=125
 		width=54
-		height=22
+		height=20
 	}
 	control {
 		chan="$(P)$(R)L_StartMeasurement"
@@ -257,7 +245,7 @@ text {
 		x=68
 		y=125
 		width=54
-		height=22
+		height=20
 	}
 	control {
 		chan="$(P)$(R)L_StopMeasurement"
@@ -281,72 +269,4 @@ text {
 	}
 	limits {
 	}
-}
-text {
-	object {
-		x=10
-		y=160
-		width=50
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Laser"
-}
-"text update" {
-	object {
-		x=71
-		y=160
-		width=50
-		height=20
-	}
-	monitor {
-		chan="$(P)$(R)L_IsOnValue_RBV"
-		clr=14
-		bclr=4
-	}
-	limits {
-	}
-}
-text {
-	object {
-		x=141
-		y=160
-		width=50
-		height=20
-	}
-	"basic attribute" {
-		clr=14
-	}
-	textix="Warm?"
-}
-"text update" {
-	object {
-		x=198
-		y=160
-		width=50
-		height=20
-	}
-	monitor {
-		chan="$(P)$(R)L_IsWarmValue_RBV"
-		clr=14
-		bclr=4
-	}
-	limits {
-	}
-}
-"choice button" {
-	object {
-		x=259
-		y=160
-		width=80
-		height=20
-	}
-	control {
-		chan="$(P)$(R)L_IsOnValue"
-		clr=14
-		bclr=4
-	}
-	stacking="column"
 }

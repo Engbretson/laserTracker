@@ -87,18 +87,6 @@ display {
 		1a7309,
 	}
 }
-rectangle {
-	object {
-		x=0
-		y=0
-		width=640
-		height=480
-	}
-	"basic attribute" {
-		clr=14
-		fill="outline"
-	}
-}
 image {
 	object {
 		x=0
