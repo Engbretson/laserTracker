@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-31 09:12:15 by sec8admin-->
+<!--Saved on 2024-04-29 14:49:13 by mengbret-->
 <display version="2.0.0">
   <name>image_BAK</name>
   <x>498</x>
   <y>357</y>
-  <width>584</width>
-  <height>478</height>
+  <width>640</width>
+  <height>480</height>
   <background_color>
     <color red="187" green="187" blue="187">
     </color>
@@ -15,10 +15,9 @@
   <widget type="picture" version="2.0.0">
     <name>image #6</name>
     <file>default.gif</file>
-    <x>11</x>
-    <y>13</y>
-    <width>466</width>
-    <height>385</height>
+    <y>10</y>
+    <width>640</width>
+    <height>480</height>
     <stretch_image>true</stretch_image>
   </widget>
 </display>

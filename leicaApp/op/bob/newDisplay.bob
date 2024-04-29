@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-04-29 13:36:19 by mengbret-->
+<!--Saved on 2024-04-29 14:50:26 by mengbret-->
 <display version="2.0.0">
   <name>newDisplay</name>
   <x>316</x>
   <y>239</y>
   <width>1062</width>
-  <height>573</height>
+  <height>619</height>
   <background_color>
     <color red="187" green="187" blue="187">
     </color>
@@ -23,31 +23,30 @@
     <file>targetsseen.bob</file>
     <x>762</x>
     <y>14</y>
-    <width>263</width>
-    <height>274</height>
+    <width>200</width>
+    <height>220</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #10</name>
     <file>main.bob</file>
     <x>5</x>
     <y>497</y>
-    <width>380</width>
-    <height>153</height>
+    <width>310</width>
+    <height>95</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #12</name>
     <file>readouts.bob</file>
     <x>660</x>
     <y>414</y>
-    <width>440</width>
-    <height>216</height>
+    <width>350</width>
+    <height>139</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #14</name>
     <file>goto.bob</file>
     <x>660</x>
     <y>288</y>
-    <width>410</width>
-    <height>92</height>
+    <height>65</height>
   </widget>
 </display>

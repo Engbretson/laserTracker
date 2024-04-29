@@ -10,5 +10,5 @@ done
 
 mv *.ui ../ui/autoconvert
 
-mv *.bob ../bob/autoconvert
+mv *.bob ../bob
 
