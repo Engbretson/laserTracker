@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Saved on 2024-01-31 09:12:47 by sec8admin-->
+<!--Saved on 2024-04-29 13:36:19 by mengbret-->
 <display version="2.0.0">
   <name>newDisplay</name>
   <x>316</x>
@@ -23,24 +23,24 @@
     <file>targetsseen.bob</file>
     <x>762</x>
     <y>14</y>
-    <width>200</width>
-    <height>220</height>
+    <width>263</width>
+    <height>274</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #10</name>
     <file>main.bob</file>
     <x>5</x>
     <y>497</y>
-    <width>308</width>
-    <height>58</height>
+    <width>380</width>
+    <height>153</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #12</name>
     <file>readouts.bob</file>
     <x>660</x>
     <y>414</y>
-    <width>350</width>
-    <height>139</height>
+    <width>440</width>
+    <height>216</height>
   </widget>
   <widget type="embedded" version="2.0.0">
     <name>composite #14</name>
@@ -48,6 +48,6 @@
     <x>660</x>
     <y>288</y>
     <width>410</width>
-    <height>65</height>
+    <height>92</height>
   </widget>
 </display>

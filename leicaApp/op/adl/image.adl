@@ -1,6 +1,6 @@
 
 file {
-	name="D:\epics\areaDetector-R3-12-1\LaserTracker-R2-1\leicaApp\op\adl\image.adl"
+	name="C:\epics\areaDetector-R3-13\LaserTracker-R2-1-1\leicaApp\op\adl\image.adl"
 	version=030109
 }
 display {

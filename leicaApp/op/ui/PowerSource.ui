@@ -16,12 +16,17 @@
 QWidget#centralWidget {background: rgba(187, 187, 187, 255);}
 
 caTable {
-       font: 10pt;
        background: cornsilk;
        alternate-background-color: wheat;
 }
 
 caLineEdit {
+     border-radius: 1px;
+     background: lightyellow;
+     color: black;
+ }
+ 
+ caLabel {
      border-radius: 1px;
      background: lightyellow;
      color: black;
@@ -43,6 +48,7 @@ caTextEntry:focus {
     border-radius: 1px;
 }
 
+/* when font specified, no font sizing is done any more,  font: 10pt; is not bad */
 QPushButton {
       border-color: #00b;
       border-radius: 2px;
@@ -74,43 +80,31 @@ QPushButton:disabled {
 						stop:1   rgba(134, 188, 236, 255));
 }
 
-caChoice {
-      background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                  stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
-                                  stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
-}
 
 caChoice &gt; QPushButton {
-      text-align: left;
-      padding: 1px;
+text-align: left;
+background-color: lightgray;
+border: 3px gray;
 }
 
-/* when font specified, no font sizing is done any more,  font: 10pt; is not bad. You could Enable this when you converted from .adl files
-caRelatedDisplay  &gt; QPushButton {
-font: 10pt;
+caChoice &gt; QPushButton:pressed {
+background-color: lightgray;
+border: 3px gray;
 }
 
-caShellCommand  &gt; QPushButton {
-font: 10pt;
-}
-*/
-
-caSlider::groove:horizontal {
-border: 1px solid #bbb;
-background: lightgrey;
-height: 20px;
-border-radius: 4px;
+caChoice &gt; QPushButton:checked {
+background-color: #EEEEEE;
+border: 3px gray;
 }
 
-caSlider::handle:horizontal {
-background: red;
-border: 1px solid #777;
-width: 13px;
-margin-top: -2px;
-margin-bottom: -2px;
-border-radius: 2px;
+caChoice &gt; QPushButton:default {
+background-color: lightgray;
+border: 3px gray;
 }
 
+caMenu{
+    background: lightyellow;
+}
 
 
 </string>

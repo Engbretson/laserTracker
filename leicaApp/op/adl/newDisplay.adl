@@ -1,6 +1,6 @@
 
 file {
-	name="D:\epics\areaDetector-R3-12-1\LaserTracker-R2-1\leicaApp\op\adl\newDisplay.adl"
+	name="C:\epics\areaDetector-R3-13\LaserTracker-R2-1-1\leicaApp\op\adl\newDisplay.adl"
 	version=030109
 }
 display {
@@ -8,7 +8,7 @@ display {
 		x=316
 		y=239
 		width=1062
-		height=573
+		height=619
 	}
 	clr=14
 	bclr=4
@@ -111,8 +111,8 @@ composite {
 	object {
 		x=5
 		y=497
-		width=308
-		height=58
+		width=310
+		height=95
 	}
 	"composite name"=""
 	"composite file"="main.adl"
@@ -131,7 +131,7 @@ composite {
 	object {
 		x=660
 		y=288
-		width=410
+		width=400
 		height=65
 	}
 	"composite name"=""

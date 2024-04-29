@@ -3,6 +3,7 @@
 # top directory each time this file is changed.
 
 ALIVE=$(SUPPORT)/alive-R1-4-1
+LUA=$(SUPPORT)/lua-R3-1
 
 -include $(TOP)/../configure/RELEASE_LIBS_INCLUDE
 -include $(TOP)/RELEASE.local
