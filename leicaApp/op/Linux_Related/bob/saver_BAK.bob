@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Saved on 2024-01-31 16:11:58 by mengbret-->
+<display version="2.0.0">
+  <name>saver_BAK</name>
+  <x>498</x>
+  <y>216</y>
+  <width>236</width>
+  <height>427</height>
+  <background_color>
+    <color red="187" green="187" blue="187">
+    </color>
+  </background_color>
+  <grid_visible>false</grid_visible>
+  <grid_step_x>5</grid_step_x>
+  <widget type="embedded" version="2.0.0">
+    <name>composite #6</name>
+    <file>configMenu.bob</file>
+    <width>240</width>
+    <height>400</height>
+  </widget>
+</display>
